@@ -1,0 +1,18 @@
+---
+interface Props {
+    friendship?: boolean;
+}
+
+const { friendship } = Astro.props;
+
+const name = 'Astro';
+
+//let parts = name.split(' ')
+//let firstName = parts.shift();
+//let lastName = parts.join(' ');
+---
+{ friendship ? <div class="h-[82.2656px] border-2 border-orange-400/60 flex">
+    <div class="mx-auto my-auto">
+        <p class="text-[14.976px] font-semibold text-red-600">{name} is your Friend</p>
+    </div>
+</div> : '' }

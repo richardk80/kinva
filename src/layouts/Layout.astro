@@ -1,0 +1,36 @@
+---
+import  SpeedInsights  from "@vercel/speed-insights/astro";
+
+import BaseHead from "@lay/BaseHead.astro";
+
+import Header from "@com/header/Header.astro";
+
+import Footer from "@com/main/Footer.astro";
+
+import ScrollToTop from "@com/main/ScrollToTop.astro";
+---
+
+<html lang="en" class="c_darkmode antialiased subpixel-antialiased">
+  <BaseHead {...Astro.props} />
+  <body>
+    <SpeedInsights />
+    <ScrollToTop />
+    <div class="mx-auto w-[800px]">
+      <div class="sticky inset-0 z-50">
+        <Header />
+      </div>
+      <div class="inline-block w-[800px] h-full bg-white">
+        <div class="my-4">
+          <slot />
+        </div>
+      </div>
+      <div class="pt-3 pb-10">
+        <Footer />
+      </div>
+    </div>
+  </body>
+</html>
+
+<script is:inline>
+  // @ts-nocheck
+  </script>

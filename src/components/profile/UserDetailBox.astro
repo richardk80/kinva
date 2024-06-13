@@ -1,0 +1,27 @@
+---
+import BubbleBox from '@com/main/BubbleBox.astro';
+import UserDetailEditLinks from '@com/profile/UserDetailEditLinks.astro';
+import ProfileImage from '@com/home/ProfileImage.astro';
+import Mood from '@com/profile/Mood.astro';
+import BottomUserDetailLinks from '@com/profile/BottomUserDetailLinks.astro';
+
+const { name, hidden, onlinenow } = Astro.props;
+
+const username = 'astro';
+---
+<BubbleBox widthcss="w-[304px]" name="Astro" name2="[edit name]" hidden={hidden} pclass="flex items-center justify-between text-base font-semibold text-white h-6 mx-2 mt-0.5" backgroundColor="bg-blue-400" borderColor="border-blue-400" aclass="text-[10px] -mt-0.5 font-normal hover:underline text-white" aurl={`/${username}/settings`}>
+        <div class={ hidden ? "ml-4 mt-1 mb-1": "ml-4 my-1" }>
+            <div class="flex items-center space-x-2 -ml-2 mb-1 -mt-0.5" class={ hidden && "flex items-center space-x-2 -ml-2 mb-1 mt-0.5" }>
+                <UserDetailEditLinks hidden={hidden} />
+            </div>
+            <div class="flex justify-between my-2">
+                <ProfileImage width={160} height={160} imgclass="bg-blue-100 box-border mb-0.5 -ml-1.5" srcurl="/3.jpg" altText={`${name}'s Profile Picture`} />
+            </div>
+            <div class="box-border space-y-1 -ml-2">
+                    <Mood hidden={hidden} onlinenow={onlinenow} />
+                    <div class="mb-2 ml-0.5">
+                        <BottomUserDetailLinks />
+                    </div>
+            </div>
+        </div>
+</BubbleBox>

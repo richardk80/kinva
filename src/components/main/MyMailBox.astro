@@ -1,0 +1,26 @@
+---
+interface Props {
+  widthcss?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  name?: string;
+  pclass?: string;
+  count?: string;
+  messagenum?: number;
+};
+
+const { widthcss, backgroundColor, borderColor, name, pclass, count } = Astro.props;
+
+const { messagenum } = Astro.props;
+---
+<div class={widthcss}>
+    <div class="py-0.5" class:list={backgroundColor}>
+        <div class={pclass}>
+          <p class="flex items-center"> {name} </p>
+          { messagenum > 0 ? <p class="-mt-0.5 ml-1" title={`You have ${messagenum} ${ messagenum == 1 ? "message" : "messages" }`}> {count} </p> : ''}
+    </div>
+    </div>
+        <div class="border-2 border-solid" class:list={borderColor}>
+                <slot />
+        </div>
+</div>

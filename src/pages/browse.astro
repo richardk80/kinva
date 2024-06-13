@@ -1,0 +1,71 @@
+---
+import Layout from '@lay/Layout.astro';
+
+import ProfileImage from '@com/home/ProfileImage.astro';
+
+const currentPath = new URL(Astro.request.url).pathname.slice(1);
+
+//let parts = name.split(' ')
+//let firstName = parts.shift();
+//let lastName = parts.join(' ');
+---
+<Layout title="Browse Users">
+	<main class="text-black">
+		<div class="mb-[30px] mx-auto w-[594px] px-[8px]">
+			<h2 class="block text-[19.2px] font-semibold mb-2 cursor-default">Browse Users</h2>
+			  <div class="flex items-stretch text-xs mb-3">
+				  <p class="text-xs text-black cursor-default font-semibold">Filter:</p>
+				  {[
+					[ "/", "", "text-blue-600 hover:text-red-600 font-semibold", "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", "All Users", "text-black ml-1 cursor-default font-medium text-xs", "-" ],
+					[ "/browse", "newusers", "text-blue-600 hover:text-red-600 font-semibold", "text-blue-600 hover:text-red-600 ml-1 hover:underline", "New Users", "text-black ml-1 cursor-default font-medium text-xs", "-" ],
+					[ "/browse", "onlineusers", "text-blue-600 hover:text-red-600 font-semibold", "text-blue-600 hover:text-red-600 ml-1 hover:underline", "Online Users", "text-black ml-1 cursor-default font-normal text-xs", "" ],
+				  ].map(([ href, smallname, firstcss, secondcss, link, dividercss, divider ]) => (
+					    	<a href={href} class={currentPath === `${smallname}` ? `${firstcss}` : `${secondcss}`}>{link}</a>
+					    	<div class={dividercss}>{divider}</div>
+				    	))
+      				}
+			  </div>
+        		<div class="flex items-stretch text-xs mb-4">
+				  <p class="text-xs text-black cursor-default font-semibold">Friends:</p>
+				  {[
+					[ "/", "includefriends", "text-blue-600 hover:text-red-600 font-semibold", "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", "Include Friends", "text-black ml-1 cursor-default font-medium text-xs", "-" ],
+					[ "/", "excludefriends", "text-blue-600 hover:text-red-600 font-semibold", "text-blue-600 hover:text-red-600 ml-1 hover:underline", "Exclude Friends",  "text-black ml-1 cursor-default font-normal text-xs", "" ],
+				  	].map(([ href, smallname, firstcss, secondcss, link, dividercss, divider ]) => (
+					    	<a href={href} class={currentPath === `${smallname}` ? `${firstcss}` : `${secondcss}`}>{link}</a>
+					    	<div class={dividercss}>{divider}</div>
+				    	))
+      				}
+			  	  </div>
+				  <div class="py-0.5 bg-orange-400/60">
+					  <div class="flex justify-between items-center mx-2">
+						  <p class="text-xs font-semibold text-black mt-1 cursor-default">Active Users</p>
+						  <a class="text-black text-[10.24px] mt-1 hover:underline" href="#">[random]</a>
+					  </div>
+				  </div>
+				  <div class="border-2 border-orange-400/60 border-solid">
+					  <div class="px-3 py-6 -my-5">
+						  {
+							  [...Array(45)].map(() => (
+						  <div class="my-[5px] mx-[10px] inline-block">
+							  <a class="text-blue-600 hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile">
+								<p class="text-xs flex justify-center font-semibold">Astro</p>
+								<ProfileImage width={90} height={90} imgclass="hover:no-underline mt-1" srcurl="/3.jpg" altText="Astro's profile picture" />
+							  </a>
+						  </div>
+							  ))
+						  }
+					  </div>
+				  </div>
+				</div>
+			<div class="flex items-center justify-around -mx-[45px] -mt-5">
+					<p>
+						<a class="text-[10.24px] text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
+					</p>
+					<a class="next" rel="next" href="/">
+						<button type="button" class="py-1 px-2 bg-gray-200 hover:bg-gray-300 text-xs text-black border border-black border-solid focus:outline-none" type="submit" aria-label="search">Next Page</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>

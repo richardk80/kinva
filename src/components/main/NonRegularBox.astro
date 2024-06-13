@@ -1,0 +1,23 @@
+---
+interface Props {
+  widthcss?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  name?: string;
+  pclass?: string;
+  username?: string;
+  username2?: string;
+};
+
+const { widthcss, backgroundColor, borderColor, name, pclass, username, username2 } = Astro.props;
+---
+<div class={widthcss}>
+    <div class="py-0.5" class:list={backgroundColor}>
+        <div class={pclass}>
+          <p class="flex items-center"> {username2} {name} {username} </p>
+    </div>
+    </div>
+        <div class="border-2 border-solid" class:list={borderColor}>
+                <slot />
+        </div>
+</div>

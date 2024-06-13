@@ -1,0 +1,55 @@
+---
+import UserDetailBox from '@com/profile/UserDetailBox.astro';
+import ContactButtons from '@com/profile/ContactButtons.astro';
+import ProfileLinkBox from '@com/profile/ProfileLinkBox.astro';
+import Interests from '@com/profile/Interests.astro';
+import Details from '@com/profile/Details.astro';
+import UserBox from '@com/profile/UserBox.astro';
+import BlogEntry from '@com/profile/BlogEntry.astro';
+import FriendSpace from '@com/profile/FriendSpace.astro';
+import Blurbs from '@com/profile/Blurbs.astro';
+import FriendComments from '@com/profile/FriendComments.astro';
+
+import Layout from '@lay/Layout.astro';
+
+const pages = [{ username: "astro" }];
+
+const { username } = Astro.params;
+const page = pages.find((page) => page.username === username);
+if(!page) {
+    Astro.response.status = 404;
+    Astro.response.statusText = 'Not found';
+};
+
+const name = "Astro";
+
+const friendship = false;
+---
+<Layout title={ `${name}'s Profile Page` }>
+    <div class="mx-2">
+        <div class="grid grid-cols-12 grid-flow-dense">
+            <div class="col-span-full">
+                <div class="flex items-start justify-between gap-x-5">
+                    <div class="grid grid-rows-1 gap-y-2">
+                        <UserDetailBox />
+                        <ContactButtons />
+                        <ProfileLinkBox />
+                        <Details />
+                        <Interests />
+                    </div>
+                    <div class="grid grid-row-2 gap-x-2 flex flex-wrap gap-y-2 w-full">
+                        <UserBox friendship={friendship} />
+                        <div class={ friendship ? "mb-3" : "mb-3 -mt-1"}>
+                            <BlogEntry />
+                        </div>
+                        <div class="flex flex-col col-span-1 gap-y-2">
+                            <Blurbs />
+                            <FriendSpace />
+                            <FriendComments self={true} />
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</Layout>

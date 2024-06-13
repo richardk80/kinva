@@ -1,0 +1,29 @@
+---
+import SmallLink from '@com/main/SmallLink.astro';
+
+import { Icon } from 'astro-icon';
+
+interface Props {
+    hidden?: boolean;
+    onlinenow?: boolean;
+}
+
+const { hidden, onlinenow } = Astro.props;
+---
+{ onlinenow ?
+<div class="flex items-center space-x-2 ml-0.5">
+    <span class="flex items-center space-x-1.5 blink"><Icon class="h-[20px] w-auto fill-orange-400 -mt-[0.8px]" name="online" /><span class="mr-1 font-semibold text-green-400 text-xs">Online Now!</span></span>
+</div>
+:
+''
+}
+<div class="flex items-center ml-0.5">
+    <p class="font-semibold text-xs">Mood:</p>
+    <p class="text-xs ml-1 text-balance">Happy</p>
+</div>
+{ hidden ? '' : <p class="text-xs ml-0.5"><SmallLink href="/astro/editmood" link="edit mood" /></p> }
+<div class="flex items-center ml-0.5">
+    <p class="font-semibold text-xs">Status:</p>
+    <p class="text-xs ml-1 text-balance">Writing code</p>
+</div>
+{ hidden ? '' : <p class="text-xs ml-0.5"><SmallLink href="/astro/editstatus" link="edit status" /></p> }

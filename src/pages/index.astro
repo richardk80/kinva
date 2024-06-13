@@ -1,0 +1,72 @@
+---
+import Layout from '@lay/Layout.astro';
+
+import LoginCoolPeople from '@com/login/CoolPeople.astro';
+import LoginDivider from '@com/login/LoginDivider.astro';
+import LoginBox from '@com/login/LoginBox.astro';
+import FourBoxes from '@com/login/IDBoxes/FourBoxes.astro';
+
+import UserDetailBox from '@com/home/UserDetailBox.astro';
+import MyMail from '@com/home/MyMail.astro';
+import ProfileLinkBox from '@com/home/ProfileLinkBox.astro';
+import UpdatesBox from '@com/home/UpdatesBox.astro';
+import BlogEntry from '@com/home/BlogEntry.astro';
+import InfoBox from '@com/home/InfoBox.astro';
+import CoolPeople from '@com/home/CoolPeople.astro';
+import FriendsBulletins from '@com/home/FriendsBulletins.astro';
+import FriendRequests from '@com/home/FriendRequests.astro';
+
+const loggedin = true;
+---
+<Layout title={ loggedin ? "Home" : "Login" }>
+	{ loggedin ?
+    <div class="mx-2">
+        <div class="grid grid-cols-12 grid-flow-row-dense">
+            <div class="col-span-full">
+                <div class="flex items-start justify-between">
+                    <div class="grid grid-rows-1 gap-y-2">
+                        <UserDetailBox />
+                        <MyMail />
+                        <ProfileLinkBox />
+                        <UpdatesBox />
+                    </div>
+                    <div class="grid grid-row-2 gap-x-2 flex flex-wrap gap-y-2 ml-2">
+                        <div class="flex items-start justify-between">
+                            <div class="flex flex-nowrap -mt-0.5">
+                                <BlogEntry />
+                            </div>
+                            <InfoBox />
+                        </div>
+                        <CoolPeople />
+                        <div class="flex flex-col col-span-1 gap-y-2">
+                            <FriendsBulletins />
+                            <FriendRequests />
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    :
+    <div class="mx-2 -mb-1">
+        <div class="grid grid-cols-12 grid-flow-row-dense">
+            <div class="col-span-full">
+                <div class="flex items-start justify-between">
+                    <div class="grid grid-rows-1 gap-y-2">
+						<LoginCoolPeople />
+                    </div>
+					<div class="grid grid-rows-1 gap-y-0.5">
+						<LoginDivider />
+					</div>
+                    <div class="grid grid-row-2 gap-x-2 flex flex-wrap gap-y-2">
+						<LoginBox />
+                    </div>
+                </div>
+				<div class="mt-1.5 w-full flex items-center">
+					<FourBoxes />
+				</div>
+			</div>
+            </div>
+    </div>
+	}
+</Layout>

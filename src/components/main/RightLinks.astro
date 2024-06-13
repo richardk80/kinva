@@ -1,0 +1,7 @@
+---
+import LoginButton from '@com/main/LoginButton.astro';
+import LogoutButton from '@com/main/LogoutButton.astro';
+
+const loggedin = true;
+---
+<div class="-mt-0.5">{loggedin ? <LogoutButton /> : <LoginButton />}</div>

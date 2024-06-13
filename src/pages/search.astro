@@ -1,0 +1,130 @@
+---
+import Layout from '@lay/Layout.astro';
+---
+<Layout title="User Search">
+	<main class="mx-[110px] mb-8 text-black">
+		<h1 class="font-semibold text-[25.6px] mb-3">User Search</h1>
+		<section aria-label="Search Results">
+			<div class="py-0.5 bg-orange-400/60">
+				<div class="flex justify-between items-center mx-2">
+					<p id="searchReadout" class="text-xs font-semibold text-black mt-1 cursor-default"></p>
+				</div>
+			</div>
+			<div class="border-2 border-orange-400/60 border-solid">
+				<div class="px-3 pt-6 pb-7 -my-5">
+					<ul id="searchResults" class="flex items-center inline-block space-x-5 text-xs font-semibold mt-0.5"></ul>
+				</div>
+			</div>
+		</section>
+    </main>
+</Layout>
+
+<script>
+	// imports
+	import DOMPurify from "dompurify";
+	import Fuse from "fuse.js";
+
+	let SEARCH_DATA;
+	let FUSE_INSTANCE;
+	const FUSE_OPTIONS = {
+		includeScore: true,
+		shouldSort: true,
+		threshold: 0.5,
+		keys: [
+			{
+				name: "name",
+				weight: 1,
+			},
+			{
+				name: "username",
+				weight: 1,
+			},
+		],
+	};
+
+	const SPINNER = `<div class="animate-spin inline-block size-8 border-[4px] border-current border-t-transparent text-gray-950 rounded-full"></div>`;
+
+	// selectors
+	const searchval = (document.getElementById("search") as HTMLInputElement | null);
+	const search = document.querySelector("#search");
+	const searchReadout = document.querySelector("#searchReadout");
+	const resultsList = document.querySelector("#searchResults");
+
+	// functions
+	function updateDocumentTitle(search) {
+		document.title = search
+			? `Results for: “${search}”`
+			: "User Search | Hi Moot";
+	}
+
+	function updateSearchReadout(search) {
+		searchReadout.textContent = search
+			? `Results for: “${search}”`
+			: "Results for:";
+	}
+
+	function updateSearchPageURL(search) {
+		const url = new URL(window.location.href);
+		url.searchParams.set("q", search);
+		window.history.replaceState(null, "", url);
+	}
+
+	function generateSearchList(results) {
+		const url = import.meta.env.PUBLIC_PB_URL;
+		return results
+			.map((r) => {
+				const { name, username, collectionId, id, avatar } = r.item;
+				//let parts = name.split(' ');
+				//let firstName = parts.shift();
+				//let lastName = parts.join(' ');
+				return `<a class="text-black hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile"><p class="text-xs flex justify-center font-semibold">Astro</p><img width="90px" height="90px" class="hover:no-underline" src="/3.jpg" alt="Astro's profile picture" /></a>`;
+			})
+			.join("");
+	}
+
+	async function fetchSearchResults(search) {
+		if (search.length === 0) return;
+		resultsList.innerHTML = SPINNER;
+		if (!SEARCH_DATA) {
+			try {
+				const res = await fetch("");
+				if (!res.ok) {
+					throw new Error("Something went wrong…please try again");
+				}
+				const data = await res.json();
+				SEARCH_DATA = data;
+			} catch (e) {
+				//console.error(e);
+			}
+		}
+		if (SEARCH_DATA && !FUSE_INSTANCE) {
+			FUSE_INSTANCE = new Fuse(SEARCH_DATA, FUSE_OPTIONS);
+		}
+		if (!FUSE_INSTANCE) return;
+		const searchResult = FUSE_INSTANCE.search(search);
+		resultsList.innerHTML =
+			searchResult.length > 0
+				? generateSearchList(searchResult)
+				: "No results found…";
+	}
+
+	// event listeners
+	window.addEventListener("DOMContentLoaded", () => {
+		const urlParams = DOMPurify.sanitize(
+			new URLSearchParams(window.location.search).get("q")
+		);
+		fetchSearchResults(urlParams);
+		updateDocumentTitle(urlParams);
+		updateSearchReadout(urlParams);
+		searchval.value = urlParams;
+		searchval.focus();
+	});
+
+	search.addEventListener("input", () => {
+		const searchTerm = DOMPurify.sanitize(searchval.value);
+		updateDocumentTitle(searchTerm);
+		updateSearchReadout(searchTerm);
+		fetchSearchResults(searchTerm);
+		updateSearchPageURL(searchTerm);
+	});
+</script>

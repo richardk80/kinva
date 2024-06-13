@@ -1,0 +1,26 @@
+---
+const currentPath = new URL(Astro.request.url).pathname.slice(1);
+---
+<div class="text-blue-600 text-[11px]">
+    <ul class="flex items-stretch space-x-1">
+      {[
+        [ "news", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/news", "_self", "News", "text-black text-xs font-medium", "-" ],
+        [ "updates", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/updates", "_self", "Updates", "text-black text-xs font-medium", "-" ],
+        [ "rules", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/rules", "_self", "Rules", "text-black text-xs font-medium", "-" ],
+        [ "press", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/press", "_self", "Press", "text-black text-xs font-medium", "-" ],
+        [ "brand", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/brand", "_self", "Brand", "text-black text-xs font-medium", "-" ],
+        [ "credits", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/credits", "_self", "Credits", "text-black text-xs font-medium", "-" ],
+        [ "feeds", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/feeds", "_self", "Feeds", "text-black text-xs font-medium", "-" ],
+        [ "terms", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/terms", "_self", "Terms", "text-black text-xs font-medium", "-" ],
+        [ "privacy", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/privacy", "_self", "Privacy", "text-black text-xs font-medium", "-" ],
+        [ "about", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/about", "_self", "About", "text-black text-xs font-medium", "-"],
+        [ "shop", "hover:text-red-600 hover:underline font-semibold", "hover:text-red-600 hover:underline", "/shop", "_self", "Shop", "text-black text-xs font-normal", "" ],
+      ].map(([ smallname, firstcss, secondcss, href, target, name, dividercss, divider]) => (
+          <li>
+            <a class={ currentPath === `${smallname}` ? `${firstcss}` : `${secondcss}` } href={href} target={target}>{name}</a> 
+            <span class={dividercss}>{divider}</span>
+          </li>
+        ))
+      }
+    </ul>
+</div>

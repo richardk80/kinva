@@ -1,0 +1,16 @@
+---
+import Layout from '@lay/Layout.astro';
+
+const username = 'astro';
+const hidden = true;
+
+//let parts = name.split(' ')
+//let firstName = parts.shift();
+//let lastName = parts.join(' ');
+---
+<Layout title={`Astro's Forums`}>
+	<main class="mx-[110px] mb-8 text-black">
+		<h1 class="text-[19.2px] font-semibold mb-2">{`Astro's Forums`}</h1>
+		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to your profile</a>
+	</main>
+</Layout>

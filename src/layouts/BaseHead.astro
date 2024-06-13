@@ -1,0 +1,33 @@
+---
+import mainstyles from "../styles/main.css?raw";
+
+import cookieconsent from "../styles/cookieconsent.css?raw";
+
+import fontawesomecss from "../styles/css/all.min.css?raw";
+
+import cookieconsentjs from "../scripts/cookieconsent.js?url";
+
+import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<head>
+    <title>{`${title} - Hi Moot`}</title>
+    <link rel="canonical" href={Astro.site} />
+    <meta charset="utf-8" />
+    <link rel="icon shortcut" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={`${title} - Hi Moot`} />
+    <meta name="generator" content={Astro.generator} />
+    <style is:inline set:html={mainstyles}></style>
+    <style is:inline set:html={fontawesomecss}></style>
+    <style is:inline set:html={cookieconsent}></style>
+    <script is:inline defer src={cookieconsentjs}></script>
+    <script is:inline defer src={cookieconsentinit}></script>
+    <script>import "preline/dist/preline.js";</script>
+  </head>

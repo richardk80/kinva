@@ -1,0 +1,25 @@
+---
+import Layout from '@lay/Layout.astro';
+
+import FollowButtons from '@com/about/FollowButtons.astro';
+
+import BottomAboutText from '@com/about/BottomAboutText.astro';
+
+import TopAboutText from '@com/about/TopAboutText.astro';
+
+import VerifyButtons from '@com/about/VerifyButtons.astro';
+---
+<Layout title="About & FAQs">
+		<div class="mx-24 mb-10">
+			<TopAboutText />
+			
+			<BottomAboutText />
+
+			<div class="mb-12">
+				<FollowButtons />
+			</div>
+			<div>
+				<VerifyButtons />
+			</div>
+		</div>
+</Layout>

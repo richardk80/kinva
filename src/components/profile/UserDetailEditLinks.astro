@@ -1,0 +1,15 @@
+---
+import SmallLink from '@com/main/SmallLink.astro';
+
+interface Props {
+    hidden?: boolean;
+}
+
+const username = 'astro';
+
+const { hidden } = Astro.props;
+---
+<div class="flex items-center space-x-5">
+    { hidden ? '' : <p class="text-[11.52px] ml-0.5"><SmallLink href={`/${username}/settings`} link="edit photo" /></p> }
+    { hidden ? '' : <p class="text-[11.52px] ml-0.5"><SmallLink href={`/${username}/edit`} link="edit profile" /></p> }
+</div>
