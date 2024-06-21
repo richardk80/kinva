@@ -1,7 +1,11 @@
 ---
-import LoginButton from '@com/main/LoginButton.astro';
-import LogoutButton from '@com/main/LogoutButton.astro';
+const loggedin = false;
 
-const loggedin = true;
+import { Icon } from 'astro-icon';
 ---
-<div class="-mt-0.5">{loggedin ? <LogoutButton /> : <LoginButton />}</div>
+
+{ 
+loggedin ?
+<button type="button" title="Log Out of Hi Moot" aria-label="Log Out of Hi Moot" class="text-[15px] hover:no-underline flex items-center fill-white hover:fill-red-500 text-white hover:text-red-500">Logout <Icon class="h-[15px] ml-2 mt-[0.5px]" name="logout" /></button>
+: null 
+}

@@ -7,29 +7,34 @@ const loginname = "Login";
 
 const loggedinwords = [loggedin ? `${home}` : `${loginname}`];
 
+const navItems = [
+  { smallname: "", href: "/", name: `${loggedinwords}`, dividerChar: "-" },
+  { smallname: "browse", href: "/browse", name: "Browse", dividerChar: "-" },
+  { smallname: "messages", href: "/messages", name: "Messages", dividerChar: "-" },
+  { smallname: "blogs", href: "/blogs", name: "Blogs", dividerChar: "-" },
+  { smallname: "bulletins", href: "/bulletins", name: "Bulletins", dividerChar: "-" },
+  { smallname: "forums", href: "/forums", name: "Forums", dividerChar: "-" },
+  { smallname: "groups", href: "/groups", name: "Groups", dividerChar: "-" },
+  { smallname: "layouts", href: "/layouts", name: "Layouts", dividerChar: "-" },
+  { smallname: "favorites", href: "/favorites", name: "Favorites", dividerChar: "-" },
+  { smallname: "invite", href: "/invite", name: "Invite", dividerChar: "-" },
+  { smallname: "help", href: "/help", name: "Help", dividerChar: "-" },
+  { smallname: "contact", href: "/contact", name: "Contact", dividerChar: "" }
+];
+
+const getCssClasses = (isActive) => isActive ? "hover:text-black hover:underline font-semibold" : "hover:text-black hover:underline";
+
+const dividerCss = "text-white text-xs font-normal pl-[4px]";
+
 const currentPath = new URL(Astro.request.url).pathname.slice(1);
 ---
-<nav class="bg-blue-400 drop-shadow-lg py-[3px] px-3">
+<nav class="bg-blue-400 text-white drop-shadow-lg py-[3px] px-3">
     <ul class="flex items-stretch justify-between text-xs -mt-[1px] ml-1.5">
-      {[
-        [ "", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline mr-[1px]", "/", `${loggedinwords}`, "text-white text-xs ml-[3px] font-medium", "-" ],
-        [ "browse", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/browse", "Browse", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "messages", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/messages", "Messages", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "blogs", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/blogs", "Blogs", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "bulletins", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/bulletins", "Bulletins", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "forums", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/forums", "Forums", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "groups", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/groups", "Groups", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "layouts", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/layouts", "Layouts", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "favorites", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/favorites", "Favorites", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "invite", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/invite", "Invite", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "help", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/help", "Help", "text-white text-xs ml-[5px] font-medium", "-" ],
-        [ "contact", "text-white font-semibold hover:text-black hover:underline", "text-white hover:text-black hover:underline", "/contact", "Contact", "text-white text-xs ml-[5px] font-normal", "" ],
-      ].map(([smallname, firstcss, secondcss, href, name, dividercss, divider]) => (
-              <li>
-                <a class={ currentPath === `${smallname}` ? `${firstcss}` : `${secondcss}` } href={href}>{name}</a> 
-                <span class={dividercss}>{divider}</span>
-                </li>
-            ))
-      }
+      {navItems.map(({ smallname, href, name, dividerChar }) => (
+      <li>
+        <a class={getCssClasses(currentPath === smallname)} href={href} target="_self">{name}</a>
+        <span class={dividerCss}>{dividerChar}</span>
+      </li>
+    ))}
     </ul>
   </nav>

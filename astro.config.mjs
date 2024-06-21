@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/static";
 import robotsTxt from 'astro-robots-txt';
 import eventsource from 'eventsource';
 import compressor from "astro-compressor";
@@ -10,6 +10,7 @@ global.EventSource = eventsource;
 // https://astro.build/config
 export default defineConfig({
   site: "https://sh.rikimade.com",
+  prefetch: true,
   vite: {
     build: {
       inlineStylesheets: 'always',
@@ -24,7 +25,10 @@ export default defineConfig({
   },
   integrations: [tailwind(), robotsTxt({
     sitemap: false
-  }), compressor({ gzip: true, brotli: false })],
+  }), compressor({
+    gzip: true,
+    brotli: false
+  })],
   output: 'server',
   server: {
     headers: {

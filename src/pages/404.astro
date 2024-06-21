@@ -13,23 +13,29 @@ import Layout from '@lay/Layout.astro';
 </Layout>
 
 <script is:inline>
-let redirect_Page = () => {
-  let tID = setTimeout(function () {
+// Function to handle the page redirection
+function redirectPage() {
+  setTimeout(() => {
     window.location.href = "/";
-    window.clearTimeout(tID);	
-  }, 11000);
+  }, 10000); // Adjusted to 10 seconds to match the countdown
 }
-redirect_Page();
 
-timeLeft = 10;
-
+// Function to handle the countdown display
 function countdown() {
-	timeLeft--;
-	document.getElementById("seconds").innerHTML = String( timeLeft );
-	if (timeLeft > 0) {
-		setTimeout(countdown, 1000);
-	}
-};
+  let timeLeft = 10; // Encapsulate within the function to avoid global scope
 
-setTimeout(countdown, 1000);
+  function tick() {
+    timeLeft--;
+    document.getElementById("seconds").textContent = timeLeft.toString();
+    if (timeLeft > 0) {
+      setTimeout(tick, 1000);
+    }
+  }
+
+  setTimeout(tick, 1000);
+}
+
+// Initialize the functions
+redirectPage();
+countdown();
 </script>
