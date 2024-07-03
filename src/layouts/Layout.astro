@@ -1,6 +1,4 @@
 ---
-import  SpeedInsights  from "@vercel/speed-insights/astro";
-
 import BaseHead from "@lay/BaseHead.astro";
 
 import Header from "@com/header/Header.astro";
@@ -13,7 +11,6 @@ import ScrollToTop from "@com/main/ScrollToTop.astro";
 <html lang="en" class="c_darkmode antialiased subpixel-antialiased">
   <BaseHead {...Astro.props} />
   <body>
-    <SpeedInsights />
     <ScrollToTop />
     <div class="mx-auto w-[800px]">
       <div class="sticky inset-0 z-50">
