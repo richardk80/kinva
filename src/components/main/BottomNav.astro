@@ -31,7 +31,7 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 
 <script>
   const navItems = document.querySelectorAll(
-    "[data-navItem]"
+    "[data-navitem]"
   ) as NodeListOf<HTMLAnchorElement>;
 
   navItems.forEach((link) => {
