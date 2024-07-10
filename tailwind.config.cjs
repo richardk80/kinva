@@ -7,7 +7,11 @@ module.exports = {
     'node_modules/preline/dist/preline.js'
   ],
   theme: {
-    extend: {},
+    extend: {
+      aria: {
+        current: "current=page",
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

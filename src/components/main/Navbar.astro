@@ -22,7 +22,7 @@ const navItems = [
   { smallname: "contact", href: "/contact", name: "Contact", dividerChar: "" }
 ];
 
-const getCssClasses = (isActive) => isActive ? "hover:text-black hover:underline font-semibold" : "hover:text-black hover:underline";
+const getCssClasses = (isActive) => isActive ? "hover:text-black hover:underline font-semibold aria-current:underline" : "hover:text-black hover:underline";
 
 const dividerCss = "text-white text-xs font-normal pl-[4px]";
 
@@ -32,9 +32,21 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
     <ul class="flex items-stretch justify-between text-xs -mt-[1px] ml-1.5">
       {navItems.map(({ smallname, href, name, dividerChar }) => (
       <li>
-        <a class={getCssClasses(currentPath === smallname)} href={href} target="_self">{name}</a>
+        <a data-navitem class={getCssClasses(currentPath === smallname)} href={href} target="_self">{name}</a>
         <span class={dividerCss}>{dividerChar}</span>
       </li>
     ))}
     </ul>
   </nav>
+
+  <script>
+    const navItems = document.querySelectorAll(
+      "[data-navItem]"
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    navItems.forEach((link) => {
+      if (window.location.href === link.href) {
+        link.setAttribute("aria-current", "page");
+      }
+    })
+  </script>
