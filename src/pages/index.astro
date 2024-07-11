@@ -20,7 +20,7 @@ const loggedin = true;
 ---
 <Layout title={ loggedin ? "Home" : "Login" }>
 	{ loggedin ?
-    <div class="mx-2">
+    <div class="px-2">
         <div class="grid grid-cols-12 grid-flow-row-dense">
             <div class="col-span-full">
                 <div class="flex items-start justify-between">
@@ -30,7 +30,7 @@ const loggedin = true;
                         <ProfileLinkBox />
                         <UpdatesBox />
                     </div>
-                    <div class="grid grid-row-2 gap-x-2 flex flex-wrap gap-y-2 ml-2">
+                    <div class="grid grid-row-2 gap-x-2 flex flex-wrap gap-y-2 pl-2">
                         <div class="flex items-start justify-between">
                             <div class="flex flex-nowrap -mt-0.5">
                                 <BlogEntry />
