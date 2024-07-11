@@ -30,7 +30,8 @@ body {
 html, body {
   scrollbar-gutter: auto;
   scroll-behavior: smooth;
-  scrollbar-color: #2563eb rgb(231 229 228);
+  scrollbar-color: #2563eb #E7E5E4;
+  scrollbar-width: thin;
 }
 
 .form {
