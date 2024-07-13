@@ -1,26 +1,30 @@
 ---
 import { Icon } from 'astro-icon';
 ---
-<button type="button" onclick="backToTop()" id="myBtn" class="hidden fixed z-auto cursor-pointer inline-flex flex-shrink-0 justify-center items-center gap-2 h-8 w-8 border border-transparent font-semibold bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 transition-all text-sm right-4 bottom-4 outline-none overflow-x-hidden overflow-y-auto" title="Back To Top" aria-label="Back To Top">
+<button type="button" id="scrollTopButton" class="hidden fixed z-auto cursor-pointer inline-flex flex-shrink-0 justify-center items-center gap-2 h-8 w-8 border border-transparent font-semibold bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 transition-all text-sm right-4 bottom-4 outline-none overflow-x-hidden overflow-y-auto" title="Back To Top" aria-label="Back To Top" role="button" tabindex="0">
   <Icon class="h-4 w-4 fill-white m-auto" name="arrow-up" />
 </button>
 
 <script is:inline>
-    let myButton = document.getElementById("myBtn");
-    
-    window.onscroll = function() {scrollFunction()};
-    
-    function scrollFunction() {
-      if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
-        myButton.style.display = "block";
-      } else {
-        myButton.style.display = "none";
-      }
+  const scrollTopButton = document.getElementById('scrollTopButton');
+  
+  window.onscroll = function() {
+    scrollFunction();
+  };
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
+      scrollTopButton.style.display = "block";
+    } else {
+      scrollTopButton.style.display = "none";
     }
-    
-    function backToTop() {
-      window.scrollTo({
-      top: 0
-      })
-    }
+  }
+  
+  // Attach click event listener using JavaScript
+  scrollTopButton.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
 </script>
