@@ -1,31 +1,27 @@
 ---
 import RelativeTime from '@yaireo/relative-time';
-
 import NonRegularBox from '@com/main/NonRegularBox.astro';
 
 const friendcount = 50;
-
 const profileviews = 200;
-
 const datetoday = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
-
 const startDate = '01-01-2020';
-
 const createdDate = new RelativeTime().from(new Date(startDate));
 ---
-<NonRegularBox widthcss="w-[150px]" name=`${datetoday}` pclass="flex items-center justify-center text-xs font-bold text-white mt-0.5" backgroundColor="bg-blue-800" borderColor="border-blue-800">
-    <div class="py-2 text-black box-border text-xs">
+
+<NonRegularBox widthcss="w-[150px]" name={datetoday} pclass="flex items-center justify-center text-xs font-bold text-white mt-0.5" backgroundColor="bg-blue-800" borderColor="border-blue-800">
+    <div class="py-2 text-black text-xs">
         <div>
             <p class="font-bold text-center">Your Friends:</p>
-            <p class="flex justify-center mx-auto font-semibold text-red-600 w-7 hover:underline"><a href="/astro/friends">{ friendcount }</a></p>
+            <a class="flex justify-center mx-auto font-semibold text-red-600 w-7 hover:underline" href="/astro/friends">{friendcount}</a>
         </div>
-        <div>
-            <p class="mt-2 font-semibold text-center">Profile Views:</p>
-            <p class="flex justify-center font-semibold text-red-600" set:html={ profileviews }></p>
+        <div class="mt-2">
+            <p class="font-semibold text-center">Profile Views:</p>
+            <p class="flex justify-center font-semibold text-red-600" set:html={profileviews}></p>
         </div>
-        <div>
-        <p class="mt-2 font-semibold text-center">Joined:</p>
-        <p class="flex justify-center font-semibold text-red-600" set:html={ createdDate }></p>
+        <div class="mt-2">
+            <p class="font-semibold text-center">Joined:</p>
+            <p class="flex justify-center font-semibold text-red-600" set:html={createdDate}></p>
         </div>
     </div>
 </NonRegularBox>
