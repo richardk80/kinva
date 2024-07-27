@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+import { fontFamily } from "tailwindcss/defaultTheme";
+
 module.exports = {
   content: [
     './public/**/*.astro',
@@ -10,7 +12,11 @@ module.exports = {
     extend: {
       aria: {
         current: "current=page",
-      }
+      },
+      fontFamily: {
+        heading: ['var(--font-heading)', ...fontFamily.sans],
+        body: ['var(--font-body)', ...fontFamily.sans]
+      },
     },
   },
   plugins: [

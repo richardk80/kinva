@@ -20,53 +20,53 @@ const loggedin = true;
 ---
 <Layout title={ loggedin ? "Home" : "Login" }>
 	{ loggedin ?
-    <div class="mx-2">
-        <div class="grid grid-cols-12 grid-flow-row-dense">
-            <div class="col-span-full">
-                <div class="flex items-start justify-between">
-                    <div class="grid grid-rows-1 gap-y-2">
-                        <UserDetailBox />
-                        <MyMail />
-                        <ProfileLinkBox />
-                        <UpdatesBox />
-                    </div>
-                    <div class="grid grid-row-2 gap-x-2 flex flex-wrap gap-y-2 pl-2">
-                        <div class="flex items-start justify-between">
-                            <div class="flex flex-nowrap -mt-0.5">
-                                <BlogEntry />
-                            </div>
-                            <InfoBox />
+    <div class="grid grid-cols-12 grid-flow-row-dense">
+        <div class="col-span-full">
+            <div class="flex items-start justify-between gap-x-2">
+                <!-- Left Column -->
+                <div class="flex flex-col gap-y-2">
+                    <UserDetailBox />
+                    <MyMail />
+                    <ProfileLinkBox />
+                    <UpdatesBox />
+                </div>
+                <!-- Right Column -->
+                <div class="flex flex-col gap-y-2 w-full">
+                    <div class="flex justify-between">
+                        <div class="-mt-0.5">
+                            <BlogEntry />
                         </div>
-                        <CoolPeople />
-                        <div class="flex flex-col col-span-1 gap-y-2">
-                            <FriendsBulletins />
-                            <FriendRequests />
-                        </div>
+                        <InfoBox />
                     </div>
-                    </div>
+                    <CoolPeople />
+                    <FriendsBulletins />
+                    <FriendRequests />
                 </div>
             </div>
+        </div>
     </div>
     :
-    <div class="mx-2 -mb-1">
-        <div class="grid grid-cols-12 grid-flow-row-dense">
-            <div class="col-span-full">
-                <div class="flex items-start justify-between">
-                    <div class="grid grid-rows-1 gap-y-2">
-						<LoginCoolPeople />
-                    </div>
-					<div class="grid grid-rows-1 gap-y-0.5">
-						<LoginDivider />
-					</div>
-                    <div class="grid grid-row-2 gap-x-2 flex flex-wrap gap-y-2">
-						<LoginBox />
-                    </div>
+    <div class="grid grid-cols-12 grid-flow-row-dense">
+        <div class="col-span-full">
+            <div class="flex items-start justify-between">
+                <!-- Left Column -->
+                <div class="grid grid-rows-1">
+                    <LoginCoolPeople />
                 </div>
-				<div class="mt-1.5 w-full flex items-center">
-					<FourBoxes />
-				</div>
-			</div>
+                <!-- Divider -->
+                <div class="grid grid-rows-1 gap-y-0.5">
+                    <LoginDivider />
+                </div>
+                <!-- Right Column -->
+                <div class="grid grid-rows-1 gap-x-2 flex flex-wrap">
+                    <LoginBox />
+                </div>
             </div>
+            <!-- Bottom Section -->
+            <div class="pt-2 w-full flex items-center">
+                <FourBoxes />
+            </div>
+        </div>
     </div>
 	}
 </Layout>
