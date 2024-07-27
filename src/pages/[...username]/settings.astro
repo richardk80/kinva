@@ -7,7 +7,9 @@ import SmallLink from '@com/main/SmallLink.astro';
 
 import { Icon } from 'astro-icon';
 
-const { username, email, name, id, twofactor } = Astro.params;
+const twofactor = true;
+
+const { username, email, name, id } = Astro.params;
 ---
 <Layout title="Account Settings">
 	<div class="mx-auto w-[594px] mb-10 form">
@@ -17,13 +19,14 @@ const { username, email, name, id, twofactor } = Astro.params;
                     <div class="mx-4 mt-2 mb-4">
                         <span class="text-[12.8px] ml-0.5">Profile Image:</span>
                         <div>
-                            <img src="/img/default.png" class="w-[160px] h-[160px] mr-48" />
+                            <img src="/img/avatar.svg" class="w-40 h-40" />
                             <div class="space-x-8 mt-2">
-                                <button type="button" class="py-0.5 w-[160px] bg-gray-100 hover:bg-gray-200 text-xs border border-black focus:outline-none">Upload</button>
+                                <button type="button" class="py-0.5 w-40 bg-gray-100 hover:bg-gray-200 text-xs border border-gray-400 focus:outline-none">Upload</button>
                             </div>
                         </div>
                         <label class="block"> 
-                            <span class="text-[12.8px] ml-0.5">Account ID:</span> <input type="text" class="max-w-[20ch] py-1 px-4 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent" disabled> 
+                            <span class="text-[12.8px] ml-0.5">Account ID:</span>
+                            <input type="text" class="max-w-[20ch] py-1 px-4 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent text-gray-300" disabled>
                         </label>
                         <label class="block">
                             <span class="text-[12.8px] ml-0.5">Email Address:</span>
