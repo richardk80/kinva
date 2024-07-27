@@ -1,9 +1,11 @@
 ---
 import BubbleBox from '@com/main/BubbleBox.astro';
 
-const { name, hidden, general, music, movies, television, books, heroes } = Astro.props;
+const { name, general, music, movies, television, books, heroes } = Astro.props;
 
 const username = 'astro';
+
+const hidden = true;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -14,7 +16,7 @@ const username = 'astro';
             <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-blue-200">
                         <p class="text-xs font-semibold text-blue-600 my-auto pl-1 pt-0.5">
-                            General
+                            General:
                         </p>
                 </div>
                 <div class="w-2/3 bg-blue-100">
@@ -25,7 +27,7 @@ const username = 'astro';
             <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-blue-200">
                         <p class="text-xs font-semibold text-blue-600 my-auto pl-1 pt-0.5">
-                            Music
+                            Music:
                         </p>
                 </div>
                 <div class="w-2/3 bg-blue-100">
@@ -36,7 +38,7 @@ const username = 'astro';
             <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-blue-200">
                         <p class="text-xs font-semibold text-blue-600 my-auto pl-1 pt-0.5">
-                            Movies
+                            Movies:
                         </p>
                 </div>
                 <div class="w-2/3 bg-blue-100">
@@ -47,7 +49,7 @@ const username = 'astro';
             <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-blue-200">
                         <p class="text-xs font-semibold text-blue-600 my-auto pl-1 pt-0.5">
-                            Television
+                            Television:
                         </p>
                 </div>
                 <div class="w-2/3 bg-blue-100">
@@ -58,7 +60,7 @@ const username = 'astro';
             <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-blue-200">
                         <p class="text-xs font-semibold text-blue-600 my-auto pl-1 pt-0.5">
-                            Books
+                            Books:
                         </p>
                 </div>
                 <div class="w-2/3 bg-blue-100">
@@ -69,7 +71,7 @@ const username = 'astro';
             <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-blue-200">
                         <p class="text-xs font-semibold text-blue-600 my-auto pl-1 pt-0.5">
-                            Heroes
+                            Heroes:
                         </p>
                 </div>
                 <div class="w-2/3 bg-blue-100">

@@ -17,6 +17,7 @@ import FriendsBulletins from '@com/home/FriendsBulletins.astro';
 import FriendRequests from '@com/home/FriendRequests.astro';
 
 const loggedin = true;
+const hidden = false;
 ---
 <Layout title={ loggedin ? "Home" : "Login" }>
 	{ loggedin ?
@@ -26,7 +27,7 @@ const loggedin = true;
                 <!-- Left Column -->
                 <div class="flex flex-col gap-y-2">
                     <UserDetailBox />
-                    <MyMail />
+                    <MyMail  />
                     <ProfileLinkBox />
                     <UpdatesBox />
                 </div>

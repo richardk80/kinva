@@ -24,6 +24,8 @@ if(!page) {
 const name = "Astro";
 
 const friendship = false;
+
+const hidden = true;
 ---
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
@@ -32,7 +34,7 @@ const friendship = false;
                     <!-- Left Column -->
                     <div class="flex flex-col gap-y-2">
                         <UserDetailBox />
-                        <ContactButtons />
+                        { hidden ? '' : <ContactButtons /> }
                         <ProfileLinkBox />
                         <Details />
                         <Interests />
