@@ -20,10 +20,10 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<Layout title="Browse Users">
+<Layout title="Browse">
 	<main class="text-black">
 		<div class="mx-auto w-[594px] px-[8px]">
-			<h2 class="block text-[19.2px] font-semibold mb-2 cursor-default">Browse Users</h2>
+			<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Browse</h1>
 			  <div class="flex items-stretch text-xs mb-3">
 				  <p class="text-xs text-black cursor-default font-semibold">Filter:</p>
 				  {filterItems.map((filter) => (

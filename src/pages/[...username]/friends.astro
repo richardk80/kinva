@@ -1,16 +1,14 @@
 ---
 import Layout from '@lay/Layout.astro';
 
-const username = 'Astro';
-
-const userurl = 'astro';
+const username = 'astro';
 
 //let parts = name.split(' ')
 //let firstName = parts.shusernamelet lastName = parts.join(' ');
 ---
-<Layout title={`${username}'s Friends List`}>
-	<main class="mx-[110px] mb-8 text-black">
-		<h1 class="text-[19.2px] font-semibold mb-2">{`${username}'s Friends List`}</h1>
-		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${userurl}`}>« Back to your profile</a>
+<Layout title="Your Friends List">
+	<main class="mx-[110px] mb-8">
+		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Your Friends List</h1>
+		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to your profile</a>
 	</main>
 </Layout>
