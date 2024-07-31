@@ -9,7 +9,7 @@ global.EventSource = eventsource;
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://sh.rikimade.com",
+  site: "https://hm.rikimade.com",
   prefetch: true,
   vite: {
     build: {
