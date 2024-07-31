@@ -168,6 +168,8 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
 </html>
 
 <script>
+  // @ts-nocheck
+
   import DOMPurify from "dompurify";
   const form = document.querySelector("form");
   form?.addEventListener("submit", (e) => {
@@ -189,11 +191,7 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
       link.setAttribute("aria-current", "page");
     }
   });
-</script>
-
-<script is:inline>
-  // @ts-nocheck
-
+  
   const scrollTopButton = document.getElementById('scrollTopButton');
   
   window.onscroll = function() {
