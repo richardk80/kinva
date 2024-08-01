@@ -17,8 +17,9 @@ interface Props {
 
 const { title } = Astro.props;
 
-
 const loggedin = false;
+
+const loggedin2 = true;
 
 const home = "Home";
 
@@ -114,8 +115,8 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
               </div>
               <div class="-mt-0.5">
                   { 
-                      loggedin ?
-                      <button type="button" title="Log Out of Hi Moot" aria-label="Log Out of Hi Moot" class="text-[15px] hover:no-underline flex items-center fill-white hover:fill-red-500 text-white hover:text-red-500">Logout <Icon class="h-[15px] ml-2 mt-[0.5px]" name="logout" /></button>
+                      loggedin2 ?
+                      <button type="button" title="Log Out of Hi Moot" aria-label="Log Out of Hi Moot" class="text-[15px] flex items-center fill-white hover:underline text-white">Logout <Icon class="h-[15px] ml-2 mt-[0.5px]" name="logout" /></button>
                       : null 
                   }
               </div>
