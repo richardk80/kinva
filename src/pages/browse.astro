@@ -23,7 +23,7 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 <Layout title="Browse">
 	<main class="text-black">
 		<div class="mx-auto w-[594px] px-[8px]">
-			<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Browse</h1>
+			<h1 class="text-[25.6px] font-semibold mb-3 text-balance">Browse</h1>
 			  <div class="flex items-stretch text-xs mb-3">
 				  <p class="text-xs text-black cursor-default font-semibold">Filter:</p>
 				  {filterItems.map((filter) => (
@@ -32,7 +32,7 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 				    	))
       				}
 			  </div>
-        		<div class="flex items-stretch text-xs mb-4">
+        		<div class="flex items-stretch text-xs mb-3">
 				  <p class="text-xs text-black cursor-default font-semibold">Friends:</p>
 				  {friendItems.map((friend) => (
 					    	<a href={friend.href} class={currentPath === friend.smallname ? friend.firstcss : friend.secondcss}>{friend.name}</a>
@@ -43,11 +43,11 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 				  <div class="py-0.5 bg-orange-400/60">
 					  <div class="flex justify-between items-center mx-2">
 						  <p class="text-xs font-semibold text-red-600 mt-1 cursor-default">Active Users</p>
-						  <a class="text-black text-[10.24px] mt-1 hover:underline" href="#">[random]</a>
+						  <a class="text-black text-[10.24px] hover:underline" href="#">[random]</a>
 					  </div>
 				  </div>
 				  <div class="border-2 border-orange-400/60 border-solid">
-					  <div class="px-3 py-6 -mt-6 -mb-5">
+					  <div class="px-3 pb-1">
 						  {
 							  [...Array(45)].map(() => (
 						  <div class="my-[5px] mx-[10px] inline-block">
