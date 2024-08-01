@@ -22,7 +22,7 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 ---
 <Layout title="Browse">
 	<main class="text-black">
-		<div class="mx-auto w-[594px] px-[8px]">
+		<div class="mx-auto w-[700px] px-[8px]">
 			<h1 class="text-[25.6px] font-semibold mb-3 text-balance">Browse</h1>
 			  <div class="flex items-stretch text-xs mb-3">
 				  <p class="text-xs text-black cursor-default font-semibold">Filter:</p>
@@ -47,10 +47,10 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 					  </div>
 				  </div>
 				  <div class="border-2 border-orange-400/60 border-solid">
-					  <div class="px-3 pb-1">
+					  <div class="px-3 py-3">
 						  {
-							  [...Array(45)].map(() => (
-						  <div class="my-[5px] mx-[10px] inline-block">
+							  [...Array(50)].map(() => (
+						  <div class="my-[5px] mx-[20px] inline-block">
 							  <a class="text-blue-600 hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile">
 								<p class="text-xs flex justify-center font-semibold">Astro</p>
 								<ProfileImage width={90} height={90} imgclass="hover:no-underline mt-1" srcurl="/img/avatar.svg" altText="Astro's profile picture" />
