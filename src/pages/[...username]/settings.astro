@@ -1,10 +1,7 @@
 ---
 import Layout from '@lay/Layout.astro';
-
 import NonRegularBox from '@com/main/NonRegularBox.astro';
-
 import SmallLink from '@com/main/SmallLink.astro';
-
 import { Icon } from 'astro-icon';
 
 const twofactor = true;
@@ -14,36 +11,37 @@ const username = "astro";
 const { email, name, id } = Astro.params;
 ---
 <Layout title="Account Settings">
-	<div class="mx-auto w-[690px] mb-10 form">
-		<h1 class="text-[25.6px] font-semibold mb-2 text-balance mb-3">Account Settings</h1>
-            <form class="space-y-5 mb-10" method="POST" enctype="application/json">
+	<div class="mx-auto w-[690px] mb-5 form">
+		<h1 class="text-[25.6px] font-semibold text-balance mb-3">Account Settings</h1>
+            <form class="space-y-2" method="post" enctype="application/json">
                 <NonRegularBox name="Basic Details" pclass="flex items-center justify-between mx-2 text-sm font-semibold text-white mb-0.5 mt-1" backgroundColor="bg-blue-400" borderColor="border-blue-400">
                     <div class="m-2">
                         <span class="text-[12.8px] ml-0.5">Profile Image:</span>
-                        <div>
-                            <img src="/img/avatar.svg" class="w-40 h-40" />
-                            <div class="space-x-8 mt-2">
-                                <button type="button" class="py-0.5 w-40 bg-gray-100 hover:bg-gray-200 text-xs border border-gray-400 focus:outline-none">Upload</button>
-                            </div>
-                        </div>
+                        <img src="/img/avatar.svg" class="w-40 h-40" />
+                        <div class="mt-1">
+                            <label for="file-upload" class="py-0.5 px-[58.5px] bg-gray-100 hover:bg-gray-200 text-xs border border-gray-400 focus:outline-none cursor-pointer">
+                                Upload
+                            </label>
+                            <input id="file-upload" type="file" class="hidden">
+                    </div>
                         <label class="block"> 
                             <span class="text-[12.8px] ml-0.5">Account ID:</span>
-                            <input type="text" class="max-w-[20ch] py-1 px-2 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent" value="546786" disabled>
+                            <input type="text" name="id" class="max-w-[20ch] py-1 px-2 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent" value="546786" value={id} disabled>
                         </label>
                         <label class="block">
                             <span class="text-[12.8px] ml-0.5">Email Address:</span>
-                            <input type="email" name={email} class="py-1 px-2 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent" type='text' value={email} />
+                            <input type="email" name="email" class="py-1 px-2 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent" value={email} />
                         </label>
                         <label class="block">
                             <span class="text-[12.8px] ml-0.5">Your Name:</span>
-                            <input type="text" name={name} class="py-1 px-2 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent" value={name} />
+                            <input type="text" name="name" class="py-1 px-2 block w-full border border-gray-300 text-sm focus:border-gray-300 focus:ring-transparent" value={name} />
                         </label>
                         <label class="block">
                             <span class="text-[12.8px]">Username: (optional)</span>
                             <div class="mb-4">
                                 <div class="flex items-center">
                                   <span class="inline-flex items-center min-w-fit bg-blue-400 text-sm text-white border-l border-t border-b border-gray-300 py-1 px-2">https://www.himoot.com/</span>
-                                  <input type="text" class="py-1 px-2 block w-full border-l-0 border-r border-t border-b border-gray-300 text-sm focus:z-10 focus:border-gray-300 focus:ring-0 focus:ring-transparent" value={username}>
+                                  <input type="text" name="username" class="py-1 px-2 block w-full border-l-0 border-r border-t border-b border-gray-300 text-sm focus:z-10 focus:border-gray-300 focus:ring-0 focus:ring-transparent" value={username}>
                                 </div>
                               </div>
                             <div class="w-full text-xs bg-blue-200 border border-blue-300 py-1 px-2">
@@ -101,11 +99,13 @@ const { email, name, id } = Astro.params;
                         </div>
                     </div>
                 </NonRegularBox>
-    
-                <button type="button" class="py-0.5 px-2.5 bg-gray-100 hover:bg-gray-200 text-xs border border-black" type="submit">Save All</button>
             </form>
 
-            <div class="space-y-2">
+            <div class="mt-2.5">
+                <button class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-black" type="submit">Save All</button>
+            </div>
+
+            <div class="space-y-2 mt-2.5">
             <p class="text-[12.8px] font-semibold">More Options</p>
             <li class="ml-1 list-disc list-[circle] list-outside text-xs">
                     To change your password, please <a class="text-blue-600 hover:text-red-600 hover:underline" href=`/${username}/resetpassword`>click here</a>.
