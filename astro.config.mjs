@@ -4,6 +4,7 @@ import vercel from "@astrojs/vercel/serverless";
 import robotsTxt from 'astro-robots-txt';
 import eventsource from 'eventsource';
 import compressor from "astro-compressor";
+import node from "@astrojs/node"; 
 global.EventSource = eventsource;
 
 
@@ -35,5 +36,8 @@ export default defineConfig({
       "Accept-Encoding": "gzip, deflate, zstd"
     }
   },
-  adapter: vercel()
+  adapter: vercel(),
+  adapter: node({
+    mode: "standalone"
+  })
 });

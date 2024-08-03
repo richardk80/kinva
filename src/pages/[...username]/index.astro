@@ -23,7 +23,9 @@ if(!page) {
 
 const name = "Astro";
 
-const friendship = true;
+const friendship = false;
+
+const requested = false;
 
 const hidden = false;
 ---
@@ -41,7 +43,7 @@ const hidden = false;
                     </div>
                     <!-- Right Column -->
                     <div class="flex flex-col gap-y-2 w-full">
-                        <UserBox friendship={friendship} />
+                        <UserBox friendship={friendship} requested={requested} />
                             <div class={ friendship ? null : "-mt-1" }>
                                 <BlogEntry />
                             </div>
