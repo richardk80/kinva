@@ -2,9 +2,6 @@
     "github": {
         "silent": true
     },
-    "cleanUrls": true,
-    "trailingSlash": false,
-    "regions": ["cle1"],
     "version": 2,
     "builds": [
       {
