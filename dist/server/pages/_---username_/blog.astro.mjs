@@ -1,0 +1,25 @@
+/* empty css                          */
+import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, e as addAttribute } from '../../chunks/chunk.5Qftb6w9.js';
+import 'kleur/colors';
+import { $ as $$Layout } from '../../chunks/chunk.CjRQmwsE.js';
+import { $ as $$SmallLink } from '../../chunks/chunk.TkxoEAro.js';
+export { renderers } from '../../renderers.mjs';
+
+const $$Index = createComponent(($$result, $$props, $$slots) => {
+  const username = "astro";
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Your Blog" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="mx-[50px] mb-8"> <h1 class="text-[25.6px] font-semibold mb-2 text-balance">Your Blog</h1> ${renderTemplate`<p class="text-xs mb-2">${renderComponent($$result2, "SmallLink", $$SmallLink, { "href": `/${username}/blog/edit`, "link": "edit blog" })}</p>`} <a class="text-blue-600 hover:text-red-600 hover:underline text-xs"${addAttribute(`/${username}`, "href")}>« Back to your profile</a> </main> ` })}`;
+}, "/Users/ryanx30x/Projects/spacehey/src/pages/[...username]/blog/index.astro", void 0);
+
+const $$file = "/Users/ryanx30x/Projects/spacehey/src/pages/[...username]/blog/index.astro";
+const $$url = "/[...username]/blog";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$Index,
+	file: $$file,
+	url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
