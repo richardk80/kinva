@@ -2,17 +2,7 @@
     "github": {
         "silent": true
     },
-    "version": 2,
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "dist/server/entry.mjs"
-      }
-    ]
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "regions": ["cle1"]
 }
