@@ -1,0 +1,31 @@
+/* empty css                       */
+import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/chunk.Dwxe70VL.js';
+import 'kleur/colors';
+import { $ as $$Layout } from '../chunks/chunk.CZFltgPO.js';
+export { renderers } from '../renderers.mjs';
+
+const $$Extra = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Signin" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div> <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"> <div class="w-full max-w-md space-y-8"> <h2 class="text-center text-xl font-bold tracking-tight text-foreground">Signin</h2> <form class="mt-8 space-y-6" action="#" method="post"> <div class="-space-y-px rounded-md shadow-sm"> <div> <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only" for="email">
+Email address
+</label> <input class="h-10 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 relative block w-full appearance-none rounded-none rounded-t-md border border-input bg-background px-2 py-2 text-foreground placeholder-muted-foreground focus:z-10 focus:border-black focus:outline-none focus:ring-black sm:text-sm" id="email" autocomplete="email" required="" type="email" name="email" placeholder="Email Address"> </div> <div> <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only" for="password">
+Password
+</label> <input class="h-10 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 relative block w-full appearance-none rounded-none rounded-b-md border border-input bg-background px-2 py-2 text-foreground placeholder-muted-foreground focus:z-10 focus:border-black focus:outline-none focus:ring-black sm:text-sm" id="password" autocomplete="current-password" required="" type="password" name="password" placeholder="Password"> </div> </div> <div class="flex items-center justify-between"> <a class="text-[12px] font-medium text-blue-600 hover:text-red-600 hover:underline" href="/extra">
+Register for a new account
+</a> <a class="text-[12px] font-medium text-blue-600 hover:text-red-600 hover:underline" href="/extra">
+Forgot your password?
+</a> </div> <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-600/90 h-10 px-2 py-2 w-full" type="submit">Sign In</button> </form> </div> </div> </div>` })}`;
+}, "/Users/ryanx30x/Projects/spacehey/src/pages/extra.astro", void 0);
+
+const $$file = "/Users/ryanx30x/Projects/spacehey/src/pages/extra.astro";
+const $$url = "/extra";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+    __proto__: null,
+    default: $$Extra,
+    file: $$file,
+    url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
