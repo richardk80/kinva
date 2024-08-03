@@ -4,7 +4,6 @@ import robotsTxt from 'astro-robots-txt';
 import eventsource from 'eventsource';
 import compressor from "astro-compressor";
 import node from "@astrojs/node";
-import server from './server.mjs';
 global.EventSource = eventsource;
 
 
@@ -37,7 +36,6 @@ export default defineConfig({
     }
   },
   adapter: node({
-    mode: 'standalone',
-    handler: server,
+    mode: 'standalone'
   })
 });
