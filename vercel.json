@@ -4,18 +4,5 @@
     },
     "cleanUrls": true,
     "trailingSlash": false,
-    "regions": ["cle1"],
-    "version": 2,
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "dist/server/entry.mjs"
-      }
-    ]
-  }
+    "regions": ["cle1"]
+}
