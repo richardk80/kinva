@@ -2,7 +2,6 @@
     "github": {
         "silent": true
     },
-    "regions": ["cle1"],
     "framework": "astro",
     "cleanUrls": true,
     "trailingSlash": false
