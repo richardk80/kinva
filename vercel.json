@@ -3,6 +3,5 @@
         "silent": true
     },
     "cleanUrls": true,
-    "trailingSlash": false,
-    "regions": ["cle1"]
+    "trailingSlash": true
 }
