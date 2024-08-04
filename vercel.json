@@ -3,5 +3,5 @@
         "silent": true
     },
     "cleanUrls": true,
-    "trailingSlash": true
+    "trailingSlash": false
 }
