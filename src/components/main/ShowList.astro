@@ -1,0 +1,20 @@
+---
+import SmallLink from '@com/main/SmallLink.astro';
+
+const blogItems = [
+{ text: "Hello There", href: "#" },
+{ text: "Stop Drop & Roll", href: "#" },
+{ text: "WTH?", href: "#" },
+];
+---
+<div class="text-xs space-y-1">
+    {blogItems.map((blogitems) => (
+        <div class="flex items-center">
+            <p>{blogitems.text}</p>
+                <p class="ml-1">
+                    <SmallLink href={blogitems.href} link="read" />
+                </p>
+        </div>
+    ))
+    }
+</div>
