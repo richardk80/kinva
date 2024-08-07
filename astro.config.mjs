@@ -35,5 +35,9 @@ export default defineConfig({
       "Accept-Encoding": "gzip, deflate, zstd"
     }
   },
-  adapter: vercel()
+  adapter: vercel(),
+
+  experimental: {
+    serverIslands: true,
+  },
 });
