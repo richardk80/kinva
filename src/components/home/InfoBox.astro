@@ -2,7 +2,7 @@
 import RelativeTime from '@yaireo/relative-time';
 import NonRegularBox from '@com/main/NonRegularBox.astro';
 
-const datetoday = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const datetoday = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/New_York' });
 const createdDate = new RelativeTime().from(new Date('01-01-2020'));
 ---
 
