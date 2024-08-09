@@ -7,7 +7,15 @@ const hidden = true;
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<BubbleBox username2={ hidden ? `Astro's` : `Your` } name="Latest Blog Entries" name2="[view blog]" pclass="flex items-center justify-between text-xs font-semibold text-red-600" backgroundColor="bg-white" borderColor="border-white" aclass="text-[10px] -mt-0.5 font-normal hover:underline text-black" aurl=`/astro/blog`>
+<BubbleBox 
+    username2={ hidden ? `Astro's` : `Your` } 
+    name="Latest Blog Entries" 
+    name2="[view blog]" 
+    pclass="flex items-center justify-between text-xs font-semibold text-red-600" backgroundColor="bg-white" 
+    borderColor="border-white" 
+    aclass="text-[10px] -mt-0.5 font-normal hover:underline text-black" 
+    aurl="/astro/blog"
+>
     <div class="space-y-2 -ml-0.5">
        <p class="text-xs">{ hidden ? 'There are' : `You have` } no blog entries yet</p>
     </div>

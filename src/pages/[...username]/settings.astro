@@ -14,7 +14,12 @@ const { email, name, id } = Astro.params;
 	<div class="mx-auto w-[690px] mb-5 form">
 		<h1 class="text-[25.6px] font-semibold text-balance mb-3">Account Settings</h1>
             <form class="space-y-2" method="post" enctype="application/json">
-                <NonRegularBox name="Basic Details" pclass="flex items-center justify-between mx-2 text-sm font-semibold text-white mb-0.5 mt-1" backgroundColor="bg-blue-400" borderColor="border-blue-400">
+                <NonRegularBox 
+                    name="Basic Details" 
+                    pclass="flex items-center justify-between mx-2 text-sm font-semibold text-white mb-0.5 mt-1" 
+                    backgroundColor="bg-blue-400" 
+                    borderColor="border-blue-400"
+                >
                     <div class="m-2">
                         <span class="text-[12.8px] ml-0.5">Profile Image:</span>
                         <img src="/img/avatar.svg" class="w-40 h-40" />

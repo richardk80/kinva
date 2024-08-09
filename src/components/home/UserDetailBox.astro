@@ -1,6 +1,6 @@
 ---
 import NonRegularBox from '@com/main/NonRegularBox.astro';
-import ProfileImage from '@com/home/ProfileImage.astro';
+import ProfileImage from '@com/main/ProfileImage.astro';
 import TopRightUserDetailLinks from '@com/home/TopRightUserDetailLinks.astro';
 import BottomUserDetailLinks from '@com/home/BottomUserDetailLinks.astro';
 
@@ -8,17 +8,32 @@ const username = "astro";
 
 const name = "Astro";
 
+const profilepic = true;
+
 //let parts = name.split(' ')
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<NonRegularBox widthcss="w-[304px]" name="Hello Astro!" pclass="flex items-center ml-2 text-base font-semibold text-white mt-0.5 h-6" backgroundColor="bg-blue-400" borderColor="border-blue-400">
+<NonRegularBox 
+    widthcss="w-[304px]" 
+    name="Hello Astro!" 
+    pclass="flex items-center ml-2 text-base font-semibold text-white mt-0.5 h-6" backgroundColor="bg-blue-400" 
+    borderColor="border-blue-400"
+>
         <div class="mx-2 mt-2 mb-1 space-y-1">
             <div class="flex justify-between">
                 <a href={`/${username}`}>
-                    <ProfileImage width={160} height={160} imgclass="bg-blue-100 box-border mb-0.5" srcurl="/img/avatar.svg" altText={`${name}'s Profile Picture`} titleText={`Visit ${name}'s Profile`} />
+                    <ProfileImage
+                    width={160}
+                    height={160}
+                    srcurl={profilepic ? "/img/400.jpeg" : "/img/avatar.png"}
+                    altText="Astro's profile picture"
+                    titleText="Visit Astro's Profile Page"
+                  />
                 </a>
-                <TopRightUserDetailLinks />
+                <div class="-mt-0.5">
+                    <TopRightUserDetailLinks />
+                </div>
             </div>
             <div class="box-border space-y-1">
                 <BottomUserDetailLinks />

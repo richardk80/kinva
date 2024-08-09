@@ -1,7 +1,7 @@
 ---
 import Layout from '@lay/Layout.astro';
 
-import ProfileImage from '@com/home/ProfileImage.astro';
+import ProfileImage from '@com/main/ProfileImage.astro';
 
 const filterItems = [
 { href: "/", smallname: "", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "All Users", dividerCss: "text-black ml-1 cursor-default font-medium text-xs", divider: "-" },
@@ -16,12 +16,14 @@ const friendItems = [
 
 const currentPath = new URL(Astro.request.url).pathname.slice(1);
 
+const profilepic = true;
+
 //let parts = name.split(' ')
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
 <Layout title="Browse">
-	<main class="text-black mb-0.5">
+	<main class="text-black">
 		<div class="mx-auto w-[700px] px-[8px]">
 			<h1 class="text-[25.6px] font-semibold mb-3 text-balance">Browse</h1>
 			  <div class="flex items-stretch text-xs mb-3">
@@ -46,26 +48,33 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 						  <a class="text-black text-[10.24px] hover:underline" href="#">[random]</a>
 					  </div>
 				  </div>
-				  <div class="border-2 border-orange-400/60 border-solid">
-					  <div class="px-3 py-3">
-						  {
-							  [...Array(50)].map(() => (
-						  <div class="my-[5px] mx-[20px] inline-block">
-							  <a class="text-blue-600 hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile">
-								<p class="text-xs flex justify-center font-semibold">Astro</p>
-								<ProfileImage width={90} height={90} imgclass="hover:no-underline mt-1" srcurl="/img/avatar.svg" altText="Astro's profile picture" />
-							  </a>
-						  </div>
-							  ))
-						  }
-					  </div>
+				  <div class="border-2 border-orange-400/60 border-solid bg-orange-50">
+					<div class="mx-2 mb-2 mt-1.5">
+						<div class="grid grid-cols-5 gap-x-[50px] gap-y-[10px]">
+							{
+								[...Array(20)].map(() => (
+								<a class="text-blue-600 hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile">
+								  <p class="text-xs flex justify-center font-semibold mb-0.5">Astro</p>
+								  		<ProfileImage
+                    						width={96}
+                    						height={96}
+											imgclass="hover:no-underline"
+                    						srcurl={profilepic ? "https://i.pravatar.cc/96" : "/img/avatar.png"}
+                    						altText="Astro's profile picture"
+                    						titleText="Visit Astro's Profile Page"
+                  						/>
+									</a>
+								))
+							}
+						</div>
+					</div>
 				  </div>
-				</div>
-				<div class="flex items-center justify-between mt-3.5 px-[104px]">
-					<a class="text-[10.24px] text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
-					<a rel="next" href="/">
-						<button type="button" class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs text-black border border-black border-solid focus:outline-none flex" type="submit" aria-label="search">Next Page</button>
-					</a>
+				  <div class="flex items-center justify-between mt-3 mb-2">
+					  <a class="text-[10.24px] text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
+					  <a rel="next" href="/">
+						  <button type="button" class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs text-black border border-black border-solid focus:outline-none flex" type="submit" aria-label="search">Next Page</button>
+					  </a>
+				  </div>
 				</div>
 			</div>
 		</div>
