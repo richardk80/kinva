@@ -6,7 +6,6 @@ import eventsource from 'eventsource';
 import compressor from "astro-compressor";
 global.EventSource = eventsource;
 
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.himoot.com",
