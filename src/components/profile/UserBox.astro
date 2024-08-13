@@ -13,11 +13,13 @@ const name = 'Astro';
 //let lastName = parts.join(' ');
 ---
 { friendship ? <div class="h-[82.2656px] border-2 border-orange-400/60 flex">
-    <div class="mx-auto my-auto">
-        { requested ? 
-            <p class="text-[14.976px] font-semibold text-red-600">Friend Request Sent</p>
-            :
+    <div class="mx-auto my-auto"> 
             <p class="text-[14.976px] font-semibold text-red-600">{name} is your Friend</p>
-        }
     </div>
-</div> : '' }
+</div> : null }
+
+{ requested ? <div class="h-[82.2656px] border-2 border-orange-400/60 flex">
+    <div class="mx-auto my-auto">
+        <p class="text-[14.976px] font-semibold text-red-600">Friend Request Sent</p>
+    </div>
+</div> : null }

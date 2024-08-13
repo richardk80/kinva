@@ -1,7 +1,13 @@
 ---
 import BubbleBox from '@com/main/BubbleBox.astro';
 
+import ShowList from '@com/home/ShowList.astro';
+
 const hidden = true;
+
+const showList = true;
+
+const username = 'astro';
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -14,9 +20,11 @@ const hidden = true;
     pclass="flex items-center justify-between text-xs font-semibold text-red-600" backgroundColor="bg-white" 
     borderColor="border-white" 
     aclass="text-[10px] -mt-0.5 font-normal hover:underline text-black" 
-    aurl="/astro/blog"
+    aurl=`${username}/blog`
 >
     <div class="space-y-2 -ml-0.5">
+        { showList ? <ShowList /> : 
        <p class="text-xs">{ hidden ? 'There are' : `You have` } no blog entries yet</p>
+        }
     </div>
 </BubbleBox>

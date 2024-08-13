@@ -11,17 +11,16 @@ import { Icon } from 'astro-icon';
 
 interface Props {
     friendship?: boolean;
+    cancelRequest?: boolean;
 }
 
-const friendship = false;
+const { friendship, cancelRequest } = Astro.props;
 
 const name = 'Astro';
 
 const username = 'astro';
 
 const loggedin = true;
-
-const cancelRequest = false;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -43,7 +42,7 @@ const cancelRequest = false;
                     <span class="group-hover:underline">Send Message</span>
                 </a>
                 <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-1 cursor-pointer" data-hs-overlay="#hs-vertically-centered-modal" data-hs-overlay-keyboard="false">
-                    <Icon class="h-[16px] w-auto group-hover:no-underline" name={ friendship ? "user-minus" : (cancelRequest ? "user-minus" : "user-plus") } />
+                    <Icon class="h-[16px] w-auto group-hover:no-underline" name={ friendship ? "user-minus" : (cancelRequest ? "user-xmark" : "user-plus") } />
                     <span class="group-hover:underline">{ friendship ? "Remove Friend" : (cancelRequest ? "Cancel Request" : "Add to Friends") }
                     </span>
                 </a>

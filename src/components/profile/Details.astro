@@ -1,9 +1,11 @@
 ---
 import BubbleBox from "@com/main/BubbleBox.astro";
 
-const { name, statuswords, herefor, hometown, ethnicity, zodiac, smoke, drink, education, occupation } = Astro.props;
+const { statuswords, herefor, hometown, ethnicity, zodiac, smoke, drink, education, occupation } = Astro.props;
 
 const username = 'astro';
+
+const name = 'Astro';
 
 const hidden = true;
 
@@ -12,7 +14,7 @@ const hidden = true;
 //let lastName = parts.join(' ');
 ---
 <BubbleBox 
-    username2={ hidden ? `Astro's` : `Your` } 
+    username2={ hidden ? name + "'s" : "Your" }
     name="Details" 
     name2="[edit details]" 
     hidden={hidden} 
