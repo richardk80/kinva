@@ -1,7 +1,6 @@
 ---
 import UserDetailBox from '@com/profile/UserDetailBox.astro';
 import ContactButtons from '@com/profile/ContactButtons.astro';
-import ProfileLinkBox from '@com/profile/ProfileLinkBox.astro';
 import Interests from '@com/profile/Interests.astro';
 import Details from '@com/profile/Details.astro';
 import UserBox from '@com/profile/UserBox.astro';
@@ -12,44 +11,46 @@ import FriendComments from '@com/profile/FriendComments.astro';
 
 import Layout from '@lay/Layout.astro';
 
-const pages = [{ username: "astro" }];
+const pages = [{ username: "dex" }];
 
-const { username } = Astro.params;
+const username = 'dex';
+
 const page = pages.find((page) => page.username === username);
 if(!page) {
     Astro.response.status = 404;
     Astro.response.statusText = 'Not found';
 };
 
-const name = "Astro";
+const name = "Dex";
+
+const loggedin = true;
+
+const showList = true;
 
 const friendship = false;
 
 const requested = false;
-
-const hidden = false;
 ---
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
             <div class="col-span-full">
                 <div class="flex items-start justify-between gap-x-2">
                     <!-- Left Column -->
-                    <div class="flex flex-col gap-y-2">
-                        <UserDetailBox />
-                        { hidden ? '' : <ContactButtons friendship={friendship} cancelRequest={requested} /> }
-                        <ProfileLinkBox />
-                        <Details />
-                        <Interests />
+                    <div class="flex flex-col gap-y-2 w-3/5">
+                        <UserDetailBox loggedin={loggedin} name={name} username={username} />
+                        <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
+                        <Details loggedin={loggedin} name={name} username={username} />
+                        <Interests loggedin={loggedin} name={name} username={username} />
                     </div>
                     <!-- Right Column -->
                     <div class="flex flex-col gap-y-2 w-full">
-                        <UserBox friendship={friendship} requested={requested} />
+                        <UserBox loggedin={loggedin} friendship={friendship} requested={requested} />
                             <div class={ friendship ? null : "-mt-1" }>
-                                <BlogEntry />
+                                <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
                             </div>
-                            <Blurbs />
-                            <FriendSpace />
-                            <FriendComments self={true} />
+                            <Blurbs loggedin={loggedin} name={name} username={username} />
+                            <FriendSpace loggedin={loggedin} name={name} username={username} />
+                            <FriendComments loggedin={loggedin} name={name} username={username} />
                     </div>
                 </div>
             </div>

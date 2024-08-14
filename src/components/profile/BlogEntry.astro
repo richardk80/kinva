@@ -1,20 +1,16 @@
 ---
-import BubbleBox from '@com/main/BubbleBox.astro';
+import BlogBox from '@com/main/BlogBox.astro';
 
 import ShowList from '@com/home/ShowList.astro';
 
-const hidden = true;
-
-const showList = true;
-
-const username = 'astro';
+const { loggedin, showList, name, username } = Astro.props;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<BubbleBox 
-    username2={ hidden ? `Astro's` : `Your` } 
+<BlogBox 
+    username2={`${name}'s`} 
     name="Latest Blog Entries" 
     name2="[view blog]" 
     pclass="flex items-center justify-between text-xs font-semibold text-red-600" backgroundColor="bg-white" 
@@ -23,8 +19,8 @@ const username = 'astro';
     aurl=`${username}/blog`
 >
     <div class="space-y-2 -ml-0.5">
-        { showList ? <ShowList /> : 
-       <p class="text-xs">{ hidden ? 'There are' : `You have` } no blog entries yet</p>
+        { showList ? <ShowList username={username} /> : 
+       <p class="text-xs">{ loggedin ? "You have" : "There are" } no blog entries yet</p>
         }
     </div>
-</BubbleBox>
+</BlogBox>

@@ -16,6 +16,10 @@ import InfoBox from '@com/home/InfoBox.astro';
 import FriendsBulletins from '@com/home/FriendsBulletins.astro';
 import FriendRequests from '@com/home/FriendRequests.astro';
 
+const name = "Dex";
+
+const username = "dex";
+
 const loggedin = true;
 ---
 <Layout title={ loggedin ? "Home" : "Login" }>
@@ -25,22 +29,22 @@ const loggedin = true;
             <div class="flex items-start justify-between gap-x-2">
                 <!-- Left Column -->
                 <div class="flex flex-col gap-y-2">
-                    <UserDetailBox />
+                    <UserDetailBox name={name} username={username} />
                     <MyMail  />
-                    <ProfileLinkBox />
+                    <ProfileLinkBox username={username} />
                     <UpdatesBox />
                 </div>
                 <!-- Right Column -->
                 <div class="flex flex-col gap-y-2 w-full">
                     <div class="flex justify-between">
                         <div class="-mt-0.5">
-                            <BlogEntry />
+                            <BlogEntry username={username} />
                         </div>
-                        <InfoBox />
+                        <InfoBox username={username} />
                     </div>
-                    <CoolPeople />
-                    <FriendsBulletins />
-                    <FriendRequests />
+                    <CoolPeople name={name} username={username} />
+                    <FriendsBulletins username={username} />
+                    <FriendRequests username={username} />
                 </div>
             </div>
         </div>

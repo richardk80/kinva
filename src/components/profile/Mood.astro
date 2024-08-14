@@ -4,11 +4,12 @@ import SmallLink from '@com/main/SmallLink.astro';
 import { Icon } from 'astro-icon';
 
 interface Props {
-    hidden?: boolean;
+    loggedin?: boolean;
     onlinenow?: boolean;
+    username?: string;
 }
 
-const { hidden, onlinenow } = Astro.props;
+const { loggedin, onlinenow, username } = Astro.props;
 ---
 { onlinenow ?
 <div class="flex items-center space-x-2 ml-0.5">
@@ -21,9 +22,9 @@ const { hidden, onlinenow } = Astro.props;
     <p class="font-semibold text-xs">Mood:</p>
     <p class="text-xs ml-1 text-balance">Happy</p>
 </div>
-{ hidden ? '' : <p class="text-xs ml-0.5"><SmallLink href="/astro/editmood" link="edit mood" /></p> }
+{ loggedin ? <p class="text-xs ml-0.5"><SmallLink href={`${username}/editmood`} link="edit mood" /></p> : null }
 <div class="flex items-center ml-0.5">
     <p class="font-semibold text-xs">Status:</p>
     <p class="text-xs ml-1 text-balance">Writing code</p>
 </div>
-{ hidden ? '' : <p class="text-xs ml-0.5"><SmallLink href="/astro/editstatus" link="edit status" /></p> }
+{ loggedin ? <p class="text-xs ml-0.5"><SmallLink href={`${username}/editstatus`} link="edit status" /></p> : null }

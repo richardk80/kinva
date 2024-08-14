@@ -1,7 +1,7 @@
 ---
 import SmallLink from '@com/main/SmallLink.astro';
 
-const username = 'astro';
+const { username } = Astro.props;
 
 const blogItems = [
 { text: "Hello There", href: `${username}/blog` },
@@ -13,8 +13,8 @@ const blogItems = [
     {blogItems.map((blogitems) => (
         <div class="flex items-center">
             <p>{blogitems.text}</p>
-                <p class="ml-1 font-semibold">
-                    <SmallLink href={blogitems.href} link="read" />
+                <p class="ml-1">
+                    <SmallLink href={blogitems.href} link="read" classname="font-semibold" />
                 </p>
         </div>
     ))

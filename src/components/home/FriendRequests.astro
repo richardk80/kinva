@@ -3,7 +3,7 @@ import NonRegularBox from '@com/main/NonRegularBox.astro';
 
 const friendrequests: number = 5;
 
-const username = 'astro';
+const { username } = Astro.props;
 ---
 <NonRegularBox 
   name="Friend Requests" 

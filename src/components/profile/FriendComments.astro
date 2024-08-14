@@ -3,9 +3,7 @@ import RegularBox from '@com/main/RegularBox.astro';
 
 import SmallLink from '@com/main/SmallLink.astro';
 
-const hidden = true;
-
-const name = 'Astro';
+const { loggedin, name, username } = Astro.props;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -14,18 +12,19 @@ const name = 'Astro';
 const comments: number = 5;
 ---
 <RegularBox 
-  username2={ hidden ? name + "'s" : "Your" }
+  username2={`${name}'s`}
   name="Friend Comments"
   name2="[view all]" 
   pclass="flex items-center justify-between mx-2 text-xs font-semibold text-red-600 mt-0.5" backgroundColor="bg-orange-400/60" 
   borderColor="border-orange-400/60" 
   aclass="text-[10px] -mt-0.5 font-normal hover:underline text-black" 
-  aurl="/astro/comments"
+  aurl=`${username}/comments`
 >
     <div class="ml-2 pt-1.5 pb-1 space-x-2 flex items-center">
-      <p class="text-black font-semibold text-xs">{ hidden ? `Astro has`: 'You have' } <span class="text-red-600">{comments}</span> { comments === 0 ? 'comments' : comments > 1 ? 'comments' : 'comment' } 
-        { hidden ? 
-          <span class="font-semibold text-xs"><SmallLink href="/" link="add comment" /></span>
+      <p class="text-xs">
+        <span class="font-semibold">{name} has <span class="text-red-600">{comments}</span> { comments === 0 ? 'comments' : comments > 1 ? 'comments' : 'comment' }</span>
+        { loggedin ? 
+          <span class="text-xs"><SmallLink href={`${username}/comments`} link="add comment" classname="font-semibold" /></span>
         : '' 
         }
     </p>

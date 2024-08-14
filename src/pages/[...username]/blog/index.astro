@@ -3,20 +3,19 @@ import Layout from '@lay/Layout.astro';
 
 import SmallLink from '@com/main/SmallLink.astro';
 
-const username = 'astro';
+const username = 'dex';
 
-const name = 'Astro';
+const name = 'Dex';
 
-const hidden = false;
+const loggedin = true;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<Layout title=`${ hidden ? name + "'s" : "Your" } Blog`>
-	<main class="mx-[50px] mb-8">
-		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">{ hidden ? name + "'s" : "Your" } Blog</h1>
-		{ hidden ? '' : <p class="text-xs mb-2"><SmallLink href={`/${username}/blog/edit`} link="edit blog" /></p> }
-		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href="/">« Back to your homepage</a>
+<Layout title=`${ loggedin ? name + "'s" : "Your" } Blog`>
+	<main class="mx-[50px] mb-3">
+		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">{name}'s Blog</h1>
+		{ loggedin ? <p class="text-xs mb-2"><SmallLink href={`/${username}/blog/edit`} link="edit blog" /></p> : null }
 	</main>
 </Layout>

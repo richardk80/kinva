@@ -5,11 +5,11 @@ import ShowList from '@com/home/ShowList.astro';
 
 const showList = true;
 
-const username = 'astro';
+const { username } = Astro.props;
 ---
 <div class="space-y-1">
-    <div class="text-xs font-semibold text-black ">Your Latest Blog Entries <span class="font-semibold"><SmallLink href=`${username}/blog/edit` link="Add Entry" /></span></div>
-        { showList ? <ShowList /> : 
+    <div class="text-xs"><span class="font-semibold">Your Latest Blog Entries</span> <SmallLink href=`${username}/blog/edit` link="Add Entry" classname="font-semibold" /></div>
+        { showList ? <ShowList username={username} /> : 
             <p class="text-xs">You have no blog entries yet</p>
         }
 </div>
