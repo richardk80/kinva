@@ -30,11 +30,20 @@ const showList = true;
 const friendship = false;
 
 const requested = false;
+
+const coverimage = true;
 ---
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
             <div class="col-span-full">
-                <div class="flex items-start justify-between gap-x-2">
+                <div>
+                    { coverimage ?
+                    <img class="w-full h-40 object-cover border-2 border-blue-400" src="/img/cover.png" />
+                    :
+                    <div class="w-full h-40 object-cover border-2 border-blue-400 bg-gray-200"></div>
+                    }
+                </div>
+                <div class="flex items-start justify-between gap-x-2 mt-2">
                     <!-- Left Column -->
                     <div class="flex flex-col gap-y-2 w-3/5">
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
@@ -45,9 +54,9 @@ const requested = false;
                     <!-- Right Column -->
                     <div class="flex flex-col gap-y-2 w-full">
                         <UserBox loggedin={loggedin} friendship={friendship} requested={requested} />
-                            <div class={ friendship ? null : "-mt-1" }>
-                                <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
-                            </div>
+                        <div class="-mt-1">
+                            <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
+                        </div>
                             <Blurbs loggedin={loggedin} name={name} username={username} />
                             <FriendSpace loggedin={loggedin} name={name} username={username} />
                             <FriendComments loggedin={loggedin} name={name} username={username} />
