@@ -1,0 +1,7 @@
+---
+const { coverimage } = Astro.props;
+---
+    { coverimage ?
+    <img class="w-full h-[150px] object-cover border-2 border-solid border-blue-400" src="/img/cover.png" />
+    : null
+    }
