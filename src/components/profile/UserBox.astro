@@ -1,13 +1,12 @@
 ---
 interface Props {
     loggedin?: boolean;
+    name?: string;
     friendship?: boolean;
     requested?: boolean;
 }
 
-const { loggedin, friendship, requested } = Astro.props;
-
-const name = 'Astro';
+const { loggedin, name, friendship, requested } = Astro.props;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
