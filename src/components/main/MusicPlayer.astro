@@ -1,5 +1,5 @@
 ---
-const { audiofiles } = Astro.props;
+const { audiofiles, autoplayon } = Astro.props;
 ---
 <style>
     audio::-webkit-media-controls-enclosure {
@@ -42,7 +42,7 @@ const { audiofiles } = Astro.props;
     }
 </style>
     <div class="border-2 border-blue-400 bg-[#e7e7e7] flex items-center">
-        <audio class="flex items-center justify-center" id="audioPlayer" controls controlslist="nodownload noplaybackrate" preload="metadata">
+        <audio class="flex items-center justify-center" id="audioPlayer" controls controlslist="nodownload noplaybackrate" preload="metadata" {...(autoplayon && { autoplay: true })}>
         <source id="audioSource" src={audiofiles[0].src} type="audio/mpeg" />
         Your browser does not support the audio element.
     </div>
