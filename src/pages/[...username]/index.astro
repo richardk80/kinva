@@ -37,9 +37,7 @@ const requested = false;
 
 const coverimage = true;
 
-const audiofiles = [
-  { src: "https://ice41.securenetsystems.net/WYYX" },
-];
+const audiofiles = "https://ice41.securenetsystems.net/WYYX";
 ---
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
@@ -50,7 +48,7 @@ const audiofiles = [
                     <div class="flex flex-col gap-y-2 w-3/5">
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
-                        <MusicPlayer audiofiles={audiofiles} />
+                        { audiofiles ? <MusicPlayer audiofiles={audiofiles} /> : null }
                         <Details loggedin={loggedin} name={name} username={username} />
                         <Interests loggedin={loggedin} name={name} username={username} />
                     </div>
