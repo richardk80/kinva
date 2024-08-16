@@ -18,7 +18,7 @@ const { loggedin, showList, name, username } = Astro.props;
     aclass="text-[10px] -mt-0.5 font-normal hover:underline text-black mr-2" 
     aurl=`${username}/blog`
 >
-    <div class="space-y-2 -ml-0.5">
+    <div class="space-y-2 -ml-0.5 -mb-1">
         { showList ? <ShowList username={username} /> : 
        <p class="text-xs">{ loggedin ? "You have" : "There are" } no blog entries yet</p>
         }
