@@ -16,7 +16,9 @@ import Layout from '@lay/Layout.astro';
 
 const pages = [{ username: "dex" }];
 
-const username = 'dex';
+console.log(pages);
+
+const { username } = Astro.params;
 
 const page = pages.find((page) => page.username === username);
 if(!page) {
