@@ -6,9 +6,10 @@ const { coverimage, name } = Astro.props;
 { coverimage ? 
 <div class="relative w-full h-[150px] overflow-hidden bg-gray-50 border-2 border-blue-400">
     <img src="/img/cover.png" alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />
-    <button class="absolute bottom-1.5 right-1.5 bg-gray-100 hover:bg-gray-200 text-black border border-gray-500 px-2 py-0.5 cursor-pointer text-xs" onclick="document.getElementById('coverUpload').click()">Add Cover Photo</button>
+    <button class="absolute bottom-1.5 right-1.5 bg-gray-50 hover:bg-gray-200 text-black border border-gray-500 px-2 py-0.5 cursor-pointer text-xs" onclick="document.getElementById('coverUpload').click()">Add Cover Photo</button>
     <input
       type="file"
+      accept="image/*,image/heif,image/heic"
       id="coverUpload"
       style="display: none;"
       onchange="handleCoverChange(event)"
