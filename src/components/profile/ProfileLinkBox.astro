@@ -1,0 +1,10 @@
+---
+import UserURL from '@com/profile/UserURL.astro';
+
+const { loggedin, name, username } = Astro.props;
+---
+<div class="w-[304px] h-[43.3438px] border-2 border-blue-400 flex">
+        <div class="mx-2 my-auto w-full">
+            <UserURL loggedin={loggedin} name={name} username={username} />
+        </div>
+</div>

@@ -3,6 +3,7 @@ import CoverImage from '@com/main/CoverImage.astro';
 import UserDetailBox from '@com/profile/UserDetailBox.astro';
 import MusicPlayer from '@com/main/MusicPlayer.astro';
 import ContactButtons from '@com/profile/ContactButtons.astro';
+import ProfileLinkBox from '@com/profile/ProfileLinkBox.astro';
 import Interests from '@com/profile/Interests.astro';
 import Details from '@com/profile/Details.astro';
 import UserBox from '@com/profile/UserBox.astro';
@@ -31,13 +32,13 @@ const loggedin = true;
 
 const showList = true;
 
-const friendship = true;
+const friendship = false;
 
 const requested = false;
 
 const coverimage = true;
 
-const audiourl = ''
+const audiourl = 'http://live.amperwave.net/direct/audacy-winshd2aac-imc'
 
 const audiofiles = [
     {src: `${audiourl}`}
@@ -52,6 +53,7 @@ const audiofiles = [
                     <div class="flex flex-col gap-y-2 w-3/5">
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
+                        <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
                         { audiofiles[0].src ? <MusicPlayer audiofiles={audiofiles} /> : null }
                         <Details loggedin={loggedin} name={name} username={username} />
                         <Interests loggedin={loggedin} name={name} username={username} />

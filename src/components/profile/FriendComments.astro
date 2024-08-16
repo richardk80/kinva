@@ -24,7 +24,7 @@ const comments: number = 5;
       <p class="text-xs">
         <span class="font-semibold">{name} has <span class="text-red-600">{comments}</span> { comments === 0 ? 'comments' : comments > 1 ? 'comments' : 'comment' }</span>
         { loggedin ? 
-          <span class="text-xs"><SmallLink href={`${username}/comments`} link="add comment" classname="font-semibold" /></span>
+          <span class="text-xs"><SmallLink href={`${username}/comments`} link="add comment" /></span>
         : '' 
         }
     </p>
