@@ -1,8 +1,41 @@
 ---
-const { coverimage } = Astro.props;
+import { Icon } from 'astro-icon';
+
+const { coverimage, name } = Astro.props;
 ---
-    { coverimage ?
-    <img class="w-full h-[150px] object-cover border-2 border-solid border-blue-400" src="/img/cover.png" />
-    :
-    <div class="-mt-2"></div>
+{ coverimage ? 
+<div class="relative w-full h-[150px] overflow-hidden bg-gray-50 border-2 border-blue-400">
+    <img src="/img/cover.png" alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />
+    <button class="absolute bottom-2 right-2 bg-gray-100 hover:bg-gray-200 text-black border border-gray-500 px-2 py-0.5 cursor-pointer" onclick="document.getElementById('coverUpload').click()">
+        <div class="text-sm flex items-center space-x-2">
+        <Icon class="h-[14px] w-[14px] fill-black" name="camera" />
+        <p>Add cover photo</p>
+        </div>
+        </button>
+    <input
+      type="file"
+      id="coverUpload"
+      style="display: none;"
+      onchange="handleCoverChange(event)"
+    />
+</div>
+:
+<div class="-mt-2"></div>
+}
+  
+  <script>
+    function handleCoverChange(event) {
+      const input = event.target as HTMLInputElement;
+      const file = input?.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imgElement = document.querySelector('.cover-image') as HTMLImageElement;
+        if (imgElement) {
+            imgElement.src = reader.result as string;
+        }
+    };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     }
+  </script>

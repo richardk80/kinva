@@ -1,0 +1,18 @@
+---
+// MusicPlayer.astro
+const audioFiles = [
+  { title: "Song 1", src: "/music/song.mp3" },
+];
+---
+<style>
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+    display: none;
+}
+</style>
+  <div class="player border-2 border-blue-400 bg-gray-100">
+    <audio id="audioPlayer" controls controlslist="nodownload noplaybackrate" autoplay>
+      <source id="audioSource" src={audioFiles[0].src} type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>

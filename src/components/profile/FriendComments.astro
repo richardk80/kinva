@@ -20,7 +20,7 @@ const comments: number = 5;
   aclass="text-[10px] -mt-0.5 font-normal hover:underline text-black" 
   aurl=`${username}/comments`
 >
-    <div class="ml-2 pt-1.5 pb-1 space-x-2 flex items-center">
+    <div class="ml-2 pt-1 pb-1 space-x-2 flex items-center">
       <p class="text-xs">
         <span class="font-semibold">{name} has <span class="text-red-600">{comments}</span> { comments === 0 ? 'comments' : comments > 1 ? 'comments' : 'comment' }</span>
         { loggedin ? 

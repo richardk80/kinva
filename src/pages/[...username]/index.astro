@@ -1,13 +1,14 @@
 ---
 import CoverImage from '@com/main/CoverImage.astro';
 import UserDetailBox from '@com/profile/UserDetailBox.astro';
+import MusicPlayer from '@com/main/MusicPlayer.astro';
 import ContactButtons from '@com/profile/ContactButtons.astro';
 import Interests from '@com/profile/Interests.astro';
 import Details from '@com/profile/Details.astro';
 import UserBox from '@com/profile/UserBox.astro';
 import BlogEntry from '@com/profile/BlogEntry.astro';
 import FriendSpace from '@com/profile/FriendSpace.astro';
-import Blurbs from '@com/profile/Blurbs.astro';
+import AboutBox from '@com/profile/AboutBox.astro';
 import FriendComments from '@com/profile/FriendComments.astro';
 
 import Layout from '@lay/Layout.astro';
@@ -24,25 +25,28 @@ if(!page) {
 
 const name = "Dex";
 
+const aboutwords = `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)`;
+
 const loggedin = true;
 
 const showList = true;
 
 const friendship = true;
 
-const requested = true;
+const requested = false;
 
-const coverimage = false;
+const coverimage = true;
 ---
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
             <div class="col-span-full">
-                <CoverImage coverimage={coverimage} />
+                <CoverImage coverimage={coverimage} name={name} />
                 <div class="flex items-start justify-between gap-x-2 mt-2">
                     <!-- Left Column -->
                     <div class="flex flex-col gap-y-2 w-3/5">
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
+                        <MusicPlayer />
                         <Details loggedin={loggedin} name={name} username={username} />
                         <Interests loggedin={loggedin} name={name} username={username} />
                     </div>
@@ -52,7 +56,7 @@ const coverimage = false;
                         <div class="-mt-1">
                             <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
                         </div>
-                            <Blurbs loggedin={loggedin} name={name} username={username} />
+                            <AboutBox loggedin={loggedin} aboutwords={aboutwords} name={name} username={username} />
                             <FriendSpace loggedin={loggedin} name={name} username={username} />
                             <FriendComments loggedin={loggedin} name={name} username={username} />
                     </div>
