@@ -1,5 +1,4 @@
 ---
-import CoverImage from '@com/main/CoverImage.astro';
 import UserDetailBox from '@com/profile/UserDetailBox.astro';
 import MusicPlayer from '@com/main/MusicPlayer.astro';
 import ContactButtons from '@com/profile/ContactButtons.astro';
@@ -53,8 +52,7 @@ const autoplayon = true;
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
             <div class="col-span-full">
-                <CoverImage coverimage={coverimage} name={name} />
-                <div class="flex items-start justify-between gap-x-2 mt-2">
+                <div class="flex items-start justify-between gap-x-2">
                     <!-- Left Column -->
                     <div class="flex flex-col gap-y-2 w-3/5">
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
