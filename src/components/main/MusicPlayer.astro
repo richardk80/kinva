@@ -180,6 +180,7 @@ export const settings = {
 
       _createContainer() {
         let container = document.createElement(this._settings.audioTag);
+        container.setAttribute('id', 'audio-player'); // Ensure ID for easy selection
         return container;
       }
 
@@ -189,18 +190,17 @@ export const settings = {
       }
 
       _postExtendSettings(){
-        this._engine = this._root.querySelector(this._settings.audioTag);
+        this._engine = document.getElementById('audio-player'); // Use ID for selection
       }
 
       _setupAutoplay() {
         if (this._settings.autoplay) {
           this._engine.play().then(() => {
-            // Notify UI that playback has started
             this._notifyPlaybackStarted();
           }).catch(error => {
-            console.error('Autoplay was prevented:', error);
-            // Fallback: Ensure the UI is in the correct state even if autoplay is blocked
-            this._notifyPlaybackStarted();
+            console.error('Autoplay was prevented or failed:', error);
+            // Fallback to manually trigger playback if needed
+            this._notifyPlaybackStarted(); // Adjust UI even if autoplay is blocked
           });
         }
       }
