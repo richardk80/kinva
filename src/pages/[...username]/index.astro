@@ -43,6 +43,8 @@ const requested = false;
 const coverimage = true;
 
 const audiourl = 'http://live.amperwave.net/direct/audacy-winshd2aac-imc';
+
+const autoplayon = true;
 ---
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
@@ -54,7 +56,7 @@ const audiourl = 'http://live.amperwave.net/direct/audacy-winshd2aac-imc';
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                         <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
-                        { audiourl ? <MusicPlayer audiourl={audiourl} /> : null }
+                        { audiourl ? <MusicPlayer audiourl={audiourl} autoplayon={autoplayon} /> : null }
                         <Details loggedin={loggedin} name={name} username={username} />
                         <Interests loggedin={loggedin} name={name} username={username} />
                     </div>

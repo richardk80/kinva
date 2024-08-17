@@ -1,30 +1,33 @@
 ---
-const { audiourl } = Astro.props;
+const { audiourl, autoplayon } = Astro.props;
 
 const settings = {
   containerID: 'myspace-music-player',
   song: 'ALT 92.3',
   artist: 'New York',
-  audioFilePath: audiourl
+  audioFilePath: audiourl,
+  autoplay: true
 };
 ---
 
 <div class="h-[59px] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-500">
-  <div id={settings.containerID}
+    <div id={settings.containerID}
        data-song={settings.song}
        data-artist={settings.artist}
-       data-audio-file-path={settings.audioFilePath}></div>
-</div>
-
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Access settings from data attributes
+       data-audio-file-path={settings.audioFilePath}
+       data-autoplay={settings.autoplay}>
+    </div>
+  </div>
+  
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('myspace-music-player');
     const settings = {
       containerID: container.id,
       song: container.getAttribute('data-song'),
       artist: container.getAttribute('data-artist'),
-      audioFilePath: container.getAttribute('data-audio-file-path')
+      audioFilePath: container.getAttribute('data-audio-file-path'),
+      autoplay: container.getAttribute('data-autoplay') === 'true'
     };
 
     class UserInterface {
@@ -134,6 +137,14 @@ const settings = {
         let button = this._root.querySelector('button');
         button.addEventListener('click', callback);
       }
+
+      updateButtonState(isPlaying) {
+        if (isPlaying) {
+          this.setPlayState();
+        } else {
+          this.setPauseState();
+        }
+      }
     }
 
     class Engine {
@@ -143,6 +154,7 @@ const settings = {
         this._setRoot();
         this._setHTML();
         this._postExtendSettings();
+        this._setupAutoplay();
       }
 
       _preExtendSettings() {
@@ -180,8 +192,25 @@ const settings = {
         this._engine = this._root.querySelector(this._settings.audioTag);
       }
 
+      _setupAutoplay() {
+        if (this._settings.autoplay) {
+          this._engine.play().then(() => {
+            // Notify UI that playback has started
+            this._notifyPlaybackStarted();
+          }).catch(error => {
+            console.error('Autoplay was prevented:', error);
+            // Fallback: Ensure the UI is in the correct state even if autoplay is blocked
+            this._notifyPlaybackStarted();
+          });
+        }
+      }
+
       play() {
-        this._engine.play();
+        this._engine.play().then(() => {
+          this._notifyPlaybackStarted();
+        }).catch(error => {
+          console.error('Play failed:', error);
+        });
       }
 
       pause() {
@@ -194,6 +223,12 @@ const settings = {
 
       setOnEndedCallback(callback) {
         this._engine.addEventListener('ended', callback);
+      }
+
+      _notifyPlaybackStarted() {
+        if (this._settings.ui) {
+          this._settings.ui.updateButtonState(true);
+        }
       }
     }
 
@@ -219,7 +254,9 @@ const settings = {
       _buildEngine() {
         let engineSettings = {
           containerID: this._settings.containerID,
-          audioFilePath: this._settings.audioFilePath
+          audioFilePath: this._settings.audioFilePath,
+          autoplay: this._settings.autoplay,
+          ui: this._userInterface // Pass the UI instance to Engine
         };
 
         this._engine = new Engine(engineSettings);
@@ -252,9 +289,8 @@ const settings = {
           this._userInterface.setPauseState();
         }
       }
-
     }
 
     let musicPlayer = new MyspaceMusicPlayer(settings);
   });
-</script>
+  </script>
