@@ -34,7 +34,7 @@ const maxItemsToShow = 4;
 const sortedItems = blogItems.sort((a, b) => b.date.getTime() - a.date.getTime());
 const itemsToShow = sortedItems.slice(0, maxItemsToShow);
 ---
-<div class="text-xs space-y-[4.2px]">
+<div class="text-xs space-y-[4.2px] font-normal">
     {itemsToShow.map((items) => (
         <div class="flex items-center space-x-1">
             <p>{items.text}</p>
