@@ -10,14 +10,13 @@ const settings = {
 };
 ---
 
-<div class="h-[59px] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-500">
-    <div id={settings.containerID}
+<div id={settings.containerID}
        data-song={settings.song}
        data-artist={settings.artist}
        data-audio-file-path={settings.audioFilePath}
-       data-autoplay={settings.autoplay}>
-    </div>
-  </div>
+       data-autoplay={settings.autoplay}
+       class="h-[59px] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-500 visible">
+</div>
   
   <script is:inline>
     document.addEventListener("DOMContentLoaded", function() {
