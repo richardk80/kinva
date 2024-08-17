@@ -42,7 +42,11 @@ const requested = false;
 
 const coverimage = true;
 
-const audiourl = 'http://live.amperwave.net/direct/audacy-winshd2aac-imc';
+const audiourl = 'http://live.amperwave.net/direct/audacy-kroqfmaac-imc';
+
+const song = '106.7 KQOQ';
+
+const artist = 'Los Angeles';
 
 const autoplayon = true;
 ---
@@ -56,7 +60,7 @@ const autoplayon = true;
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                         <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
-                        { audiourl ? <MusicPlayer audiourl={audiourl} autoplayon={autoplayon} /> : null }
+                        { audiourl ? <MusicPlayer audiourl={audiourl} autoplayon={autoplayon} song={song} artist={artist} /> : null }
                         <Details loggedin={loggedin} name={name} username={username} />
                         <Interests loggedin={loggedin} name={name} username={username} />
                     </div>

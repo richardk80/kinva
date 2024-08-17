@@ -1,10 +1,10 @@
 ---
-const { audiourl, autoplayon } = Astro.props;
+const { audiourl, autoplayon, song, artist } = Astro.props;
 
 const settings = {
   containerID: 'myspace-music-player',
-  song: 'ALT 92.3',
-  artist: 'New York',
+  song: song,
+  artist: artist,
   audioFilePath: audiourl,
   autoplay: autoplayon
 };
@@ -22,275 +22,276 @@ const settings = {
   <script is:inline>
     document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('myspace-music-player');
+
+    const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
+
     const settings = {
-      containerID: container.id,
-      song: container.getAttribute('data-song'),
-      artist: container.getAttribute('data-artist'),
-      audioFilePath: container.getAttribute('data-audio-file-path'),
-      autoplay: container.getAttribute('data-autoplay') === ''
+        containerID: container.id,
+        song: container.getAttribute('data-song'),
+        artist: container.getAttribute('data-artist'),
+        audioFilePath: container.getAttribute('data-audio-file-path'),
+        autoplay: autoplay
     };
 
     class UserInterface {
-      constructor(settings) {
-        this._settings = settings;
-        this._preExtendSettings();
-        this._setRoot();
-        this._setHTML();
-        this._postExtendSettings();
-        this.setPauseState();
-      }
-
-      _preExtendSettings() {
-        this._settings.buttonIconClass = 'mmp-icon';
-        this._settings.equalizerImageClass = 'mmp-equalizer';
-      }
-
-      _setRoot() {
-        this._root = document.getElementById(this._settings.containerID);
-      }
-
-      _setHTML() {
-        let html = this._createHTML();
-        this._root.appendChild(html);
-      }
-
-      _createHTML() {
-        let container = this._createContainer();
-        let innerHTML = this._getInnerHTML();
-        container.innerHTML = innerHTML;
-
-        return container;
-      }
-
-      _createContainer() {
-        let container = document.createElement('div');
-        container.setAttribute('class', 'mmp-ui-container');
-
-        return container;
-      }
-
-      _getInnerHTML() {
-        let innerHTML = `
-          <div class="mmp-button-container">
-            <button type="button">
-              <i class="${this._settings.buttonIconClass} material-icons"></i>
-            </button>
-          </div>
-
-          <div class="mmp-display-container">
-            <div class="mmp-song-info-container">
-              <div class="mmp-song-name">${this._settings.song}</div>
-              <div class="mmp-artist-name">${this._settings.artist}</div>
-            </div>
-          
-            <div class="mmp-eq-container">
-              <img class="${this._settings.equalizerImageClass}" src="" alt="Eq Icon">
-            </div>
-          </div>
-        `;
-
-        return innerHTML;
-      }
-
-      _postExtendSettings(){
-        this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
-        this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
-        this._settings.buttonIconPauseClass = 'mmp-pause-icon';
-        this._settings.buttonIconPlayClass = 'mmp-play-icon';
-      }
-
-      setPauseState() {
-        this._setButtonPauseState();
-        this._setEqualizerPauseState();
-      }
-
-      _setButtonPauseState() {
-        let buttonIcon = this._buttonIcon;
-        buttonIcon.innerHTML = 'play_arrow';
-        buttonIcon.classList.remove(this._settings.buttonIconPauseClass);
-        buttonIcon.classList.add(this._settings.buttonIconPlayClass);
-      }
-
-      _setEqualizerPauseState() {
-        let equalizer = this._equalizer;
-        equalizer.setAttribute('src', '/img/eq_pause.png');
-      }
-
-      setPlayState() {
-        this._setButtonPlayState();
-        this._setEqualizerPlayState();
-      }
-
-      _setButtonPlayState() {
-        let buttonIcon = this._buttonIcon;
-        buttonIcon.innerHTML = 'pause';
-        buttonIcon.classList.remove(this._settings.buttonIconPlayClass);
-        buttonIcon.classList.add(this._settings.buttonIconPauseClass);
-      }
-
-      _setEqualizerPlayState() {
-        let equalizer = this._equalizer;
-        equalizer.setAttribute('src', '/img/eq_play.gif');
-      }
-
-      setButtonClickCallback(callback) {
-        let button = this._root.querySelector('button');
-        button.addEventListener('click', callback);
-      }
-
-      updateButtonState(isPlaying) {
-        if (isPlaying) {
-          this.setPlayState();
-        } else {
-          this.setPauseState();
+        constructor(settings) {
+            this._settings = settings;
+            this._preExtendSettings();
+            this._setRoot();
+            this._setHTML();
+            this._postExtendSettings();
+            this.setPauseState(); // Default to pause state
         }
-      }
+
+        _preExtendSettings() {
+            this._settings.buttonIconClass = 'mmp-icon';
+            this._settings.equalizerImageClass = 'mmp-equalizer';
+        }
+
+        _setRoot() {
+            this._root = document.getElementById(this._settings.containerID);
+        }
+
+        _setHTML() {
+            let html = this._createHTML();
+            this._root.appendChild(html);
+        }
+
+        _createHTML() {
+            let container = this._createContainer();
+            let innerHTML = this._getInnerHTML();
+            container.innerHTML = innerHTML;
+
+            return container;
+        }
+
+        _createContainer() {
+            let container = document.createElement('div');
+            container.setAttribute('class', 'mmp-ui-container');
+
+            return container;
+        }
+
+        _getInnerHTML() {
+            return `
+                <div class="mmp-button-container">
+                    <button type="button">
+                        <i class="${this._settings.buttonIconClass} material-icons"></i>
+                    </button>
+                </div>
+
+                <div class="mmp-display-container">
+                    <div class="mmp-song-info-container">
+                        <div class="mmp-song-name">${this._settings.song}</div>
+                        <div class="mmp-artist-name">${this._settings.artist}</div>
+                    </div>
+
+                    <div class="mmp-eq-container">
+                        <img class="${this._settings.equalizerImageClass}" src="" alt="Eq Icon">
+                    </div>
+                </div>
+            `;
+        }
+
+        _postExtendSettings() {
+            this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
+            this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
+            this._settings.buttonIconPauseClass = 'mmp-pause-icon';
+            this._settings.buttonIconPlayClass = 'mmp-play-icon';
+        }
+
+        setPauseState() {
+            this._setButtonPauseState();
+            this._setEqualizerPauseState();
+        }
+
+        _setButtonPauseState() {
+            let buttonIcon = this._buttonIcon;
+            buttonIcon.innerHTML = 'play_arrow';
+            buttonIcon.classList.remove(this._settings.buttonIconPauseClass);
+            buttonIcon.classList.add(this._settings.buttonIconPlayClass);
+        }
+
+        _setEqualizerPauseState() {
+            let equalizer = this._equalizer;
+            equalizer.setAttribute('src', '/img/eq_pause.png');
+        }
+
+        setPlayState() {
+            this._setButtonPlayState();
+            this._setEqualizerPlayState();
+        }
+
+        _setButtonPlayState() {
+            let buttonIcon = this._buttonIcon;
+            buttonIcon.innerHTML = 'pause';
+            buttonIcon.classList.remove(this._settings.buttonIconPlayClass);
+            buttonIcon.classList.add(this._settings.buttonIconPauseClass);
+        }
+
+        _setEqualizerPlayState() {
+            let equalizer = this._equalizer;
+            equalizer.setAttribute('src', '/img/eq_play.gif');
+        }
+
+        setButtonClickCallback(callback) {
+            let button = this._root.querySelector('button');
+            button.addEventListener('click', callback);
+        }
+
+        updateButtonState(isPlaying) {
+            if (isPlaying) {
+                this.setPlayState();
+            } else {
+                this.setPauseState();
+            }
+        }
     }
 
     class Engine {
-      constructor(settings) {
-        this._settings = settings;
-        this._preExtendSettings();
-        this._setRoot();
-        this._setHTML();
-        this._postExtendSettings();
-        this._setupAutoplay();
-      }
-
-      _preExtendSettings() {
-        this._settings.audioTag = 'audio';
-      }
-
-      _setRoot() {
-        this._root = document.getElementById(this._settings.containerID);
-      }
-
-      _setHTML() {
-        let html = this._createHTML();
-        this._root.appendChild(html);
-      }
-
-      _createHTML() {
-        let container = this._createContainer();
-        let innerHTML = this._getInnerHTML();
-        container.innerHTML = innerHTML;
-
-        return container;
-      }
-
-      _createContainer() {
-        let container = document.createElement(this._settings.audioTag);
-        container.setAttribute('id', 'audio-player'); // Ensure ID for easy selection
-        return container;
-      }
-
-      _getInnerHTML() {
-        let innerHTML = `<source src="${this._settings.audioFilePath}" type="audio/mpeg">`;
-        return innerHTML;
-      }
-
-      _postExtendSettings(){
-        this._engine = document.getElementById('audio-player'); // Use ID for selection
-      }
-
-      _setupAutoplay() {
-        if (this._settings.autoplay) {
-          this._engine.play().then(() => {
-            this._notifyPlaybackStarted();
-          }).catch(error => {
-            console.error('Autoplay was prevented or failed:', error);
-            // Fallback to manually trigger playback if needed
-            this._notifyPlaybackStarted(); // Adjust UI even if autoplay is blocked
-          });
+        constructor(settings) {
+            this._settings = settings;
+            this._preExtendSettings();
+            this._setRoot();
+            this._setHTML();
+            this._postExtendSettings();
+            this._setupAutoplay();
         }
-      }
 
-      play() {
-        this._engine.play().then(() => {
-          this._notifyPlaybackStarted();
-        }).catch(error => {
-          console.error('Play failed:', error);
-        });
-      }
-
-      pause() {
-        this._engine.pause();
-      }
-
-      isPaused() {
-        return this._engine.paused;
-      }
-
-      setOnEndedCallback(callback) {
-        this._engine.addEventListener('ended', callback);
-      }
-
-      _notifyPlaybackStarted() {
-        if (this._settings.ui) {
-          this._settings.ui.updateButtonState(true);
+        _preExtendSettings() {
+            this._settings.audioTag = 'audio';
         }
-      }
+
+        _setRoot() {
+            this._root = document.getElementById(this._settings.containerID);
+        }
+
+        _setHTML() {
+            let html = this._createHTML();
+            this._root.appendChild(html);
+        }
+
+        _createHTML() {
+            let container = this._createContainer();
+            let innerHTML = this._getInnerHTML();
+            container.innerHTML = innerHTML;
+
+            return container;
+        }
+
+        _createContainer() {
+            let container = document.createElement(this._settings.audioTag);
+            container.setAttribute('id', 'audio-player'); // Ensure ID for easy selection
+            return container;
+        }
+
+        _getInnerHTML() {
+            return `<source src="${this._settings.audioFilePath}" type="audio/mpeg">`;
+        }
+
+        _postExtendSettings() {
+            this._engine = document.getElementById('audio-player'); // Use ID for selection
+        }
+
+        _setupAutoplay() {
+            if (this._settings.autoplay) {
+                this._attemptPlay();
+            }
+        }
+
+        _attemptPlay() {
+            this._engine.play().then(() => {
+                this._notifyPlaybackStarted(true);
+            }).catch(error => {
+                console.log('Autoplay is not allowed or failed:', error);
+                this._notifyPlaybackStarted(false);
+            });
+        }
+
+        play() {
+            this._attemptPlay();
+        }
+
+        pause() {
+            this._engine.pause();
+            this._notifyPlaybackStarted(false);
+        }
+
+        isPaused() {
+            return this._engine.paused;
+        }
+
+        setOnEndedCallback(callback) {
+            this._engine.addEventListener('ended', callback);
+        }
+
+        _notifyPlaybackStarted(isPlaying) {
+            console.log('Playback Status: ', isPlaying ? 'Started' : 'Not Started');
+            if (this._settings.ui) {
+                this._settings.ui.updateButtonState(isPlaying);
+            }
+        }
     }
 
     class MyspaceMusicPlayer {
-      constructor(settings) {
-        this._settings = settings;
-        this._buildUserInterface();
-        this._buildEngine();
-        this._setButtonClickCallback();
-        this._setOnEndedCallback();
-      }
-
-      _buildUserInterface() {
-        let userInterfaceSettings = {
-          containerID: this._settings.containerID,
-          song: this._settings.song,
-          artist: this._settings.artist,
-        };
-
-        this._userInterface = new UserInterface(userInterfaceSettings);
-      }
-
-      _buildEngine() {
-        let engineSettings = {
-          containerID: this._settings.containerID,
-          audioFilePath: this._settings.audioFilePath,
-          autoplay: this._settings.autoplay,
-          ui: this._userInterface // Pass the UI instance to Engine
-        };
-
-        this._engine = new Engine(engineSettings);
-      }
-
-      _setButtonClickCallback() {
-        let buttonClickCallback = this._buttonClickCallback();
-        this._userInterface.setButtonClickCallback(buttonClickCallback);
-      }
-
-      _buttonClickCallback() {
-        return () => {
-          if (this._engine.isPaused()) {
-            this._engine.play();
-            this._userInterface.setPlayState();
-          } else {
-            this._engine.pause();
-            this._userInterface.setPauseState();
-          }
+        constructor(settings) {
+            this._settings = settings;
+            this._buildUserInterface();
+            this._buildEngine();
+            this._setButtonClickCallback();
+            this._setOnEndedCallback();
         }
-      }
 
-      _setOnEndedCallback() {
-        let onEndedCallback = this._onEndedCallback();
-        this._engine.setOnEndedCallback(onEndedCallback);
-      }
+        _buildUserInterface() {
+            let userInterfaceSettings = {
+                containerID: this._settings.containerID,
+                song: this._settings.song,
+                artist: this._settings.artist,
+            };
 
-      _onEndedCallback() {
-        return () => {
-          this._userInterface.setPauseState();
+            this._userInterface = new UserInterface(userInterfaceSettings);
         }
-      }
+
+        _buildEngine() {
+            let engineSettings = {
+                containerID: this._settings.containerID,
+                audioFilePath: this._settings.audioFilePath,
+                autoplay: this._settings.autoplay,
+                ui: this._userInterface // Pass the UI instance to Engine
+            };
+
+            this._engine = new Engine(engineSettings);
+        }
+
+        _setButtonClickCallback() {
+            let buttonClickCallback = this._buttonClickCallback();
+            this._userInterface.setButtonClickCallback(buttonClickCallback);
+        }
+
+        _buttonClickCallback() {
+            return () => {
+                if (this._engine.isPaused()) {
+                    this._engine.play();
+                    this._userInterface.setPlayState();
+                } else {
+                    this._engine.pause();
+                    this._userInterface.setPauseState();
+                }
+            }
+        }
+
+        _setOnEndedCallback() {
+            let onEndedCallback = this._onEndedCallback();
+            this._engine.setOnEndedCallback(onEndedCallback);
+        }
+
+        _onEndedCallback() {
+            return () => {
+                this._userInterface.setPauseState();
+            }
+        }
     }
 
     let musicPlayer = new MyspaceMusicPlayer(settings);
-  });
+});
   </script>
