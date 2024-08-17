@@ -60,7 +60,7 @@ const autoplayon = false;
                         <UserDetailBox loggedin={loggedin} name={name} username={username} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                         <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
-                        { audiofiles[0].src ? <MusicPlayer audiofiles={audiofiles} autoplayon={autoplayon} /> : null }
+                        <MusicPlayer />
                         <Details loggedin={loggedin} name={name} username={username} />
                         <Interests loggedin={loggedin} name={name} username={username} />
                     </div>
