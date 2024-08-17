@@ -202,7 +202,6 @@ const settings = {
             this._engine.play().then(() => {
                 this._notifyPlaybackStarted(true);
             }).catch(error => {
-                console.log('Autoplay is not allowed or failed:', error);
                 this._notifyPlaybackStarted(false);
             });
         }
@@ -225,7 +224,6 @@ const settings = {
         }
 
         _notifyPlaybackStarted(isPlaying) {
-            console.log('Playback Status: ', isPlaying ? 'Started' : 'Not Started');
             if (this._settings.ui) {
                 this._settings.ui.updateButtonState(isPlaying);
             }
