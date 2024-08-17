@@ -1,12 +1,12 @@
 ---
 const { audiourl, autoplayon } = Astro.props;
 
-export const settings = {
+const settings = {
   containerID: 'myspace-music-player',
   song: 'ALT 92.3',
   artist: 'New York',
-  audioFilePath: 'http://live.amperwave.net/direct/audacy-winshd2aac-imc',
-  autoplay: true
+  audioFilePath: audiourl,
+  autoplay: autoplayon
 };
 ---
 
@@ -27,7 +27,7 @@ export const settings = {
       song: container.getAttribute('data-song'),
       artist: container.getAttribute('data-artist'),
       audioFilePath: container.getAttribute('data-audio-file-path'),
-      autoplay: container.getAttribute('data-autoplay') === 'true'
+      autoplay: container.getAttribute('data-autoplay') === ''
     };
 
     class UserInterface {
