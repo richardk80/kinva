@@ -42,7 +42,7 @@ import Layout from '@lay/Layout.astro';
 		],
 	};
 
-	const SPINNER = `<div class="animate-spin inline-block size-8 border-[4px] border-current border-t-transparent text-black rounded-full"></div>`;
+	const SPINNER = `<div class="animate-spin inline-block size-8 border-[4px] border-current border-t-transparent text-zinc-950 rounded-full"></div>`;
 
 	// selectors
 	const searchval = (document.getElementById("search") as HTMLInputElement | null);
@@ -77,7 +77,7 @@ import Layout from '@lay/Layout.astro';
 				//let parts = name.split(' ');
 				//let firstName = parts.shift();
 				//let lastName = parts.join(' ');
-				return `<a class="text-black hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile"><p class="text-xs flex justify-center font-semibold">Astro</p><img width="90px" height="90px" class="hover:no-underline" src="/img/avatar.svg" alt="Astro's profile picture" /></a>`;
+				return `<a class="hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile"><p class="text-xs flex justify-center font-semibold">Astro</p><img width="90px" height="90px" class="hover:no-underline" src="/img/avatar.svg" alt="Astro's profile picture" /></a>`;
 			})
 			.join("");
 	}

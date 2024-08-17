@@ -11,9 +11,10 @@ interface Props {
   aclass?: string;
   aurl?: string;
   loggedin?: boolean;
+  show?: boolean;
 };
 
-const { widthcss, backgroundColor, borderColor, name, pclass, username, username2, name2, aclass, aurl, loggedin } = Astro.props;
+const { widthcss, backgroundColor, borderColor, name, pclass, username, username2, name2, aclass, aurl, loggedin, show } = Astro.props;
 ---
 <div class={widthcss}>
     <div class="py-0.5" class:list={backgroundColor}>

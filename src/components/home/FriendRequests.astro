@@ -12,9 +12,9 @@ const { username } = Astro.props;
 >
     <div class="ml-2 mt-1 mb-1.5">
       <div>
-        <p class="text-black font-semibold text-xs mb-0.5">You have <span class="text-red-600">{friendrequests}</span> friend { friendrequests === 0 ? 'requests' : friendrequests > 1 ? 'requests' : 'request' }</p>
+        <p class="font-semibold text-xs mb-0.5">You have <span class="text-red-600">{friendrequests}</span> friend { friendrequests === 0 ? 'requests' : friendrequests > 1 ? 'requests' : 'request' }</p>
         <a href={`/${username}/friendrequests`}>
-          <button type="button" class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs text-black border border-black focus:outline-none">
+          <button type="button" class="py-0.5 px-2 bg-zinc-100 hover:bg-zinc-200 text-xs text-zinc-950 border border-zinc-500 focus:outline-none">
             View All Requests
           </button>
         </a>

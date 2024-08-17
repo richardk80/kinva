@@ -7,14 +7,23 @@ const blogItems = [
 { text: "Hello There", href: `${username}/blog` },
 { text: "Stop Drop & Roll", href: `${username}/blog` },
 { text: "WTH?", href: `${username}/blog` },
+{ text: "Hello There", href: `${username}/blog` },
+{ text: "Stop Drop & Roll", href: `${username}/blog` },
+{ text: "WTH?", href: `${username}/blog` },
+{ text: "Hello There", href: `${username}/blog` },
+{ text: "Stop Drop & Roll", href: `${username}/blog` },
+{ text: "WTH?", href: `${username}/blog` },
+{ text: "Hello There", href: `${username}/blog` },
+{ text: "Stop Drop & Roll", href: `${username}/blog` },
+{ text: "WTH?", href: `${username}/blog` },
 ];
 ---
 <div class="text-xs space-y-1">
-    {blogItems.map((blogitems) => (
+    {blogItems.map((items) => (
         <div class="flex items-center">
-            <p>{blogitems.text}</p>
-                <p class="ml-1">
-                    <SmallLink href={blogitems.href} link="read" />
+            <p>{items.text}</p>
+                <p class="ml-1 -mt-0.5">
+                    <SmallLink href={items.href} link="read" />
                 </p>
         </div>
     ))

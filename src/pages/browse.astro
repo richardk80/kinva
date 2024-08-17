@@ -4,14 +4,14 @@ import Layout from '@lay/Layout.astro';
 import ProfileImage from '@com/main/ProfileImage.astro';
 
 const filterItems = [
-{ href: "/", smallname: "", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "All Users", dividerCss: "text-black ml-1 cursor-default font-medium text-xs", divider: "-" },
-{ href: "/browse", smallname: "newusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "New Users", dividerCss: "text-black ml-1 cursor-default font-medium text-xs", divider: "-" },
-{ href: "/browse", smallname: "onlineusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Online Users", dividerCss: "text-black ml-1 cursor-default font-medium text-xs", divider: "" },
+{ href: "/", smallname: "", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "All Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
+{ href: "/browse", smallname: "newusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "New Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
+{ href: "/browse", smallname: "onlineusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Online Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
 ];
 
 const friendItems = [
-{ href: "/", smallname: "includefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "Include Friends", dividerCss: "text-black ml-1 cursor-default font-medium text-xs", divider: "-" },
-{ href: "/browse", smallname: "excludefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Exclude Friends", dividerCss: "text-black ml-1 cursor-default font-medium text-xs", divider: "" },
+{ href: "/", smallname: "includefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "Include Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
+{ href: "/browse", smallname: "excludefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Exclude Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
 ];
 
 const currentPath = new URL(Astro.request.url).pathname.slice(1);
@@ -23,11 +23,11 @@ const profilepic = true;
 //let lastName = parts.join(' ');
 ---
 <Layout title="Browse">
-	<main class="text-black">
+	<main>
 		<div class="mx-auto w-[700px] px-[8px]">
 			<h1 class="text-[25.6px] font-semibold mb-3 text-balance">Browse</h1>
 			  <div class="flex items-stretch text-xs mb-3">
-				  <p class="text-xs text-black cursor-default font-semibold">Filter:</p>
+				  <p class="text-xs cursor-default font-semibold">Filter:</p>
 				  {filterItems.map((filter) => (
 					    	<a href={filter.href} class={currentPath === filter.smallname ? filter.firstcss : filter.secondcss}>{filter.name}</a>
 					    	<div class={filter.dividerCss}>{filter.divider}</div>
@@ -35,7 +35,7 @@ const profilepic = true;
       				}
 			  </div>
         		<div class="flex items-stretch text-xs mb-3">
-				  <p class="text-xs text-black cursor-default font-semibold">Friends:</p>
+				  <p class="text-xs cursor-default font-semibold">Friends:</p>
 				  {friendItems.map((friend) => (
 					    	<a href={friend.href} class={currentPath === friend.smallname ? friend.firstcss : friend.secondcss}>{friend.name}</a>
 					    	<div class={friend.dividerCss}>{friend.divider}</div>
@@ -44,8 +44,8 @@ const profilepic = true;
 			  	  </div>
 				  <div class="py-0.5 bg-orange-400/60">
 					  <div class="flex justify-between items-center mx-2">
-						  <p class="text-xs font-semibold text-black mt-1 cursor-default">Active Users</p>
-						  <a class="text-black text-[10.24px] hover:underline" href="#">[random]</a>
+						  <p class="text-xs font-semibold mt-1 cursor-default">Active Users</p>
+						  <a class="text-[10.24px] hover:underline" href="#">[random]</a>
 					  </div>
 				  </div>
 				  <div class="border-2 border-orange-400/60 border-solid">
@@ -74,7 +74,7 @@ const profilepic = true;
 				  <div class="flex items-center justify-between mt-3 mb-2">
 					  <a class="text-[10.24px] text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
 					  <a rel="next" href="/">
-						  <button type="button" class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs text-black border border-black border-solid focus:outline-none flex" type="submit" aria-label="search">Next Page</button>
+						  <button type="button" class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-zinc-950 border-solid focus:outline-none flex" type="submit" aria-label="search">Next Page</button>
 					  </a>
 				  </div>
 				</div>
