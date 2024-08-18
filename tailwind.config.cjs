@@ -15,7 +15,8 @@ module.exports = {
       },
       fontFamily: {
         heading: ['var(--font-heading)', ...fontFamily.sans],
-        body: ['var(--font-body)', ...fontFamily.sans]
+        body: ['var(--font-body)', ...fontFamily.sans],
+        player: ['Verdana', 'Helvetica', 'Arial']
       },
     },
   },

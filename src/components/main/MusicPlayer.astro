@@ -11,17 +11,41 @@ const settings = {
 ---
 
 <div id={settings.containerID}
-       data-song={settings.song}
-       data-artist={settings.artist}
-       data-audio-file-path={settings.audioFilePath}
-       data-autoplay={settings.autoplay}
-       class="h-[59px] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-500 visible">
-</div>
+     data-song={settings.song}
+     data-artist={settings.artist}
+     data-audio-file-path={settings.audioFilePath}
+     data-autoplay={settings.autoplay}
+     class="h-[59px] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-500">
   
-  <script is:inline>
-    document.addEventListener("DOMContentLoaded", function() {
-    const container = document.getElementById('myspace-music-player');
+  <!-- User Interface HTML -->
+  <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5">
+    <div class="my-2 ml-2 mr-[3px]">
+      <button type="button" class="bg-[#343a40] h-[40px] w-full mt-[1.5px]">
+        <i class="mmp-icon material-icons mt-[6px] text-white"></i>
+      </button>
+    </div>
 
+    <div class="bg-[#343a40] text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[230px] mt-[9.5px] ml-[5px]">
+      <div class="flex flex-col justify-center items-start ml-[7px]">
+        <div class="mt-[1.5px] text-white font-bold">{settings.song}</div>
+        <div class="mmp-artist-name mt-[1.5px] text-white mb-0.5">{settings.artist}</div>
+      </div>
+
+      <div class="flex items-end justify-end mr-[5px]">
+        <img class="mmp-equalizer max-h-[28px] max-w-[150px]" src="" alt="Eq Icon">
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Player HTML -->
+  <audio id="audio-player">
+    <source src={settings.audioFilePath} type="audio/mpeg">
+  </audio>
+</div>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.getElementById('myspace-music-player');
     const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
 
     const settings = {
@@ -37,7 +61,6 @@ const settings = {
             this._settings = settings;
             this._preExtendSettings();
             this._setRoot();
-            this._setHTML();
             this._postExtendSettings();
             this.setPauseState(); // Default to pause state
         }
@@ -49,47 +72,6 @@ const settings = {
 
         _setRoot() {
             this._root = document.getElementById(this._settings.containerID);
-        }
-
-        _setHTML() {
-            let html = this._createHTML();
-            this._root.appendChild(html);
-        }
-
-        _createHTML() {
-            let container = this._createContainer();
-            let innerHTML = this._getInnerHTML();
-            container.innerHTML = innerHTML;
-
-            return container;
-        }
-
-        _createContainer() {
-            let container = document.createElement('div');
-            container.setAttribute('class', 'mmp-ui-container');
-
-            return container;
-        }
-
-        _getInnerHTML() {
-            return `
-                <div class="mmp-button-container">
-                    <button type="button">
-                        <i class="${this._settings.buttonIconClass} material-icons"></i>
-                    </button>
-                </div>
-
-                <div class="mmp-display-container">
-                    <div class="mmp-song-info-container">
-                        <div class="mmp-song-name">${this._settings.song}</div>
-                        <div class="mmp-artist-name">${this._settings.artist}</div>
-                    </div>
-
-                    <div class="mmp-eq-container">
-                        <img class="${this._settings.equalizerImageClass}" src="" alt="Eq Icon">
-                    </div>
-                </div>
-            `;
         }
 
         _postExtendSettings() {
@@ -152,7 +134,6 @@ const settings = {
             this._settings = settings;
             this._preExtendSettings();
             this._setRoot();
-            this._setHTML();
             this._postExtendSettings();
             this._setupAutoplay();
         }
@@ -163,29 +144,6 @@ const settings = {
 
         _setRoot() {
             this._root = document.getElementById(this._settings.containerID);
-        }
-
-        _setHTML() {
-            let html = this._createHTML();
-            this._root.appendChild(html);
-        }
-
-        _createHTML() {
-            let container = this._createContainer();
-            let innerHTML = this._getInnerHTML();
-            container.innerHTML = innerHTML;
-
-            return container;
-        }
-
-        _createContainer() {
-            let container = document.createElement(this._settings.audioTag);
-            container.setAttribute('id', 'audio-player'); // Ensure ID for easy selection
-            return container;
-        }
-
-        _getInnerHTML() {
-            return `<source src="${this._settings.audioFilePath}" type="audio/mpeg">`;
         }
 
         _postExtendSettings() {
@@ -291,4 +249,4 @@ const settings = {
 
     let musicPlayer = new MyspaceMusicPlayer(settings);
 });
-  </script>
+</script>
