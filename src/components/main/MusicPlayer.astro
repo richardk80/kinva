@@ -1,252 +1,347 @@
 ---
-const { audiourl, autoplayon, song, artist } = Astro.props;
+const { audiourl, autoplayon, artist, title } = Astro.props;
 
 const settings = {
   containerID: 'myspace-music-player',
-  song: song,
   artist: artist,
+  title: title,
   audioFilePath: audiourl,
-  autoplay: autoplayon
+  autoplay: autoplayon,
+  xmlpath: 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json'
 };
 ---
 
 <div id={settings.containerID}
-     data-song={settings.song}
      data-artist={settings.artist}
+     data-title={settings.title}
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
+     data-xml-file-path={settings.xmlpath}
      class="h-[59px] bg-gray-950/40">
 
       <!-- User Interface HTML -->
-      <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5 mt-[10px] mx-2">
+      <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5 mt-[9.5px] mx-2">
         <div class="w-12">
-          <button type="button" class="bg-black h-[40px] w-full rounded">
-            <i class="mmp-icon fa-solid fa-play text-[#00ff00] text-xl"></i>
+          <button type="button" class="bg-black h-[40px] w-full">
+            <i class="mmp-icon fa-solid fa-play text-white text-xl mt-0.5"></i>
           </button>
         </div>
     
-        <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px] rounded">
-          <div class="flex flex-col justify-center items-start ml-[7px] -space-y-0.5 mt-0.5">
-            <div class="flex items-center text-white font-bold font-sans">{settings.song}</div>
-            <div class="mmp-artist-name text-white mb-0.5 font-sans">{settings.artist}</div>
+        <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px]">
+          <div class="flex flex-col justify-center items-start ml-[7px] mt-[1.5px]">
+            <div id="song-title" class="font-normal text-[10px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased">{settings.title}</div>
+            <div id="song-artist" class="font-semibold text-[10px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased">{settings.artist}</div>
           </div>
           <div class="flex items-end justify-end mr-[5px]">
-            <div class="mb-[1.5px]">
-                <img class="mmp-equalizer h-[40px] w-[250px]" alt="">
-            </div>
+            <img class="mmp-equalizer w-[95px] h-full">
           </div>
         </div>
     </div>
 
-
-  <!-- Audio Player HTML -->
-  <audio id="audio-player">
+<!-- Audio Player HTML -->
+<audio id="audio-player">
     <source src={settings.audioFilePath} type="audio/mpeg">
-  </audio>
+</audio>
 </div>
 
 <script is:inline>
-    document.addEventListener("DOMContentLoaded", function() {
-        const container = document.getElementById('myspace-music-player');
-        const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.getElementById('myspace-music-player');
+    const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
     
-        const settings = {
-            containerID: container.id,
-            song: container.getAttribute('data-song'),
-            artist: container.getAttribute('data-artist'),
-            audioFilePath: container.getAttribute('data-audio-file-path'),
-            autoplay: autoplay
-        };
-    
-        class UserInterface {
-            constructor(settings) {
-                this._settings = settings;
-                this._preExtendSettings();
-                this._setRoot();
-                this._postExtendSettings();
-                this.setPauseState(); // Default to pause state
-            }
-    
-            _preExtendSettings() {
-                this._settings.buttonIconClass = 'mmp-icon';
-                this._settings.equalizerImageClass = 'mmp-equalizer';
-            }
-    
-            _setRoot() {
-                this._root = document.getElementById(this._settings.containerID);
-            }
-    
-            _postExtendSettings() {
-                this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
-                this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
-                this._settings.buttonIconPauseClass = 'fa-pause'; // Font Awesome Pause Icon
-                this._settings.buttonIconPlayClass = 'fa-play'; // Font Awesome Play Icon
-            }
-    
-            setPauseState() {
-                this._setButtonPauseState();
-                this._setEqualizerPauseState();
-            }
-    
-            _setButtonPauseState() {
-                let buttonIcon = this._buttonIcon;
-                buttonIcon.classList.remove('fa-pause');
-                buttonIcon.classList.add('fa-play');
-            }
-    
-            _setEqualizerPauseState() {
-                let equalizer = this._equalizer;
-                equalizer.setAttribute('src', '/img/eq_pause.png');
-            }
-    
-            setPlayState() {
-                this._setButtonPlayState();
-                this._setEqualizerPlayState();
-            }
-    
-            _setButtonPlayState() {
-                let buttonIcon = this._buttonIcon;
-                buttonIcon.classList.remove('fa-play');
-                buttonIcon.classList.add('fa-pause');
-            }
-    
-            _setEqualizerPlayState() {
-                let equalizer = this._equalizer;
-                equalizer.setAttribute('src', '/img/eq_play.gif');
-            }
-    
-            setButtonClickCallback(callback) {
-                let button = this._root.querySelector('button');
-                button.addEventListener('click', callback);
-            }
-    
-            updateButtonState(isPlaying) {
-                if (isPlaying) {
-                    this.setPlayState();
-                } else {
-                    this.setPauseState();
-                }
+    const settings = {
+        containerID: container.id,
+        title: container.getAttribute('data-title'),
+        artist: container.getAttribute('data-artist'),
+        audioFilePath: container.getAttribute('data-audio-file-path'),
+        autoplay: autoplay,
+        xmlFilePath: container.getAttribute('data-xml-file-path'), // XML file path
+        updateInterval: 30000 // Interval in milliseconds (e.g., 60000ms = 1 minute)
+    };
+
+    class UserInterface {
+        constructor(settings) {
+            this._settings = settings;
+            this._preExtendSettings();
+            this._setRoot();
+            this._postExtendSettings();
+            this.setPauseState(); // Default to pause state
+        }
+
+        _preExtendSettings() {
+            this._settings.buttonIconClass = 'mmp-icon';
+            this._settings.equalizerImageClass = 'mmp-equalizer';
+        }
+
+        _setRoot() {
+            this._root = document.getElementById(this._settings.containerID);
+        }
+
+        _postExtendSettings() {
+            this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
+            this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
+            this._settings.buttonIconPauseClass = 'fa-pause'; // Font Awesome Pause Icon
+            this._settings.buttonIconPlayClass = 'fa-play'; // Font Awesome Play Icon
+        }
+
+        setPauseState() {
+            this._setButtonPauseState();
+            this._setEqualizerPauseState();
+        }
+
+        _setButtonPauseState() {
+            let buttonIcon = this._buttonIcon;
+            buttonIcon.classList.remove('fa-pause');
+            buttonIcon.classList.add('fa-play');
+        }
+
+        _setEqualizerPauseState() {
+            let equalizer = this._equalizer;
+            equalizer.setAttribute('src', '/img/eq_pause.png');
+        }
+
+        setPlayState() {
+            this._setButtonPlayState();
+            this._setEqualizerPlayState();
+        }
+
+        _setButtonPlayState() {
+            let buttonIcon = this._buttonIcon;
+            buttonIcon.classList.remove('fa-play');
+            buttonIcon.classList.add('fa-pause');
+        }
+
+        _setEqualizerPlayState() {
+            let equalizer = this._equalizer;
+            equalizer.setAttribute('src', '/img/eq_play.gif');
+        }
+
+        setButtonClickCallback(callback) {
+            let button = this._root.querySelector('button');
+            button.addEventListener('click', callback);
+        }
+
+        updateButtonState(isPlaying) {
+            if (isPlaying) {
+                this.setPlayState();
+            } else {
+                this.setPauseState();
             }
         }
-    
-        class Engine {
-            constructor(settings) {
-                this._settings = settings;
-                this._preExtendSettings();
-                this._setRoot();
-                this._postExtendSettings();
-                this._setupAutoplay();
-            }
-    
-            _preExtendSettings() {
-                this._settings.audioTag = 'audio';
-            }
-    
-            _setRoot() {
-                this._root = document.getElementById(this._settings.containerID);
-            }
-    
-            _postExtendSettings() {
-                this._engine = document.getElementById('audio-player'); // Use ID for selection
-            }
-    
-            _setupAutoplay() {
-                if (this._settings.autoplay) {
-                    this._attemptPlay();
-                }
-            }
-    
-            _attemptPlay() {
-                this._engine.play().then(() => {
-                    this._notifyPlaybackStarted(true);
-                }).catch(error => {
-                    this._notifyPlaybackStarted(false);
-                });
-            }
-    
-            play() {
+
+        updateSongInfo(title, artist) {
+            // Define max length for title and artist
+            const maxTitleLength = 30;
+            const maxArtistLength = 30;
+
+            // Function to capitalize the first letter of each major word and words inside parentheses
+            const capitalizeWords = (str) => {
+                if (!str) return str;
+                const minorWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
+                const alwaysUppercase = ['wvh', 'nfl', 'usa', 'ac/dc']; // List of acronyms that should always be uppercase
+                const capitalizeParentheses = (s) => s.replace(/\(([^)]+)\)/g, (match, p1) => `(${p1.split(' ').map(word => {
+                    if (alwaysUppercase.includes(word.toLowerCase())) {
+                        return word.toUpperCase();
+                    }
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                }).join(' ')})`);
+
+                return capitalizeParentheses(str)
+                    .split(' ')
+                    .map((word, index) => {
+                        // Capitalize first and last word or major words
+                        if (index === 0 || index === str.split(' ').length - 1 || !minorWords.includes(word.toLowerCase())) {
+                            // Check if the word is in the alwaysUppercase list
+                            if (alwaysUppercase.includes(word.toLowerCase())) {
+                                return word.toUpperCase();
+                            }
+                            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                        }
+                        return word.toLowerCase();
+                    })
+                    .join(' ');
+            };
+
+            // Truncate text if it exceeds the max length
+            let truncatedTitle = title && title.length > maxTitleLength ? title.substring(0, maxTitleLength) + '...' : title;
+            let truncatedArtist = artist && artist.length > maxArtistLength ? artist.substring(0, maxArtistLength) + '...' : artist;
+
+            // Capitalize title and artist
+            let formattedTitle = truncatedTitle ? capitalizeWords(truncatedTitle) : `No Title Available`;
+            let formattedArtist = truncatedArtist ? capitalizeWords(truncatedArtist) : `No Artist Available`;
+
+            // Update song title and artist with provided values or fallback to default
+            document.getElementById('song-title').textContent = formattedTitle;
+            document.getElementById('song-artist').textContent = formattedArtist;
+        }
+    }
+
+    class Engine {
+        constructor(settings) {
+            this._settings = settings;
+            this._preExtendSettings();
+            this._setRoot();
+            this._postExtendSettings();
+            this._setupAutoplay();
+        }
+
+        _preExtendSettings() {
+            this._settings.audioTag = 'audio';
+        }
+
+        _setRoot() {
+            this._root = document.getElementById(this._settings.containerID);
+        }
+
+        _postExtendSettings() {
+            this._engine = document.getElementById('audio-player'); // Use ID for selection
+        }
+
+        _setupAutoplay() {
+            if (this._settings.autoplay) {
                 this._attemptPlay();
             }
-    
-            pause() {
-                this._engine.pause();
+        }
+
+        _attemptPlay() {
+            this._engine.play().then(() => {
+                this._notifyPlaybackStarted(true);
+            }).catch(error => {
                 this._notifyPlaybackStarted(false);
-            }
-    
-            isPaused() {
-                return this._engine.paused;
-            }
-    
-            setOnEndedCallback(callback) {
-                this._engine.addEventListener('ended', callback);
-            }
-    
-            _notifyPlaybackStarted(isPlaying) {
-                if (this._settings.ui) {
-                    this._settings.ui.updateButtonState(isPlaying);
-                }
+            });
+        }
+
+        play() {
+            this._attemptPlay();
+        }
+
+        pause() {
+            this._engine.pause();
+            this._notifyPlaybackStarted(false);
+        }
+
+        isPaused() {
+            return this._engine.paused;
+        }
+
+        setOnEndedCallback(callback) {
+            this._engine.addEventListener('ended', callback);
+        }
+
+        _notifyPlaybackStarted(isPlaying) {
+            if (this._settings.ui) {
+                this._settings.ui.updateButtonState(isPlaying);
             }
         }
-    
-        class MyspaceMusicPlayer {
-            constructor(settings) {
-                this._settings = settings;
-                this._buildUserInterface();
-                this._buildEngine();
-                this._setButtonClickCallback();
-                this._setOnEndedCallback();
-            }
-    
-            _buildUserInterface() {
-                let userInterfaceSettings = {
-                    containerID: this._settings.containerID,
-                    song: this._settings.song,
-                    artist: this._settings.artist,
-                };
-    
-                this._userInterface = new UserInterface(userInterfaceSettings);
-            }
-    
-            _buildEngine() {
-                let engineSettings = {
-                    containerID: this._settings.containerID,
-                    audioFilePath: this._settings.audioFilePath,
-                    autoplay: this._settings.autoplay,
-                    ui: this._userInterface // Pass the UI instance to Engine
-                };
-    
-                this._engine = new Engine(engineSettings);
-            }
-    
-            _setButtonClickCallback() {
-                let buttonClickCallback = this._buttonClickCallback();
-                this._userInterface.setButtonClickCallback(buttonClickCallback);
-            }
-    
-            _buttonClickCallback() {
-                return () => {
-                    if (this._engine.isPaused()) {
-                        this._engine.play();
-                        this._userInterface.setPlayState();
+    }
+
+    class MyspaceMusicPlayer {
+        constructor(settings) {
+            this._settings = settings;
+            this._buildUserInterface();
+            this._buildEngine();
+            this._fetchAndUpdateSongInfo(); // Initial fetch
+            this._setButtonClickCallback();
+            this._setOnEndedCallback();
+            this._setupAutoUpdate(); // Set up auto-update
+        }
+
+        _buildUserInterface() {
+            let userInterfaceSettings = {
+                containerID: this._settings.containerID,
+                song: this._settings.title,
+                artist: this._settings.artist,
+            };
+
+            this._userInterface = new UserInterface(userInterfaceSettings);
+        }
+
+        _buildEngine() {
+            let engineSettings = {
+                containerID: this._settings.containerID,
+                audioFilePath: this._settings.audioFilePath,
+                autoplay: this._settings.autoplay,
+                ui: this._userInterface // Pass the UI instance to Engine
+            };
+
+            this._engine = new Engine(engineSettings);
+        }
+
+        _fetchAndUpdateSongInfo() {
+            fetch(this._settings.xmlFilePath)
+                .then(response => response.text())
+                .then(text => {
+                    let isXML = text.trim().startsWith('<?xml');
+                    if (isXML) {
+                        this._parseXML(text);
                     } else {
-                        this._engine.pause();
-                        this._userInterface.setPauseState();
+                        this._parseJSON(text);
                     }
-                }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    this._userInterface.updateSongInfo(null, null); // Provide fallback if there's an error
+                });
+        }
+
+        _parseXML(xmlString) {
+            let parser = new DOMParser();
+            let xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            let songTitle = xmlDoc.getElementsByTagName('title')[0]?.textContent || `${settings.title}`;
+            let songArtist = xmlDoc.getElementsByTagName('artist')[0]?.textContent || `${settings.artist}`;
+            this._userInterface.updateSongInfo(songTitle, songArtist);
+        }
+
+        _parseJSON(jsonString) {
+            try {
+                let jsonData = JSON.parse(jsonString);
+                let performance = jsonData.performances[0]; // Assuming the first performance is used
+                let songTitle = performance.title || `${settings.title}`;
+                let songArtist = performance.artist || `${settings.artist}`;
+                this._userInterface.updateSongInfo(songTitle, songArtist);
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                this._userInterface.updateSongInfo(null, null); // Provide fallback if there's an error
             }
-    
-            _setOnEndedCallback() {
-                let onEndedCallback = this._onEndedCallback();
-                this._engine.setOnEndedCallback(onEndedCallback);
-            }
-    
-            _onEndedCallback() {
-                return () => {
+        }
+
+        _setupAutoUpdate() {
+            // Fetch and update the song info at specified intervals
+            this._fetchAndUpdateSongInfo(); // Initial fetch
+            setInterval(() => {
+                this._fetchAndUpdateSongInfo();
+            }, this._settings.updateInterval);
+        }
+
+        _setButtonClickCallback() {
+            let buttonClickCallback = this._buttonClickCallback();
+            this._userInterface.setButtonClickCallback(buttonClickCallback);
+        }
+
+        _buttonClickCallback() {
+            return () => {
+                if (this._engine.isPaused()) {
+                    this._engine.play();
+                    this._userInterface.setPlayState();
+                } else {
+                    this._engine.pause();
                     this._userInterface.setPauseState();
                 }
             }
         }
-    
-        let musicPlayer = new MyspaceMusicPlayer(settings);
-    });
+
+        _setOnEndedCallback() {
+            let onEndedCallback = this._onEndedCallback();
+            this._engine.setOnEndedCallback(onEndedCallback);
+        }
+
+        _onEndedCallback() {
+            return () => {
+                this._userInterface.setPauseState();
+            }
+        }
+    }
+
+    let musicPlayer = new MyspaceMusicPlayer(settings);
+});
 </script>    
