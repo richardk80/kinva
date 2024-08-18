@@ -15,29 +15,31 @@ const settings = {
      data-artist={settings.artist}
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
-     class="h-[59px] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-500">
+     class="h-[59px] bg-gray-900/40">
   
-  <!-- User Interface HTML -->
-  <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5">
-    <div class="my-2 ml-2 mr-[3px]">
-      <button type="button" class="bg-black h-[40px] w-full mt-[1.5px] rounded">
-        <i class="mmp-icon material-icons mt-[6px] text-white"></i>
-      </button>
-    </div>
-
-    <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[230px] mt-[9.5px] ml-[5px] rounded">
-      <div class="flex flex-col justify-center items-start ml-[7px]">
-        <div class="flex items-center mt-[1.5px] text-white font-bold">{settings.song}</div>
-        <div class="mmp-artist-name mt-[1.5px] text-white mb-0.5">{settings.artist}</div>
-      </div>
-
-      <div class="flex items-end justify-end mr-[5px]">
-        <div class="mb-[1.5px]">
-            <img class="mmp-equalizer h-[40px] w-[250px]" alt="Eq Icon">
+  <div class="flex items-center justify-center">
+      <!-- User Interface HTML -->
+      <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5 -mt-[1px]">
+        <div class="my-2 ml-2 mr-[3px]">
+          <button type="button" class="bg-black h-[40px] w-full mt-[1.5px] mr-0.5">
+            <i class="mmp-icon fa-solid fa-play text-white text-[20px] flex justify-center items-center mt-[1.75px]"></i>
+          </button>
         </div>
-      </div>
-    </div>
+    
+        <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[230px] mt-[9.5px] ml-[5px]">
+          <div class="flex flex-col justify-center items-start ml-[7px] -space-y-0.5 my-auto">
+            <div class="flex items-center text-white font-bold font-sans">{settings.song}</div>
+            <div class="mmp-artist-name text-white mb-0.5 font-sans">{settings.artist}</div>
+          </div>
+          <div class="flex items-end justify-end mr-[5px]">
+            <div class="mb-[1.5px]">
+                <img class="mmp-equalizer h-[40px] w-[250px]" alt="">
+            </div>
+          </div>
+        </div>
+        </div>
   </div>
+
 
   <!-- Audio Player HTML -->
   <audio id="audio-player">
@@ -46,209 +48,207 @@ const settings = {
 </div>
 
 <script is:inline>
-document.addEventListener("DOMContentLoaded", function() {
-    const container = document.getElementById('myspace-music-player');
-    const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
-
-    const settings = {
-        containerID: container.id,
-        song: container.getAttribute('data-song'),
-        artist: container.getAttribute('data-artist'),
-        audioFilePath: container.getAttribute('data-audio-file-path'),
-        autoplay: autoplay
-    };
-
-    class UserInterface {
-        constructor(settings) {
-            this._settings = settings;
-            this._preExtendSettings();
-            this._setRoot();
-            this._postExtendSettings();
-            this.setPauseState(); // Default to pause state
-        }
-
-        _preExtendSettings() {
-            this._settings.buttonIconClass = 'mmp-icon';
-            this._settings.equalizerImageClass = 'mmp-equalizer';
-        }
-
-        _setRoot() {
-            this._root = document.getElementById(this._settings.containerID);
-        }
-
-        _postExtendSettings() {
-            this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
-            this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
-            this._settings.buttonIconPauseClass = 'mmp-pause-icon';
-            this._settings.buttonIconPlayClass = 'mmp-play-icon';
-        }
-
-        setPauseState() {
-            this._setButtonPauseState();
-            this._setEqualizerPauseState();
-        }
-
-        _setButtonPauseState() {
-            let buttonIcon = this._buttonIcon;
-            buttonIcon.innerHTML = 'play_arrow';
-            buttonIcon.classList.remove(this._settings.buttonIconPauseClass);
-            buttonIcon.classList.add(this._settings.buttonIconPlayClass);
-        }
-
-        _setEqualizerPauseState() {
-            let equalizer = this._equalizer;
-            equalizer.setAttribute('src', '/img/eq_pause.png');
-        }
-
-        setPlayState() {
-            this._setButtonPlayState();
-            this._setEqualizerPlayState();
-        }
-
-        _setButtonPlayState() {
-            let buttonIcon = this._buttonIcon;
-            buttonIcon.innerHTML = 'pause';
-            buttonIcon.classList.remove(this._settings.buttonIconPlayClass);
-            buttonIcon.classList.add(this._settings.buttonIconPauseClass);
-        }
-
-        _setEqualizerPlayState() {
-            let equalizer = this._equalizer;
-            equalizer.setAttribute('src', '/img/eq_play.gif');
-        }
-
-        setButtonClickCallback(callback) {
-            let button = this._root.querySelector('button');
-            button.addEventListener('click', callback);
-        }
-
-        updateButtonState(isPlaying) {
-            if (isPlaying) {
-                this.setPlayState();
-            } else {
-                this.setPauseState();
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('myspace-music-player');
+        const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
+    
+        const settings = {
+            containerID: container.id,
+            song: container.getAttribute('data-song'),
+            artist: container.getAttribute('data-artist'),
+            audioFilePath: container.getAttribute('data-audio-file-path'),
+            autoplay: autoplay
+        };
+    
+        class UserInterface {
+            constructor(settings) {
+                this._settings = settings;
+                this._preExtendSettings();
+                this._setRoot();
+                this._postExtendSettings();
+                this.setPauseState(); // Default to pause state
+            }
+    
+            _preExtendSettings() {
+                this._settings.buttonIconClass = 'mmp-icon';
+                this._settings.equalizerImageClass = 'mmp-equalizer';
+            }
+    
+            _setRoot() {
+                this._root = document.getElementById(this._settings.containerID);
+            }
+    
+            _postExtendSettings() {
+                this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
+                this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
+                this._settings.buttonIconPauseClass = 'fa-pause'; // Font Awesome Pause Icon
+                this._settings.buttonIconPlayClass = 'fa-play'; // Font Awesome Play Icon
+            }
+    
+            setPauseState() {
+                this._setButtonPauseState();
+                this._setEqualizerPauseState();
+            }
+    
+            _setButtonPauseState() {
+                let buttonIcon = this._buttonIcon;
+                buttonIcon.classList.remove('fa-pause');
+                buttonIcon.classList.add('fa-play');
+            }
+    
+            _setEqualizerPauseState() {
+                let equalizer = this._equalizer;
+                equalizer.setAttribute('src', '/img/eq_pause.png');
+            }
+    
+            setPlayState() {
+                this._setButtonPlayState();
+                this._setEqualizerPlayState();
+            }
+    
+            _setButtonPlayState() {
+                let buttonIcon = this._buttonIcon;
+                buttonIcon.classList.remove('fa-play');
+                buttonIcon.classList.add('fa-pause');
+            }
+    
+            _setEqualizerPlayState() {
+                let equalizer = this._equalizer;
+                equalizer.setAttribute('src', '/img/eq_play.gif');
+            }
+    
+            setButtonClickCallback(callback) {
+                let button = this._root.querySelector('button');
+                button.addEventListener('click', callback);
+            }
+    
+            updateButtonState(isPlaying) {
+                if (isPlaying) {
+                    this.setPlayState();
+                } else {
+                    this.setPauseState();
+                }
             }
         }
-    }
-
-    class Engine {
-        constructor(settings) {
-            this._settings = settings;
-            this._preExtendSettings();
-            this._setRoot();
-            this._postExtendSettings();
-            this._setupAutoplay();
-        }
-
-        _preExtendSettings() {
-            this._settings.audioTag = 'audio';
-        }
-
-        _setRoot() {
-            this._root = document.getElementById(this._settings.containerID);
-        }
-
-        _postExtendSettings() {
-            this._engine = document.getElementById('audio-player'); // Use ID for selection
-        }
-
-        _setupAutoplay() {
-            if (this._settings.autoplay) {
+    
+        class Engine {
+            constructor(settings) {
+                this._settings = settings;
+                this._preExtendSettings();
+                this._setRoot();
+                this._postExtendSettings();
+                this._setupAutoplay();
+            }
+    
+            _preExtendSettings() {
+                this._settings.audioTag = 'audio';
+            }
+    
+            _setRoot() {
+                this._root = document.getElementById(this._settings.containerID);
+            }
+    
+            _postExtendSettings() {
+                this._engine = document.getElementById('audio-player'); // Use ID for selection
+            }
+    
+            _setupAutoplay() {
+                if (this._settings.autoplay) {
+                    this._attemptPlay();
+                }
+            }
+    
+            _attemptPlay() {
+                this._engine.play().then(() => {
+                    this._notifyPlaybackStarted(true);
+                }).catch(error => {
+                    this._notifyPlaybackStarted(false);
+                });
+            }
+    
+            play() {
                 this._attemptPlay();
             }
-        }
-
-        _attemptPlay() {
-            this._engine.play().then(() => {
-                this._notifyPlaybackStarted(true);
-            }).catch(error => {
+    
+            pause() {
+                this._engine.pause();
                 this._notifyPlaybackStarted(false);
-            });
-        }
-
-        play() {
-            this._attemptPlay();
-        }
-
-        pause() {
-            this._engine.pause();
-            this._notifyPlaybackStarted(false);
-        }
-
-        isPaused() {
-            return this._engine.paused;
-        }
-
-        setOnEndedCallback(callback) {
-            this._engine.addEventListener('ended', callback);
-        }
-
-        _notifyPlaybackStarted(isPlaying) {
-            if (this._settings.ui) {
-                this._settings.ui.updateButtonState(isPlaying);
+            }
+    
+            isPaused() {
+                return this._engine.paused;
+            }
+    
+            setOnEndedCallback(callback) {
+                this._engine.addEventListener('ended', callback);
+            }
+    
+            _notifyPlaybackStarted(isPlaying) {
+                if (this._settings.ui) {
+                    this._settings.ui.updateButtonState(isPlaying);
+                }
             }
         }
-    }
-
-    class MyspaceMusicPlayer {
-        constructor(settings) {
-            this._settings = settings;
-            this._buildUserInterface();
-            this._buildEngine();
-            this._setButtonClickCallback();
-            this._setOnEndedCallback();
-        }
-
-        _buildUserInterface() {
-            let userInterfaceSettings = {
-                containerID: this._settings.containerID,
-                song: this._settings.song,
-                artist: this._settings.artist,
-            };
-
-            this._userInterface = new UserInterface(userInterfaceSettings);
-        }
-
-        _buildEngine() {
-            let engineSettings = {
-                containerID: this._settings.containerID,
-                audioFilePath: this._settings.audioFilePath,
-                autoplay: this._settings.autoplay,
-                ui: this._userInterface // Pass the UI instance to Engine
-            };
-
-            this._engine = new Engine(engineSettings);
-        }
-
-        _setButtonClickCallback() {
-            let buttonClickCallback = this._buttonClickCallback();
-            this._userInterface.setButtonClickCallback(buttonClickCallback);
-        }
-
-        _buttonClickCallback() {
-            return () => {
-                if (this._engine.isPaused()) {
-                    this._engine.play();
-                    this._userInterface.setPlayState();
-                } else {
-                    this._engine.pause();
+    
+        class MyspaceMusicPlayer {
+            constructor(settings) {
+                this._settings = settings;
+                this._buildUserInterface();
+                this._buildEngine();
+                this._setButtonClickCallback();
+                this._setOnEndedCallback();
+            }
+    
+            _buildUserInterface() {
+                let userInterfaceSettings = {
+                    containerID: this._settings.containerID,
+                    song: this._settings.song,
+                    artist: this._settings.artist,
+                };
+    
+                this._userInterface = new UserInterface(userInterfaceSettings);
+            }
+    
+            _buildEngine() {
+                let engineSettings = {
+                    containerID: this._settings.containerID,
+                    audioFilePath: this._settings.audioFilePath,
+                    autoplay: this._settings.autoplay,
+                    ui: this._userInterface // Pass the UI instance to Engine
+                };
+    
+                this._engine = new Engine(engineSettings);
+            }
+    
+            _setButtonClickCallback() {
+                let buttonClickCallback = this._buttonClickCallback();
+                this._userInterface.setButtonClickCallback(buttonClickCallback);
+            }
+    
+            _buttonClickCallback() {
+                return () => {
+                    if (this._engine.isPaused()) {
+                        this._engine.play();
+                        this._userInterface.setPlayState();
+                    } else {
+                        this._engine.pause();
+                        this._userInterface.setPauseState();
+                    }
+                }
+            }
+    
+            _setOnEndedCallback() {
+                let onEndedCallback = this._onEndedCallback();
+                this._engine.setOnEndedCallback(onEndedCallback);
+            }
+    
+            _onEndedCallback() {
+                return () => {
                     this._userInterface.setPauseState();
                 }
             }
         }
-
-        _setOnEndedCallback() {
-            let onEndedCallback = this._onEndedCallback();
-            this._engine.setOnEndedCallback(onEndedCallback);
-        }
-
-        _onEndedCallback() {
-            return () => {
-                this._userInterface.setPauseState();
-            }
-        }
-    }
-
-    let musicPlayer = new MyspaceMusicPlayer(settings);
-});
-</script>
+    
+        let musicPlayer = new MyspaceMusicPlayer(settings);
+    });
+</script>    

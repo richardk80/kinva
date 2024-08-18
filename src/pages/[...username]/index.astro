@@ -55,7 +55,7 @@ const autoplayon = true;
                 <div class="flex items-start justify-between gap-x-2">
                     <!-- Left Column -->
                     <div class="flex flex-col gap-y-2 w-3/5">
-                        <UserDetailBox loggedin={loggedin} name={name} username={username} />
+                        <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                         <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
                         { audiourl ? <MusicPlayer audiourl={audiourl} autoplayon={autoplayon} song={song} artist={artist} /> : null }

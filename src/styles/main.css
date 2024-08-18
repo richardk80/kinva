@@ -41,11 +41,11 @@ input {
 }
 
 blink {
-  animation: blinker 1.5s linear infinite;
+  animation: blinker 5s linear infinite;
 }
 
 .blink {
-  animation: blinker 3s linear infinite;
+  animation: blinker 5s linear infinite;
 }
 
 @keyframes blinker {
