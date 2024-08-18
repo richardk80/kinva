@@ -44,11 +44,13 @@ const coverimage = true;
 
 const audiourl = 'http://live.amperwave.net/direct/audacy-kroqfmaac-imc';
 
+const xmlpath = 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json';
+
+const autoplayon = true;
+
 const title = 'KROQ';
 
 const artist = 'Los Angeles, CA';
-
-const autoplayon = true;
 ---
 <Layout title=`${name}`>
         <div class="grid grid-cols-12 grid-flow-row-dense">
@@ -62,7 +64,7 @@ const autoplayon = true;
                         <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                         <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
-                        { audiourl ? <MusicPlayer audiourl={audiourl} autoplayon={autoplayon} title={title} artist={artist} /> : null }
+                        { audiourl ? <MusicPlayer audiourl={audiourl} xmlpath={xmlpath} autoplayon={autoplayon} title={title} artist={artist} /> : null }
                         <Details loggedin={loggedin} name={name} username={username} />
                         <Interests loggedin={loggedin} name={name} username={username} />
                     </div>
