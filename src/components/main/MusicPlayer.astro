@@ -15,19 +15,18 @@ const settings = {
      data-artist={settings.artist}
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
-     class="h-[59px] bg-gray-900/40">
-  
-  <div class="flex items-center justify-center">
+     class="h-[59px] bg-gray-950/40">
+
       <!-- User Interface HTML -->
-      <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5 -mt-[1px]">
-        <div class="my-2 ml-2 mr-[3px]">
-          <button type="button" class="bg-black h-[40px] w-full mt-[1.5px] mr-0.5">
-            <i class="mmp-icon fa-solid fa-play text-white text-[20px] flex justify-center items-center mt-[1.75px]"></i>
+      <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5 mt-[10px] mx-2">
+        <div class="w-12">
+          <button type="button" class="bg-black h-[40px] w-full rounded">
+            <i class="mmp-icon fa-solid fa-play text-[#00ff00] mt-0.5 text-xl"></i>
           </button>
         </div>
     
-        <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[230px] mt-[9.5px] ml-[5px]">
-          <div class="flex flex-col justify-center items-start ml-[7px] -space-y-0.5 mt-0.5">
+        <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px] rounded">
+          <div class="flex flex-col justify-center items-start ml-[7px] -space-y-0.5">
             <div class="flex items-center text-white font-bold font-sans">{settings.song}</div>
             <div class="mmp-artist-name text-white mb-0.5 font-sans">{settings.artist}</div>
           </div>
@@ -37,8 +36,7 @@ const settings = {
             </div>
           </div>
         </div>
-        </div>
-  </div>
+    </div>
 
 
   <!-- Audio Player HTML -->
