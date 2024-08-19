@@ -1,8 +1,10 @@
 ---
+import NoRightClick from '@com/main/NoRightClick.astro';
+
 const { audiourl, xmlpath, autoplayon, title, artist } = Astro.props;
 
 const settings = {
-  containerID: 'myspace-music-player',
+  containerID: 'social-music-player',
   title: title,
   artist: artist,
   audioFilePath: audiourl,
@@ -20,21 +22,23 @@ const settings = {
      class="h-[59px] bg-neutral-950/40">
 
       <!-- User Interface HTML -->
-      <div class="grid h-[55px] max-w-[304px] font-player grid-row-1 grid-cols-5 mt-[9.5px] mx-2">
-        <div class="w-12">
-          <button type="button" class="bg-black h-[40px] w-full rounded">
-            <i class="mmp-icon fa-solid fa-play text-white text-xl mt-0.5"></i>
+      <div class="grid max-w-[304px] font-player grid-row-1 grid-cols-5 mt-2.5 mb-1.5 mx-2">
+        <div class="group bg-black text-white w-12 rounded">
+          <button type="button" class="h-[40px] w-12 rounded">
+            <i class="mmp-icon fa-solid fa-play text-xl mt-0.5"></i>
           </button>
         </div>
 
-            <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px] rounded">
-                    <div class="flex flex-col justify-center items-start ml-[7px] mt-[1.5px]">
+        <NoRightClick>
+            <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px] rounded pointer-events-none">
+                    <div class="flex flex-col justify-center ml-[7px]">
                       <div id="song-title" class="font-normal text-[10px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased text-white">{settings.title}</div>
                       <div id="song-artist" class="font-semibold text-[10px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased text-white">{settings.artist}</div>
                     </div>
-                    <div class="flex items-end justify-end mr-[6px]">
-                      <img class="mmp-equalizer w-[95px] h-full">
-                    </div>
+                        <div class="flex justify-end mr-[7px]">
+                          <img class="mmp-equalizer w-[95px] h-full">
+                        </div>
+                    </NoRightClick>
                 </div>
             </div>
 
@@ -46,7 +50,7 @@ const settings = {
 
 <script is:inline>
 document.addEventListener("DOMContentLoaded", function() {
-    const container = document.getElementById('myspace-music-player');
+    const container = document.getElementById('social-music-player');
     const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
     
     const settings = {
