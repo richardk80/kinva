@@ -23,20 +23,20 @@ const settings = {
 
       <!-- User Interface HTML -->
       <div class="grid max-w-[304px] font-player grid-row-1 grid-cols-5 mt-2.5 mb-1.5 mx-2">
-        <div class="group bg-black text-white w-12 rounded">
-          <button type="button" class="h-[40px] w-12 rounded">
+        <div class="group bg-black text-white w-12">
+          <button type="button" class="h-[40px] w-12">
             <i class="mmp-icon fa-solid fa-play text-xl mt-0.5"></i>
           </button>
         </div>
 
         <NoRightClick>
-            <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px] rounded pointer-events-none">
+            <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px] pointer-events-none">
                     <div class="flex flex-col justify-center ml-[7px]">
                       <div id="song-title" class="font-normal text-[11px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased text-white">{settings.title}</div>
                       <div id="song-artist" class="font-normal text-[11px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased text-white uppercase">{settings.artist}</div>
                     </div>
-                        <div class="flex justify-end mr-[1px]">
-                          <img class="mmp-equalizer w-[100px] h-full rounded">
+                        <div class="flex justify-end mt-0.5">
+                          <img src="" class="mmp-equalizer rounded object-contain" />
                         </div>
                     </NoRightClick>
                 </div>
