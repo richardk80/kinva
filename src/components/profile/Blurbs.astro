@@ -21,11 +21,11 @@ const { aboutwords, meetwords, loggedin, name, username } = Astro.props;
 >
     <div class="mt-1 mb-1.5 ml-2 mr-3 space-y-2">
       <div>
-        <h2 class="text-red-600 text-[12.8px] font-semibold mb-1">About {name}:</h2>
+        <h2 class="text-red-600 text-[12.8px] font-semibold">About {name}:</h2>
         <p class="text-black text-xs whitespace-wrap break-words align-baseline h-full w-full text-balance" set:html={aboutwords}></p>
       </div>
       <div>
-        <h2 class="text-red-600 text-[12.8px] font-semibold mb-1">Who I'd Like to Meet:</h2>
+        <h2 class="text-red-600 text-[12.8px] font-semibold">Who I'd Like to Meet:</h2>
         <p class="text-black text-xs whitespace-normal break-words align-baseline h-full w-full text-balance" set:html={meetwords}></p>
       </div>
       </div>
