@@ -17,22 +17,22 @@ const settings = {
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
-     class="h-[59px] bg-neutral-950/40">
+     class="h-[59px] bg-gradient-to-b from-neutral-950/20 via-neutral-950/50 to-neutral-950/70">
 
       <!-- User Interface HTML -->
       <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
-        <div class="group bg-black text-white w-12">
-          <button type="button" class="h-[40px] w-12">
+        <div class="group bg-black text-white w-12 rounded">
+          <button type="button" class="h-[40px] w-12 rounded">
             <i class="mmp-icon fa-solid fa-play text-2xl"></i>
           </button>
         </div>
-            <div class="bg-black text-white grid grid-cols-2 text-[75%] h-10 min-w-[231px] pointer-events-none">
-                    <div class="flex flex-col my-auto min-w-[224px] ml-[7px] font-normal antialiased subpixel-antialiased">
-                      <div id="song-title" class="text-[9px]">{settings.title}</div>
-                      <div id="song-artist" class="uppercase text-[8px]">{settings.artist}</div>
+            <div class="bg-black text-white grid grid-cols-2 h-10 min-w-[231px] pointer-events-none rounded">
+                    <div class="flex flex-col my-auto min-w-[224px] pl-[7px] font-normal antialiased subpixel-antialiased">
+                      <div id="song-title" class="text-xs">{settings.title}</div>
+                      <div id="song-artist" class="uppercase text-xs">{settings.artist}</div>
                     </div>
-                        <div class="flex justify-end w-[109px] h-[40px]">
-                          <img src="" class="mmp-equalizer" />
+                        <div class="flex justify-end pr-[5px]">
+                          <img src="" class="mmp-equalizer w-[100px] h-[40px]" />
                         </div>
                 </div>
             </div>
