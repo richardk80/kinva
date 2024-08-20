@@ -1,6 +1,4 @@
 ---
-import NoRightClick from '@com/main/NoRightClick.astro';
-
 const { audiourl, xmlpath, autoplayon, title, artist } = Astro.props;
 
 const settings = {
@@ -22,27 +20,23 @@ const settings = {
      class="h-[59px] bg-neutral-950/40">
 
       <!-- User Interface HTML -->
-      <div class="grid max-w-[304px] font-player grid-row-1 grid-cols-5 mt-2.5 mb-1.5 mx-2">
+      <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
         <div class="group bg-black text-white w-12">
           <button type="button" class="h-[40px] w-12">
             <i class="mmp-icon fa-solid fa-play text-2xl"></i>
           </button>
         </div>
-
-        <NoRightClick>
-            <div class="bg-black text-white grid grid-row-1 grid-cols-2 text-[75%] h-10 w-[231px] pointer-events-none">
-                    <div class="flex flex-col justify-center ml-[7px]">
-                      <div id="song-title" class="font-normal text-[10px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased text-white">{settings.title}</div>
-                      <div id="song-artist" class="font-normal text-[10px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis w-full box-border antialiased subpixel-antialiased text-white uppercase">{settings.artist}</div>
+            <div class="bg-black text-white grid grid-cols-2 text-[75%] h-10 min-w-[231px] pointer-events-none">
+                    <div class="flex flex-col my-auto min-w-[224px] ml-[7px] font-normal antialiased subpixel-antialiased">
+                      <div id="song-title" class="text-[9px]">{settings.title}</div>
+                      <div id="song-artist" class="uppercase text-[8px]">{settings.artist}</div>
                     </div>
-                        <div class="flex justify-end">
-                          <img src="" class="mmp-equalizer w-[100px] h-[40px]" />
+                        <div class="flex justify-end w-[109px] h-[40px]">
+                          <img src="" class="mmp-equalizer" />
                         </div>
-                    </NoRightClick>
                 </div>
             </div>
 
-<!-- Audio Player HTML -->
 <audio id="audio-player">
     <source src={settings.audioFilePath} type="audio/mpeg">
 </audio>
@@ -60,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
         artist: container.getAttribute('data-artist'),
         audioFilePath: container.getAttribute('data-audio-file-path'),
         autoplay: autoplay,
-        xmlFilePath: container.getAttribute('data-xml-file-path'), // XML file path
-        updateInterval: 45000 // Interval in milliseconds (e.g., 60000ms = 1 minute)
+        xmlFilePath: container.getAttribute('data-xml-file-path'),
+        updateInterval: 45000
     };
 
     class UserInterface {
@@ -70,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this._preExtendSettings();
             this._setRoot();
             this._postExtendSettings();
-            this.setPauseState(); // Default to pause state
+            this.setPauseState();
         }
 
         _preExtendSettings() {
@@ -85,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function() {
         _postExtendSettings() {
             this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
             this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
-            this._settings.buttonIconPauseClass = 'fa-pause'; // Font Awesome Pause Icon
-            this._settings.buttonIconPlayClass = 'fa-play'; // Font Awesome Play Icon
+            this._settings.buttonIconPauseClass = 'fa-pause';
+            this._settings.buttonIconPlayClass = 'fa-play';
         }
 
         setPauseState() {
@@ -135,15 +129,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         updateSongInfo(title, artist) {
-            // Define max length for title and artist
             const maxTitleLength = 30;
             const maxArtistLength = 30;
 
-            // Function to capitalize the first letter of each major word and words inside parentheses
             const capitalizeWords = (str) => {
                 if (!str) return str;
                 const minorWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
-                const alwaysUppercase = ['wvh', 'nfl', 'usa', 'ac/dc']; // List of acronyms that should always be uppercase
+                const alwaysUppercase = ['wvh', 'nfl', 'usa', 'ac/dc'];
                 const capitalizeParentheses = (s) => s.replace(/\(([^)]+)\)/g, (match, p1) => `(${p1.split(' ').map(word => {
                     if (alwaysUppercase.includes(word.toLowerCase())) {
                         return word.toUpperCase();
@@ -154,9 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return capitalizeParentheses(str)
                     .split(' ')
                     .map((word, index) => {
-                        // Capitalize first and last word or major words
                         if (index === 0 || index === str.split(' ').length - 1 || !minorWords.includes(word.toLowerCase())) {
-                            // Check if the word is in the alwaysUppercase list
                             if (alwaysUppercase.includes(word.toLowerCase())) {
                                 return word.toUpperCase();
                             }
@@ -199,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         _postExtendSettings() {
-            this._engine = document.getElementById('audio-player'); // Use ID for selection
+            this._engine = document.getElementById('audio-player');
         }
 
         _setupAutoplay() {
@@ -245,10 +235,10 @@ document.addEventListener("DOMContentLoaded", function() {
             this._settings = settings;
             this._buildUserInterface();
             this._buildEngine();
-            this._fetchAndUpdateSongInfo(); // Initial fetch
+            this._fetchAndUpdateSongInfo();
             this._setButtonClickCallback();
             this._setOnEndedCallback();
-            this._setupAutoUpdate(); // Set up auto-update
+            this._setupAutoUpdate();
         }
 
         _buildUserInterface() {
@@ -266,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 containerID: this._settings.containerID,
                 audioFilePath: this._settings.audioFilePath,
                 autoplay: this._settings.autoplay,
-                ui: this._userInterface // Pass the UI instance to Engine
+                ui: this._userInterface
             };
 
             this._engine = new Engine(engineSettings);
@@ -285,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    this._userInterface.updateSongInfo(null, null); // Provide fallback if there's an error
+                    this._userInterface.updateSongInfo(null, null);
                 });
         }
 
@@ -300,19 +290,18 @@ document.addEventListener("DOMContentLoaded", function() {
         _parseJSON(jsonString) {
             try {
                 let jsonData = JSON.parse(jsonString);
-                let performance = jsonData.performances[0]; // Assuming the first performance is used
+                let performance = jsonData.performances[0];
                 let songTitle = performance.title || `${settings.title}`;
                 let songArtist = performance.artist || `${settings.artist}`;
                 this._userInterface.updateSongInfo(songTitle, songArtist);
             } catch (error) {
                 console.error('Error parsing JSON:', error);
-                this._userInterface.updateSongInfo(null, null); // Provide fallback if there's an error
+                this._userInterface.updateSongInfo(null, null);
             }
         }
 
         _setupAutoUpdate() {
-            // Fetch and update the song info at specified intervals
-            this._fetchAndUpdateSongInfo(); // Initial fetch
+            this._fetchAndUpdateSongInfo();
             setInterval(() => {
                 this._fetchAndUpdateSongInfo();
             }, this._settings.updateInterval);
