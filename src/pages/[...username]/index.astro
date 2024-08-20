@@ -9,7 +9,7 @@ import Details from '@com/profile/Details.astro';
 import UserBox from '@com/profile/UserBox.astro';
 import BlogEntry from '@com/profile/BlogEntry.astro';
 import FriendSpace from '@com/profile/FriendSpace.astro';
-import AboutBox from '@com/profile/AboutBox.astro';
+import Blurbs from '@com/profile/Blurbs.astro';
 import FriendComments from '@com/profile/FriendComments.astro';
 
 import Layout from '@lay/Layout.astro';
@@ -31,6 +31,8 @@ if(!page) {
 const name = "Dex";
 
 const aboutwords = `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)`;
+
+const meetwords = `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)`;
 
 const loggedin = true;
 
@@ -73,7 +75,7 @@ const artist = 'LOS ANGELES, CA';
                         <UserBox loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                             <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
                             <div class="-mt-0.5 space-y-2">
-                                <AboutBox loggedin={loggedin} aboutwords={aboutwords} name={name} username={username} />
+                                <Blurbs loggedin={loggedin} aboutwords={aboutwords} meetwords={meetwords} name={name} username={username} />
                                 <FriendSpace loggedin={loggedin} name={name} username={username} />
                                 <FriendComments loggedin={loggedin} name={name} username={username} />
                             </div>
