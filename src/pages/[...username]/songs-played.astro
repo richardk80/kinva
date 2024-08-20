@@ -1,0 +1,108 @@
+---
+import Layout from '@lay/Layout.astro';
+
+const apiUrl = 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json';
+---
+<style>
+    /* Custom styles for horizontal scrolling */
+    .horizontal-scroll {
+      display: flex;
+      overflow-x: auto;
+      padding: 1rem; /* Optional padding around the scroll area */
+    }
+  </style>
+
+<Layout title="Last 5 Songs Played">
+  <div class="px-12">
+    <h1 class="text-[25.6px] font-semibold mb-1 text-balance">Last 5 Songs Played</h1>
+    <h2 class="text-sm text-gray-950 mb-2">This page auto refreshes when the next song starts</h2>
+  </div>
+  <div id="song-list" class="horizontal-scroll" data-api-url={apiUrl}>
+      <!-- Songs will be populated here by JavaScript -->
+  </div>
+</Layout>
+
+<script type="module">
+document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve API URL from data attribute
+    const songListElement = document.getElementById('song-list');
+    const apiUrl = songListElement.getAttribute('data-api-url');
+    async function fetchSongs() {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      // Debugging line
+    const data = await response.json();
+    const songs = data.performances; // Accessing the performance key
+
+    const songList = document.getElementById('song-list');
+    songList.innerHTML = ''; // Clear any existing content
+
+    // Define the fallback image URL
+    const fallbackImageUrl = '/img/no-image.png'; // Replace with your actual fallback image URL
+
+    songs.forEach(song => {
+          // Create the song element dynamically
+          const songElement = document.createElement('div');
+          songElement.className = 'bg-white px-4 flex flex-col items-center -mt-10';
+
+          // Create and append the cover image
+      const coverImg = document.createElement('img');
+      coverImg.className = 'w-48 h-48 object-contain';
+
+      // Set the initial src to the provided cover image URL
+      coverImg.src = song.smallimage && song.smallimage.trim() !== '' ? song.smallimage : fallbackImageUrl;
+
+      // Set up an error handler to use the fallback image if the URL fails
+      coverImg.onerror = function() {
+        coverImg.src = fallbackImageUrl;
+      };
+
+      coverImg.alt = song.title ? `${song.title} cover` : 'Cover image';
+
+      songElement.appendChild(coverImg);
+
+          // Create the song info container
+          const songInfo = document.createElement('div');
+          songInfo.className = '-mt-6 text-center';
+
+          // Create and append the song title
+          const songTitle = document.createElement('div');
+          songTitle.className = 'text-xs font-semibold';
+          songTitle.textContent = song.title;
+          songInfo.appendChild(songTitle);
+
+          // Create and append the song artist
+          const songArtist = document.createElement('div');
+          songArtist.className = 'text-gray-600 text-xs';
+          songArtist.textContent = song.artist;
+          songInfo.appendChild(songArtist);
+
+          // Create and append the song time
+          const songTime = document.createElement('div');
+          songTime.className = 'text-gray-400 text-[9px]';
+          songTime.textContent = `Played: ${new Date(song.time).toLocaleTimeString()}`;
+          songInfo.appendChild(songTime);
+
+          // Append the song info to the song element
+          songElement.appendChild(songInfo);
+
+          // Append the song element to the song list
+          songList.appendChild(songElement);
+        });
+      } catch (error) {
+        const songList = document.getElementById('song-list');
+        songList.innerHTML = '<p>Failed to load songs. Please try again later.</p>';
+        console.error('Error details:', error);
+      }
+    }
+    
+// Fetch songs when the page loads
+fetchSongs();
+
+// Set up auto-refresh to update the song list every 60 seconds
+setInterval(fetchSongs, 45000);
+ });
+</script>
