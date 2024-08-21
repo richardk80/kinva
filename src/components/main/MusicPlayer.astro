@@ -31,9 +31,6 @@ const settings = {
                       <div id="song-title" class="text-xs">{settings.title}</div>
                       <div id="song-artist" class="uppercase text-xs">{settings.artist}</div>
                     </div>
-                        <div class="flex justify-end">
-                          <img class="mmp-equalizer w-[100px] h-[38px] border-none outline-none" />
-                        </div>
                 </div>
             </div>
 
@@ -41,19 +38,6 @@ const settings = {
     <source src={settings.audioFilePath} type="audio/mpeg">
 </audio>
 </div>
-
-<style>
-    img {
-    display: block;
-    background-color: transparent;
-    border: none;
-}
-
-img:not([src]) {
-    background-color: #000000;
-    border: none;
-}
-</style>
 
 <script is:inline>
 document.addEventListener("DOMContentLoaded", function() {
@@ -81,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _preExtendSettings() {
             this._settings.buttonIconClass = 'mmp-icon';
-            this._settings.equalizerImageClass = 'mmp-equalizer';
         }
 
         _setRoot() {
@@ -90,14 +73,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _postExtendSettings() {
             this._buttonIcon = this._root.querySelector(`.${this._settings.buttonIconClass}`);
-            this._equalizer = this._root.querySelector(`.${this._settings.equalizerImageClass}`);
             this._settings.buttonIconPauseClass = 'fa-pause';
             this._settings.buttonIconPlayClass = 'fa-play';
         }
 
         setPauseState() {
             this._setButtonPauseState();
-            this._setEqualizerPauseState();
         }
 
         _setButtonPauseState() {
@@ -106,25 +87,14 @@ document.addEventListener("DOMContentLoaded", function() {
             buttonIcon.classList.add('fa-play');
         }
 
-        _setEqualizerPauseState() {
-            let equalizer = this._equalizer;
-            equalizer.setAttribute('src', '/img/eq_pause.png');
-        }
-
         setPlayState() {
             this._setButtonPlayState();
-            this._setEqualizerPlayState();
         }
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
             buttonIcon.classList.remove('fa-play');
             buttonIcon.classList.add('fa-pause');
-        }
-
-        _setEqualizerPlayState() {
-            let equalizer = this._equalizer;
-            equalizer.setAttribute('src', '/img/eq_play.gif');
         }
 
         setButtonClickCallback(callback) {
@@ -141,9 +111,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         updateSongInfo(title, artist) {
-            const maxTitleLength = 30;
-            const maxArtistLength = 30;
-
             const capitalizeWords = (str) => {
                 if (!str) return str;
                 const minorWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
@@ -169,13 +136,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     .join(' ');
             };
 
-            // Truncate text if it exceeds the max length
-            let truncatedTitle = title && title.length > maxTitleLength ? title.substring(0, maxTitleLength) + '...' : title;
-            let truncatedArtist = artist && artist.length > maxArtistLength ? artist.substring(0, maxArtistLength) + '...' : artist;
-
             // Capitalize title and artist
-            let formattedTitle = truncatedTitle ? capitalizeWords(truncatedTitle) : `No Title Available`;
-            let formattedArtist = truncatedArtist ? capitalizeWords(truncatedArtist) : `No Artist Available`;
+            let formattedTitle = capitalizeWords(title) || 'No Title Available';
+            let formattedArtist = capitalizeWords(artist) || 'No Artist Available';
 
             // Update song title and artist with provided values or fallback to default
             document.getElementById('song-title').textContent = formattedTitle;
@@ -242,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    class MyspaceMusicPlayer {
+    class SocialMusicPlayer {
         constructor(settings) {
             this._settings = settings;
             this._buildUserInterface();
@@ -348,6 +311,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    let musicPlayer = new MyspaceMusicPlayer(settings);
+    let musicPlayer = new SocialMusicPlayer(settings);
 });
 </script>    
