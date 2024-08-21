@@ -17,17 +17,17 @@ const settings = {
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
-     class="h-[59px] bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-600">
+     class="h-[59px] bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-500">
 
       <!-- User Interface HTML -->
       <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
-        <div class="group bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-500 active:bg-gradient-to-b active:from-neutral-300 active:via-neutral-400 active:to-neutral-500 border-2 border-t-gray-400/40 border-x-gray-400/80 border-b-gray-400/90 w-12 h-10 rounded">
+        <div class="group bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-500 active:from-neutral-300 active:via-neutral-400 active:to-neutral-600 border-2 border-t-neutral-400/80 border-l-neutral-400/70 border-r-neutral-400/70 border-b-neutral-400/80 w-12 h-10 rounded h-10">
           <button type="button" class="h-[40px] w-12 rounded">
-            <i class="mmp-icon fa-solid fa-play text-2xl -mt-1 mr-0.5 text-black"></i>
+            <i class="mmp-icon fa-solid fa-play text-2xl -mt-1 mr-0.5 text-black text-inner-shadow"></i>
           </button>
         </div>
             <div class="bg-black border-2 border-t-black border-x-black border-b-white/10 text-white grid grid-cols-2 h-10 min-w-[231px] pointer-events-none rounded">
-                    <div class="flex flex-col my-auto min-w-[224px] pl-[7px] font-normal antialiased subpixel-antialiased pt-0.5">
+                    <div class="flex flex-col my-auto min-w-[224px] pl-[7px] font-normal antialiased subpixel-antialiased">
                       <div id="song-title" class="text-xs">{settings.title}</div>
                       <div id="song-artist" class="uppercase text-xs">{settings.artist}</div>
                     </div>
