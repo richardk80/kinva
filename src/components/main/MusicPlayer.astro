@@ -1,10 +1,8 @@
 ---
-const { audiourl, xmlpath, autoplayon, title, artist } = Astro.props;
+const { audiourl, xmlpath, autoplayon } = Astro.props;
 
 const settings = {
   containerID: 'social-music-player',
-  title: title,
-  artist: artist,
   audioFilePath: audiourl,
   autoplay: autoplayon,
   xmlpath: xmlpath
@@ -12,8 +10,6 @@ const settings = {
 ---
 
 <div id={settings.containerID}
-     data-artist={settings.artist}
-     data-title={settings.title}
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
@@ -29,8 +25,8 @@ const settings = {
         </div>
             <div class="bg-gradient-to-b from-gray-950 via-gray-950/80 to-gray-950 text-white grid grid-cols-2 h-10 min-w-[231px] pointer-events-none rounded">
                     <div class="flex flex-col my-auto min-w-[224px] pl-[7px] font-normal antialiased subpixel-antialiased">
-                      <div id="song-title" class="text-[11px]">{settings.title}</div>
-                      <div id="song-artist" class="uppercase text-[10px]">{settings.artist}</div>
+                      <div id="song-title" class="text-[11px]"></div>
+                      <div id="song-artist" class="uppercase text-[10px]"></div>
                     </div>
                 </div>
             </div>
@@ -47,8 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const settings = {
         containerID: container.id,
-        title: container.getAttribute('data-title'),
-        artist: container.getAttribute('data-artist'),
         audioFilePath: container.getAttribute('data-audio-file-path'),
         autoplay: autoplay,
         xmlFilePath: container.getAttribute('data-xml-file-path'),
