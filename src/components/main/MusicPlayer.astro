@@ -23,13 +23,13 @@ const settings = {
       <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
         <div class="group bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-500 active:from-neutral-300 active:via-neutral-400 active:to-neutral-600 border-2 border-t-neutral-400/80 border-l-neutral-400/70 border-r-neutral-400/70 border-b-neutral-400/80 w-12 h-10 rounded h-10">
           <button type="button" class="h-[40px] w-12 rounded">
-            <i class="mmp-icon fa-solid fa-play text-2xl -mt-1 mr-0.5 text-black text-inner-shadow"></i>
+            <i class="mmp-icon fa-solid fa-play"></i>
           </button>
         </div>
             <div class="bg-black border-2 border-t-black border-x-black border-b-white/10 text-white grid grid-cols-2 h-10 min-w-[231px] pointer-events-none rounded">
                     <div class="flex flex-col my-auto min-w-[224px] pl-[7px] font-normal antialiased subpixel-antialiased">
                       <div id="song-title" class="text-[10px] font-sans">{settings.title}</div>
-                      <div id="song-artist" class="uppercase font-sans font-semibold text-[8.5px]">{settings.artist}</div>
+                      <div id="song-artist" class="uppercase font-sans text-[10px]">{settings.artist}</div>
                     </div>
                 </div>
             </div>
@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPauseState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-pause');
-            buttonIcon.classList.add('fa-play');
+            buttonIcon.classList.remove('fa-pause', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
+            buttonIcon.classList.add('fa-play', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
         }
 
         setPlayState() {
@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-play');
-            buttonIcon.classList.add('fa-pause');
+            buttonIcon.classList.remove('fa-play', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
+            buttonIcon.classList.add('fa-pause', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
         }
 
         setButtonClickCallback(callback) {
@@ -265,9 +265,9 @@ document.addEventListener("DOMContentLoaded", function() {
         _parseJSON(jsonString) {
             try {
                 let jsonData = JSON.parse(jsonString);
-                let performance = jsonData.performances[0];
-                let songTitle = performance.title || `${settings.title}`;
-                let songArtist = performance.artist || `${settings.artist}`;
+                let performances = jsonData.performances[0];
+                let songTitle = performances.title || `${settings.title}`;
+                let songArtist = performances.artist || `${settings.artist}`;
                 this._userInterface.updateSongInfo(songTitle, songArtist);
             } catch (error) {
                 console.error('Error parsing JSON:', error);
