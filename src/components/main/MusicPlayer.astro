@@ -3,6 +3,7 @@ const { audiourl, xmlpath, autoplayon } = Astro.props;
 
 const settings = {
   containerID: 'social-music-player',
+  geoblockingMessage: 'Sorry...not available in your location',
   audioFilePath: audiourl,
   autoplay: autoplayon,
   xmlpath: xmlpath
@@ -10,6 +11,7 @@ const settings = {
 ---
 
 <div id={settings.containerID}
+     data-get-block={settings.geoblockingMessage}
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
@@ -25,7 +27,7 @@ const settings = {
         </div>
             <div class="bg-gradient-to-b from-gray-950 via-gray-950/80 to-gray-950 text-white grid grid-cols-2 h-10 min-w-[231px] pointer-events-none rounded">
                     <div class="flex flex-col my-auto min-w-[224px] pl-[7px] font-normal antialiased subpixel-antialiased">
-                      <div id="song-title" class="text-[11px]"></div>
+                      <div id="song-title" class="text-[11px]">{settings.geoblockingMessage}</div>
                       <div id="song-artist" class="uppercase text-[10px]"></div>
                     </div>
                 </div>
@@ -37,7 +39,7 @@ const settings = {
 </div>
 
 <script is:inline>
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('social-music-player');
     const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
     
@@ -46,7 +48,9 @@ document.addEventListener("DOMContentLoaded", function() {
         audioFilePath: container.getAttribute('data-audio-file-path'),
         autoplay: autoplay,
         xmlFilePath: container.getAttribute('data-xml-file-path'),
-        updateInterval: 45000
+        updateInterval: 45000,
+        allowedCountries: ['US'], // List of allowed country codes
+        geoblockingMessage: container.getAttribute('data-geo-block')
     };
 
     class UserInterface {
@@ -139,6 +143,31 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('song-title').textContent = formattedTitle;
             document.getElementById('song-artist').textContent = formattedArtist;
         }
+
+        showGeoblockingMessage(message) {
+            const messageContainer = document.getElementById('geoblocking-message');
+            const messageText = document.getElementById('geoblocking-text');
+
+            if (messageContainer && messageText) {
+                messageText.textContent = message || this._settings.geoblockingMessage;
+                messageContainer.style.display = 'block';
+
+                // Hide song info
+                document.getElementById('song-title').style.display = 'none';
+                document.getElementById('song-artist').style.display = 'none';
+            }
+        }
+
+        hideGeoblockingMessage() {
+            const messageContainer = document.getElementById('geoblocking-message');
+            if (messageContainer) {
+                messageContainer.style.display = 'none';
+
+                // Show song info
+                document.getElementById('song-title').style.display = 'block';
+                document.getElementById('song-artist').style.display = 'block';
+            }
+        }
     }
 
     class Engine {
@@ -203,12 +232,29 @@ document.addEventListener("DOMContentLoaded", function() {
     class SocialMusicPlayer {
         constructor(settings) {
             this._settings = settings;
-            this._buildUserInterface();
-            this._buildEngine();
-            this._fetchAndUpdateSongInfo();
-            this._setButtonClickCallback();
-            this._setOnEndedCallback();
-            this._setupAutoUpdate();
+            this._checkGeoblocking(); // Check geoblocking before initializing
+        }
+
+        _checkGeoblocking() {
+            fetch('https://api.ipgeolocation.io/ipgeo?apiKey=9e334024ccc24a9c8e6f436283ba56fe') // Replace with your geolocation API URL
+                .then(response => response.json())
+                .then(data => {
+                    const userCountry = data.country_code2; // Assuming the country code is in 'country_code2'
+                    if (this._settings.allowedCountries.includes(userCountry)) {
+                        this._buildUserInterface();
+                        this._buildEngine();
+                        this._fetchAndUpdateSongInfo();
+                        this._setButtonClickCallback();
+                        this._setOnEndedCallback();
+                        this._setupAutoUpdate();
+                    } else {
+                        this._userInterface.showGeoblockingMessage(this._settings.geoblockingMessage);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking geolocation:', error);
+                    this._userInterface.showGeoblockingMessage(this._settings.geoblockingMessage);
+                });
         }
 
         _buildUserInterface() {
@@ -252,8 +298,8 @@ document.addEventListener("DOMContentLoaded", function() {
         _parseXML(xmlString) {
             let parser = new DOMParser();
             let xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            let songTitle = xmlDoc.getElementsByTagName('title')[0]?.textContent || `${settings.title}`;
-            let songArtist = xmlDoc.getElementsByTagName('artist')[0]?.textContent || `${settings.artist}`;
+            let songTitle = xmlDoc.getElementsByTagName('title')[0]?.textContent || `${this._settings.title}`;
+            let songArtist = xmlDoc.getElementsByTagName('artist')[0]?.textContent || `${this._settings.artist}`;
             this._userInterface.updateSongInfo(songTitle, songArtist);
         }
 
@@ -261,8 +307,8 @@ document.addEventListener("DOMContentLoaded", function() {
             try {
                 let jsonData = JSON.parse(jsonString);
                 let performances = jsonData.performances[0];
-                let songTitle = performances.title || `${settings.title}`;
-                let songArtist = performances.artist || `${settings.artist}`;
+                let songTitle = performances.title || `${this._settings.title}`;
+                let songArtist = performances.artist || `${this._settings.artist}`;
                 this._userInterface.updateSongInfo(songTitle, songArtist);
             } catch (error) {
                 console.error('Error parsing JSON:', error);
