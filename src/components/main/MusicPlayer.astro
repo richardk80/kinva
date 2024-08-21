@@ -17,19 +17,20 @@ const settings = {
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
-     class="h-[59px] bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-500">
+     class="h-[59px] bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500"
+     >
 
       <!-- User Interface HTML -->
       <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
-        <div class="group bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-500 active:from-neutral-300 active:via-neutral-400 active:to-neutral-600 border-2 border-t-neutral-400/80 border-l-neutral-400/70 border-r-neutral-400/70 border-b-neutral-400/80 w-12 h-10 rounded h-10">
+        <div class="group bg-gray-950 active:bg-gray-800 w-12 h-10 rounded">
           <button type="button" class="h-[40px] w-12 rounded">
-            <i class="mmp-icon fa-solid fa-play"></i>
+            <i class="mmp-icon fa-solid fa-play -mt-[0.5px]"></i>
           </button>
         </div>
-            <div class="bg-black border-2 border-t-black border-x-black border-b-white/10 text-white grid grid-cols-2 h-10 min-w-[231px] pointer-events-none rounded">
+            <div class="bg-gradient-to-b from-gray-950 via-gray-950/80 to-gray-950 text-white grid grid-cols-2 h-10 min-w-[231px] pointer-events-none rounded">
                     <div class="flex flex-col my-auto min-w-[224px] pl-[7px] font-normal antialiased subpixel-antialiased">
-                      <div id="song-title" class="text-[10px] font-sans">{settings.title}</div>
-                      <div id="song-artist" class="uppercase font-sans text-[10px]">{settings.artist}</div>
+                      <div id="song-title" class="text-[11px]">{settings.title}</div>
+                      <div id="song-artist" class="uppercase text-[10px]">{settings.artist}</div>
                     </div>
                 </div>
             </div>
@@ -83,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPauseState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-pause', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
-            buttonIcon.classList.add('fa-play', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
+            buttonIcon.classList.remove('fa-pause', 'text-white', 'text-2xl', 'text-inner-shadow');
+            buttonIcon.classList.add('fa-play', 'text-white', 'text-xl', 'text-inner-shadow');
         }
 
         setPlayState() {
@@ -93,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-play', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
-            buttonIcon.classList.add('fa-pause', 'text-black', 'text-xl', '-mt-1', 'mr-0.5', 'text-inner-shadow');
+            buttonIcon.classList.remove('fa-play', 'text-white', 'text-xl', 'text-inner-shadow');
+            buttonIcon.classList.add('fa-pause', 'text-white', 'text-2xl', 'text-inner-shadow');
         }
 
         setButtonClickCallback(callback) {
