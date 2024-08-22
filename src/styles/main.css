@@ -1,7 +1,7 @@
 *,
 *::after,
 *::before {
-    @apply box-border;
+    box-sizing: border-box;
 }
 
 /* clears the ‘X’ from Internet Explorer */
@@ -28,7 +28,6 @@ body {
 }
 
 html, body {
-  scrollbar-gutter: auto;
   scroll-behavior: smooth;
 }
 
@@ -55,7 +54,12 @@ blink {
 }
 
 .instagram {
-    @apply text-[50vmin] w-[1em] aspect-[1] relative grid place-items-center before:w-[65%] before:border-[0.05em] before:border-solid after:w-[35%] after:border-[0.05em] after:border-solid;
+    display: grid 
+    position: relative; 
+    place-items: center; 
+    color: 50vmin;
+    width: 1em;
+    aspect-ratio: 1;
     background: radial-gradient(
         circle farthest-corner at 28% 100%,
         #fcdf8f 0%,
@@ -68,5 +72,7 @@ blink {
 }
   .instagram:before,
   .instagram:after {
-    @apply content-[""] text-white absolute aspect-[1];
+    position: absolute; 
+    color: #ffffff; 
+    aspect-ratio: 1;
 }
