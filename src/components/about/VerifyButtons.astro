@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
+import { Icon } from 'astro-icon/components';
 ---
 <div class="flex items-center space-x-56">
   {[
@@ -8,7 +8,7 @@ import { Icon } from 'astro-icon';
     ["https://validator.w3.org/feed", "Valid RSS", "w3c-rss"]
   ].map(([iconHref, iconTitle, iconName ]) => (
     <a href={iconHref} target="_blank" rel="noopener" title={iconTitle} aria-label={iconTitle}>
-      <Icon class="w-[80px] h-auto hover:brightness-110" name={iconName} alt={iconTitle} />
+      <Icon class="w-[80px] h-auto hover:brightness-110" name={iconName} />
     </a>
   ))}
 </div>

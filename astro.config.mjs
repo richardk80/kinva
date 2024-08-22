@@ -4,7 +4,9 @@ import vercel from "@astrojs/vercel/serverless";
 import robotsTxt from 'astro-robots-txt';
 import eventsource from 'eventsource';
 import compressor from "astro-compressor";
+import icon from "astro-icon";
 global.EventSource = eventsource;
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,7 +29,7 @@ export default defineConfig({
   }), compressor({
     gzip: true,
     brotli: false
-  })],
+  }), icon()],
   output: 'server',
   server: {
     headers: {
