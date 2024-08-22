@@ -10,12 +10,12 @@ const { username } = Astro.props;
   backgroundColor="bg-orange-400/60" 
   borderColor="border-orange-400/60"
 >
-    <div class="ml-2 mt-1 mb-1.5">
+    <div class="ml-2 mt-1 mb-[7px]">
       <div>
         <p class="font-semibold text-xs mb-0.5">
           You have <span class="text-red-600">{friendrequests}</span> friend { friendrequests === 1 ? 'request' : 'requests' }
         </p>
-        <a class="py-0.5 px-2 bg-zinc-100 hover:bg-zinc-200 text-xs text-zinc-950 border border-zinc-500 focus:outline-none" href=`/${username}/friendrequests`>View All Requests</a>
+        <a class="py-[2px] px-2 bg-zinc-100 hover:bg-zinc-200 text-xs text-zinc-950 border border-zinc-500 focus:outline-none" href=`/${username}/friendrequests`>View All Requests</a>
       </div>
     </div>
 </NonRegularBox>
