@@ -4,16 +4,33 @@ import ProfileImage from '@com/main/ProfileImage.astro';
 
 const { name, username } = Astro.props;
 
-const peoplecount: number = 9;
-
-//let parts = name.split(' ')
-//let firstName = parts.shift();
-//let lastName = parts.join(' ');
-
-let friendnum = (8 < peoplecount) ? 8 : peoplecount;
-
+const peoplecount: number = 45;
+const friendnum = peoplecount > 8 ? 8 : peoplecount;
 const profilepic = true;
+
+// List of unique first names (ensure there are more than friendnum names)
+const firstNames = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Jamie', 'Casey', 'Riley', 'Cameron'];
+
+// Shuffle function to randomize the array
+const shuffleArray = (array) => {
+  let shuffledArray = array.slice(); // Copy the array
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]; // Swap elements
+  }
+  return shuffledArray;
+};
+
+// Shuffle the names and select the first `friendnum` names
+const shuffledNames = shuffleArray(firstNames).slice(0, friendnum);
+
+// Create a list of numbers from 1 to 8
+const availableNumbers = shuffleArray(Array.from({ length: 70 }, (_, i) => i + 1));
+
+// Get a unique number from the list
+const getUniqueImageNumber = () => availableNumbers.pop();
 ---
+
 <RegularBox
   username2={`${name}'s`} 
   name="Top 8" 
@@ -22,28 +39,31 @@ const profilepic = true;
   backgroundColor="bg-orange-400/60" 
   borderColor="border-orange-400/60" 
   aclass="text-[10px] -mt-0.5 font-normal hover:underline text-zinc-950" 
-  aurl=`${username}/friends`
+  aurl={`/${username}/friends`}
 >
-    <p class={ peoplecount === 0 ?  "text-xs font-semibold ml-2 pt-1.5" : "text-xs font-semibold ml-2 pt-2" }>{name} has <span class="text-red-600">{ peoplecount > 0 ?  peoplecount : '0' }</span> { peoplecount === 0 ? 'friends' : peoplecount > 1 ? 'friends' : 'friend' }
-    </p>
-    <div class={ peoplecount > 0 ? "grid grid-flow-dense grid-cols-4 gap-x-1 gap-y-2 pt-1 pb-0.5" : "grid grid-flow-dense grid-cols-4 pt-1"}>
-      {[...Array(friendnum)].map(() => (
-        <div class={ peoplecount > 0 ? "pt-0.5 pb-2 px-1" : "py-0 px-1" }>
-          { peoplecount > 0 ? 
-        <a href={`${username}`} title={`Visit ${name}'s profile`}>
-          <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-blue-600 hover:text-red-600">
-            <p>{name}</p>
-            <ProfileImage
-              width={96}
-              height={96}
-              srcurl={profilepic ? "https://i.pravatar.cc/96?img=3" : "/img/avatar.png"}
-              altText={`${name}'s profile picture`}
-            />
+  <p class={peoplecount === 0 ? "text-xs font-semibold ml-2 pt-1.5" : "text-xs font-semibold ml-2 pt-2"}>
+    {name} has <span class="text-red-600">{peoplecount > 0 ? peoplecount : '0'}</span> 
+    {peoplecount === 1 ? 'friend' : 'friends'}
+  </p>
+
+  <div class={peoplecount > 0 ? "grid grid-flow-dense grid-cols-4 gap-x-1 gap-y-2 pt-1 pb-0.5" : "grid grid-flow-dense grid-cols-4 pt-1"}>
+    {shuffledNames.map((randomName, index) => (
+      <div class={peoplecount > 0 ? "pt-0.5 pb-2 px-1" : "py-0 px-1"}>
+        {peoplecount > 0 && (
+          <a href={`/${username}`} title={`Visit ${randomName}'s profile`}>
+            <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-blue-600 hover:text-red-600">
+              <p>{randomName}</p>
+              <ProfileImage
+                width={96}
+                height={96}
+                srcurl={profilepic ? `https://i.pravatar.cc/96?img=${getUniqueImageNumber()}` : "/img/avatar.png"}
+                altText={`${randomName}'s profile picture`}
+                titleText={`Visit ${randomName}'s profile`}
+              />
             </div>
-            </a>
-            : null }
-            </div>
-            ))
-          }
-    </div>
+          </a>
+        )}
+      </div>
+    ))}
+  </div>
 </RegularBox>

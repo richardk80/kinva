@@ -4,7 +4,6 @@ import Layout from '@lay/Layout.astro';
 import LoginCoolPeople from '@com/main/LoginCoolPeople.astro';
 import LoginDivider from '@com/login/LoginDivider.astro';
 import LoginBox from '@com/login/LoginBox.astro';
-import FourBoxes from '@com/login/IDBoxes/FourBoxes.astro';
 
 import UserDetailBox from '@com/home/UserDetailBox.astro';
 import CoolPeople from '@com/main/CoolPeople.astro';
@@ -20,7 +19,7 @@ const name = "Dex";
 
 const username = "dex";
 
-const loggedin = true;
+import loggedin from './loggedin';
 ---
 <Layout title={ loggedin ? "Home" : "Login" }>
 	{ loggedin ?
@@ -65,10 +64,6 @@ const loggedin = true;
                 <div class="grid grid-rows-1 gap-x-2 flex flex-wrap">
                     <LoginBox />
                 </div>
-            </div>
-            <!-- Bottom Section -->
-            <div class="pt-2 w-full flex items-center">
-                <FourBoxes />
             </div>
         </div>
     </div>

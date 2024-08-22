@@ -17,7 +17,7 @@ interface Props {
 
 const { title } = Astro.props;
 
-const loggedin = false;
+import loggedin from '../pages/loggedin';
 
 const loggedin2 = true;
 
@@ -25,7 +25,7 @@ const home = "Home";
 
 const loginname = "Login";
 
-const loggedinwords = [loggedin ? `${loginname}` : `${home}`];
+const loggedinwords = [loggedin ? `${home}` : `${loginname}`];
 
 const navItems = [
   { smallname: "", href: "/", name: `${loggedinwords}`, dividerChar: "-" },
