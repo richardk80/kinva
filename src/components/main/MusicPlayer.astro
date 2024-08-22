@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPauseState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-pause', 'text-white', 'text-2xl', 'text-inner-shadow');
-            buttonIcon.classList.add('fa-play', 'text-white', 'text-xl', 'text-inner-shadow');
+            buttonIcon.classList.remove('fa-pause', 'text-white', 'text-2xl');
+            buttonIcon.classList.add('fa-play', 'text-white', 'text-xl');
         }
 
         setPlayState() {
@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-play', 'text-white', 'text-xl', 'text-inner-shadow');
-            buttonIcon.classList.add('fa-pause', 'text-white', 'text-2xl', 'text-inner-shadow');
+            buttonIcon.classList.remove('fa-play', 'text-white', 'text-xl');
+            buttonIcon.classList.add('fa-pause', 'text-white', 'text-2xl');
         }
 
         setButtonClickCallback(callback) {
