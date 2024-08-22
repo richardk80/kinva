@@ -5,21 +5,23 @@ import { Icon } from 'astro-icon/components';
 
 interface Props {
     loggedin?: boolean;
-    onlinenow?: boolean;
     username?: string;
 }
 
-const { loggedin, onlinenow, username } = Astro.props;
+const { loggedin, username } = Astro.props;
 ---
-{ onlinenow ?
+{ loggedin ?
 <div class="flex items-center space-x-2 ml-0.5">
     <span class="flex items-center space-x-1.5"><Icon class="h-[20px] w-auto fill-orange-400 -mt-[0.8px]" name="online" /><span class="mr-1 font-semibold text-green-400 text-xs">Online Now!</span></span>
 </div>
 :
-''
+<div class="flex items-center ml-0.5 space-x-0.5">
+    <p class="text-xs font-semibold text-balance">Last Active:</p>
+    <p class="text-xs text-balance">5 hours ago</p>
+</div>
 }
-<div class="flex items-center ml-0.5">
-    <p class="font-semibold text-xs">Mood:</p>
-    <p class="text-xs ml-1 text-balance">Happy</p>
+<div class="flex items-center ml-0.5 space-x-0.5">
+    <p class="font-semibold text-xs text-balance">Mood:</p>
+    <p class="text-xs text-balance">Happy</p>
 </div>
 { loggedin ? <p class="text-xs ml-0.5"><SmallLink href={`${username}/editmood`} link="edit mood" /></p> : null }

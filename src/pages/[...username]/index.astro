@@ -69,8 +69,10 @@ const autoplayon = true;
                     <!-- Right Column -->
                     <div class="flex flex-col gap-y-2 w-full">
                         <UserBox loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
-                            <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
-                            <div class="-mt-0.5 space-y-2">
+                            <div class="-mt-0.5">
+                                <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
+                            </div>
+                            <div class="-mt-1 space-y-2">
                                 <Blurbs loggedin={loggedin} aboutwords={aboutwords} meetwords={meetwords} name={name} username={username} />
                                 <FriendSpace loggedin={loggedin} name={name} username={username} />
                                 <FriendComments loggedin={loggedin} name={name} username={username} />
