@@ -27,7 +27,7 @@ module.exports = {
     function ({ addUtilities }) {
       const newUtilities = {
         '.text-inner-shadow': {
-          textShadow: '-1px -1px -5px rgba(255, 255, 255, 0.5)',
+          textShadow: '1px 1px 5px rgba(255, 255, 255, 0.5)',
           backgroundClip: 'text',
           WebkitBackgroundClip: 'text',
         },

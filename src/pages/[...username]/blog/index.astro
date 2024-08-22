@@ -7,7 +7,9 @@ const username = 'dex';
 
 const name = 'Dex';
 
-const loggedin = true;
+import loggedin from '../../loggedin';
+
+const hidden = true;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -17,5 +19,6 @@ const loggedin = true;
 	<main class="mx-[50px] mb-3">
 		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">{name}'s Blog</h1>
 		{ loggedin ? <p class="text-xs mb-2"><SmallLink href={`/${username}/blog/edit`} link="edit blog" /></p> : null }
+		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to { hidden ? `Dex's` : 'your' } profile</a>
 	</main>
 </Layout>

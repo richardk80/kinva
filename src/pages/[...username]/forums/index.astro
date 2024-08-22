@@ -1,8 +1,9 @@
 ---
 import Layout from '@lay/Layout.astro';
 
-const username = 'astro';
-const hidden = true;
+const name = 'Dex';
+
+const username = 'dex';
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -11,6 +12,6 @@ const hidden = true;
 <Layout title="Your Forums">
 	<main class="mx-[50px] mb-8">
 		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Your Forums</h1>
-		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to your profile</a>
+		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to {name}'s profile</a>
 	</main>
 </Layout>
