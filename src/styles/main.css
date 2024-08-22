@@ -54,10 +54,9 @@ blink {
 }
 
 .instagram {
-    display: grid 
+    display: grid;
     position: relative; 
-    place-items: center; 
-    color: 50vmin;
+    place-items: center;
     width: 1em;
     aspect-ratio: 1;
     background: radial-gradient(
