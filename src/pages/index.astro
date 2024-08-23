@@ -1,10 +1,6 @@
 ---
 import Layout from '@lay/Layout.astro';
 
-import LoginCoolPeople from '@com/main/LoginCoolPeople.astro';
-import LoginDivider from '@com/login/LoginDivider.astro';
-import LoginBox from '@com/login/LoginBox.astro';
-
 import UserDetailBox from '@com/home/UserDetailBox.astro';
 import CoolPeople from '@com/main/CoolPeople.astro';
 import MyMail from '@com/home/MyMail.astro';
@@ -14,6 +10,11 @@ import BlogEntry from '@com/home/BlogEntry.astro';
 import InfoBox from '@com/home/InfoBox.astro';
 import FriendsBulletins from '@com/home/FriendsBulletins.astro';
 import FriendRequests from '@com/home/FriendRequests.astro';
+
+import LoginCoolPeople from '@com/main/LoginCoolPeople.astro';
+import LoginDivider from '@com/login/LoginDivider.astro';
+import LoginBox from '@com/login/LoginBox.astro';
+
 
 const name = "Dex";
 
@@ -49,19 +50,19 @@ import loggedin from './loggedin';
         </div>
     </div>
     :
-    <div class="grid grid-cols-12 grid-flow-row-dense">
+    <div class="grid grid-cols-12 grid-flow-row-dense mt-0.5">
         <div class="col-span-full">
             <div class="flex items-start justify-between">
                 <!-- Left Column -->
                 <div class="grid grid-rows-1">
-                    <LoginCoolPeople />
+                    <LoginCoolPeople loggedin={loggedin} />
                 </div>
                 <!-- Divider -->
                 <div class="grid grid-rows-1 gap-y-0.5">
                     <LoginDivider />
                 </div>
                 <!-- Right Column -->
-                <div class="grid grid-rows-1 gap-x-2 flex flex-wrap">
+                <div class="grid grid-rows-1 gap-x-2">
                     <LoginBox />
                 </div>
             </div>

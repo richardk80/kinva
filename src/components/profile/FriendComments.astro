@@ -14,14 +14,15 @@ const comments: number = 5;
 <RegularBox 
   username2=`${name}'s Comments`
   name2="[view all]" 
-  pclass="flex items-center justify-between mx-2 text-xs font-semibold text-red-600 mt-0.5" backgroundColor="bg-orange-400/60" 
-  borderColor="border-orange-400/60" 
+  pclass="flex items-center justify-between mx-2 text-xs font-semibold text-[#ED0707] mt-0.5" 
+  backgroundColor="bg-[#f9c56c]" 
+  borderColor="border-[#f9c56c]" 
   aclass="text-[10px] -mt-0.5 font-normal hover:underline text-zinc-950" 
   aurl=`${username}/comments`
 >
     <div class="ml-2 pt-1 pb-1 space-x-2 flex items-center">
       <p class="text-xs">
-        <span class="font-semibold">{name} has <span class="text-red-600">{comments}</span> { comments === 0 ? 'comments' : comments > 1 ? 'comments' : 'comment' }</span>
+        <span class="font-semibold">{name} has <span class="text-[#ED0707]">{comments}</span> { comments === 0 ? 'comments' : comments > 1 ? 'comments' : 'comment' }</span>
         { loggedin ? 
           <span class="text-xs"><SmallLink href={`${username}/comments`} link="add comment" /></span>
         : '' 
