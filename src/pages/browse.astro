@@ -52,6 +52,13 @@ const getUniqueName = () => shuffledNames.pop();
 // Generate a URL for the next page
 const nextPage = currentPage + 1;
 const nextPageUrl = `/browse?page=${nextPage}`;
+
+const users = Array.from({ length: 30 }, (_, i) => `user${i + 1}`);
+
+const generateRandomProfileUrl = () => {
+  const randomIndex = Math.floor(Math.random() * users.length);
+  return `/${users[randomIndex]}`;
+};
 ---
 
 <Layout title="Browse">
@@ -61,21 +68,25 @@ const nextPageUrl = `/browse?page=${nextPage}`;
       <div class="flex items-stretch text-xs mb-3">
         <p class="text-xs cursor-default font-semibold">Filter:</p>
         {filterItems.map((filter) => (
+			<>
             <a href={filter.href} class={currentPath === filter.smallname ? filter.firstcss : filter.secondcss}>{filter.name}</a>
             <div class={filter.dividerCss}>{filter.divider}</div>
+			</>
         ))}
       </div>
       <div class="flex items-stretch text-xs mb-3">
         <p class="text-xs cursor-default font-semibold">Friends:</p>
         {friendItems.map((friend) => (
+			<>
             <a href={friend.href} class={currentPath === friend.smallname ? friend.firstcss : friend.secondcss}>{friend.name}</a>
             <div class={friend.dividerCss}>{friend.divider}</div>
+			</>
         ))}
       </div>
       <div class="py-0.5 bg-orange-400/60">
         <div class="flex justify-between items-center mx-2">
           <p class="text-xs font-semibold mt-1 cursor-default">Active Users</p>
-          <a class="text-[10.24px] hover:underline" href="#">[random]</a>
+          <a class="text-[10.24px] hover:underline" href={generateRandomProfileUrl()}>[random]</a>
         </div>
       </div>
       <!-- Adjusted padding and margins to make borders closer to images -->
