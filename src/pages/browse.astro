@@ -1,84 +1,121 @@
 ---
 import Layout from '@lay/Layout.astro';
-
 import ProfileImage from '@com/main/ProfileImage.astro';
 
 const filterItems = [
-{ href: "/", smallname: "", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "All Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
-{ href: "/browse", smallname: "newusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "New Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
-{ href: "/browse", smallname: "onlineusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Online Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
+  { href: "/", smallname: "", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "All Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
+  { href: "/browse", smallname: "newusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "New Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
+  { href: "/browse", smallname: "onlineusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Online Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
 ];
 
 const friendItems = [
-{ href: "/", smallname: "includefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "Include Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
-{ href: "/browse", smallname: "excludefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Exclude Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
+  { href: "/", smallname: "includefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "Include Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
+  { href: "/browse", smallname: "excludefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Exclude Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
 ];
 
 const currentPath = new URL(Astro.request.url).pathname.slice(1);
 
+// Get the 'page' query parameter
+const url = new URL(Astro.request.url);
+const currentPage = parseInt(url.searchParams.get('page')) || 1;
+
 const profilepic = true;
 
-//let parts = name.split(' ')
-//let firstName = parts.shift();
-//let lastName = parts.join(' ');
+// List of unique names (ensure there are at least 45)
+const uniqueNames = [
+  'Alex', 'Jordan', 'Taylor', 'Morgan', 'Jamie', 'Casey', 'Riley', 'Cameron', 'Drew', 'Parker',
+  'Avery', 'Quinn', 'Sydney', 'Reese', 'Emerson', 'Hayden', 'Kai', 'Rowan', 'Blake', 'Charlie',
+  'Harper', 'River', 'Skylar', 'Sawyer', 'Dakota', 'Phoenix', 'Tatum', 'Finley', 'Lennon', 'Remi',
+  'Marley', 'Hunter', 'Sage', 'Dylan', 'Lane', 'Luca', 'Elliot', 'Ari', 'Toby', 'Noah', 'Micah', 'Spencer',
+  'Richard', 'Thomas', 'Steve'
+];
+
+const availableNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+
+const shuffleArray = (array) => {
+  let shuffledArray = array.slice();
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
+const shuffledNames = shuffleArray(uniqueNames);
+
+const shuffledNumbers = shuffleArray(availableNumbers);
+
+const getUniqueImageNumber = () => shuffledNumbers.pop();
+
+const getUniqueName = () => shuffledNames.pop();
+
+// Generate a URL for the next page
+const nextPage = currentPage + 1;
+const nextPageUrl = `/browse?page=${nextPage}`;
 ---
+
 <Layout title="Browse">
-	<main>
-		<div class="mx-auto w-[700px] px-[8px]">
-			<h1 class="text-[25.6px] font-semibold mb-3 text-balance">Browse</h1>
-			  <div class="flex items-stretch text-xs mb-3">
-				  <p class="text-xs cursor-default font-semibold">Filter:</p>
-				  {filterItems.map((filter) => (
-					    	<a href={filter.href} class={currentPath === filter.smallname ? filter.firstcss : filter.secondcss}>{filter.name}</a>
-					    	<div class={filter.dividerCss}>{filter.divider}</div>
-				    	))
-      				}
-			  </div>
-        		<div class="flex items-stretch text-xs mb-3">
-				  <p class="text-xs cursor-default font-semibold">Friends:</p>
-				  {friendItems.map((friend) => (
-					    	<a href={friend.href} class={currentPath === friend.smallname ? friend.firstcss : friend.secondcss}>{friend.name}</a>
-					    	<div class={friend.dividerCss}>{friend.divider}</div>
-				    	))
-      				}
-			  	  </div>
-				  <div class="py-0.5 bg-orange-400/60">
-					  <div class="flex justify-between items-center mx-2">
-						  <p class="text-xs font-semibold mt-1 cursor-default">Active Users</p>
-						  <a class="text-[10.24px] hover:underline" href="#">[random]</a>
-					  </div>
-				  </div>
-				  <div class="border-2 border-orange-400/60 border-solid">
-					<div class="ml-6 mr-6 mb-2 mt-1.5">
-						<ul class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
-							{
-								[...Array(42)].map(() => (
-								<a class="text-blue-600 hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile">
-								  <p class="text-xs flex justify-center font-semibold mb-0.5">Astro</p>
-								  <li>
-									<ProfileImage
-									  width={96}
-									  height={96}
-									  imgclass="hover:no-underline"
-									  srcurl={profilepic ? "https://i.pravatar.cc/96" : "/img/avatar.png"}
-									  altText="Astro's profile picture"
-									  titleText="Visit Astro's Profile Page"
-									/>
-									</li>
-									</a>
-								))
-							}
-						</ul>
-					</div>
-				  </div>
-				  <div class="flex items-center justify-between mt-3 mb-2">
-					  <a class="text-[10.24px] text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
-					  <a rel="next" href="/">
-						  <button type="button" class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-zinc-950 border-solid focus:outline-none flex" type="submit" aria-label="search">Next Page</button>
+  <main>
+    <div class="mx-auto w-[700px] px-[8px]">
+      <h1 class="text-[25.6px] font-semibold mb-3 text-balance">Browse</h1>
+      <div class="flex items-stretch text-xs mb-3">
+        <p class="text-xs cursor-default font-semibold">Filter:</p>
+        {filterItems.map((filter) => (
+            <a href={filter.href} class={currentPath === filter.smallname ? filter.firstcss : filter.secondcss}>{filter.name}</a>
+            <div class={filter.dividerCss}>{filter.divider}</div>
+        ))}
+      </div>
+      <div class="flex items-stretch text-xs mb-3">
+        <p class="text-xs cursor-default font-semibold">Friends:</p>
+        {friendItems.map((friend) => (
+            <a href={friend.href} class={currentPath === friend.smallname ? friend.firstcss : friend.secondcss}>{friend.name}</a>
+            <div class={friend.dividerCss}>{friend.divider}</div>
+        ))}
+      </div>
+      <div class="py-0.5 bg-orange-400/60">
+        <div class="flex justify-between items-center mx-2">
+          <p class="text-xs font-semibold mt-1 cursor-default">Active Users</p>
+          <a class="text-[10.24px] hover:underline" href="#">[random]</a>
+        </div>
+      </div>
+      <!-- Adjusted padding and margins to make borders closer to images -->
+      <div class="border-2 border-orange-400/60 border-solid"> 
+        <div class="ml-2 mr-0.5 mb-2 mt-1.5">
+			<ul class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
+				{
+				  [...Array(45)].map(() => {
+					const randomImageNumber = getUniqueImageNumber();
+					const randomName = getUniqueName();
+					return (
+					  <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
+						<p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
+						<li>
+						  <ProfileImage
+							width={96}
+							height={96}
+							imgclass="hover:no-underline"
+							srcurl={profilepic ? `https://i.pravatar.cc/96?img=${randomImageNumber}` : "/img/avatar.png"}
+							altText={`${randomName}'s profile picture`}
+							titleText={`Visit ${randomName}'s Profile Page`}
+						  />
+						</li>
 					  </a>
-				  </div>
-				</div>
-			</div>
-		</div>
-	</main>
+					);
+				  })
+				}
+			  </ul>
+        </div>
+      </div>
+      <div class="flex items-center justify-between mt-3 mb-2">
+        <a class="text-[10.24px] text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
+        <button 
+    		type="button" 
+    		class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-zinc-950 border-solid focus:outline-none flex" 
+    		aria-label="Next Page" 
+    		onclick=`window.location.href='${nextPageUrl}'`>
+    		Next Page
+		</button>
+      </div>
+    </div>
+  </main>
 </Layout>
