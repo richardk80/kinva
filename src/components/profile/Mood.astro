@@ -4,20 +4,45 @@ import SmallLink from '@com/main/SmallLink.astro';
 interface Props {
     loggedin?: boolean;
     username?: string;
+    lastActive?: string; // last active timestamp in a string format, e.g., "2024-08-23T10:58:00Z"
 }
 
-const { loggedin, username } = Astro.props;
+const { loggedin, username, lastActive } = Astro.props;
+
+let elapsedTime = Math.floor((new Date().getTime() - new Date(lastActive).getTime()) / 1000); // elapsed time in seconds
+
+function getTimeString(seconds: number) {
+    let interval = Math.floor(seconds / 31536000);
+
+    if (interval >= 1) return `${interval} year${interval > 1 ? 's' : ''} ago`;
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) return `${interval} month${interval > 1 ? 's' : ''} ago`;
+    interval = Math.floor(seconds / 604800);
+    if (interval >= 1) return `${interval} week${interval > 1 ? 's' : ''} ago`;
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) return `${interval} day${interval > 1 ? 's' : ''} ago`;
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) return `${interval} hour${interval > 1 ? 's' : ''} ago`;
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) return `${interval} minute${interval > 1 ? 's' : ''} ago`;
+    return "just now";
+}
+
+let lastActiveTime = getTimeString(elapsedTime);
 ---
 { loggedin ?
-null
+<div class="space-y-1">
+    <div class="flex items-center space-x-0.5">
+        <p class="font-semibold text-xs text-balance">Mood:</p>
+        <p class="text-xs text-balance">Happy</p>
+    </div>
+    <div>
+        { loggedin && ( <p class="text-xs"><SmallLink href={`${username}/editmood`} link="edit mood" /></p> )}
+    </div>
+</div>
 :
-<div class="flex items-center ml-0.5 space-x-0.5">
+<div class="flex items-center space-x-0.5">
     <p class="text-xs font-semibold text-balance">Last Active:</p>
-    <p class="text-xs text-balance">5 hours ago</p>
+    <p class="text-xs text-balance capitalize">{lastActiveTime}</p>
 </div>
 }
-<div class="flex items-center ml-0.5 space-x-0.5">
-    <p class="font-semibold text-xs text-balance">Mood:</p>
-    <p class="text-xs text-balance">Happy</p>
-</div>
-{ loggedin ? <p class="text-xs ml-0.5"><SmallLink href={`${username}/editmood`} link="edit mood" /></p> : null }

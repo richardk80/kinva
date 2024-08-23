@@ -10,9 +10,10 @@ interface Props {
     onlinenow?: boolean;
     name?: string;
     username?: string;
+    lastActive?: string;
 }
 
-const { loggedin, name, username } = Astro.props;
+const { loggedin, name, username, lastActive } = Astro.props;
 
 const profilepic = true;
 ---
@@ -26,13 +27,13 @@ const profilepic = true;
     aurl={`/${username}/settings`}
 >
         <div class="pl-3.5 pb-1.5 pt-2">
-            <div class="flex items-center space-x-2 -ml-2 mb-1 -mt-0.5">
+            <div class="flex items-center space-x-2 -ml-2 mb-2.5 -mt-0.5">
                 <UserDetailEditLinks loggedin={loggedin} username={username} />
             </div>
             <div class="flex justify-between mt-1.5 mb-2">
                 <div class="relative inline-block">
                 <ProfileImage
-                imgclass="-ml-1.5 -mt-0.5"
+                imgclass="-ml-1.5 -mt-1"
                 width={167}
                 height={167}
                 srcurl={profilepic ? "/img/400.jpeg" : "/img/avatar.png"}
@@ -41,11 +42,13 @@ const profilepic = true;
               />
               </div>
             </div>
-            <div class="box-border space-y-1 -ml-2 -mt-0.5">
-                    <Mood loggedin={loggedin} username={username} />
-                    <div class="mb-2 ml-0.5">
-                        <BottomUserDetailLinks username={username} />
-                    </div>
+            <div class="space-y-1.5">
+                <div class="-mt-2 -ml-1.5">
+                    <Mood loggedin={loggedin} username={username} lastActive={lastActive} />
+                </div>
+                <div class="-ml-1.5">
+                    <BottomUserDetailLinks username={username} />
+                </div>
             </div>
         </div>
 </BubbleBox>

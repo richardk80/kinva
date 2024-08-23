@@ -16,7 +16,11 @@ import Layout from '@lay/Layout.astro';
 
 import loggedin from '../loggedin';
 
+import currentTime from '../loggedin';
+
 const nickname = 'dex';
+
+const lastActive = '2024-08-23T10:58:00Z';
 
 const pages = [{ username: `${nickname}` }];
 
@@ -60,7 +64,7 @@ const autoplayon = true;
                 <div class="flex items-start justify-between gap-x-2">
                     <!-- Left Column -->
                     <div class="flex flex-col gap-y-2 w-3/5">
-                        <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} />
+                        <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                         <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
                         { audiourl ? <MusicPlayer audiourl={audiourl} xmlpath={xmlpath} autoplayon={autoplayon} /> : null }

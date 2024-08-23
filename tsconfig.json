@@ -1,13 +1,20 @@
 {
   "extends": "astro/tsconfigs/base",
-  "types": ["@astrojs/image/client"],
+  "types": [
+    "@astrojs/image/client"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowJs": true,
     "paths": {
-      "@com/*": ["src/components/*"],
-      "@lay/*": ["src/layouts/*"]
-    }
+      "@com/*": [
+        "src/components/*"
+      ],
+      "@lay/*": [
+        "src/layouts/*"
+      ]
+    },
+    "jsxImportSource": "preact"
   }
 }
