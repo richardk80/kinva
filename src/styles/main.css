@@ -39,12 +39,12 @@ input {
   font: inherit;
 }
 
-blink {
-  animation: blinker 5s linear infinite;
+#blink {
+  animation: blinker 2.5s linear infinite;
 }
 
 .blink {
-  animation: blinker 5s linear infinite;
+  animation: blinker 2.5s linear infinite;
 }
 
 @keyframes blinker {

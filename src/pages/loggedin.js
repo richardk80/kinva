@@ -1,3 +1,3 @@
-const loggedin = true
+const loggedin = true;
 
 export default loggedin;

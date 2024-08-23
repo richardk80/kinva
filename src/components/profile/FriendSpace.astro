@@ -1,8 +1,8 @@
 ---
 import RegularBox from '@com/main/RegularBox.astro';
-import ProfileImage from '@com/main/ProfileImage.astro';
+import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 
-const { name, username } = Astro.props;
+const { loggedin, name, username } = Astro.props;
 
 const peoplecount: number = 45;
 const friendnum = peoplecount > 8 ? 8 : peoplecount;
@@ -52,13 +52,14 @@ const getUniqueImageNumber = () => availableNumbers.pop();
         {peoplecount > 0 && (
           <a href={`/${username}`} title={`Visit ${randomName}'s profile`}>
             <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-blue-600 hover:text-red-600">
-              <p>{randomName}</p>
-              <ProfileImage
+              <p class="mb-0.5">{randomName}</p>
+              <OtherProfileImage
                 width={96}
                 height={96}
                 srcurl={profilepic ? `https://i.pravatar.cc/96?img=${getUniqueImageNumber()}` : "/img/avatar.png"}
                 altText={`${randomName}'s profile picture`}
                 titleText={`Visit ${randomName}'s profile`}
+                loggedin={loggedin}
               />
             </div>
           </a>

@@ -1,8 +1,10 @@
 ---
 import RegularBox from '@com/main/RegularBox.astro';
-import ProfileImage from "@com/home/ProfileImage.astro";
+import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 
 const { name, username } = Astro.props;
+
+import loggedin from '../../pages/loggedin';
 
 const profilepic = true;
 
@@ -50,11 +52,12 @@ const randomPhotos = shuffleArray(photos).slice(0, 4);
       <a href={`/${username}`} target="_self" title={`Visit ${randomName}'s profile`}>
         <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-blue-600 hover:text-red-600">
           <p class="mb-0.5">{randomName}</p>
-          <ProfileImage
+          <OtherProfileImage
             width={96}
             height={96}
             srcurl={profilepic ? randomPhotos[index] : "/img/avatar.png"}
             altText={`${randomName}'s profile picture`}
+            loggedin={loggedin}
           />
         </div>
       </a>
