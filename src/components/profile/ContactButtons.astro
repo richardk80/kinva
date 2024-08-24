@@ -13,13 +13,14 @@ import { Icon } from 'astro-icon/components';
 
 interface Props {
     loggedin?: boolean;
+    myself?: boolean;
     name?: string;
     friendship?: boolean;
     requested?: boolean;
     addgroup?: boolean;
 }
 
-const { loggedin, name, friendship, requested, addgroup } = Astro.props;
+const { loggedin, myself, name, friendship, requested, addgroup } = Astro.props;
 
 const username = 'dex';
 
@@ -27,7 +28,7 @@ const username = 'dex';
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-{ loggedin &&
+{ myself &&
 <NonRegularBox
     name="Contacting" 
     username={name} 

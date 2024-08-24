@@ -43,11 +43,10 @@ if (!page) {
   return; // Prevent further execution
 }
 
-const { name, loggedin, profilepic, profileimg, lastActive, friendship, requested, audiourl } = page;
+const { name, loggedin, myself, profilepic, profileimg, showlist, lastActive, friendship, requested, audiourl } = page;
 
 const aboutwords = `It is a long established fact <b style="color: blue; font-weight: 400">that</b> a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)`;
 const meetwords = `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page <b style="color: blue; font-weight: 400">editors</b> now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)`;
-const showList = true;
 const coverimage = true;
 const xmlpath = 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json';
 const autoplayon = true;
@@ -62,7 +61,7 @@ const autoplayon = true;
         <!-- Left Column -->
         <div class="flex flex-col gap-y-2 w-3/5">
           <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} profilepic={profilepic} profileimg={profileimg} />
-          <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
+          <ContactButtons loggedin={loggedin} myself={myself} name={name} friendship={friendship} requested={requested} />
           <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
           {audiourl ? <MusicPlayer audiourl={audiourl} xmlpath={xmlpath} autoplayon={autoplayon} /> : null}
           <Details loggedin={loggedin} name={name} username={username} />
@@ -72,7 +71,7 @@ const autoplayon = true;
         <div class="flex flex-col gap-y-2 w-full">
           <UserBox loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
           <div class="-mt-[3px]">
-            <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
+            <BlogEntry loggedin={loggedin} name={name} showlist={showlist} username={username} />
           </div>
           <div class="-mt-1 space-y-2">
             <Blurbs loggedin={loggedin} aboutwords={aboutwords} meetwords={meetwords} name={name} username={username} />

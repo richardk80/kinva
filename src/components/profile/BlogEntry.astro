@@ -3,7 +3,7 @@ import BlogBox from '@com/main/BlogBox.astro';
 
 import ShowList from '@com/main/ShowListProfile.astro';
 
-const { loggedin, showList, name, username } = Astro.props;
+const { showlist, name, username } = Astro.props;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -19,8 +19,8 @@ const { loggedin, showList, name, username } = Astro.props;
     aurl=`${username}/blog`
 >
     <div class="space-y-2 -ml-[1.5px] -mt-0.5 bg-white">
-        { showList ? <ShowList username={username} /> : 
-       <p class="text-xs">{ loggedin ? "You have" : "There are" } no blog entries yet</p>
+        { showlist ? <ShowList username={username} /> : 
+       <p class="text-xs">There are no blog entries yet</p>
         }
     </div>
 </BlogBox>

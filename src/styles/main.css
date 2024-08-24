@@ -75,3 +75,11 @@ input {
     color: #ffffff; 
     aspect-ratio: 1;
 }
+
+.text-gradient {
+  background: linear-gradient(to bottom, #E2E8F0, #CBD5E1, #64748B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
