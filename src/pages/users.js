@@ -8,62 +8,74 @@ const users = [
       "twofactor": true,
       "friendship": true,
       "profileimg": 'https://i.pravatar.cc/600?img=3',
-      "lastActive": '2024-08-23T10:58:00Z'
+      "lastActive": '2024-08-23T10:58:00Z',
+      "coverimg": 'https://media.sproutsocial.com/uploads/1c_facebook-cover-photo_clean@2x.png',
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc'
     },
     { 
       "name": "Richard",
       "count": 45,
       "username": "richard", 
       "loggedin": false, 
-      "profilepic": true, 
+      "profilepic": false, 
       "twofactor": false,
       "requested": true,
       "profileimg": 'https://i.pravatar.cc/600?img=8',
-      "lastActive": '2024-07-23T09:58:00Z'
+      "lastActive": '2024-07-23T09:58:00Z',
+      "coverimg": 'https://iwritingsolutions.com/wp-content/uploads/2022/05/ad9fc80c376ce3a9a2365aba0c356a70-scaled.jpg',
+      "audiourl": ''
     },
     { 
       "name": "Joe",
       "count": 26,
       "username": "joe", 
-      "loggedin": true, 
+      "loggedin": false,
       "profilepic": true,
       "twofactor": true,
       "friendship": true,
       "profileimg": 'https://i.pravatar.cc/600?img=11',
-      "lastActive": '2024-08-23T08:58:00Z'
+      "lastActive": '2024-08-23T08:58:00Z',
+      "coverimg": 'https://i.pinimg.com/originals/4a/88/7e/4a887e68509737452a38ba244079b8a0.jpg',
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc'
     },
     { 
       "name": "Rodney",
       "count": 18,
       "username": "rodney", 
-      "loggedin": false, 
-      "profilepic": true, 
+      "loggedin": true, 
+      "profilepic": false, 
       "twofactor": false,
       "requested": true,
       "profileimg": 'https://i.pravatar.cc/600?img=12',
-      "lastActive": '2024-08-23T10:54:00Z'
+      "lastActive": '2024-08-23T10:54:00Z',
+      "coverimg": 'https://media.sproutsocial.com/uploads/3a_facebook-cover-photo_labels@2x-1.png',
+      "audiourl": ''
     },
     { 
       "name": "Keith",
       "count": 12,
       "username": "keith", 
-      "loggedin": true, 
+      "loggedin": false, 
       "profilepic": true, 
       "twofactor": true,
       "friendship": true,
       "profileimg": 'https://i.pravatar.cc/600?img=13',
-      "lastActive": '2024-08-23T07:58:00Z'
+      "lastActive": '2024-08-23T07:58:00Z',
+      "coverimg": 'https://media.sproutsocial.com/uploads/3c_facebook-cover-photo_labels@2x-2.png',
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc'
     },
     { 
       "name": "James",
       "count": 52,
       "username": "james", 
       "loggedin": false, 
-      "profilepic": true, 
+      "profilepic": false, 
       "twofactor": false,
       "requested": true,
       "profileimg": 'https://i.pravatar.cc/600?img=14',
-      "lastActive": '2024-08-23T08:58:00Z'
+      "lastActive": '2024-08-23T08:58:00Z',
+      "coverimg": 'https://marketplace.canva.com/EAE89qUYCic/1/0/1600w/canva-blue-ocean-tide-beach-motivational-quote-facebook-cover-UlayDxq20Mo.jpg',
+      "audiourl": ''
     },
     { 
       "name": "Steve",
@@ -74,18 +86,22 @@ const users = [
       "twofactor": true,
       "friendship": true,
       "profileimg": 'https://i.pravatar.cc/600?img=18',
-      "lastActive": '2024-08-22T10:58:00Z'
+      "lastActive": '2024-08-22T10:58:00Z',
+      "coverimg": 'https://images.ctfassets.net/hrltx12pl8hq/5orfKJqG0N9UopDnOVn2BW/1a2e92f5474911a4631722a6e70e7c5f/ezgif-5-44fa6284e5f3.gif',
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc'
     },
     { 
       "name": "Roger",
       "count": 8,
       "username": "roger", 
-      "loggedin": false, 
-      "profilepic": true, 
+      "loggedin": true, 
+      "profilepic": false, 
       "twofactor": false,
       "requested": true,
       "profileimg": 'https://i.pravatar.cc/600?img=53',
-      "lastActive": '2024-08-21T10:58:00Z'
+      "lastActive": '2024-08-21T10:58:00Z',
+      "coverimg": 'https://static.vecteezy.com/system/resources/previews/020/011/196/non_2x/green-minimalist-life-quote-facebook-cover-free-editor_template.jpeg',
+      "audiourl": ''
     },
     { 
       "name": "Jay",
@@ -96,7 +112,9 @@ const users = [
       "twofactor": false,
       "friendship": true,
       "profileimg": 'https://i.pravatar.cc/600?img=54',
-      "lastActive": '2023-08-24T10:58:00Z'
+      "lastActive": '2023-08-24T10:58:00Z',
+      "coverimg": 'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2017/08/nature-design.jpg',
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc'
     }
   ];
 

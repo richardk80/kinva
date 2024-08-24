@@ -1,3 +1,3 @@
-const profilepic = true;
+const profilepic = false;
 
 export default profilepic;
