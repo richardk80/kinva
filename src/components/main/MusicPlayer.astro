@@ -18,11 +18,11 @@ const settings = {
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
-     class="h-[59px] w-[304px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500">
+     class="h-[59px] w-[304px] bg-gradient-to-b from-slate-300 via-slate-400 to-slate-600">
       <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
         <div class="group bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 w-12 h-10 rounded">
-          <button type="button" class="h-[40px] w-12 rounded">
-            <i class="mmp-icon fa-solid fa-play -mt-[0.5px] text-gradient"></i>
+          <button type="button" class="h-[40px] w-12 flex items-center justify-center rounded">
+            <i class="mmp-icon fa-solid fa-play text-gradient"></i>
           </button>
         </div>
             <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-50 grid grid-cols-2 h-[40px] min-w-[231px] pointer-events-none rounded">
@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPauseState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-pause', 'text-2xl');
-            buttonIcon.classList.add('fa-play', 'text-xl');
+            buttonIcon.classList.remove('fa-pause', 'text-2xl', 'mt-[1.5px]');
+            buttonIcon.classList.add('fa-play', 'text-xl', 'mt-[2px]');
         }
 
         setPlayState() {
@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-play', 'text-white', 'text-xl');
-            buttonIcon.classList.add('fa-pause', 'text-white', 'text-2xl');
+            buttonIcon.classList.remove('fa-play', 'text-xl', 'mt-[2px]');
+            buttonIcon.classList.add('fa-pause', 'text-2xl', 'mt-[1.5px]');
         }
 
         setButtonClickCallback(callback) {
