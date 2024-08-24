@@ -20,19 +20,8 @@ if (!page) {
 }
 
 const { name, coverimg, loggedin } = page;
-
-const { coverimage } = Astro.props;
 ---
-{ coverimage ? 
-<div class="relative w-full h-[150px] overflow-hidden bg-gray-50 border-2 border-[#60A5FA]">
-    <img src={coverimg} alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />
-    { loggedin && (
-      <a class="absolute bottom-2 right-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-950 border border-zinc-500 px-1.5 py-0.5 cursor-pointer text-xs flex items-center space-x-1" href={`/${username}/settings`}>
-        <Icon class="h-3 w-3" name="camera" />
-        <span class="mt-[1.5px]">Edit Cover Photo</span>
-      </a>
-    )}
+<div class="relative w-full h-[150px] overflow-hidden bg-blue-200 border-2 border-blue-400">
+  {coverimg && (<img src={coverimg} alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />)}
+  {loggedin && ( <a class="absolute bottom-2 right-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-950 border border-zinc-500 px-1.5 py-0.5 cursor-pointer text-xs flex items-center space-x-1" href={`/${username}/settings`}><Icon class="h-3 w-3" name="camera" /><span class="mt-[1.5px]">Edit Cover Photo</span></a>)}
 </div>
-:
-<div class="-mt-2"></div>
-}

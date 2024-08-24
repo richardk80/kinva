@@ -87,7 +87,7 @@ const users = [
       "friendship": true,
       "profileimg": 'https://i.pravatar.cc/600?img=18',
       "lastActive": '2024-08-22T10:58:00Z',
-      "coverimg": 'https://images.ctfassets.net/hrltx12pl8hq/5orfKJqG0N9UopDnOVn2BW/1a2e92f5474911a4631722a6e70e7c5f/ezgif-5-44fa6284e5f3.gif',
+      "coverimg": '',
       "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc'
     },
     { 
