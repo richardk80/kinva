@@ -13,9 +13,10 @@ interface Props {
     username?: string;
     lastActive?: string;
     profilepic?: boolean;
+    profileimg?: string;
 }
 
-const { loggedin, name, username, lastActive, profilepic } = Astro.props;
+const { loggedin, onlinenow, name, username, lastActive, profilepic, profileimg  } = Astro.props;
 ---
 <BubbleBox
     name={name} 
@@ -37,7 +38,7 @@ const { loggedin, name, username, lastActive, profilepic } = Astro.props;
                           <ProfileImage
                             width={160}
                             height={160}
-                            srcurl="/img/400.jpeg"
+                            srcurl={profileimg}
                             altText="Astro's profile picture"
                             loggedin={loggedin}
                           />

@@ -14,76 +14,74 @@ import FriendComments from '@com/profile/FriendComments.astro';
 
 import Layout from '@lay/Layout.astro';
 
-import loggedin from '../loggedin';
+import users from '../users';
 
-import profilepic from '../../pages/profilepic';
+// Shuffle function
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
-const nickname = 'dex';
-
-const lastActive = '2024-08-23T10:58:00Z';
-
-const pages = [{ username: `${nickname}` }];
-
-console.log(pages);
+// Shuffle the users array
+const shuffledUsers = shuffleArray(users);
 
 const { username } = Astro.params;
 
-const page = pages.find((page) => page.username === username);
-if(!page) {
-    Astro.response.status = 404;
-    Astro.response.statusText = 'Not found';
-};
+console.log('Username from URL:', username);
+console.log('Shuffled users array:', shuffledUsers);
 
-const name = "Dex";
+const page = shuffledUsers.find(user => user.username === username);
+
+console.log('Found page:', page);
+
+if (!page) {
+  Astro.response.status = 404;
+  Astro.response.statusText = 'Not found';
+  return; // Prevent further execution
+}
+
+const { name, loggedin, profilepic, profileimg, lastActive, friendship, requested } = page;
 
 const aboutwords = `It is a long established fact <b style="color: blue; font-weight: 400">that</b> a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)`;
-
 const meetwords = `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page <b style="color: blue; font-weight: 400">editors</b> now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)`;
-
-
 const showList = true;
-
-const friendship = false;
-
-const requested = true;
-
 const coverimage = true;
-
 const audiourl = 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc';
-
 const xmlpath = 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json';
-
 const autoplayon = true;
 ---
-<Layout title=`${name}`>
-        <div class="grid grid-cols-12 grid-flow-row-dense">
-            <div class="col-span-full">
-                <div class="mb-2">
-                    <CoverImage coverimage={coverimage} name={name} />
-                </div>
-                <div class="flex items-start justify-between gap-x-2">
-                    <!-- Left Column -->
-                    <div class="flex flex-col gap-y-2 w-3/5">
-                        <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} profilepic={profilepic} />
-                        <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
-                        <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
-                        { audiourl ? <MusicPlayer audiourl={audiourl} xmlpath={xmlpath} autoplayon={autoplayon} /> : null }
-                        <Details loggedin={loggedin} name={name} username={username} />
-                        <Interests loggedin={loggedin} name={name} username={username} />
-                    </div>
-                    <!-- Right Column -->
-                    <div class="flex flex-col gap-y-2 w-full">
-                        <UserBox loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
-                            <div class="-mt-[3px]">
-                                <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
-                            </div>
-                            <div class="-mt-1 space-y-2">
-                                <Blurbs loggedin={loggedin} aboutwords={aboutwords} meetwords={meetwords} name={name} username={username} />
-                                <FriendSpace loggedin={loggedin} name={name} username={username} profilepic={profilepic} />
-                                <FriendComments loggedin={loggedin} name={name} username={username} />
-                            </div>
-                    </div>
-                </div>
-            </div>
+<Layout title={name}>
+  <div class="grid grid-cols-12 grid-flow-row-dense">
+    <div class="col-span-full">
+      <div class="mb-2">
+        <CoverImage coverimage={coverimage} name={name} username={username} />
+      </div>
+      <div class="flex items-start justify-between gap-x-2">
+        <!-- Left Column -->
+        <div class="flex flex-col gap-y-2 w-3/5">
+          <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} profilepic={profilepic} profileimg={profileimg} />
+          <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
+          <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
+          {audiourl ? <MusicPlayer audiourl={audiourl} xmlpath={xmlpath} autoplayon={autoplayon} /> : null}
+          <Details loggedin={loggedin} name={name} username={username} />
+          <Interests loggedin={loggedin} name={name} username={username} />
         </div>
+        <!-- Right Column -->
+        <div class="flex flex-col gap-y-2 w-full">
+          <UserBox loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
+          <div class="-mt-[3px]">
+            <BlogEntry loggedin={loggedin} name={name} showList={showList} username={username} />
+          </div>
+          <div class="-mt-1 space-y-2">
+            <Blurbs loggedin={loggedin} aboutwords={aboutwords} meetwords={meetwords} name={name} username={username} />
+            <FriendSpace loggedin={loggedin} name={name} username={username} profilepic={profilepic} />
+            <FriendComments loggedin={loggedin} name={name} username={username} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

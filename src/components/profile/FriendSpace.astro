@@ -1,20 +1,40 @@
 ---
 import RegularBox from '@com/main/RegularBox.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
-
 import { Icon } from 'astro-icon/components';
+import users from '../../pages/users';
 
-const { loggedin, name, username, profilepic } = Astro.props;
+const { username } = Astro.params;
 
-const peoplecount: number = 45;
+console.log('Username from URL:', username);
+console.log('Users array:', users);
+
+// Find the current user based on username
+const currentUser = users.find(user => user.username === username);
+
+console.log('Found user:', currentUser);
+
+if (!currentUser) {
+  Astro.response.status = 404;
+  Astro.response.statusText = 'Not found';
+  return; // Prevent further execution
+}
+
+// Extract current user's information
+const { name, loggedin, profilepic, profileimg, count } = currentUser;
+
+// Convert count to a number if it isn't already
+const peoplecount = Number(count);
 const friendnum = peoplecount > 8 ? 8 : peoplecount;
 
-// List of unique first names (ensure there are more than friendnum names)
-const firstNames = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Jamie', 'Casey', 'Riley', 'Cameron'];
+console.log(peoplecount);
+
+// Ensure 'name' is treated as an array if it's intended to be a list of names
+const namesArray = Array.isArray(name) ? name : [name];
 
 // Shuffle function to randomize the array
 const shuffleArray = (array) => {
-  let shuffledArray = array.slice(); // Copy the array
+  let shuffledArray = array.slice(); // Copy the array to avoid mutating the original
   for (let i = shuffledArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]; // Swap elements
@@ -23,13 +43,12 @@ const shuffleArray = (array) => {
 };
 
 // Shuffle the names and select the first `friendnum` names
-const shuffledNames = shuffleArray(firstNames).slice(0, friendnum);
+const shuffledNames = shuffleArray(namesArray).slice(0, friendnum);
 
-// Create a list of numbers from 1 to 8
-const availableNumbers = shuffleArray(Array.from({ length: 70 }, (_, i) => i + 1));
+// Get all users except the current user
+const otherUsers = users.filter(user => user.username !== username);
 
-// Get a unique number from the list
-const getUniqueImageNumber = () => availableNumbers.pop();
+console.log('Other users:', otherUsers);
 ---
 
 <RegularBox
@@ -48,32 +67,30 @@ const getUniqueImageNumber = () => availableNumbers.pop();
   </p>
 
   <div class={peoplecount > 0 ? "grid grid-flow-dense grid-cols-4 gap-x-1 gap-y-2 pt-1 pb-0.5" : "grid grid-flow-dense grid-cols-4 pt-1"}>
-    {shuffledNames.map((randomName, index) => (
+    {otherUsers.slice(0, friendnum).map((user) => (
       <div class={peoplecount > 0 ? "pt-0.5 pb-2 px-1" : "py-0 px-1"}>
-        {peoplecount > 0 && (
-          <a href={`/${username}`} title={`Visit ${randomName}'s profile`}>
-            <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-[#1D4ED8] hover:text-[#ED0707]">
-              <p class="mb-0.5">{randomName}</p>
-              { profilepic ?
-                  <OtherProfileImage
-                  width={96}
-                  height={96}
-                  srcurl={`https://i.pravatar.cc/96?img=${getUniqueImageNumber()}`}
-                  altText={`${randomName}'s profile picture`}
-                  titleText={`Visit ${randomName}'s profile`}
-                  loggedin={loggedin}
-                />
-                :
-                <div class="relative">
-                  <Icon class="w-[96px] h-[96px]" name="avatar" />
-                    { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 -mr-1">
-                    </div> 
-                  }
-                </div>
-              }
-            </div>
-          </a>
-        )}
+        <a href={`/${user.username}`} title={`Visit ${user.name}'s profile`}>
+          <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-[#1D4ED8] hover:text-[#ED0707]">
+            <p class="mb-0.5">{user.name}</p>
+            {user.profilepic ? (
+              <OtherProfileImage
+                width={96}
+                height={96}
+                srcurl={user.profileimg}
+                altText={`${user.name}'s profile picture`}
+                titleText={`Visit ${user.name}'s profile`}
+                loggedin={user.loggedin}
+              />
+            ) : (
+              <div class="relative">
+                <Icon class="w-[96px] h-[96px]" name="avatar" />
+                {user.loggedin && (
+                  <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 -mr-1"></div>
+                )}
+              </div>
+            )}
+          </div>
+        </a>
       </div>
     ))}
   </div>

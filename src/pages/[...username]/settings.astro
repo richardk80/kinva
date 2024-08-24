@@ -4,11 +4,25 @@ import NonRegularBox from '@com/main/NonRegularBox.astro';
 import SmallLink from '@com/main/SmallLink.astro';
 import { Icon } from 'astro-icon/components';
 
-const twofactor = true;
+import users from '../../pages/users';
 
-const username = "dex";
+const { username } = Astro.params;
 
-const { email, name, id } = Astro.params;
+console.log('Username from URL:', username);
+
+console.log('Users array:', users);
+
+const page = users.find(user => user.username === username);
+
+console.log('Found page:', page);
+
+if (!page) {
+  Astro.response.status = 404;
+  Astro.response.statusText = 'Not found';
+  return; // Prevent further execution
+}
+
+const { name, email, id, loggedin, profilepic, twofactor } = page;
 ---
 <Layout title="Account Settings">
 	<div class="mx-auto w-[690px] mb-5 form">
