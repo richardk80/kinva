@@ -21,9 +21,9 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 const url = new URL(Astro.request.url);
 const currentPage = parseInt(url.searchParams.get('page')) || 1;
 
-import loggedin from '../pages/loggedin';
+import loggedin from '../pages/api/loggedin.json';
 
-import profilepic from '../pages/profilepic';
+import profilepic from '../pages/api/profilepic.json';
 
 // List of unique names (ensure there are at least 45)
 const uniqueNames = [
