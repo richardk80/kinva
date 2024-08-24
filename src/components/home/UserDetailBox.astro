@@ -4,9 +4,11 @@ import ProfileImage from '@com/main/ProfileImage.astro';
 import TopRightUserDetailLinks from '@com/home/TopRightUserDetailLinks.astro';
 import BottomUserDetailLinks from '@com/home/BottomUserDetailLinks.astro';
 
+import { Icon } from 'astro-icon/components';
+
 const { name, username } = Astro.props;
 
-const profilepic = true;
+import profilepic from '../../pages/profilepic';
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -22,13 +24,17 @@ const profilepic = true;
         <div class="mx-2 mt-2 mb-1 space-y-1">
             <div class="flex justify-between">
                 <a href={`/${username}`}>
-                    <ProfileImage
-                    width={160}
-                    height={160}
-                    srcurl={profilepic ? "/img/400.jpeg" : "/img/avatar.png"}
-                    altText="Astro's profile picture"
-                    titleText="Visit Astro's Profile Page"
-                  />
+                    {profilepic ? (
+                        <ProfileImage
+                          width={160}
+                          height={160}
+                          srcurl="/img/400.jpeg"
+                          altText="Astro's profile picture"
+                          titleText="Visit Astro's Profile Page"
+                        />
+                      ) : (
+                        <Icon class="w-[160px] h-[160px] mb-1.5" name="avatar" />
+                      )}
                 </a>
                 <div class="-mt-0.5">
                     <TopRightUserDetailLinks username={username} />

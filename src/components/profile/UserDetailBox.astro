@@ -4,6 +4,7 @@ import UserDetailEditLinks from '@com/profile/UserDetailEditLinks.astro';
 import ProfileImage from '@com/main/ProfileImage.astro';
 import Mood from '@com/profile/Mood.astro';
 import BottomUserDetailLinks from '@com/profile/BottomUserDetailLinks.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
     loggedin?: boolean;
@@ -15,7 +16,7 @@ interface Props {
 
 const { loggedin, name, username, lastActive } = Astro.props;
 
-const profilepic = true;
+import profilepic from '../../pages/profilepic';
 ---
 <BubbleBox
     name={name} 
@@ -33,13 +34,22 @@ const profilepic = true;
             </div>
             <div class="flex justify-between -mt-1 mb-2 -ml-1.5">
                 <div class="relative inline-block">
-                <ProfileImage
-                width={160}
-                height={160}
-                srcurl={profilepic ? "/img/400.jpeg" : "/img/avatar.png"}
-                altText="Astro's profile picture"
-                loggedin={loggedin}
-              />
+                    { profilepic ?
+                          <ProfileImage
+                            width={160}
+                            height={160}
+                            srcurl="/img/400.jpeg"
+                            altText="Astro's profile picture"
+                            loggedin={loggedin}
+                          />
+                         :
+                        <div class="relative mb-1.5">
+                          <Icon class="w-[160px] h-[160px]" name="avatar" />
+                          {loggedin && (
+                            <div class="absolute bottom-0 right-0 block w-7 h-7 rounded-full bg-green-500 border-[4px] border-white -mb-1.5 -mr-1.5"></div>
+                          )}
+                        </div>
+                    }
               </div>
             </div>
             <div class="space-y-1.5">

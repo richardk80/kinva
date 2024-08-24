@@ -2,6 +2,8 @@
 import Layout from '@lay/Layout.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 
+import { Icon } from 'astro-icon/components';
+
 import loggedin from '../pages/loggedin';
 
 const filterItems = [
@@ -21,7 +23,7 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 const url = new URL(Astro.request.url);
 const currentPage = parseInt(url.searchParams.get('page')) || 1;
 
-const profilepic = true;
+import profilepic from '../pages/profilepic';
 
 // List of unique names (ensure there are at least 45)
 const uniqueNames = [
@@ -103,14 +105,20 @@ const generateRandomProfileUrl = () => {
 					  <a class="text-[#1D4ED8] hover:text-[#ED0707] hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
 						<p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
 						<div>
-						  <OtherProfileImage
-							width={96}
-							height={96}
-							srcurl={profilepic ? `https://i.pravatar.cc/96?img=${randomImageNumber}` : "/img/avatar.png"}
-							altText={`${randomName}'s profile picture`}
-							titleText={`Visit ${randomName}'s Profile Page`}
-              loggedin={loggedin}
-						  />
+						  { profilepic ?
+                          <OtherProfileImage
+                            width={96}
+                            height={96}
+                            srcurl={`https://i.pravatar.cc/96?img=${randomImageNumber}`}
+                            altText={`${randomName}'s profile picture`}
+                            loggedin={loggedin}
+                          />
+                         :
+                        <div class="relative">
+                          <Icon class="w-[96px] h-[96px]" name="avatar" />
+                          { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[3px] border-white -mb-1 mr-[1px]"></div> }
+                        </div>
+                    }
 						</div>
 					  </a>
 					);
