@@ -12,11 +12,10 @@ interface Props {
     name?: string;
     username?: string;
     lastActive?: string;
+    profilepic?: boolean;
 }
 
-const { loggedin, name, username, lastActive } = Astro.props;
-
-import profilepic from '../../pages/profilepic';
+const { loggedin, name, username, lastActive, profilepic } = Astro.props;
 ---
 <BubbleBox
     name={name} 
@@ -46,7 +45,7 @@ import profilepic from '../../pages/profilepic';
                         <div class="relative mb-1.5">
                           <Icon class="w-[160px] h-[160px]" name="avatar" />
                           {loggedin && (
-                            <div class="absolute bottom-0 right-0 block w-7 h-7 rounded-full bg-green-500 border-[4px] border-white -mb-1.5 -mr-1.5"></div>
+                            <div class="absolute bottom-0 right-0 block w-7 h-7 rounded-full bg-green-500 border-[2px] border-white -mb-1 -mr-1"></div>
                           )}
                         </div>
                     }

@@ -4,8 +4,6 @@ import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 
 import { Icon } from 'astro-icon/components';
 
-import loggedin from '../pages/loggedin';
-
 const filterItems = [
   { href: "/", smallname: "", firstcss: "text-[#1D4ED8] hover:text-[#ED0707] font-semibold", secondcss: "text-[#1D4ED8] hover:text-[#ED0707] ml-1 font-semibold hover:underline", name: "All Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
   { href: "/browse", smallname: "newusers", firstcss: "text-[#1D4ED8] hover:text-[#ED0707] font-semibold", secondcss: "text-[#1D4ED8] hover:text-[#ED0707] ml-1 hover:underline", name: "New Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
@@ -22,6 +20,8 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 // Get the 'page' query parameter
 const url = new URL(Astro.request.url);
 const currentPage = parseInt(url.searchParams.get('page')) || 1;
+
+import loggedin from '../pages/loggedin';
 
 import profilepic from '../pages/profilepic';
 
@@ -64,7 +64,6 @@ const generateRandomProfileUrl = () => {
   return `/${users[randomIndex]}`;
 };
 ---
-
 <Layout title="Browse">
   <main>
     <div class="mx-auto w-[700px] px-[8px]">
@@ -95,7 +94,7 @@ const generateRandomProfileUrl = () => {
       </div>
       <!-- Adjusted padding and margins to make borders closer to images -->
       <div class="border-2 border-[#f9c56c]"> 
-        <div class="ml-2 mr-0.5 mb-1 mt-1.5">
+        <div class="ml-2 mr-0.5 mb-2 mt-1.5">
 			<div class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
 				{
 				  [...Array(45)].map(() => {
@@ -116,7 +115,7 @@ const generateRandomProfileUrl = () => {
                          :
                         <div class="relative">
                           <Icon class="w-[96px] h-[96px]" name="avatar" />
-                          { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[3px] border-white -mb-1 mr-[1px]"></div> }
+                          { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 mr-[1px]"></div> }
                         </div>
                     }
 						</div>

@@ -16,7 +16,7 @@ import Layout from '@lay/Layout.astro';
 
 import loggedin from '../loggedin';
 
-import currentTime from '../loggedin';
+import profilepic from '../../pages/profilepic';
 
 const nickname = 'dex';
 
@@ -64,7 +64,7 @@ const autoplayon = true;
                 <div class="flex items-start justify-between gap-x-2">
                     <!-- Left Column -->
                     <div class="flex flex-col gap-y-2 w-3/5">
-                        <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} />
+                        <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} profilepic={profilepic} />
                         <ContactButtons loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
                         <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
                         { audiourl ? <MusicPlayer audiourl={audiourl} xmlpath={xmlpath} autoplayon={autoplayon} /> : null }
@@ -79,7 +79,7 @@ const autoplayon = true;
                             </div>
                             <div class="-mt-1 space-y-2">
                                 <Blurbs loggedin={loggedin} aboutwords={aboutwords} meetwords={meetwords} name={name} username={username} />
-                                <FriendSpace loggedin={loggedin} name={name} username={username} />
+                                <FriendSpace loggedin={loggedin} name={name} username={username} profilepic={profilepic} />
                                 <FriendComments loggedin={loggedin} name={name} username={username} />
                             </div>
                     </div>

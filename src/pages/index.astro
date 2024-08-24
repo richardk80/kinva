@@ -15,12 +15,13 @@ import LoginCoolPeople from '@com/main/LoginCoolPeople.astro';
 import LoginDivider from '@com/login/LoginDivider.astro';
 import LoginBox from '@com/login/LoginBox.astro';
 
-
 const name = "Dex";
 
 const username = "dex";
 
 import loggedin from './loggedin';
+
+import profilepic from './profilepic';
 ---
 <Layout title={ loggedin ? "Home" : "Login" }>
 	{ loggedin ?
@@ -42,7 +43,7 @@ import loggedin from './loggedin';
                         </div>
                         <InfoBox username={username} />
                     </div>
-                    <CoolPeople name={name} username={username} />
+                    <CoolPeople name={name} username={username} loggedin={loggedin} profilepic={profilepic} />
                     <FriendsBulletins username={username} />
                     <FriendRequests username={username} />
                 </div>
@@ -55,7 +56,7 @@ import loggedin from './loggedin';
             <div class="flex items-start justify-between">
                 <!-- Left Column -->
                 <div class="grid grid-rows-1">
-                    <LoginCoolPeople loggedin={loggedin} />
+                    <LoginCoolPeople loggedin={loggedin} profilepic={profilepic} />
                 </div>
                 <!-- Divider -->
                 <div class="grid grid-rows-1 gap-y-0.5">
