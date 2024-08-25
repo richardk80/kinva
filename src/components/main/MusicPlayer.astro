@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         audioFilePath: container.getAttribute('data-audio-file-path'),
         autoplay: autoplay,
         xmlFilePath: container.getAttribute('data-xml-file-path'),
-        updateInterval: 50000
+        updateInterval: 75000
     };
 
     class UserInterface {
@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         updateSongInfo(title, artist) {
+            // Capitalize words function
             const capitalizeWords = (str) => {
                 if (!str) return str;
                 const minorWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
@@ -142,31 +143,40 @@ document.addEventListener("DOMContentLoaded", function() {
             let formattedTitle = capitalizeWords(title) || 'No Title Available';
             let formattedArtist = capitalizeWords(artist) || 'No Artist Available';
 
-            // Update song title and artist with fade animation
+            // Get current song info
             const titleElement = document.getElementById('song-title');
             const artistElement = document.getElementById('song-artist');
+            const currentTitle = titleElement.textContent;
+            const currentArtist = artistElement.textContent;
 
-            // Apply fade-out effect
-            titleElement.classList.add('fade', 'fade-out');
-            artistElement.classList.add('fade', 'fade-out');
+            // Check if the song info has changed
+            if (formattedTitle !== currentTitle || formattedArtist !== currentArtist) {
+                // Apply fade-out effect
+                titleElement.classList.add('fade', 'fade-out');
+                artistElement.classList.add('fade', 'fade-out');
 
-            // After fade-out duration, update text and apply fade-in effect
-            setTimeout(() => {
+                // After fade-out duration, update text and apply fade-in effect
+                setTimeout(() => {
+                    titleElement.textContent = formattedTitle;
+                    artistElement.textContent = formattedArtist;
+
+                    titleElement.classList.remove('fade-out');
+                    artistElement.classList.remove('fade-out');
+
+                    titleElement.classList.add('fade-in');
+                    artistElement.classList.add('fade-in');
+                }, 500); // Match this duration to your fade-out transition duration
+
+                // Remove fade-in class after transition ends
+                setTimeout(() => {
+                    titleElement.classList.remove('fade-in');
+                    artistElement.classList.remove('fade-in');
+                }, 1000); // This should be longer than the transition duration
+            } else {
+                // If no change, just update text without animation
                 titleElement.textContent = formattedTitle;
                 artistElement.textContent = formattedArtist;
-
-                titleElement.classList.remove('fade-out');
-                artistElement.classList.remove('fade-out');
-
-                titleElement.classList.add('fade-in');
-                artistElement.classList.add('fade-in');
-            }, 500); // Match this duration to your fade-out transition duration
-
-            // Remove fade-in class after transition ends
-            setTimeout(() => {
-                titleElement.classList.remove('fade-in');
-                artistElement.classList.remove('fade-in');
-            }, 1000); // This should be longer than the transition duration
+            }
         }
     }
 
@@ -300,38 +310,25 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         _setupAutoUpdate() {
-            this._fetchAndUpdateSongInfo();
             setInterval(() => {
                 this._fetchAndUpdateSongInfo();
             }, this._settings.updateInterval);
         }
 
         _setButtonClickCallback() {
-            let buttonClickCallback = this._buttonClickCallback();
-            this._userInterface.setButtonClickCallback(buttonClickCallback);
-        }
-
-        _buttonClickCallback() {
-            return () => {
+            this._userInterface.setButtonClickCallback(() => {
                 if (this._engine.isPaused()) {
                     this._engine.play();
-                    this._userInterface.setPlayState();
                 } else {
                     this._engine.pause();
-                    this._userInterface.setPauseState();
                 }
-            }
+            });
         }
 
         _setOnEndedCallback() {
-            let onEndedCallback = this._onEndedCallback();
-            this._engine.setOnEndedCallback(onEndedCallback);
-        }
-
-        _onEndedCallback() {
-            return () => {
-                this._userInterface.setPauseState();
-            };
+            this._engine.setOnEndedCallback(() => {
+                this._engine.play();
+            });
         }
     }
 
