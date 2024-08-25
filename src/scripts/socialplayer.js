@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         audioFilePath: container.getAttribute('data-audio-file-path'),
         autoplay: autoplay,
         xmlFilePath: container.getAttribute('data-xml-file-path'),
-        updateInterval: 75000
+        updateInterval: 55000
     };
 
     class UserInterface {
