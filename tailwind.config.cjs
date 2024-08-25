@@ -27,7 +27,7 @@ module.exports = {
       fontFamily: {
         heading: ['var(--font-heading)', ...fontFamily.sans],
         body: ['var(--font-body)', ...fontFamily.sans],
-        player: ['"Railway"', ...fontFamily.sans]
+        player: ['"Roboto"', ...fontFamily.sans]
       },
     },
   },

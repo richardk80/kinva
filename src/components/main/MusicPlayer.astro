@@ -17,14 +17,14 @@ const settings = {
      class="h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500">
       <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
         <div class="group bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 w-12 h-10">
-          <button type="button" class="h-10 w-12">
+          <button type="button" class="h-10 w-12 antialiased subpixel-antialiased">
             <i class="mmp-icon fa-solid fa-play text-gradient"></i>
           </button>
         </div>
             <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 grid grid-cols-2 h-10 w-[231px] pointer-events-none">
-                    <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[0.5px] font-player antialiased subpixel-antialiased">
-                        <div id="song-title"></div>
-                        <div id="artist-container" class="overflow-hidden">
+                    <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[0.5px] font-player">
+                        <div id="song-title" class="capitalize antialiased subpixel-antialiased"></div>
+                        <div id="artist-container" class="overflow-hidden antialiased subpixel-antialiased">
                             <span id="song-artist"></span>
                         </div>
                     </div>
