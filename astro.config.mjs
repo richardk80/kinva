@@ -19,7 +19,7 @@ export default defineConfig({
         output: {
           entryFileNames: 'entry.[hash].js',
           chunkFileNames: 'chunks/chunk.[hash].js',
-          assetFileNames: '_astro/global.socialsite.assets.[hash][extname]'
+          assetFileNames: '_astro/global.himoot.assets.[hash][extname]'
         }
       }
     }
