@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const settings = {
         containerID: container.id,
-        title: container.getAttribute('data-title'),
-        artist: container.getAttribute('data-artist'),
         audioFilePath: container.getAttribute('data-audio-file-path'),
         autoplay: autoplay,
         xmlFilePath: container.getAttribute('data-xml-file-path'),
@@ -69,34 +67,29 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         updateSongInfo(title, artist) {
-            // Capitalize words function
             const capitalizeWords = (str) => {
-                if (!str) return str;
                 const minorWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
                 const alwaysUppercase = ['wvh', 'nfl', 'usa', 'ac/dc'];
                 const capitalizeParentheses = (s) => s.replace(/\(([^)]+)\)/g, (match, p1) => `(${p1.split(' ').map(word => {
-                    if (alwaysUppercase.includes(word.toLowerCase())) {
-                        return word.toUpperCase();
-                    }
-                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    return alwaysUppercase.includes(word.toLowerCase())
+                        ? word.toUpperCase()
+                        : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
                 }).join(' ')})`);
 
                 return capitalizeParentheses(str)
                     .split(' ')
                     .map((word, index) => {
-                        if (index === 0 || index === str.split(' ').length - 1 || !minorWords.includes(word.toLowerCase())) {
-                            if (alwaysUppercase.includes(word.toLowerCase())) {
-                                return word.toUpperCase();
-                            }
-                            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-                        }
-                        return word.toLowerCase();
+                        return (index === 0 || index === str.split(' ').length - 1 || !minorWords.includes(word.toLowerCase()))
+                            ? alwaysUppercase.includes(word.toLowerCase())
+                                ? word.toUpperCase()
+                                : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                            : word.toLowerCase();
                     })
                     .join(' ');
             };
 
             // Capitalize title and artist
-            let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; // Remove hyphens in artist
+            let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; // Remove hyphens in title
             let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || 'No Artist Available'; // Remove hyphens in artist
 
             // Get current song info
@@ -153,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
         element.style.fontSize = `${fontSize}px`;
 
         while (element.scrollWidth > containerWidth && fontSize > 10) {
-            fontSize -= 1; // Decrement in rem
+            fontSize -= 1; // Decrement in px
             element.style.fontSize = `${fontSize}px`;
         }
     }
@@ -275,8 +268,8 @@ document.addEventListener("DOMContentLoaded", function() {
         _parseXML(xmlString) {
             let parser = new DOMParser();
             let xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            let songTitle = xmlDoc.getElementsByTagName('title')[0]?.textContent || `${settings.title}`;
-            let songArtist = xmlDoc.getElementsByTagName('artist')[0]?.textContent || `${settings.artist}`;
+            let songTitle = xmlDoc.getElementsByTagName('title')[0]?.textContent;
+            let songArtist = xmlDoc.getElementsByTagName('artist')[0]?.textContent;
             this._userInterface.updateSongInfo(songTitle, songArtist);
         }
 
@@ -284,8 +277,8 @@ document.addEventListener("DOMContentLoaded", function() {
             try {
                 let jsonData = JSON.parse(jsonString);
                 let performances = jsonData.performances[0];
-                let songTitle = performances.title || `${settings.title}`;
-                let songArtist = performances.artist || `${settings.artist}`;
+                let songTitle = performances.title;
+                let songArtist = performances.artist;
                 this._userInterface.updateSongInfo(songTitle, songArtist);
             } catch (error) {
                 console.error('Error parsing JSON:', error);

@@ -1,10 +1,8 @@
 ---
-const { audiourl, xmlpath, autoplayon, title, artist } = Astro.props;
+const { audiourl, xmlpath, autoplayon } = Astro.props;
 
 const settings = {
   containerID: 'social-music-player',
-  title: title,
-  artist: artist,
   audioFilePath: audiourl,
   autoplay: autoplayon,
   xmlpath: xmlpath
@@ -13,23 +11,21 @@ const settings = {
 
 <!-- Start User Interface HTML -->
 <div id={settings.containerID}
-     data-artist={settings.artist}
-     data-title={settings.title}
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
-     class="h-[59px] w-[304px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500">
+     class="h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500">
       <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
-        <div class="group bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 w-12 h-10 rounded">
-          <button type="button" class="h-[40px] w-12 flex items-center justify-center rounded">
+        <div class="group bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 w-12 h-10">
+          <button type="button" class="h-10 w-12">
             <i class="mmp-icon fa-solid fa-play text-gradient"></i>
           </button>
         </div>
-            <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 grid grid-cols-2 h-[40px] min-w-[231px] pointer-events-none rounded">
-                    <div class="flex flex-col my-auto min-w-[224px] pl-2 -space-y-0.5 pt-[1px] font-player antialiased subpixel-antialiased">
-                        <div id="song-title" class="font-semibold">{settings.title}</div>
+            <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 grid grid-cols-2 h-10 w-[231px] pointer-events-none">
+                    <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 font-player antialiased subpixel-antialiased">
+                        <div id="song-title"></div>
                         <div id="artist-container" class="overflow-hidden">
-                            <span id="song-artist" class="uppercase responsive-text font-semibold">{settings.artist}</span>
+                            <span id="song-artist"></span>
                         </div>
                     </div>
                 </div>
