@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
 
             // Capitalize title and artist
-            let formattedTitle = capitalizeWords(title) || 'No Title Available';
+            let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; // Remove hyphens in artist
             let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || 'No Artist Available'; // Remove hyphens in artist
 
             // Get current song info
