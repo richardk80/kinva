@@ -19,7 +19,7 @@ const { showlist, name, username } = Astro.props;
     aurl=`${username}/blog`
 >
     <div class="space-y-2 -ml-[1.5px] -mt-0.5 bg-white">
-        { showlist ? <ShowList username={username} /> : 
+        { showlist > 0 ? <ShowList username={username} /> : 
        <p class="text-xs">There are no blog entries yet</p>
         }
     </div>
