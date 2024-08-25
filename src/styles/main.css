@@ -85,7 +85,7 @@ input {
 }
 
 .fade {
-  transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .fade-out {
@@ -94,4 +94,15 @@ input {
 
 .fade-in {
   opacity: 1;
+}
+
+#artist-container {
+  position: relative;
+  width: 100%; /* Ensure the container takes full width */
+  overflow: hidden;
+}
+
+#song-artist {
+  display: block;
+  white-space: nowrap; /* Prevent line breaks */
 }

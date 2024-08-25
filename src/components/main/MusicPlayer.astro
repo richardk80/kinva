@@ -25,10 +25,12 @@ const settings = {
             <i class="mmp-icon fa-solid fa-play text-gradient"></i>
           </button>
         </div>
-            <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-50 grid grid-cols-2 h-[40px] min-w-[231px] pointer-events-none rounded">
-                    <div class="flex flex-col my-auto min-w-[224px] pl-2 pt-0.5 font-normal antialiased subpixel-antialiased">
-                        <div id="song-title" class="text-[11px]">{settings.title}</div>
-                        <div id="song-artist" class="uppercase text-[11px]">{settings.artist}</div>
+            <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-200 grid grid-cols-2 h-[40px] min-w-[231px] pointer-events-none rounded">
+                    <div class="flex flex-col my-auto min-w-[224px] pl-2 -space-y-0.5 pt-[1px] font-player antialiased subpixel-antialiased">
+                        <div id="song-title">{settings.title}</div>
+                        <div id="artist-container" class="overflow-hidden">
+                            <span id="song-artist" class="uppercase responsive-text font-semibold">{settings.artist}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,30 +127,22 @@ document.addEventListener("DOMContentLoaded", function() {
                     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
                 }).join(' ')})`);
 
-                // Capitalize words and handle punctuation
                 return capitalizeParentheses(str)
                     .split(' ')
-                    .map((word, index, array) => {
-                // Handle punctuation
-                    if (index === array.length - 1) {
-                    // Remove space before punctuation in the last word
-                        return word.replace(/\s+([.,!?;:])/g, '$1');
-                    }
-
-                    if (index === 0 || index === array.length - 1 || !minorWords.includes(word.toLowerCase())) {
-                    if (alwaysUppercase.includes(word.toLowerCase())) {
-                    return word.toUpperCase();
-                    }
-                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-                }
-                return word.toLowerCase();
-            })
-            .join(' ')
-            .replace(/\s+([.,!?;:])/g, '$1'); // Remove space before punctuation globally
-        };
+                    .map((word, index) => {
+                        if (index === 0 || index === str.split(' ').length - 1 || !minorWords.includes(word.toLowerCase())) {
+                            if (alwaysUppercase.includes(word.toLowerCase())) {
+                                return word.toUpperCase();
+                            }
+                            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                        }
+                        return word.toLowerCase();
+                    })
+                    .join(' ');
+            };
 
             // Capitalize title and artist
-            let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; // Remove hyphens in title
+            let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; // Remove hyphens in artist
             let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || 'No Artist Available'; // Remove hyphens in artist
 
             // Get current song info
@@ -185,8 +179,36 @@ document.addEventListener("DOMContentLoaded", function() {
                 titleElement.textContent = formattedTitle;
                 artistElement.textContent = formattedArtist;
             }
+
+            // Adjust text size to fit container
+            this._adjustTextSize();
+        }
+
+        _adjustTextSize() {
+    const titleElement = document.getElementById('song-title');
+    const artistElement = document.getElementById('song-artist');
+
+    // Check if both elements exist
+    if (!titleElement || !artistElement) return;
+
+    // Get container width from the parent of the title element
+    const containerWidth = titleElement.parentElement.clientWidth;
+
+    function adjustFontSize(element) {
+        let fontSize = 12; // Initial font size in rem
+        element.style.fontSize = `${fontSize}px`;
+
+        while (element.scrollWidth > containerWidth && fontSize > 10) {
+            fontSize -= 1; // Decrement in rem
+            element.style.fontSize = `${fontSize}px`;
         }
     }
+
+    // Adjust font size for both elements
+    adjustFontSize(titleElement);
+    adjustFontSize(artistElement);
+}
+}
 
     class Engine {
         constructor(settings) {
