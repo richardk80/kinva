@@ -11,6 +11,8 @@ import cookieconsentjs from "../scripts/cookieconsent.js?url";
 
 import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
 
+import socialplayer from "../scripts/socialplayer.js?url";
+
 interface Props {
   title?: string;
 }
@@ -79,6 +81,7 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script is:inline defer src={cookieconsentjs}></script>
     <script is:inline defer src={cookieconsentinit}></script>
+    <script is:inline defer src={socialplayer}></script>
     <script>import "preline/dist/preline.js";</script>
 </head>
   <body>
