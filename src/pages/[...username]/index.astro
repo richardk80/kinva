@@ -38,9 +38,7 @@ const page = shuffledUsers.find(user => user.username === username);
 console.log('Found page:', page);
 
 if (!page) {
-  Astro.response.status = 404;
-  Astro.response.statusText = 'Not found';
-  return; // Prevent further execution
+  return new Response('User not found', { status: 404 });
 }
 
 const { name, loggedin, myself, profilepic, profileimg, showlist, lastActive, friendship, requested, audiourl } = page;
