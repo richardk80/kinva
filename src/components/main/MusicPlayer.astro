@@ -14,17 +14,17 @@ const settings = {
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
-     class="h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500">
-      <div class="grid font-player grid-row-1 grid-cols-5 pt-2.5 pb-1.5 px-2">
-        <div class="group bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 w-12 h-10">
-          <button type="button" class="h-10 w-12 antialiased subpixel-antialiased">
+     class="player-background">
+      <div class="player-align">
+        <div class="button-background">
+          <button type="button" class="group player-button">
             <i class="mmp-icon fa-solid fa-play text-gradient"></i>
           </button>
         </div>
-            <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 grid grid-cols-2 h-10 w-[231px] pointer-events-none">
-                    <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[1px] font-player">
-                        <div id="song-title" class="capitalize antialiased subpixel-antialiased"></div>
-                        <div id="artist-container" class="overflow-hidden antialiased subpixel-antialiased">
+            <div class="window-backround">
+                    <div class="window-align">
+                        <div id="song-title" class="song-title"></div>
+                        <div id="artist-container" class="artist-container">
                             <span id="song-artist"></span>
                         </div>
                     </div>
@@ -37,3 +37,65 @@ const settings = {
         <!-- End Audio Player -->
     </div>
 <!-- End User Interface HTML -->
+
+<style>
+.player-background {
+  @apply h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500;
+}
+
+.player-align {
+  @apply grid font-player grid-rows-1 grid-cols-5 pt-2.5 pb-1.5 px-2;
+}
+
+.button-background {
+  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 w-12 h-10;
+}
+
+.player-button {
+  @apply h-10 w-12 antialiased subpixel-antialiased;
+}
+  
+.text-gradient {
+  @apply bg-gradient-to-b from-[#E2E8F0] via-[#CBD5E1] to-[#64748B] bg-text-clip text-transparent;
+}
+
+.fade {
+  @apply player-fade;
+}
+
+.fade-out {
+  @apply opacity-0;
+}
+
+.fade-in {
+  @apply opacity-100;
+}
+
+#artist-container {
+  @apply relative w-full overflow-hidden;
+}
+
+#song-title {
+  @apply capitalize font-medium block whitespace-nowrap;
+}
+
+#song-artist {
+  @apply uppercase font-bold block whitespace-nowrap;
+}
+
+.window-backround {
+  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 grid grid-cols-2 h-10 w-[231px] pointer-events-none;
+}
+
+.window-align {
+  @apply flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[1px] font-player;
+}
+
+.song-title {
+  @apply capitalize antialiased subpixel-antialiased;
+}
+
+.artist-container {
+  @apply overflow-hidden antialiased subpixel-antialiased;
+}
+</style>

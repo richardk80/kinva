@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('social-music-player');
+
+    // Check if the container exists
+    if (!container) {
+        return;  // Exit the function if the container is not found
+    }
+    
     const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
     
     const settings = {

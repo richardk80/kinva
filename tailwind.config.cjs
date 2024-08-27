@@ -34,6 +34,21 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
-    require('preline/plugin')
+    require('preline/plugin'),
+    function ({ addUtilities }) {
+      addUtilities({
+        '.bg-text-clip': {
+          'background-clip': 'text',
+          '-webkit-background-clip': 'text',
+        },
+        '.text-transparent': {
+          'color': 'transparent',
+          '-webkit-text-fill-color': 'transparent',
+        },
+        '.player-fade': {
+          'transition': 'opacity 0.5s ease-in-out',
+        },
+      });
+    },
   ],
 };

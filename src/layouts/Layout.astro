@@ -100,10 +100,10 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
               <!-- End Logo Icon -->
               <!-- Start Search HTML -->
               <div class="w-full ml-2 my-[0.5px]">
-                  <form class="flex items-center space-x-1.5 form mt-0.5">
+                  <form class="flex items-center space-x-0.5">
                       <input
                         type="text"
-                        class="block h-[25px] pl-1 resize-none text-sm border border-blue-600 caret-zinc-950 focus:outline-none placeholder:text-sm placeholder:italic placeholder:text-zinc-400 bg-white w-52 -mt-0.5"
+                        class="h-[25px] pl-1 resize-none text-sm caret-blue-600 focus:outline-none placeholder:text-sm placeholder:italic placeholder:text-zinc-400 bg-white w-52"
                         placeholder="Search..."
                         id="search"
                         name="q"
@@ -111,11 +111,11 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
                         title="Search by name or username"
                       />
                       <button
-                        class="inline-flex flex-shrink-0 justify-center items-center h-[24px] w-8 border border-blue-600 bg-zinc-100 hover:bg-zinc-200 focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 transition-all -mt-0.5"
+                        class="justify-center items-center h-[25px] w-8 border border-blue-600 bg-zinc-100 hover:bg-zinc-200 focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 transition-all"
                         type="submit"
                         aria-label="search"
                       >
-                        <Icon class="h-[14px] w-[14px] fill-zinc-950 m-auto" name="search" />
+                        <Icon class="h-[14px] w-[14px] fill-blue-600 m-auto" name="search" />
                       </button>
                     </form>
               </div>
@@ -188,6 +188,45 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
     <!-- End Back to Top Button -->
   </body>
 </html>
+
+<style is:global>
+  *,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+html {
+  background-color: rgb(231 229 228);
+  color: #000000;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+input {
+  font: inherit;
+}
+</style>
 
 <script>
   // @ts-nocheck

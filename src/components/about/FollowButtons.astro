@@ -7,7 +7,7 @@ import { Icon } from 'astro-icon/components';
     <div class="flex items-center ml-1 space-x-2">
         {[
           ["flex items-center justify-center w-6 h-6 bg-black hover:bg-stone-700", "Follow Hi Moot on X", "https://x.com/himoot", "m-auto h-[16px] w-[16px] fill-white", "x-twitter" ],
-          ["flex items-center justify-center w-6 h-6 instagram hover:brightness-110", "Follow Hi Moot on Instagram", "https://instagram.com/himoot", "m-auto h-[20px] w-[20px] fill-white", "instagram" ],
+          ["flex items-center justify-center w-6 h-6 instagram hover:brightness-110", "Follow Hi Moot on Instagram", "https://instagram.com/himoot", "mr-0.5 m-auto h-[20px] w-[20px] fill-white", "instagram" ],
           [ "flex items-center justify-center w-6 h-6 bg-red-600 hover:bg-red-500", "Subscribe to Hi Moot on YouTube", "https://www.youtube.com/himoot", "m-auto h-[16px] w-[16px] fill-white", "youtube" ],
           [ "flex items-center justify-center w-6 h-6 bg-black hover:bg-stone-700", "Follow Hi Moot on TikTok", "https://www.tiktok.com/@himoot", "m-auto h-[16px] w-[16px] fill-white", "tiktokicon" ],
           ["flex items-center justify-center w-6 h-6 bg-blue-700 hover:bg-blue-600", "Follow Hi Moot on Facebook", "https://www.facebook.com/himoot", "m-auto h-[16px] w-[16px] fill-white", "facebook" ],
@@ -20,3 +20,28 @@ import { Icon } from 'astro-icon/components';
     </div>
   </h3>
 </div>
+
+<style>
+  .instagram {
+    display: grid;
+    position: relative; 
+    place-items: center;
+    width: 15%;
+    aspect-ratio: 1;
+    background: radial-gradient(
+        circle farthest-corner at 28% 100%,
+        #fcdf8f 0%,
+        #fbd377 10%,
+        #fa8e37 22%,
+        #f73344 35%,
+        transparent 65%
+      ),
+  linear-gradient(145deg, #3051f1 10%, #c92bb7 70%);
+}
+  .instagram:before,
+  .instagram:after {
+    position: absolute; 
+    color: #ffffff; 
+    aspect-ratio: 1;
+}
+</style>
