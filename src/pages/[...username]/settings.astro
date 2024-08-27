@@ -17,9 +17,7 @@ const page = users.find(user => user.username === username);
 console.log('Found page:', page);
 
 if (!page) {
-  Astro.response.status = 404;
-  Astro.response.statusText = 'Not found';
-  return; // Prevent further execution
+  return new Response('User not found', { status: 404 });
 }
 
 const { name, email, id, loggedin, profilepic, twofactor } = page;

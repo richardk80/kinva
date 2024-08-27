@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPauseState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-pause', 'text-2xl', 'mt-[1.5px]');
-            buttonIcon.classList.add('fa-play', 'text-xl', 'mt-[2px]');
+            buttonIcon.classList.remove('fa-pause', 'text-2xl');
+            buttonIcon.classList.add('fa-play', 'text-xl');
         }
 
         setPlayState() {
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-play', 'text-xl', 'mt-[2px]');
-            buttonIcon.classList.add('fa-pause', 'text-2xl', 'mt-[1.5px]');
+            buttonIcon.classList.remove('fa-play', 'text-xl');
+            buttonIcon.classList.add('fa-pause', 'text-2xl');
         }
 
         setButtonClickCallback(callback) {
@@ -70,52 +70,77 @@ document.addEventListener("DOMContentLoaded", function() {
             const capitalizeWords = (str) => {
                 const minorWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'];
                 const alwaysUppercase = ['wvh', 'nfl', 'usa', 'ac/dc'];
+                const contractions = {
+                    "aint": "ain't", "amnt": "amn’t", "arent": "aren't", "cant": "can't",
+                    "couldve": "could've", "couldnt": "couldn't", "daren": "daren’t", "das": "d’s",
+                    "didnt": "didn't", "doesnt": "doesn't", "dont": "don't", "hadnt": "hadn't",
+                    "hasnt": "hasn't", "havent": "haven't", "hed": "he’d", "hell": "he’ll",
+                    "hes": "he's", "howd": "how’d", "howll": "how’ll", "howre": "how’re",
+                    "howve": "how’ve", "id": "I'd", "ill": "I'll", "im": "I'm", "isnt": "isn't", "itd": "it’d", "itll": "it’ll",
+                    "its": "it's", "ive": "I've", "lets": "let's", "maynt": "mayn't",
+                    "mightve": "might've", "mightnt": "mightn't", "mustve": "must've",
+                    "mustnt": "mustn't", "neednt": "needn't", "shant": "shan't", "shed": "she’d",
+                    "shell": "she’ll", "shes": "she's", "shouldve": "should've", "shouldnt": "shouldn't",
+                    "somebodys": "somebody's", "someones": "someone's", "thatd": "that’d",
+                    "thatll": "that’ll", "thats": "that's", "theyd": "they’d", "theyll": "they’ll",
+                    "theyre": "they're", "theyve": "they've", "wasnt": "wasn't", "wed": "we’d",
+                    "well": "we’ll", "were": "we’re", "weve": "we've", "whatll": "what’ll",
+                    "whats": "what's", "whens": "when’s", "wheres": "where’s", "whichd": "which’d",
+                    "whichll": "which’ll", "whod": "who’d", "wholl": "who’ll", "whos": "who's",
+                    "wont": "won't", "wouldve": "would've", "wouldnt": "wouldn't", "youd": "you’d",
+                    "youll": "you’ll", "youre": "you’re", "youve": "you’ve"
+                };
+        
                 const capitalizeParentheses = (s) => s.replace(/\(([^)]+)\)/g, (match, p1) => `(${p1.split(' ').map(word => {
                     return alwaysUppercase.includes(word.toLowerCase())
                         ? word.toUpperCase()
                         : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
                 }).join(' ')})`);
-
+        
                 return capitalizeParentheses(str)
                     .split(' ')
                     .map((word, index) => {
-                        return (index === 0 || index === str.split(' ').length - 1 || !minorWords.includes(word.toLowerCase()))
-                            ? alwaysUppercase.includes(word.toLowerCase())
-                                ? word.toUpperCase()
+                        const lowerWord = word.toLowerCase();
+                        if (contractions[lowerWord]) {
+                            return contractions[lowerWord];
+                        }
+                        return (index === 0 || index === str.split(' ').length - 1 || !minorWords.includes(lowerWord))
+                            ? alwaysUppercase.includes(lowerWord)
+                                ? lowerWord.toUpperCase()
                                 : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                            : word.toLowerCase();
+                            : lowerWord;
                     })
                     .join(' ');
             };
-
+        
             // Capitalize title and artist
             let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; // Remove hyphens in title
             let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || 'No Artist Available'; // Remove hyphens in artist
-
+        
             // Get current song info
             const titleElement = document.getElementById('song-title');
             const artistElement = document.getElementById('song-artist');
             const currentTitle = titleElement.textContent;
             const currentArtist = artistElement.textContent;
-
+        
             // Check if the song info has changed
             if (formattedTitle !== currentTitle || formattedArtist !== currentArtist) {
                 // Apply fade-out effect
                 titleElement.classList.add('fade', 'fade-out');
                 artistElement.classList.add('fade', 'fade-out');
-
+        
                 // After fade-out duration, update text and apply fade-in effect
                 setTimeout(() => {
                     titleElement.textContent = formattedTitle;
                     artistElement.textContent = formattedArtist;
-
+        
                     titleElement.classList.remove('fade-out');
                     artistElement.classList.remove('fade-out');
-
+        
                     titleElement.classList.add('fade-in');
                     artistElement.classList.add('fade-in');
                 }, 500); // Match this duration to your fade-out transition duration
-
+        
                 // Remove fade-in class after transition ends
                 setTimeout(() => {
                     titleElement.classList.remove('fade-in');
@@ -126,35 +151,40 @@ document.addEventListener("DOMContentLoaded", function() {
                 titleElement.textContent = formattedTitle;
                 artistElement.textContent = formattedArtist;
             }
-
+        
             // Adjust text size to fit container
             this._adjustTextSize();
         }
+        
 
         _adjustTextSize() {
-    const titleElement = document.getElementById('song-title');
-    const artistElement = document.getElementById('song-artist');
-
-    // Check if both elements exist
-    if (!titleElement || !artistElement) return;
-
-    // Get container width from the parent of the title element
-    const containerWidth = titleElement.parentElement.clientWidth;
-
-    function adjustFontSize(element) {
-        let fontSize = 12; // Initial font size in rem
-        element.style.fontSize = `${fontSize}px`;
-
-        while (element.scrollWidth > containerWidth && fontSize > 10) {
-            fontSize -= 1; // Decrement in px
-            element.style.fontSize = `${fontSize}px`;
+            const titleElement = document.getElementById('song-title');
+            const artistElement = document.getElementById('song-artist');
+        
+            // Check if both elements exist
+            if (!titleElement || !artistElement) return;
+        
+            // Get container width from the parent of the title element
+            const containerWidth = titleElement.parentElement.clientWidth;
+        
+            // Define initial font sizes for title and artist
+            const titleInitialFontSize = 13; // Initial font size for title in px
+            const artistInitialFontSize = 11; // Initial font size for artist in px
+        
+            function adjustFontSize(element, initialFontSize) {
+                let fontSize = initialFontSize; // Start with the initial font size
+                element.style.fontSize = `${fontSize}px`;
+        
+                while (element.scrollWidth > containerWidth && fontSize > 10) {
+                    fontSize -= 1; // Decrement in px
+                    element.style.fontSize = `${fontSize}px`;
+                }
+            }
+        
+            // Adjust font size for title and artist separately
+            adjustFontSize(titleElement, titleInitialFontSize);
+            adjustFontSize(artistElement, artistInitialFontSize);
         }
-    }
-
-    // Adjust font size for both elements
-    adjustFontSize(titleElement);
-    adjustFontSize(artistElement);
-}
 }
 
     class Engine {
