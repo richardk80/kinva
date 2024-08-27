@@ -103,6 +103,7 @@ input {
 }
 
 #song-title {
+  text-transform: capitalize;
   font-weight: 500;
   display: block;
   white-space: nowrap; /* Prevent line breaks */
