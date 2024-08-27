@@ -121,12 +121,15 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
               </div>
               <!-- End Search HTML -->
                <!-- Start Logout Link -->
-              <div class="-mt-0.5">
-                  { 
-                      loggedin ?
-                      <button type="button" title="Logout of Hi Moot" aria-label="Logout of Hi Moot" class="text-[15px] flex items-center fill-white hover:underline text-white">Logout <Icon class="h-[15px] ml-2 mt-[0.5px]" name="logout" /></button>
-                      : null 
-                  }
+               <div class="flex items-center -mr-[1px]">
+                { 
+                  loggedin ?
+                  <button id="logoutButton" type="button" title="Log Out of Hi Moot" aria-label="Log Out of Hi Moot" class="flex items-center whitespace-nowrap space-x-1 bg-white px-2.5 py-1 focus:bg-white/60 focus:outline-none focus:ring-1 focus:bg-white/70 rounded-full">
+                    <Icon class="h-[15px] fill-blue-600" name="logout" />
+                    <span class="text-[14px] text-blue-600">Log Out</span>
+                  </button>
+                  : null 
+                }
               </div>
               <!-- End Logout Link -->
           </div>
@@ -230,5 +233,9 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
       top: 0,
       behavior: 'smooth'
     });
+  });
+
+  document.getElementById('logoutButton').addEventListener('click', function() {
+      this.blur(); // Removes focus from the button
   });
 </script>
