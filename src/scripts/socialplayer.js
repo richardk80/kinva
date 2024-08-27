@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         audioFilePath: container.getAttribute('data-audio-file-path'),
         autoplay: autoplay,
         xmlFilePath: container.getAttribute('data-xml-file-path'),
-        updateInterval: 55000
+        updateInterval: 45000
     };
 
     class UserInterface {
@@ -156,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function() {
             this._adjustTextSize();
         }
         
-
         _adjustTextSize() {
             const titleElement = document.getElementById('song-title');
             const artistElement = document.getElementById('song-artist');
