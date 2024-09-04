@@ -28,7 +28,7 @@ import profilepic from './api/profilepic.json';
     <div class="grid grid-cols-12 grid-flow-row-dense">
         <div class="col-span-full">
             <div class="flex items-start justify-between gap-x-2">
-                <!-- Left Column -->
+                <!-- Start Left Column -->
                 <div class="flex flex-col gap-y-2">
                     <UserDetailBox name={name} username={username} />
                     <MyMail  />
@@ -36,7 +36,7 @@ import profilepic from './api/profilepic.json';
                     <UpdatesBox />
                 </div>
                 <!-- End Left Column -->
-                <!-- Right Column -->
+                <!-- Start Right Column -->
                 <div class="flex flex-col gap-y-2 w-full">
                     <div class="flex justify-between">
                         <div class="-mt-0.5">
@@ -56,17 +56,17 @@ import profilepic from './api/profilepic.json';
     <div class="grid grid-cols-12 grid-flow-row-dense mt-0.5">
         <div class="col-span-full">
             <div class="flex items-start justify-between">
-                <!-- Cool People on Login Page -->
+                <!-- Start Cool People on Login Page -->
                 <div class="grid grid-rows-1">
                     <LoginCoolPeople loggedin={loggedin} profilepic={profilepic} />
                 </div>
                 <!-- End Cool People on Login Page -->
-                <!-- Divider -->
+                <!-- Start Divider -->
                 <div class="grid grid-rows-1 gap-y-0.5">
                     <LoginDivider />
                 </div>
                 <!-- End Divider -->
-                <!-- LoginBox -->
+                <!-- Start LoginBox -->
                 <div class="grid grid-rows-1 gap-x-2">
                     <LoginBox />
                 </div>

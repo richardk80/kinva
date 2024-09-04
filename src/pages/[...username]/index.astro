@@ -56,7 +56,7 @@ const autoplayon = true;
         <CoverImage coverimage={coverimage} name={name} username={username} />
       </div>
       <div class="flex items-start justify-between gap-x-2">
-        <!-- Left Column -->
+        <!-- Start Left Column -->
         <div class="flex flex-col gap-y-2 w-3/5">
           <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} profilepic={profilepic} profileimg={profileimg} />
           <ContactButtons loggedin={loggedin} myself={myself} name={name} friendship={friendship} requested={requested} />
@@ -66,7 +66,7 @@ const autoplayon = true;
           <Interests loggedin={loggedin} name={name} username={username} />
         </div>
         <!-- End Left Column -->
-        <!-- Right Column -->
+        <!-- Start Right Column -->
         <div class="flex flex-col gap-y-2 w-full">
           <UserBox loggedin={loggedin} name={name} friendship={friendship} requested={requested} />
           <div class="-mt-[3px]">
