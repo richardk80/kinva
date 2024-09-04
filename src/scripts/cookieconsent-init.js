@@ -40,7 +40,7 @@ if (cc) {
             'en': {
                 consent_modal: {
                     title: 'Cookie Notice',
-                    description: 'Hi Moot uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. <button type="button" data-cc="c-settings" class="cc-link">Let me choose</button>',
+                    description: 'Hi Moot uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.',
                     primary_btn: {
                         text: 'Accept all',
                         role: 'accept_all'              // 'accept_selected' or 'accept_all'
@@ -65,10 +65,10 @@ if (cc) {
                     blocks: [
                         {
                             title: 'Cookie usage',
-                            description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full <a href="#" class="cc-link">privacy policy</a>.'
+                            description: 'Hi Moot uses cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want.'
                         }, {
                             title: 'Strictly necessary cookies',
-                            description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly',
+                            description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly.',
                             toggle: {
                                 value: 'necessary',
                                 enabled: true,
@@ -76,7 +76,7 @@ if (cc) {
                             }
                         }, {
                             title: 'Performance and Analytics cookies',
-                            description: 'These cookies allow the website to remember the choices you have made in the past',
+                            description: 'These cookies allow the website to remember the choices you have made in the past.',
                             toggle: {
                                 value: 'analytics',     // your cookie category
                                 enabled: false,
@@ -99,15 +99,12 @@ if (cc) {
                             ]
                         }, {
                             title: 'Advertisement and Targeting cookies',
-                            description: 'These cookies collect information about how you use the website, which pages you visited and which links you clicked on. All of the data is anonymized and cannot be used to identify you',
+                            description: 'These cookies collect information about how you use the website, which pages you visited and which links you clicked on. All of the data is anonymized and cannot be used to identify you.',
                             toggle: {
                                 value: 'targeting',
                                 enabled: false,
                                 readonly: false
                             }
-                        }, {
-                            title: 'More information',
-                            description: 'For any queries in relation to our policy on cookies and your choices, please <a class="cc-link" href="#yourcontactpage">contact us</a>.',
                         }
                     ]
                 }
