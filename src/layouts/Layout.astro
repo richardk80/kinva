@@ -29,8 +29,8 @@ const loggedinwords = [loggedin ? `${home}` : `${loginname}`];
 
 const navItems = [
   { smallname: "", href: "/", name: `${loggedinwords}`, dividerChar: "-" },
-  { smallname: "browse", href: "/browse", name: "Browse", dividerChar: "-" },
   { smallname: "messages", href: "/messages", name: "Messages", dividerChar: "-" },
+  { smallname: "browse", href: "/browse", name: "Browse", dividerChar: "-" },
   { smallname: "blogs", href: "/blogs", name: "Blogs", dividerChar: "-" },
   { smallname: "bulletins", href: "/bulletins", name: "Bulletins", dividerChar: "-" },
   { smallname: "forums", href: "/forums", name: "Forums", dividerChar: "-" },
@@ -49,12 +49,8 @@ const dividerCss = "text-white text-xs font-normal pl-[4px]";
 const currentPath = new URL(Astro.request.url).pathname.slice(1);
 
 const navFooterItems = [
-  { smallname: "news", href: "/news", name: "News", dividerChar: "-" },
   { smallname: "updates", href: "/updates", name: "Updates", dividerChar: "-" },
   { smallname: "rules", href: "/rules", name: "Rules", dividerChar: "-" },
-  { smallname: "press", href: "/press", name: "Press", dividerChar: "-" },
-  { smallname: "brand", href: "/brand", name: "Brand", dividerChar: "-" },
-  { smallname: "credits", href: "/credits", name: "Credits", dividerChar: "-" },
   { smallname: "feeds", href: "/feeds", name: "Feeds", dividerChar: "-" },
   { smallname: "terms", href: "/terms", name: "Terms", dividerChar: "-" },
   { smallname: "privacy", href: "/privacy", name: "Privacy", dividerChar: "-" },
