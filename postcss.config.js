@@ -1,14 +1,9 @@
-const crypto = require('crypto');
+const classHashPlugin = require('./src/scripts/postcss-class-hash');
 
 module.exports = {
   plugins: [
     require('tailwindcss'),
     require('autoprefixer'),
-    require('postcss-class-rename')({
-      transform: (class) => {
-        // Hash the class names to a fixed length
-        return crypto.createHash('md5').update(className).digest('hex').slice(0, 6);
-      }
-    }),
+    classHashPlugin({ hashLength: 6 })
   ],
 };
