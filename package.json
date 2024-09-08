@@ -25,7 +25,8 @@
     "dompurify": "^3.0.5",
     "eventsource": "^2.0.2",
     "fuse.js": "^6.6.2",
-    "preline": "^2.1.0"
+    "preline": "^2.1.0",
+    "tailwindcss": "^3.4.10"
   },
   "devDependencies": {
     "@kindspells/astro-shield": "^1.3.6",
