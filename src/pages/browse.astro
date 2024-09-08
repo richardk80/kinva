@@ -1,5 +1,5 @@
 ---
-import Layout from '@lay/Layout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 
 import { Icon } from 'astro-icon/components';
@@ -64,8 +64,7 @@ const generateRandomProfileUrl = () => {
   return `/${users[randomIndex]}`;
 };
 ---
-<Layout title="Browse">
-  <div class="mx-[50px] mb-1">
+<OtherLayout title="Browse">
     <h1 class="text-[25.6px] font-semibold mb-1 text-balance">Browse</h1>
     <div class="flex items-stretch text-xs mb-3">
       <p class="text-xs cursor-default font-semibold">Filter:</p>
@@ -131,5 +130,4 @@ const generateRandomProfileUrl = () => {
           Next Page
           </button>
       </div>
-    </div>
-</Layout>
+</OtherLayout>

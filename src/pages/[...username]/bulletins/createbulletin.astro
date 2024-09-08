@@ -1,8 +1,16 @@
 ---
-import Layout from '@lay/Layout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
+
+import SmallLink from '@com/main/SmallLink.astro';
+
+const name = 'Dex';
+
+const username = 'dex';
+
+const hidden = true;
 ---
-<Layout title="Create Bulletin">
-	<main class="mx-[50px] mb-8">
-		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Create Bulletin</h1>
-	</main>
-</Layout>
+<OtherLayout title="Create Bulletins">
+	<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Create Bulletins</h1>
+	{ hidden ? '' : <p class="text-xs mb-2"><SmallLink href={`/${username}/bulletins/createbulletin`} link="create bulletin" /></p> }
+	<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to {name}'s profile</a>
+</OtherLayout>

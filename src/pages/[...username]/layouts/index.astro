@@ -1,5 +1,5 @@
 ---
-import Layout from '@lay/Layout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
 import SmallLink from '@com/main/SmallLink.astro';
 
 const name = 'Dex';
@@ -10,10 +10,8 @@ const username = "dex";
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<Layout title="Your Layouts">
-	<main class="mx-[50px] mb-8">
-		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Your Layouts</h1>
-		<p class="text-xs mb-2"><SmallLink href={`/${username}/layouts/create`} link="create layout" /></p>
-		<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to {name}'s profile</a>
-	</main>
-</Layout>
+<OtherLayout title="Your Layouts">
+	<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Your Layouts</h1>
+	<p class="text-xs mb-2"><SmallLink href={`/${username}/layouts/create`} link="create layout" /></p>
+	<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to {name}'s profile</a>
+</OtherLayout>

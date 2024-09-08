@@ -1,5 +1,5 @@
 ---
-import Layout from '@lay/Layout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
 
 //function capitalizeFirstLetter(str) {
   //if (!str) return str;
@@ -17,9 +17,7 @@ const username = 'dex';
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<Layout title={`${name}'s Friend Comments`}>
-    <main class="mx-[110px] mb-32">
-        <h1 class="text-[25.6px] font-semibold mb-2 text-balance">{`${name}'s Friend Comments`}</h1>
-        <a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to {name}'s profile</a>
-    </main>
-</Layout>
+<OtherLayout title={`${name}'s Friend Comments`}>
+  <h1 class="text-[25.6px] font-semibold mb-2 text-balance">{`${name}'s Friend Comments`}</h1>
+  <a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to {name}'s profile</a>
+</OtherLayout>

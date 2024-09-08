@@ -1,10 +1,8 @@
 ---
-import Layout from '@lay/Layout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
 
 const name = 'Dex';
 ---
-<Layout title={`${name}'s Bulletins`}>
-	<main class="mx-[50px] mb-8">
-		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">{`${name}'s Bulletins`}</h1>
-	</main>
-</Layout>
+<OtherLayout title={`${name}'s Bulletins`}>
+	<h1 class="text-[25.6px] font-semibold mb-2 text-balance">{`${name}'s Bulletins`}</h1>
+</OtherLayout>

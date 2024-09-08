@@ -20,9 +20,34 @@ interface Props {
     addgroup?: boolean;
 }
 
-const { loggedin, myself, name, friendship, requested, addgroup } = Astro.props;
+import users from '../../pages/api/users.json';
 
-const username = 'dex';
+// Shuffle function
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Shuffle the users array
+const shuffledUsers = shuffleArray(users);
+
+const { username } = Astro.params;
+
+console.log('Username from URL:', username);
+console.log('Shuffled users array:', shuffledUsers);
+
+const page = shuffledUsers.find(user => user.username === username);
+
+console.log('Found page:', page);
+
+if (!page) {
+  return new Response('User not found', { status: 404 });
+}
+
+const { name, loggedin, myself, profilepic, profileimg, showlist, lastActive, friendship, requested, audiourl } = page;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
@@ -44,13 +69,13 @@ const username = 'dex';
                     <span class="group-hover:underline">{ friendship ? "Remove Friend" : ( requested ? "Cancel Request" : "Add to Friends") }
                     </span>
                 </a>
-                <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-2" href="/">
-                    <Icon class="h-[16px] w-auto group-hover:no-underline" name="instant" />
-                    <span class="group-hover:underline">Send Message</span>
-                </a>
                 <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-2" href="/messages/send">
                     <Icon class="h-[16px] w-auto group-hover:no-underline" name="envelope" />
-                    <span class="group-hover:underline">Instant Message</span>
+                    <span class="group-hover:underline">Send Message</span>
+                </a>
+                <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-2" href={`/${username}/bulletins`}>
+                    <Icon class="h-[16px] w-auto group-hover:no-underline" name="list" />
+                    <span class="group-hover:underline">Read Bulletin</span>
                 </a>
                 <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-1.5 -ml-0.5" href="/">
                     <Icon class="h-[16px] w-auto group-hover:no-underline" name="group-plus" />
@@ -64,7 +89,7 @@ const username = 'dex';
                 </a>
                 <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-1 cursor-pointer" data-hs-overlay="#hs-favorites-vertically-centered-modal" data-hs-overlay-keyboard="false">
                     <Icon class="h-[16px] w-auto group-hover:no-underline" name="circle-star" />
-                    <span class="group-hover:underline">Add as Favorites</span>
+                    <span class="group-hover:underline">Add to Favorites</span>
                 </a>
                 <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-1" href="/">
                     <Icon class="h-[16px] w-auto group-hover:no-underline" name="ban" />

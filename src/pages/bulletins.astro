@@ -1,5 +1,5 @@
 ---
-import Layout from '@lay/Layout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
 import { Icon } from 'astro-icon/components';
 
 const username = 'dex';
@@ -14,8 +14,7 @@ const friendbulletins = [
 
 const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 ---
-<Layout title="Bulletin Board">
-	<main class="mx-[50px] mb-3">
+<OtherLayout title="Bulletin Board">
 		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Bulletin Board</h1>
 		<div class="space-y-2">
 			<div class="flex items-center space-x-3">
@@ -72,5 +71,4 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 					}
 				  </div>
 		</div>
-	</main>
-</Layout>
+</OtherLayout>

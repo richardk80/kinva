@@ -1,16 +1,14 @@
 ---
-import Layout from '@lay/Layout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
 
 import BottomAboutText from '@com/about/BottomAboutText.astro';
 
 import TopAboutText from '@com/about/TopAboutText.astro';
 ---
-<Layout title="About">
-		<div class="mx-[50px] mb-2">
+<OtherLayout title="About">
 		<h1 class="text-[25.6px] font-semibold mb-2 text-balance">About</h1>
 		<div class="space-y-2">
 			<TopAboutText />
 			<BottomAboutText />
 		</div>
-		</div>
-</Layout>
+</OtherLayout>
