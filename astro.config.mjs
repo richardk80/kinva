@@ -13,9 +13,11 @@ global.EventSource = eventsource;
 export default defineConfig({
   site: "https://www.himoot.com",
   prefetch: true,
+  buildOptions: {
+    sourcemap: false, // Disable sourcemaps entirely
+  },
   vite: {
     build: {
-      sourcemap: false,
       inlineStylesheets: 'always',
       rollupOptions: {
         output: {
