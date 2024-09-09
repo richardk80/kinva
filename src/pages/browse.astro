@@ -88,7 +88,7 @@ const filteredUsers = getFilteredUsers();
            class={view === 'new' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
            <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
             {view === 'new' && <Icon name="checkmark" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
-            <p>New Users</p>
+            <p>New People</p>
           </div>
         </a>
 
@@ -128,7 +128,7 @@ const filteredUsers = getFilteredUsers();
     <div class="py-0.5 bg-orange-300/90">
       <div class="flex justify-between items-center mx-2">
         <p class="text-xs font-semibold mt-1 cursor-default">
-          Active Users
+          { view === 'new' ? 'New People' : view === 'online' ? 'Online Users' : 'Active Users' }
         </p>
         <a class="text-[10.24px] hover:underline" href={generateRandomProfileUrl()}>[random]</a>
       </div>
