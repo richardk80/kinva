@@ -1,29 +1,35 @@
 ---
 import OtherLayout from '@lay/OtherLayout.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
-
-import { Icon } from 'astro-icon/components';
-
-const filterItems = [
-  { href: "/", smallname: "", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "All Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
-  { href: "/browse", smallname: "newusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "New Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
-  { href: "/browse", smallname: "onlineusers", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Online Users", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
-];
-
-const friendItems = [
-  { href: "/", smallname: "includefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 font-semibold hover:underline", name: "Include Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "-" },
-  { href: "/browse", smallname: "excludefriends", firstcss: "text-blue-600 hover:text-red-600 font-semibold", secondcss: "text-blue-600 hover:text-red-600 ml-1 hover:underline", name: "Exclude Friends", dividerCss: "ml-1 cursor-default font-medium text-xs", divider: "" },
-];
-
-const currentPath = new URL(Astro.request.url).pathname.slice(1);
-
-// Get the 'page' query parameter
-const url = new URL(Astro.request.url);
-const currentPage = parseInt(url.searchParams.get('page')) || 1;
+import { Icon } from 'astro-icon/components'; // Using astro-icon for the checkmark
 
 import loggedin from '../pages/api/loggedin.json';
-
 import profilepic from '../pages/api/profilepic.json';
+
+const url = new URL(Astro.request.url);
+const currentPage = parseInt(url.searchParams.get('page')) || 1;
+const view = url.searchParams.get('view') || 'active'; // Default to 'active' users if no view is set
+const friends = url.searchParams.get('friends') || 'include'; // Default to 'include' friends if no filter is set
+
+const allUsersUrl = `/browse?view=active&friends=${friends}`;
+const newUsersUrl = `/browse?view=new&friends=${friends}`;
+const onlineUsersUrl = `/browse?view=online&friends=${friends}`;
+const includeFriendsUrl = `/browse?view=${view}&friends=include`;
+const excludeFriendsUrl = `/browse?view=${view}&friends=exclude`;
+
+// Generate a URL for the next page, keeping the `view` and `friends` query parameters if present
+const nextPage = currentPage + 1;
+const nextPageUrl = `/browse?view=${view}&friends=${friends}&page=${nextPage}`;
+
+// Define different sets of users for each filter
+const users = Array.from({ length: 30 }, (_, i) => `user${i + 1}`);
+const newUsers = Array.from({ length: 15 }, (_, i) => `newUser${i + 1}`);
+const onlineUsers = Array.from({ length: 20 }, (_, i) => `onlineUser${i + 1}`);
+
+const generateRandomProfileUrl = () => {
+  const randomIndex = Math.floor(Math.random() * users.length);
+  return `/${users[randomIndex]}`;
+};
 
 // List of unique names (ensure there are at least 45)
 const uniqueNames = [
@@ -46,88 +52,132 @@ const shuffleArray = (array) => {
 };
 
 const shuffledNames = shuffleArray(uniqueNames);
-
 const shuffledNumbers = shuffleArray(availableNumbers);
 
 const getUniqueImageNumber = () => shuffledNumbers.pop();
-
 const getUniqueName = () => shuffledNames.pop();
 
-// Generate a URL for the next page
-const nextPage = currentPage + 1;
-const nextPageUrl = `/browse?page=${nextPage}`;
-
-const users = Array.from({ length: 30 }, (_, i) => `user${i + 1}`);
-
-const generateRandomProfileUrl = () => {
-  const randomIndex = Math.floor(Math.random() * users.length);
-  return `/${users[randomIndex]}`;
+// Function to get users based on the current filter
+const getFilteredUsers = () => {
+  if (view === 'new') {
+    return newUsers;
+  } else if (view === 'online') {
+    return onlineUsers;
+  }
+  return users; // Default to 'all users'
 };
+
+const filteredUsers = getFilteredUsers();
 ---
 <OtherLayout title="Browse">
     <h1 class="text-[25.6px] font-semibold mb-1 text-balance">Browse</h1>
     <div class="flex items-stretch text-xs mb-3">
       <p class="text-xs cursor-default font-semibold">Filter:</p>
-      {filterItems.map((filter) => (
-        <a href={filter.href} class={currentPath === filter.smallname ? filter.firstcss : filter.secondcss}>{filter.name}</a>
-        <div class={filter.dividerCss}>{filter.divider}</div>
-      ))}
+      <div class="flex items-center">
+        <a href={allUsersUrl}
+           class={view === 'active' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
+           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+             {view === 'active' && <Icon name="circle-check" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
+             <p>All Users</p>
+           </div>
+        </a>
+
+        <div class="ml-1 cursor-default font-medium text-xs">-</div>
+
+        <a href={newUsersUrl}
+           class={view === 'new' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
+           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+            {view === 'new' && <Icon name="circle-check" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
+            <p>New Users</p>
+          </div>
+        </a>
+
+        <div class="ml-1 cursor-default font-medium text-xs">-</div>
+
+        <a href={onlineUsersUrl}
+           class={view === 'online' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
+           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+            {view === 'online' && <Icon name="circle-check" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
+            <p>Online Users</p>
+          </div>
+        </a>
+      </div>
     </div>
     <div class="flex items-stretch text-xs mb-3">
-      <p class="text-xs cursor-default font-semibold">Friends:</p>
-      {friendItems.map((friend) => (
-        <a href={friend.href} class={currentPath === friend.smallname ? friend.firstcss : friend.secondcss}>{friend.name}</a>
-        <div class={friend.dividerCss}>{friend.divider}</div>
-      ))}
+      <p class="text-xs cursor-default font-semibold">Friends Filter:</p>
+      <div class="flex items-center">
+        <a href={includeFriendsUrl}
+           class={friends === 'include' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
+           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+            {friends === 'include' && <Icon name="circle-check" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
+            <p>Include Friends</p>
+          </div>
+        </a>
+
+        <div class="ml-1 cursor-default font-medium text-xs">-</div>
+
+        <a href={excludeFriendsUrl}
+           class={friends === 'exclude' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
+           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+            {friends === 'exclude' && <Icon name="circle-check" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
+            <p>Exclude Friends</p>
+          </div>
+        </a>
+      </div>
     </div>
     <div class="py-0.5 bg-orange-300/90">
       <div class="flex justify-between items-center mx-2">
-        <p class="text-xs font-semibold mt-1 cursor-default">Active Users</p>
+        <p class="text-xs font-semibold mt-1 cursor-default">
+          { view === 'new' ? 'New Users' : view === 'online' ? 'Online Users' : 'Active Users' } - { friends === 'include' ? 'Including Friends' : 'Excluding Friends' }
+        </p>
         <a class="text-[10.24px] hover:underline" href={generateRandomProfileUrl()}>[random]</a>
       </div>
     </div>
-      <!-- Adjusted padding and margins to make borders closer to images -->
-      <div class="border-2 border-orange-300/90"> 
-        <div class="ml-2 mr-0.5 mb-0.5 mt-1.5">
-			<div class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
-				{
-				  [...Array(45)].map(() => {
-					const randomImageNumber = getUniqueImageNumber();
-					const randomName = getUniqueName();
-					return (
-					  <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
-						<p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
-						<div>
-						  { profilepic ?
-                          <OtherProfileImage
-                            width={96}
-                            height={96}
-                            srcurl={`https://i.pravatar.cc/96?img=${randomImageNumber}`}
-                            altText={`${randomName}'s profile picture`}
-                            loggedin={loggedin}
-                          />
-                         :
-                        <div class="relative">
-                          <Icon class="w-[96px] h-[96px]" name="avatar" />
-                          { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 mr-[1px]"></div> }
-                        </div>
+    <div class="border-2 border-orange-300/90">
+      <div class="ml-2 mr-0.5 mb-0.5 mt-1.5">
+        <div class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
+          {
+            filteredUsers.map((user, index) => {
+              const randomImageNumber = getUniqueImageNumber();
+              const randomName = getUniqueName();
+
+              // Check if randomName or user is defined before using toLowerCase()
+              if (!randomName) return null;
+
+              return (
+                <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
+                  <p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
+                  <div>
+                    { profilepic ?
+                      <OtherProfileImage
+                        width={96}
+                        height={96}
+                        srcurl={`https://i.pravatar.cc/96?img=${randomImageNumber}`}
+                        altText={`${randomName}'s profile picture`}
+                        loggedin={loggedin}
+                      />
+                      :
+                      <div class="relative">
+                        <Icon class="w-[96px] h-[96px]" name="avatar" />
+                        { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 mr-[1px]"></div> }
+                      </div>
                     }
-						</div>
-					  </a>
-					);
-				  })
-				}
-			  </div>
+                  </div>
+                </a>
+              );
+            })
+          }
         </div>
       </div>
-      <div class="flex items-center justify-between mt-3 mb-2">
-        <a class="text-xs text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
-          <button 
-          type="button" 
-          class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-zinc-950 border-solid focus:outline-none" 
-          aria-label="Next Page" 
-          onclick=`window.location.href='${nextPageUrl}'`>
-          Next Page
-          </button>
-      </div>
+    </div>
+    <div class="flex items-center justify-between mt-3 mb-2">
+      <a class="text-xs text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
+      <button
+        type="button"
+        class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-zinc-950 border-solid focus:outline-none"
+        aria-label="Next Page"
+        onclick={`window.location.href='${nextPageUrl}'`}>
+        Next Page
+      </button>
+    </div>
 </OtherLayout>
