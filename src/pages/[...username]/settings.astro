@@ -52,7 +52,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                         </div>
                         <div class="flex items-center space-x-[20px] pt-0.5">
                             { profilepic ? 
-                            <label for="file-upload" class="py-0.5 px-3.5 bg-zinc-100 text-zinc-200 text-xs border border-zinc-200 focus:outline-none cursor-not-allowed">
+                            <label for="file-upload" class="py-0.5 px-3.5 bg-zinc-100 text-zinc-200 text-xs border border-zinc-200 focus:outline-none cursor-not-allowed" title="Delete Profile Image First">
                                 Upload
                             </label>
                             <input id="file-upload" type="file" class="hidden">
@@ -67,7 +67,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                                 Delete
                             </button>
                                 :
-                            <button class="py-0.5 px-3.5 bg-zinc-100 text-zinc-200 text-xs border border-zinc-200 focus:outline-none cursor-not-allowed" type="button">
+                            <button class="py-0.5 px-3.5 bg-zinc-100 text-zinc-200 text-xs border border-zinc-200 focus:outline-none cursor-not-allowed" type="button" title="Upload Profile Image First">
                                 Delete
                             </button>
                         }

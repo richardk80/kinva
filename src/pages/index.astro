@@ -22,8 +22,16 @@ const username = "dex";
 import loggedin from './api/loggedin.json';
 
 import profilepic from './api/profilepic.json';
+
+import users from '../pages/api/users.json'; // Importing users data
+
+// Assuming you're fetching the user data based on a specific `username` or `id`
+const user = users.find(user => user.username === username);
+
+// If the user is found, get the message count; otherwise, set it to 0
+const messageCount = user ? user.messagenum : 0;
 ---
-<Layout title={ loggedin ? "Home" : "Login" }>
+<Layout title={ loggedin ? `Home ${messageCount > 0 ? `(${messageCount})` : ''}` : "Login" }>
 	{ loggedin ?
     <div class="grid grid-cols-12 grid-flow-row-dense">
         <div class="col-span-full">

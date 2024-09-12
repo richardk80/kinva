@@ -6,18 +6,26 @@ interface Props {
   name?: string;
   pclass?: string;
   count?: string;
-  messagenum?: number;
 };
 
 const { widthcss, backgroundColor, borderColor, name, pclass, count } = Astro.props;
 
-const { messagenum } = Astro.props;
+import users from '../../pages/api/users.json'; // Importing users data
+
+const username = 'dex';
+
+// Assuming you're fetching the user data based on a specific `username` or `id`
+const user = users.find(user => user.username === username);
+
+// If the user is found, get the message count; otherwise, set it to 0
+const messageCount = user ? user.messagenum : 0;
 ---
 <div class={widthcss}>
     <div class="py-0.5" class:list={backgroundColor}>
         <div class={pclass}>
-          <p class="flex items-center"> {name} </p>
-          { messagenum > 0 ? <p class="-mt-0.5 ml-1" title={`You have ${messagenum} ${ messagenum == 1 ? "message" : "messages" }`}> {count} </p> : ''}
+          <div class="flex items-center space-x-0.5">
+            <p>{name}</p>
+          </div>
     </div>
     </div>
         <div class="border-2 border-solid" class:list={borderColor}>
