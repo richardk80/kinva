@@ -5,7 +5,7 @@ const users = [
       "username": "dex",
       "myself": false,
       "loggedin": true, 
-      "profilepic": true, 
+      "profilepic": false, 
       "twofactor": true,
       "showlist": 0,
       "friendship": false,

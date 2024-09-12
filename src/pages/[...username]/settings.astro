@@ -1,6 +1,7 @@
 ---
 import Layout from '@lay/Layout.astro';
 import NonRegularBox from '@com/main/NonRegularBox.astro';
+import SettingsProfileImage from '@com/main/SettingsProfileImage.astro';
 import SmallLink from '@com/main/SmallLink.astro';
 import { Icon } from 'astro-icon/components';
 
@@ -20,9 +21,7 @@ if (!page) {
   return new Response('User not found', { status: 404 });
 }
 
-const { name, email, id, loggedin, twofactor } = page;
-
-const profilepic = false;
+const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
 ---
 <Layout title="Account Settings">
 	<div class="mx-auto w-[690px] mb-2">
@@ -37,17 +36,36 @@ const profilepic = false;
                     <div class="mt-1.5 space-y-2">
                         <div>
                             <div class="text-[12.8px]">Profile Image:</div>
-                            <Icon class="w-40 h-40" name="avatar" />
+                            { profilepic ?
+                            <div class="-mb-1.5">
+                                <SettingsProfileImage
+                                width={160}
+                                height={160}
+                                srcurl={profileimg}
+                                altText={`${name}'s profile picture`}
+                                loggedin={loggedin}
+                              />
+                            </div>
+                          :
+                          <Icon class="w-40 h-40" name="avatar" />
+                            }
                         </div>
                         <div class="flex items-center space-x-[20px] pt-0.5">
+                            { profilepic ? 
+                            <label for="file-upload" class="py-0.5 px-3.5 bg-zinc-100 text-zinc-200 text-xs border border-zinc-200 focus:outline-none cursor-not-allowed">
+                                Upload
+                            </label>
+                            <input id="file-upload" type="file" class="hidden">
+                            :
                             <label for="file-upload" class="py-0.5 px-3.5 bg-zinc-100 hover:bg-zinc-200 text-xs border border-zinc-400 focus:outline-none cursor-pointer">
                                 Upload
                             </label>
                             <input id="file-upload" type="file" class="hidden">
+                            }
                             { profilepic ? 
                             <button class="py-0.5 px-3.5 bg-red-600 hover:bg-red-700 text-white text-xs border border-red-900 focus:outline-none cursor-pointer" type="button">
                                 Delete
-                                </button>
+                            </button>
                                 :
                             <button class="py-0.5 px-3.5 bg-zinc-100 text-zinc-200 text-xs border border-zinc-200 focus:outline-none cursor-not-allowed" type="button">
                                 Delete

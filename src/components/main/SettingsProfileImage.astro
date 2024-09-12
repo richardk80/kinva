@@ -1,0 +1,18 @@
+---
+interface Props {
+    width: number;
+    height: number;
+    imgclass?: string;
+    srcurl?: string;
+    altText?: string;
+    titleText?: string;
+    loggedin?: boolean;
+}
+
+import { Image } from 'astro:assets';
+
+const { width, height, imgclass, srcurl, altText, titleText, loggedin } = Astro.props;
+---
+<div class="relative inline-block">
+    <Image width={width} height={height} class={imgclass} loading="eager" src={srcurl} alt={altText} title={titleText} />
+</div>
