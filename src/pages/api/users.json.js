@@ -1,11 +1,11 @@
 const users = [
     { 
       "name": "Dex",
-      "count": 34,
+      "friendcount": 34,
       "username": "dex",
-      "myself": false,
+      "myself": true,
       "loggedin": true, 
-      "profilepic": false, 
+      "profilepic": true, 
       "twofactor": true,
       "showlist": 0,
       "messagenum": 5,
@@ -18,7 +18,7 @@ const users = [
     },
     { 
       "name": "Richard",
-      "count": 45,
+      "friendcount": 45,
       "username": "richard",
       "myself": true,
       "loggedin": true, 
@@ -35,7 +35,7 @@ const users = [
     },
     { 
       "name": "Joe",
-      "count": 26,
+      "friendcount": 26,
       "username": "joe",
       "myself": true,
       "loggedin": false,
@@ -52,7 +52,7 @@ const users = [
     },
     { 
       "name": "Rodney",
-      "count": 18,
+      "friendcount": 18,
       "username": "rodney",
       "myself": true,
       "loggedin": true, 
@@ -69,7 +69,7 @@ const users = [
     },
     { 
       "name": "Keith",
-      "count": 12,
+      "friendcount": 12,
       "username": "keith",
       "myself": true,
       "loggedin": false, 
@@ -86,7 +86,7 @@ const users = [
     },
     { 
       "name": "James",
-      "count": 52,
+      "friendcount": 52,
       "username": "james",
       "myself": true,
       "loggedin": false, 
@@ -103,7 +103,7 @@ const users = [
     },
     { 
       "name": "Steve",
-      "count": 49,
+      "friendcount": 49,
       "username": "steve",
       "myself": true,
       "loggedin": true, 
@@ -120,7 +120,7 @@ const users = [
     },
     { 
       "name": "Roger",
-      "count": 8,
+      "friendcount": 8,
       "username": "roger",
       "myself": true,
       "loggedin": true, 
@@ -137,7 +137,7 @@ const users = [
     },
     { 
       "name": "Jay",
-      "count": 39,
+      "friendcount": 39,
       "username": "jay",
       "myself": true,
       "loggedin": false, 

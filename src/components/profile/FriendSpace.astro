@@ -21,10 +21,10 @@ if (!currentUser) {
 }
 
 // Extract current user's information
-const { name, loggedin, profilepic, profileimg, count } = currentUser;
+const { name, loggedin, profilepic, profileimg, friendcount } = currentUser;
 
 // Convert count to a number if it isn't already
-const peoplecount = Number(count);
+const peoplecount = Number(friendcount);
 const friendnum = peoplecount > 8 ? 8 : peoplecount;
 
 console.log(peoplecount);
@@ -61,14 +61,14 @@ console.log('Other users:', otherUsers);
   aclass="text-[10px] -mt-0.5 font-normal hover:underline text-zinc-950" 
   aurl={`/${username}/friends`}
 >
-  <p class={peoplecount === 0 ? "text-xs font-semibold ml-2 pt-1.5" : "text-xs font-semibold ml-2 pt-2"}>
+  <p class={peoplecount === 0 ? "text-xs font-semibold ml-2 pt-1.5" : "text-xs font-semibold ml-2 pt-1.5"}>
     {name} has <span class="text-red-600">{peoplecount > 0 ? peoplecount : '0'}</span> 
     {peoplecount === 1 ? 'friend' : 'friends'}
   </p>
 
   <div class={peoplecount > 0 ? "grid grid-flow-dense grid-cols-4 gap-x-1 gap-y-2 pt-1 pb-0.5" : "grid grid-flow-dense grid-cols-4 pt-1"}>
     {otherUsers.slice(0, friendnum).map((user) => (
-      <div class={peoplecount > 0 ? "pt-0.5 pb-2 px-1" : "py-0 px-1"}>
+      <div class={peoplecount > 0 ? "pt-0.5 pb-1.5 px-1" : "py-0 px-1"}>
         <a href={`/${user.username}`} title={`Visit ${user.name}'s profile`}>
           <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-blue-600 hover:text-red-600">
             <p class="mb-0.5 px-4">{user.name}</p>
