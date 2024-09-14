@@ -10,7 +10,6 @@ const email = 'richardk80@icloud.com';
   <h1 class="text-[25.6px] font-semibold mb-2 text-balance">Contact Us</h1>
       <form action="/api/submit" method="POST" class="space-y-2">
         <div class="hidden">
-          <label for="name" class="block text-[12.8px] font-medium">Name:</label>
           <input
             type="text"
             id="name"
@@ -22,7 +21,6 @@ const email = 'richardk80@icloud.com';
         </div>
         
         <div class="hidden">
-          <label for="email" class="block text-[12.8px] font-medium">Email:</label>
           <input
             type="email"
             id="email"
@@ -35,14 +33,13 @@ const email = 'richardk80@icloud.com';
 
         <!-- Dropdown for Reason to Contact -->
       <div>
-        <label for="reason" class="block text-[12.8px] font-medium">Reason:</label>
         <select
           id="reason"
           name="reason"
           required
           class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-2"
           onclick="clearSelection()">
-          <option value="" selected>Select a reason</option>
+          <option value="" selected>Select Reason</option>
           <option value="Support">Support</option>
           <option value="Feedback">Feedback</option>
           <option value="Privacy">Privacy</option>
