@@ -22,6 +22,16 @@ import OtherLayout from '@lay/OtherLayout.astro';
 	import DOMPurify from "dompurify";
 	import Fuse from "fuse.js";
 
+	import users from '../pages/api/users.json'; // Importing users data
+
+	const username = 'dex';
+
+	// Assuming you're fetching the user data based on a specific `username` or `id`
+	const user = users.find(user => user.username === username);
+
+	// If the user is found, get the message count; otherwise, set it to 0
+	const messageCount = user ? user.messagenum : 0;
+
 	let SEARCH_DATA;
 	let FUSE_INSTANCE;
 	const FUSE_OPTIONS = {
@@ -51,8 +61,8 @@ import OtherLayout from '@lay/OtherLayout.astro';
 	// functions
 	function updateDocumentTitle(search) {
 		document.title = search
-			? `Results for: “${search}”`
-			: "User Search | Hi Moot";
+			? `${messageCount > 0 ? `(${messageCount})` : ''} Results for: “${search}”`
+			: `${messageCount > 0 ? `(${messageCount})` : ''} User Search | Hi Moot`;
 	}
 
 	function updateSearchReadout(search) {

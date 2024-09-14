@@ -60,10 +60,20 @@ const getCssFooterClasses = (isActive) => isActive ? "hover:text-red-600 hover:u
 const dividerFooterCss = "text-zinc-950 text-xs font-medium";
 
 const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
+
+import users from '../pages/api/users.json'; // Importing users data
+
+const username = 'dex';
+
+// Assuming you're fetching the user data based on a specific `username` or `id`
+const user = users.find(user => user.username === username);
+
+// If the user is found, get the message count; otherwise, set it to 0
+const messageCount = user ? user.messagenum : 0;
 ---
 <html lang="en" class="c_darkmode antialiased subpixel-antialiased">
   <head>
-    <title>{`${title} - Hi Moot`}</title>
+    <title>{`${messageCount > 0 ? `(${messageCount})` : ''} ${title} - Hi Moot`}</title>
     <link rel="canonical" href={Astro.site} />
     <meta charset="utf-8" />
     <link rel="icon shortcut" type="image/x-icon" href="/favicon.ico" />
