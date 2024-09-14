@@ -7,17 +7,33 @@ const email = 'ryanx30x@gmail.com';
 ---
 <OtherLayout title="Contact">
   <div class="text-zinc-950 mb-5">
-  <h1 class="text-[25.6px] font-semibold mb-2 text-balance cursor-not-allowed select-none">Contact Us</h1>
+  <h1 class="text-[25.6px] font-semibold mb-2 text-balance">Contact Us</h1>
       <form action="/api/submit" method="POST" class="space-y-2">
-        <div class="flex items-center space-x-2">
+        <div>
           <label for="name" class="block text-[12.8px] font-medium">Name:</label>
-          <p class="cursor-not-allowed text-[12.8px] select-none">{name}</p>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="p-2 w-full text-sm border border-gray-300 focus:outline-none cursor-not-allowed caret-transparent select-none"
+            value={name}
+          />
         </div>
-        <div class="flex items-center space-x-2">
+        
+        <div>
           <label for="email" class="block text-[12.8px] font-medium">Email:</label>
-          <p class="cursor-not-allowed text-[12.8px] select-none">{email}</p>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="p-2 w-full text-sm border border-gray-300 focus:outline-none cursor-not-allowed caret-transparent select-none"
+            value={email}
+          />
         </div>
-        <div class="space-y-2">
+        
+        <div>
           <label for="message" class="block text-[12.8px] font-medium">Message:</label>
           <textarea
             id="message"
