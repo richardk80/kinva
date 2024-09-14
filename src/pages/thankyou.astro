@@ -1,5 +1,10 @@
 ---
 import OtherLayout from '@lay/OtherLayout.astro';
+import { setupViewTransitions } from '../scripts/view-transition.js';
+
+setTimeout(() => {
+  setupViewTransitions();
+}, 0);
 ---
 <OtherLayout title="Thank You">
     <main class="max-w-lg mx-auto text-center my-2">
@@ -7,4 +12,5 @@ import OtherLayout from '@lay/OtherLayout.astro';
         <p class="text-lg">Your message was sent successfully</p> 
         <p class="text-lg">We will get back to you soon</p>
     </main>
+    <script type="module" src="/scripts/view-transition.js" on:load></script>
 </OtherLayout>

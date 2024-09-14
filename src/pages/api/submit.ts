@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
   port: 587, // Replace with appropriate port (587 for TLS, 465 for SSL)
   secure: false, // Use SSL (true) or TLS (false)
   auth: {
-    user: 'ryanx30x@gmail.com', // Your custom domain email address
-    pass: 'xirk yxin jmos qbxq', // Your custom domain email password
+    user: import.meta.env.SMTP_USER, // Use environment variables for security
+    pass: import.meta.env.SMTP_PASS,
   },
 });
 
@@ -19,10 +19,10 @@ export const POST: APIRoute = async ({ request }) => {
     const message = formData.get('message') as string;
 
     await transporter.sendMail({
-      from: 'contact@himoot.site', // The custom domain email address
+      from: `${email}`, // The custom domain email address
       to: 'contact@himoot.site', // Your recipient address (could be your Gmail)
       subject: `Hi Moot support message from ${name}`, // Subject line
-      text: `Name: ${name}\nEmail: ${email}\nMessage:\n\n${message}`, // Email body
+      text: `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n\n${message}`, // Email body
     });
 
     return new Response(null, {
