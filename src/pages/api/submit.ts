@@ -16,12 +16,13 @@ export const POST: APIRoute = async ({ request }) => {
     const formData = await request.formData();
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
+    const reason = formData.get('reason') as string;
     const message = formData.get('message') as string;
 
     await transporter.sendMail({
       from: `${email}`, // The custom domain email address
       to: 'contact@himoot.site', // Your recipient address (could be your Gmail)
-      subject: `Hi Moot support message from ${name}`, // Subject line
+      subject: `Hi Moot ${reason} Message from ${name}`, // Subject line
       text: `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n\n${message}`, // Email body
     });
 

@@ -6,10 +6,10 @@ const name = 'Dex';
 const email = 'richardk80@icloud.com';
 ---
 <OtherLayout title="Contact">
-  <div class="text-zinc-950 mb-5">
+  <div class="text-zinc-950 mb-2">
   <h1 class="text-[25.6px] font-semibold mb-2 text-balance">Contact Us</h1>
       <form action="/api/submit" method="POST" class="space-y-2">
-        <div>
+        <div class="hidden">
           <label for="name" class="block text-[12.8px] font-medium">Name:</label>
           <input
             type="text"
@@ -21,7 +21,7 @@ const email = 'richardk80@icloud.com';
           />
         </div>
         
-        <div>
+        <div class="hidden">
           <label for="email" class="block text-[12.8px] font-medium">Email:</label>
           <input
             type="email"
@@ -32,15 +32,34 @@ const email = 'richardk80@icloud.com';
             value={email}
           />
         </div>
+
+        <!-- Dropdown for Reason to Contact -->
+      <div>
+        <label for="reason" class="block text-[12.8px] font-medium">Reason for Contact:</label>
+        <select
+          id="reason"
+          name="reason"
+          required
+          class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-2"
+          onclick="clearSelection()">
+          <option value="" selected>Select a reason</option>
+          <option value="Support">Support</option>
+          <option value="Feedback">Feedback</option>
+          <option value="Privacy">Privacy</option>
+          <option value="Press">Press</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
         
         <div>
-          <label for="message" class="block text-[12.8px] font-medium">Message:</label>
+          <label for="message" class="block text-[12.8px] font-medium hidden">Message:</label>
           <textarea
             id="message"
             name="message"
             required
             class="p-2 w-full text-sm border border-gray-300 resize-none"
             rows="6"
+            placeholder="Type your message here"
           ></textarea>
         </div>
         
@@ -52,3 +71,11 @@ const email = 'richardk80@icloud.com';
         </button>
       </form>
 </OtherLayout>
+
+<script>
+  function clearSelection() {
+    const selectElement = document.getElementById('reason') as HTMLSelectElement;
+    const firstOption = selectElement.options[0];
+    firstOption.selected = false; // Clear the selected attribute
+  }
+</script>
