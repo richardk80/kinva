@@ -1,5 +1,5 @@
 ---
-import Layout from '@lay/Layout.astro';
+import Layout from '@lay/OtherLayout.astro';
 import NonRegularBox from '@com/main/NonRegularBox.astro';
 import SettingsProfileImage from '@com/main/SettingsProfileImage.astro';
 import SmallLink from '@com/main/SmallLink.astro';
@@ -166,13 +166,13 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
             <p class="text-[12.8px] font-semibold">More Options</p>
                 <div class="space-y-2 mt-1">
                     <li class="list-disc list-[circle] list-outside text-xs">
-                        To change your password, please <a class="text-blue-600 hover:text-red-600 hover:underline" href=`/${username}/resetpassword`>click here</a>.
+                        To change your password, please <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${username}/resetpassword`}>click here</a>.
                     </li>
                     <li class="list-disc list-[circle] list-outside text-xs">
-                    To export your account data, please <a class="text-blue-600 hover:text-red-600 hover:underline" href=`/${username}/exportdata`>click here</a>.
+                    To export your account data, please <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${username}/exportdata`}>click here</a>.
                     </li>
                     <li class="list-disc list-[circle] list-outside text-xs">
-                    To permanently delete your account and all your data, please <a class="text-blue-600 hover:text-red-600 hover:underline" href=`/${username}/deleteaccount`>click here</a>.
+                    To permanently delete your account and all your data, please <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${username}/deleteaccount`}>click here</a>.
                     </li>
                     <li class="list-disc list-[circle] list-outside text-xs">
                     To manage cookies settings, please <a class="text-blue-600 hover:text-red-600 hover:underline cursor-pointer" data-cc="c-settings" href="#">click here</a>.

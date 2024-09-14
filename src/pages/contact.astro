@@ -1,6 +1,42 @@
 ---
 import OtherLayout from '@lay/OtherLayout.astro';
+
+const name = 'Dex';
+
+const email = 'ryanx30x@gmail.com';
 ---
 <OtherLayout title="Contact">
-	<h1 class="text-[25.6px] font-semibold mb-2 text-balance">Contact</h1>
+  <div class="text-zinc-950 mb-5">
+  <h1 class="text-[25.6px] font-semibold mb-2 text-balance cursor-not-allowed select-none">Contact Us</h1>
+      <form action="/api/submit" method="POST" class="space-y-2">
+        <div class="flex items-center space-x-2">
+          <label for="name" class="block text-[12.8px] font-medium">Name:</label>
+          <p class="cursor-not-allowed text-[12.8px] select-none">{name}</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <label for="email" class="block text-[12.8px] font-medium">Email:</label>
+          <p class="cursor-not-allowed text-[12.8px] select-none">{email}</p>
+        </div>
+        <div class="space-y-2">
+          <label for="message" class="block text-[12.8px] font-medium">Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            class="p-2 w-full text-sm border border-gray-300 resize-none"
+            rows="6"
+          ></textarea>
+        </div>
+        
+        <button
+          type="submit"
+          class="bg-zinc-100 hover:bg-zinc-200 text-xs text-zinc-950 border border-zinc-950 py-0.5 px-2"
+        >
+          Send
+        </button>
+      </form>
 </OtherLayout>
+
+<style>
+
+</style>
