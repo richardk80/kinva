@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     "aint": "ain't", "amnt": "amn’t", "arent": "aren't", "cant": "can't",
                     "couldve": "could've", "couldnt": "couldn't", "daren": "daren’t", "das": "d’s",
                     "didnt": "didn't", "doesnt": "doesn't", "dont": "don't", "hadnt": "hadn't",
-                    "hasnt": "hasn't", "havent": "haven't", "hed": "he’d", "hell": "he’ll",
+                    "hasnt": "hasn't", "havent": "haven't", "hed": "he’d", "he'll": "he’ll",
                     "hes": "he's", "howd": "how’d", "howll": "how’ll", "howre": "how’re",
                     "howve": "how’ve", "id": "I'd", "ill": "I'll", "im": "I'm", "isnt": "isn't", "itd": "it’d", "itll": "it’ll",
                     "its": "it's", "ive": "I've", "lets": "let's", "maynt": "mayn't",
