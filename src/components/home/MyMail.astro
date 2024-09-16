@@ -23,10 +23,7 @@ const messageCount = user ? user.messagenum : 0;
             <div class="flex flex-col space-y-1">
                 <a class="flex items-center text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-1" href="/">
                     <Icon class="h-[16px] w-auto group-hover:no-underline -mt-0.5" name="envelope" />
-                    <span class="group-hover:underline flex items-center space-x-0.5">
-                        <p>Inbox</p>
-                        <p>{messageCount > 0 ? `(${messageCount})` : ''}</p>
-                    </span>
+                    <p>Inbox</p>
                 </a>
                 <a class="flex items-center text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-1" href="/">
                     <Icon class="h-[16px] w-auto group-hover:no-underline" name="sent" />

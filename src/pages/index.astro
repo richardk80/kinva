@@ -17,9 +17,13 @@ import LoginCoolPeople from '@com/main/LoginCoolPeople.astro';
 import LoginDivider from '@com/login/LoginDivider.astro';
 import LoginBox from '@com/login/LoginBox.astro';
 
-const name = "Dex";
+const name = 'Dex';
 
-const username = "dex";
+const username = 'dex';
+
+const created = '01-01-2020';
+
+const showlist = 7;
 
 import loggedin from './api/loggedin.json';
 
@@ -42,9 +46,9 @@ import profilepic from './api/profilepic.json';
                 <div class="flex flex-col gap-y-2 w-full">
                     <div class="flex justify-between">
                         <div class="-mt-0.5">
-                            <BlogEntry username={username} />
+                            <BlogEntry username={username} showlist={showlist} />
                         </div>
-                        <InfoBox username={username} />
+                        <InfoBox username={username} created={created} />
                     </div>
                     <CoolPeople name={name} username={username} loggedin={loggedin} profilepic={profilepic} />
                     <FriendsBulletins username={username} />

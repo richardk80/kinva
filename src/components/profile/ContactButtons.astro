@@ -64,14 +64,14 @@ const { name, loggedin, myself, profilepic, profileimg, showlist, lastActive, fr
     <div class="py-1.5 px-1">
         <div class="flex items-center justify-around">
             <div class="flex flex-col space-y-1.5">
+                <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-2" href="/messages/send">
+                    <Icon class="h-[16px] w-auto group-hover:no-underline" name="envelope" />
+                    <span class="group-hover:underline">Send Message</span>
+                </a>
                 <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-1 cursor-pointer" data-hs-overlay="#hs-friend-vertically-centered-modal" data-hs-overlay-keyboard="false">
                     <Icon class="h-[16px] w-auto group-hover:no-underline" name={ friendship ? "user-minus" : ( requested ? "user-xmark" : "user-plus") } />
                     <span class="group-hover:underline">{ friendship ? "Remove Friend" : ( requested ? "Cancel Request" : "Add to Friends") }
                     </span>
-                </a>
-                <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-2" href="/messages/send">
-                    <Icon class="h-[16px] w-auto group-hover:no-underline" name="envelope" />
-                    <span class="group-hover:underline">Send Message</span>
                 </a>
                 <a class="flex items-start text-blue-600 fill-blue-600 font-semibold text-[11.2px] hover:text-red-600 hover:fill-red-600 w-fit group space-x-2" href={`/${username}/bulletins`}>
                     <Icon class="h-[16px] w-auto group-hover:no-underline" name="list" />

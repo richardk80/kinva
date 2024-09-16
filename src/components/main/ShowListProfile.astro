@@ -1,47 +1,56 @@
 ---
 import SmallLink from '@com/main/SmallLink.astro';
 
-const { username } = Astro.props;
+import users from '../../pages/api/users.json';
+
+const { username } = Astro.params;
+
+const page = users.find(user => user.username === username);
+
+const { showlist } = page;
 
 const blogItems = [
-{ id: 1, text: "Month 1", href: `${username}/blog`, date: new Date('2024-01-01') },
-{ id: 2, text: "Month 2", href: `${username}/blog`, date: new Date('2024-02-01') },
-{ id: 3, text: "Month 3", href: `${username}/blog`, date: new Date('2024-03-01') },
-{ id: 4, text: "Month 4", href: `${username}/blog`, date: new Date('2024-04-01') },
-{ id: 5, text: "Month 5", href: `${username}/blog`, date: new Date('2024-05-01') },
-{ id: 6, text: "Month 6", href: `${username}/blog`, date: new Date('2024-06-01') },
-{ id: 7, text: "Month 7", href: `${username}/blog`, date: new Date('2024-07-01') },
-{ id: 8, text: "Month 8", href: `${username}/blog`, date: new Date('2024-08-01') },
-{ id: 9, text: "Month 9", href: `${username}/blog`, date: new Date('2024-09-01') },
-{ id: 10, text: "Month 10", href: `${username}/blog`, date: new Date('2024-10-01') },
-{ id: 11, text: "Month 11", href: `${username}/blog`, date: new Date('2024-11-01') },
-{ id: 12, text: "Month 12", href: `${username}/blog`, date: new Date('2024-12-01') },
-{ id: 13, text: "Month 13", href: `${username}/blog`, date: new Date('2025-01-01') },
-{ id: 14, text: "Month 14", href: `${username}/blog`, date: new Date('2025-02-01') },
-{ id: 15, text: "Month 15", href: `${username}/blog`, date: new Date('2025-03-01') },
-{ id: 16, text: "Month 16", href: `${username}/blog`, date: new Date('2025-04-01') },
-{ id: 17, text: "Month 17", href: `${username}/blog`, date: new Date('2025-05-01') },
-{ id: 18, text: "Month 18", href: `${username}/blog`, date: new Date('2025-06-01') },
-{ id: 19, text: "Month 19", href: `${username}/blog`, date: new Date('2025-07-01') },
-{ id: 20, text: "Month 20", href: `${username}/blog`, date: new Date('2025-08-01') },
-{ id: 21, text: "Month 21", href: `${username}/blog`, date: new Date('2025-09-01') },
-{ id: 22, text: "Month 22", href: `${username}/blog`, date: new Date('2025-10-01') },
-{ id: 23, text: "Month 23", href: `${username}/blog`, date: new Date('2025-11-01') },
-{ id: 24, text: "Month 24", href: `${username}/blog`, date: new Date('2025-12-01') },
+    { id: 1, text: "Month 1", href: `${username}/blog`, date: new Date('2024-01-01') },
+    { id: 2, text: "Month 2", href: `${username}/blog`, date: new Date('2024-02-01') },
+    { id: 3, text: "Month 3", href: `${username}/blog`, date: new Date('2024-03-01') },
+    { id: 4, text: "Month 4", href: `${username}/blog`, date: new Date('2024-04-01') },
+    { id: 5, text: "Month 5", href: `${username}/blog`, date: new Date('2024-05-01') },
+    { id: 6, text: "Month 6", href: `${username}/blog`, date: new Date('2024-06-01') },
+    { id: 7, text: "Month 7", href: `${username}/blog`, date: new Date('2024-07-01') },
+    { id: 8, text: "Month 8", href: `${username}/blog`, date: new Date('2024-08-01') },
+    { id: 9, text: "Month 9", href: `${username}/blog`, date: new Date('2024-09-01') },
+    { id: 10, text: "Month 10", href: `${username}/blog`, date: new Date('2024-10-01') },
+    { id: 11, text: "Month 11", href: `${username}/blog`, date: new Date('2024-11-01') },
+    { id: 12, text: "Month 12", href: `${username}/blog`, date: new Date('2024-12-01') },
+    { id: 13, text: "Month 13", href: `${username}/blog`, date: new Date('2025-01-01') },
+    { id: 14, text: "Month 14", href: `${username}/blog`, date: new Date('2025-02-01') },
+    { id: 15, text: "Month 15", href: `${username}/blog`, date: new Date('2025-03-01') },
+    { id: 16, text: "Month 16", href: `${username}/blog`, date: new Date('2025-04-01') },
+    { id: 17, text: "Month 17", href: `${username}/blog`, date: new Date('2025-05-01') },
+    { id: 18, text: "Month 18", href: `${username}/blog`, date: new Date('2025-06-01') },
+    { id: 19, text: "Month 19", href: `${username}/blog`, date: new Date('2025-07-01') },
+    { id: 20, text: "Month 20", href: `${username}/blog`, date: new Date('2025-08-01') },
+    { id: 21, text: "Month 21", href: `${username}/blog`, date: new Date('2025-09-01') },
+    { id: 22, text: "Month 22", href: `${username}/blog`, date: new Date('2025-10-01') },
+    { id: 23, text: "Month 23", href: `${username}/blog`, date: new Date('2025-11-01') },
+    { id: 24, text: "Month 24", href: `${username}/blog`, date: new Date('2025-12-01') },
 ];
 
-const maxItemsToShow = 4;
+// Ensure showlist is a number and use it to limit the number of items shown
+const maxItemsToShow = typeof showlist === 'number' ? Math.min(showlist, 4) : 0;
 const sortedItems = blogItems.sort((a, b) => b.date.getTime() - a.date.getTime());
 const itemsToShow = sortedItems.slice(0, maxItemsToShow);
 ---
+
 <div class="text-xs space-y-[4.2px] font-normal">
-    {itemsToShow.map((items) => (
-        <div class="flex items-center space-x-1">
-            <p>{items.text}</p>
-                <p>
-                    <SmallLink href={items.href} link="read more" />
-                </p>
-        </div>
-    ))
-    }
+    {itemsToShow.length > 0 ? (
+        itemsToShow.map((item) => (
+            <div class="flex items-center space-x-1">
+                <p>{item.text}</p>
+                <p><SmallLink href={item.href} link="read more" /></p>
+            </div>
+        ))
+    ) : (
+        <p class="text-xs">There are no blog entries yet</p>
+    )}
 </div>
