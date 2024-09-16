@@ -1,17 +1,23 @@
 ---
 import RegularBox from '@com/main/RegularBox.astro';
 
-const { username } = Astro.props;
-
+// Initialize the bulletins array with Date objects
 const friendbulletins = [
-  { from: 'Stanley', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Mike', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Rodney', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Jacob', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Norman', subject: `What's going on with my life right now ha ha ha ha ha ha` },
+  { from: 'Stanley', subject: `What's going on with my life right now ha ha ha ha ha ha`, date: new Date('2024-09-15') },
+  { from: 'Rodney', subject: `What's going on with my life right now ha ha`, date: new Date('2024-09-14') },
+  { from: 'Norman', subject: `What's going on with my life right now ha ha ha ha ha ha`, date: new Date('2024-09-13') },
+  { from: 'Mike', subject: `What's going on with my life right now ha ha`, date: new Date('2024-09-12') },
+  { from: 'Jacob', subject: `What's going on with my life right now ha ha ha ha ha ha`, date: new Date('2024-09-11') },
 ];
 
-const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
+// Set the number of bulletins to display and the max limit
+const maxBulletinsToShow = 5;  // The maximum limit of bulletins to show
+
+// Sort bulletins by date in descending order
+const sortedBulletins = friendbulletins.sort((a, b) => b.date.getTime() - a.date.getTime());
+const displayedBulletins = sortedBulletins.slice(0, Math.min(maxBulletinsToShow, maxBulletinsToShow));
+
+const hasBulletins = displayedBulletins.length > 0;
 ---
 <RegularBox 
   name="Your Friend's Bulletins" 
@@ -33,7 +39,7 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
             <h2 class="text-xs font-semibold ml-2">Subject</h2>
           </div>
         </div>
-        {friendbulletins.map(bulletin => (
+        {displayedBulletins.map(bulletin => (
           <div class="grid grid-cols-5 flex items-center border-b-2 border-blue-200">
             <div class="py-1 pl-2 col-span-1 border-r-2 border-blue-200">
               <a href="#" class="text-xs flex text-blue-600 hover:text-red-600 hover:underline">{bulletin.from}</a>

@@ -25,6 +25,8 @@ const created = '01-01-2020';
 
 const showlist = 7;
 
+const bulletinnum = 4;
+
 import loggedin from './api/loggedin.json';
 
 import profilepic from './api/profilepic.json';
@@ -51,7 +53,7 @@ import profilepic from './api/profilepic.json';
                         <InfoBox username={username} created={created} />
                     </div>
                     <CoolPeople name={name} username={username} loggedin={loggedin} profilepic={profilepic} />
-                    <FriendsBulletins username={username} />
+                    <FriendsBulletins username={username} bulletinnum={bulletinnum} />
                     <FriendRequests username={username} />
                 </div>
                 <!-- End Right Column -->
