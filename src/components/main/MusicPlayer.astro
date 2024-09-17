@@ -40,19 +40,19 @@ const settings = {
 
 <style>
 .player-background {
-  @apply h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500;
+  @apply h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500 rounded;
 }
 
 .player-align {
-  @apply grid font-player grid-rows-1 grid-cols-5 pt-2.5 pb-1.5 px-2;
+  @apply grid font-player grid-rows-1 grid-cols-5 pt-[10px] pb-1.5 px-2;
 }
 
 .button-background {
-  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 w-12 h-10;
+  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 rounded w-10 h-10;
 }
 
 .player-button {
-  @apply h-10 w-12 antialiased subpixel-antialiased;
+  @apply h-10 w-10 mt-[0.5px] antialiased subpixel-antialiased;
 }
   
 .text-gradient {
@@ -84,7 +84,7 @@ const settings = {
 }
 
 .window-backround {
-  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 grid grid-cols-2 h-10 w-[231px] pointer-events-none;
+  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 rounded -ml-[9px] grid grid-cols-2 h-10 w-[240px] pointer-events-none;
 }
 
 .window-align {
