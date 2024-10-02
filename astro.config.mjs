@@ -13,6 +13,9 @@ global.EventSource = eventsource;
 export default defineConfig({
   site: "https://www.himoot.com",
   prefetch: true,
+  server: {
+    port: 4321,
+  },
   buildOptions: {
     sourcemap: false, // Disable sourcemaps entirely
   },

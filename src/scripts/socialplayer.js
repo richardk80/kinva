@@ -1,10 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('social-music-player');
 
-    // Check if the container exists
-    if (!container) {
-        return;  // Exit the function if the container is not found
-    }
     
     const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
     
@@ -15,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
         xmlFilePath: container.getAttribute('data-xml-file-path'),
         updateInterval: 45000
     };
+
+    if (!container) { return }
 
     class UserInterface {
         constructor(settings) {
@@ -119,23 +117,18 @@ document.addEventListener("DOMContentLoaded", function() {
                     .join(' ');
             };
         
-            // Capitalize title and artist
-            let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; // Remove hyphens in title
-            let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || 'No Artist Available'; // Remove hyphens in artist
-        
-            // Get current song info
+            let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; 
+            let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || 'No Artist Available'; 
+
             const titleElement = document.getElementById('song-title');
             const artistElement = document.getElementById('song-artist');
             const currentTitle = titleElement.textContent;
             const currentArtist = artistElement.textContent;
         
-            // Check if the song info has changed
             if (formattedTitle !== currentTitle || formattedArtist !== currentArtist) {
-                // Apply fade-out effect
                 titleElement.classList.add('fade', 'fade-out');
                 artistElement.classList.add('fade', 'fade-out');
         
-                // After fade-out duration, update text and apply fade-in effect
                 setTimeout(() => {
                     titleElement.textContent = formattedTitle;
                     artistElement.textContent = formattedArtist;
@@ -145,20 +138,16 @@ document.addEventListener("DOMContentLoaded", function() {
         
                     titleElement.classList.add('fade-in');
                     artistElement.classList.add('fade-in');
-                }, 500); // Match this duration to your fade-out transition duration
+                }, 500);
         
-                // Remove fade-in class after transition ends
                 setTimeout(() => {
                     titleElement.classList.remove('fade-in');
                     artistElement.classList.remove('fade-in');
-                }, 1000); // This should be longer than the transition duration
+                }, 1000);
             } else {
-                // If no change, just update text without animation
                 titleElement.textContent = formattedTitle;
                 artistElement.textContent = formattedArtist;
             }
-        
-            // Adjust text size to fit container
             this._adjustTextSize();
         }
         
@@ -166,27 +155,22 @@ document.addEventListener("DOMContentLoaded", function() {
             const titleElement = document.getElementById('song-title');
             const artistElement = document.getElementById('song-artist');
         
-            // Check if both elements exist
             if (!titleElement || !artistElement) return;
-        
-            // Get container width from the parent of the title element
+
             const containerWidth = titleElement.parentElement.clientWidth;
         
-            // Define initial font sizes for title and artist
-            const titleInitialFontSize = 13; // Initial font size for title in px
-            const artistInitialFontSize = 11; // Initial font size for artist in px
+            const titleInitialFontSize = 13;
+            const artistInitialFontSize = 11;
         
             function adjustFontSize(element, initialFontSize) {
-                let fontSize = initialFontSize; // Start with the initial font size
+                let fontSize = initialFontSize;
                 element.style.fontSize = `${fontSize}px`;
         
                 while (element.scrollWidth > containerWidth && fontSize > 10) {
-                    fontSize -= 1; // Decrement in px
+                    fontSize -= 1;
                     element.style.fontSize = `${fontSize}px`;
                 }
             }
-        
-            // Adjust font size for title and artist separately
             adjustFontSize(titleElement, titleInitialFontSize);
             adjustFontSize(artistElement, artistInitialFontSize);
         }
