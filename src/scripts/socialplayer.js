@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('social-music-player');
 
+    if (!container) { return }
     
     const autoplay = container.hasAttribute('data-autoplay') && container.getAttribute('data-autoplay').toLowerCase() !== 'false';
     
@@ -12,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
         updateInterval: 45000
     };
 
-    if (!container) { return }
 
     class UserInterface {
         constructor(settings) {

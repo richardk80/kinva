@@ -7,6 +7,7 @@ import compressor from "astro-compressor";
 import icon from "astro-icon";
 import { shield } from '@kindspells/astro-shield'
 import react from '@astrojs/react';
+import purgecss from 'astro-purgecss';
 global.EventSource = eventsource;
 
 
@@ -39,7 +40,19 @@ export default defineConfig({
   }), compressor({
     gzip: true,
     brotli: false
-  }), icon(), shield({}), react()],
+  }), icon(), 
+  shield({}), 
+  react(),
+  purgecss({
+    extractors: [
+      {
+        extractor: (content) =>
+          content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
+        extensions: ['astro', 'html']
+      }
+    ]
+  }),
+  ],
   output: 'server',
   server: {
     headers: {
