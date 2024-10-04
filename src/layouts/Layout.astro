@@ -7,8 +7,6 @@ import mainstyles from "../styles/main.css?raw";
 
 import cookieconsent from "../styles/cookieconsent.css?raw";
 
-import fontawesomecss from "../styles/css/all.min.css?raw";
-
 import cookieconsentjs from "../scripts/cookieconsent.js?url";
 
 import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
@@ -83,7 +81,7 @@ const messageCount = user ? user.messagenum : 0;
     <meta name="description" content={`${title} - Hi Moot`} />
     <meta name="generator" content={Astro.generator} />
     <style is:inline set:html={mainstyles}></style>
-    <style is:inline set:html={fontawesomecss}></style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style is:inline set:html={cookieconsent}></style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
