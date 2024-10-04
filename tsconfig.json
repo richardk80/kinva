@@ -8,9 +8,6 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
       "@com/*": [
         "src/components/*"
       ],

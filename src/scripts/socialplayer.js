@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         _setButtonPauseState() {
             let buttonIcon = this._buttonIcon;
             buttonIcon.classList.remove('fa-pause', 'text-2xl');
-            buttonIcon.classList.add('fa-play', 'text-xl');
+            buttonIcon.classList.add('fa-play', 'text-xl', '-ml-0.5');
         }
 
         setPlayState() {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-play', 'text-xl');
+            buttonIcon.classList.remove('fa-play', 'text-xl', '-ml-0.5');
             buttonIcon.classList.add('fa-pause', 'text-2xl');
         }
 

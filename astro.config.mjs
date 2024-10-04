@@ -6,7 +6,6 @@ import eventsource from 'eventsource';
 import compressor from "astro-compressor";
 import icon from "astro-icon";
 import { shield } from '@kindspells/astro-shield'
-import react from '@astrojs/react';
 global.EventSource = eventsource;
 
 
@@ -32,14 +31,16 @@ export default defineConfig({
       }
     }
   },
-  integrations: [tailwind(), robotsTxt({
+  integrations: [tailwind(), 
+    robotsTxt({
     sitemap: false
-  }), compressor({
+  }), 
+  compressor({
     gzip: true,
     brotli: false
-  }), icon(), 
-  shield({}), 
-  react()
+  }), 
+  icon(), 
+  shield({})
   ],
   output: 'server',
   server: {
