@@ -19,5 +19,5 @@ const { name, coverimg, loggedin } = page;
 ---
 <div class="relative w-full h-[150px] overflow-hidden bg-blue-200 border-2 border-blue-400">
   {coverimg && (<img src={coverimg} alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />)}
-  {loggedin && ( <a href={`/${username}/settings`}><Button className="absolute bottom-2 right-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-950 border border-zinc-500 px-2 py-0.5 h-8 cursor-pointer rounded-none text-xs flex items-center space-x-1"><Icon class="h-3 w-3" name="camera" /><span class="mt-[1.5px]">Edit Cover Photo</span></Button></a>)}
+  {loggedin && ( <a href={`/${username}/settings`}><Button className="absolute bottom-2 right-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-950 border border-zinc-500 px-2 py-0.5 h-7 cursor-pointer rounded-none text-xs flex items-center space-x-1"><Icon class="h-3 w-3" name="camera" /><span class="mt-[1.5px]">Edit Cover Photo</span></Button></a>)}
 </div>
