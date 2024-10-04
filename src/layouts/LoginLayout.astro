@@ -1,10 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import mainstyles from "../styles/main.css?raw";
-
-import cookieconsent from "../styles/cookieconsent.css?raw";
-
 import cookieconsentjs from "../scripts/cookieconsent.js?url";
 
 import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
@@ -68,9 +64,9 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={`${title} - Hi Moot`} />
     <meta name="generator" content={Astro.generator} />
-    <style is:inline set:html={mainstyles}></style>
+    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style is:inline set:html={cookieconsent}></style>
+    <link rel="stylesheet" href="/cookieconsent.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -181,45 +177,6 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
     <!-- End Back to Top Button -->
   </body>
 </html>
-
-<style is:global>
-  *,
-*::after,
-*::before {
-    box-sizing: border-box;
-}
-
-/* clears the ‘X’ from Internet Explorer */
-input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
-input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
-/* clears the ‘X’ from Chrome */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration { display: none; }
-
-html {
-  background-color: rgb(231 229 228);
-  color: #000000;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
-}
-
-body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-
-html, body {
-  scroll-behavior: smooth;
-}
-
-input {
-  font: inherit;
-}
-</style>
 
 <script>
   // @ts-nocheck
