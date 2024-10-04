@@ -34,7 +34,7 @@ export default defineConfig({
     }
   },
   integrations: [tailwind({
-    applyBaseStyles: false,
+    applyBaseStyles: true,
   }), robotsTxt({
     sitemap: false
   }), compressor({
