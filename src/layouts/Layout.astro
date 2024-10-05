@@ -102,7 +102,7 @@ const messageCount = user ? user.messagenum : 0;
                   <form class="flex items-center space-x-0.5">
                       <input
                         type="text"
-                        class="h-[25px] pl-1 resize-none text-sm caret-blue-600 focus:outline-none placeholder:text-sm placeholder:italic placeholder:text-zinc-400 bg-white w-52"
+                        class="h-[25px] pl-1 resize-none text-sm caret-black focus:outline-none placeholder:text-sm placeholder:italic placeholder:text-zinc-400 bg-white w-52"
                         placeholder="Search..."
                         id="search"
                         name="q"
@@ -114,7 +114,7 @@ const messageCount = user ? user.messagenum : 0;
                         type="submit"
                         aria-label="search"
                       >
-                        <Icon class="h-[14px] w-[14px] fill-blue-600 m-auto" name="search" />
+                        <Icon class="h-[14px] w-[14px] fill-blue-600 mx-auto mt-[0.75px]" name="search" />
                       </button>
                     </form>
               </div>
@@ -123,7 +123,7 @@ const messageCount = user ? user.messagenum : 0;
                <div class="flex items-center -mr-[1px]">
                 { 
                   loggedin ?
-                  <button id="logoutButton" type="button" title="Log Out of Hi Moot" aria-label="Log Out of Hi Moot" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:bg-zinc-100 px-1.5 py-0.5 focus:bg-white/80 focus:outline-none focus:ring-1 border border-blue-200 focus:border-blue-400/60">
+                  <button id="logoutButton" type="button" title="Log Out of Hi Moot" aria-label="Log Out of Hi Moot" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:bg-zinc-100 px-1.5 py-[1.5px] focus:bg-white/80 focus:outline-none focus:ring-1 border border-blue-200 focus:border-blue-400/60">
                     <Icon class="h-[15px] fill-blue-600" name="logout" />
                     <span class="text-[14px] text-blue-600">Log Out</span>
                   </button>

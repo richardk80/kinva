@@ -2,7 +2,6 @@
 import NonRegularBox from '@com/main/NonRegularBox.astro';
 import ProfileImage from '@com/main/ProfileImage.astro';
 import TopRightUserDetailLinks from '@com/home/TopRightUserDetailLinks.astro';
-import BottomUserDetailLinks from '@com/home/BottomUserDetailLinks.astro';
 
 import { Icon } from 'astro-icon/components';
 
@@ -21,7 +20,7 @@ import profilepic from '../../pages/api/profilepic.json';
     backgroundColor="bg-blue-400" 
     borderColor="border-blue-400"
 >
-        <div class="mx-2 mt-2 mb-1 space-y-1">
+        <div class="mx-2 mt-2 space-y-1">
             <div class="flex justify-between">
                 <a href={`/${username}`}>
                     {profilepic ? (
@@ -36,12 +35,7 @@ import profilepic from '../../pages/api/profilepic.json';
                         <Icon class="w-[160px] h-[160px] mb-1.5" name="avatar" />
                       )}
                 </a>
-                <div class="-mt-0.5">
-                    <TopRightUserDetailLinks username={username} />
-                </div>
-            </div>
-            <div class="box-border space-y-1">
-                <BottomUserDetailLinks username={username} />
+                <TopRightUserDetailLinks username={username} />
             </div>
         </div>
 </NonRegularBox>
