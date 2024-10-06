@@ -78,11 +78,11 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                         </div>
                         <div>
                             <div class="text-[12.8px]">Email Address:</div>
-                            <input type="email" name="email" class="py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" value={email} />
+                            <input type="email" name="email" class="py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" value={email} autocomplete="off" />
                         </div>
                         <div>
                             <div class="text-[12.8px]">Your First Name:</div>
-                            <input type="text" name="name" class="py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" value={name} />
+                            <input type="text" name="name" class="py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" value={name} autocomplete="off" />
                         </div>
                         <div>
                             <div class="text-[12.8px]">
@@ -91,7 +91,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             <div>
                                 <div class="flex items-center">
                                   <div class="inline-flex items-center min-w-fit bg-blue-400 text-sm text-white border-l border-t border-b border-zinc-300 py-1 px-2 select-none">https://himoot.com/</div>
-                                  <input type="text" name="username" class="py-1 px-2 block w-full border-l-0 border-r border-t border-b border-zinc-300 text-sm focus:z-10 focus:border-zinc-300 focus:ring-0 focus:ring-transparent" value={username}>
+                                  <input type="text" name="username" class="py-1 px-2 block w-full border-l-0 border-r border-t border-b border-zinc-300 text-sm focus:z-10 focus:border-zinc-300 focus:ring-0 focus:ring-transparent" value={username} autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -112,14 +112,14 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                         <div class="space-y-2">
                             <div>
                                     <div class="text-[12.8px]">Show online status on your profile:</div>
-                                    <select class="py-1 px-3 pr-9 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent">
+                                    <select class="py-1 px-3 pr-9 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" id="status">
                                         <option>Yes</option> 
                                         <option>No</option>
                                 </select>
                             </div>
                             <div>
                                 <div class="text-[12.8px]">Who can start an IM conversation with you:</div>
-                                <select class="py-1 px-3 pr-9 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent">
+                                <select class="py-1 px-3 pr-9 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" id="conversation">
                                     <option>Your Friends</option>
                                     <option>Everyone</option>
                                     <option>No One</option>
@@ -127,7 +127,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             </div>
                             <div>
                                 <div class="text-[12.8px]">Who can view your Profile:</div>
-                                <select class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent">
+                                <select class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" id="profile">
                                 <option>Everyone (Public)</option>
                                 <option>Only Friends (Private)</option>
                                 </select>

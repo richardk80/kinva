@@ -1,53 +1,35 @@
-// obtain plugin
 var cc = initCookieConsent();
 
-// check if 'cc' is defined
 if (cc) {
     cc.run({
         current_lang: 'en',
-        autoclear_cookies: true,                   // default: false
-        page_scripts: true,                        // default: false
-    
-        // mode: 'opt-in'                          // default: 'opt-in'; value: 'opt-in' or 'opt-out'
-        // delay: 0,                               // default: 0
-        // auto_language: null                     // default: null; could also be 'browser' or 'document'
-        // autorun: true,                          // default: true
-        // force_consent: false,                   // default: false
-        // hide_from_bots: true,                   // default: true
-        // remove_cookie_tables: false             // default: false
-        // cookie_name: 'cc_cookie',               // default: 'cc_cookie'
-        // cookie_expiration: 182,                 // default: 182 (days)
-        // cookie_necessary_only_expiration: 182   // default: disabled
-        // cookie_domain: location.hostname,       // default: current domain
-        // cookie_path: '/',                       // default: root
-        // cookie_same_site: 'Lax',                // default: 'Lax'
-        // use_rfc_cookie: false,                  // default: false
-        // revision: 0,                            // default: 0
+        autoclear_cookies: true,
+        page_scripts: true,
     
         onFirstAction: function(user_preferences, cookie){
-            // callback triggered only once
+            // This is triggered once when the user makes a choice
         },
     
         onAccept: function (cookie) {
-            // ...
+            // Triggered when the user accepts cookies
         },
     
         onChange: function (cookie, changed_preferences) {
-            // ...
+            // Triggered when the user changes their preferences
         },
     
         languages: {
             'en': {
                 consent_modal: {
                     title: 'Cookie Notice',
-                    description: 'Hi Moot uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.',
+                    description: 'This website uses essential cookies for proper functioning, and tracking cookies to understand user interactions. These will only be set after your consent.',
                     primary_btn: {
                         text: 'Accept all',
-                        role: 'accept_all'              // 'accept_selected' or 'accept_all'
+                        role: 'accept_all'
                     },
                     secondary_btn: {
                         text: 'Reject all',
-                        role: 'accept_necessary'        // 'settings' or 'accept_necessary'
+                        role: 'accept_necessary'
                     }
                 },
                 settings_modal: {
@@ -65,46 +47,42 @@ if (cc) {
                     blocks: [
                         {
                             title: 'Cookie usage',
-                            description: 'Hi Moot uses cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want.'
-                        }, {
+                            description: 'This website uses cookies to ensure the basic functionalities and enhance your experience. You can opt in or out for each category.'
+                        },
+                        {
                             title: 'Strictly necessary cookies',
-                            description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly.',
+                            description: 'These cookies are required for the site to function.',
                             toggle: {
                                 value: 'necessary',
                                 enabled: true,
-                                readonly: true          // cookie categories with readonly=true are all treated as "necessary cookies"
+                                readonly: true,
+                                id: 'necessary_toggle' // Add an ID here
                             }
-                        }, {
+                        },
+                        {
                             title: 'Performance and Analytics cookies',
-                            description: 'These cookies allow the website to remember the choices you have made in the past.',
+                            description: 'These cookies help us analyze traffic and user behavior.',
                             toggle: {
-                                value: 'analytics',     // your cookie category
+                                value: 'analytics',
                                 enabled: false,
-                                readonly: false
+                                readonly: false,
+                                id: 'analytics_toggle'  // Add an ID here
                             },
-                            cookie_table: [             // list of all expected cookies
+                            cookie_table: [
                                 {
-                                    col1: '^_ga',       // match all cookies starting with "_ga"
+                                    col1: '^_ga',
                                     col2: 'google.com',
                                     col3: '2 years',
-                                    col4: 'description ...',
+                                    col4: 'Google Analytics cookie',
                                     is_regex: true
                                 },
                                 {
                                     col1: '_gid',
                                     col2: 'google.com',
                                     col3: '1 day',
-                                    col4: 'description ...',
+                                    col4: 'Google Analytics cookie'
                                 }
                             ]
-                        }, {
-                            title: 'Advertisement and Targeting cookies',
-                            description: 'These cookies collect information about how you use the website, which pages you visited and which links you clicked on. All of the data is anonymized and cannot be used to identify you.',
-                            toggle: {
-                                value: 'targeting',
-                                enabled: false,
-                                readonly: false
-                            }
                         }
                     ]
                 }
@@ -113,4 +91,4 @@ if (cc) {
     });
 } else {
     console.error('Cookie consent plugin is not initialized.');
-};
+}
