@@ -31,7 +31,10 @@ export default defineConfig({
       }
     }
   },
-  integrations: [tailwind(), 
+  integrations: [
+    tailwind({
+    applyBaseStyles: false,
+  }),
     robotsTxt({
     sitemap: false
   }), 
