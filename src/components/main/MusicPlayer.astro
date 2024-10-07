@@ -14,18 +14,18 @@ const settings = {
      data-audio-file-path={settings.audioFilePath}
      data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
-     class="player-background">
-      <div class="player-align">
-        <div class="button-background">
-          <button type="button" class="group player-button">
-            <i class="mmp-icon fa-solid fa-play text-gradient"></i>
+     class="h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500 border border-slate-200">
+      <div class="grid font-player grid-rows-1 grid-cols-5 mt-[8px] pb-1.5 px-2">
+        <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 rounded w-10 h-10">
+          <button type="button" class="group h-10 w-10 mt-[0.5px] antialiased subpixel-antialiased">
+            <i class="mmp-icon fa-solid fa-play bg-gradient-to-b from-[#E2E8F0] via-[#CBD5E1] to-[#64748B] bg-text-clip text-transparent"></i>
           </button>
         </div>
-            <div class="window-backround">
-                    <div class="window-align">
-                        <div id="song-title" class="song-title"></div>
-                        <div id="artist-container" class="artist-container">
-                            <span id="song-artist"></span>
+            <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 rounded -ml-[9px] grid grid-cols-2 h-10 w-[238px] pointer-events-none">
+                    <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[0.5px] font-player">
+                        <div id="song-title" class="capitalize font-medium block whitespace-nowrap antialiased subpixel-antialiased"></div>
+                        <div id="artist-container" class="relative w-full overflow-hidden pt-[0.5px] antialiased subpixel-antialiased">
+                            <span id="song-artist" class="uppercase font-bold block whitespace-nowrap"></span>
                         </div>
                     </div>
                 </div>
@@ -39,26 +39,6 @@ const settings = {
 <!-- End User Interface HTML -->
 
 <style>
-.player-background {
-  @apply h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500 border border-slate-200;
-}
-
-.player-align {
-  @apply grid font-player grid-rows-1 grid-cols-5 mt-[8px] pb-1.5 px-2;
-}
-
-.button-background {
-  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 rounded w-10 h-10;
-}
-
-.player-button {
-  @apply h-10 w-10 mt-[0.5px] antialiased subpixel-antialiased;
-}
-  
-.text-gradient {
-  @apply bg-gradient-to-b from-[#E2E8F0] via-[#CBD5E1] to-[#64748B] bg-text-clip text-transparent;
-}
-
 .fade {
   @apply player-fade;
 }
@@ -69,33 +49,5 @@ const settings = {
 
 .fade-in {
   @apply opacity-100;
-}
-
-#artist-container {
-  @apply relative w-full overflow-hidden pt-[0.5px];
-}
-
-#song-title {
-  @apply capitalize font-medium block whitespace-nowrap;
-}
-
-#song-artist {
-  @apply uppercase font-bold block whitespace-nowrap;
-}
-
-.window-backround {
-  @apply bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 rounded -ml-[9px] grid grid-cols-2 h-10 w-[238px] pointer-events-none;
-}
-
-.window-align {
-  @apply flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[1px] font-player;
-}
-
-.song-title {
-  @apply capitalize antialiased subpixel-antialiased;
-}
-
-.artist-container {
-  @apply overflow-hidden antialiased subpixel-antialiased;
 }
 </style>

@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         _setButtonPauseState() {
             let buttonIcon = this._buttonIcon;
             buttonIcon.classList.remove('fa-pause', 'text-2xl');
-            buttonIcon.classList.add('fa-play', 'text-xl', '-ml-0.5');
+            buttonIcon.classList.add('fa-play', 'text-xl');
         }
 
         setPlayState() {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         _setButtonPlayState() {
             let buttonIcon = this._buttonIcon;
-            buttonIcon.classList.remove('fa-play', 'text-xl', '-ml-0.5');
+            buttonIcon.classList.remove('fa-play', 'text-xl');
             buttonIcon.classList.add('fa-pause', 'text-2xl');
         }
 
@@ -159,8 +159,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const containerWidth = titleElement.parentElement.clientWidth;
         
-            const titleInitialFontSize = 13;
-            const artistInitialFontSize = 11;
+            const titleInitialFontSize = 12;
+            const artistInitialFontSize = 10;
         
             function adjustFontSize(element, initialFontSize) {
                 let fontSize = initialFontSize;
