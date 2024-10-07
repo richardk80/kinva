@@ -3,7 +3,7 @@ import CoverImage from '@com/main/CoverImage.astro';
 import UserDetailBox from '@com/profile/UserDetailBox.astro';
 import MusicPlayer from '@com/main/MusicPlayer.astro';
 import ContactButtons from '@com/profile/ContactButtons.astro';
-import ProfileLinkBox from '@com/profile/ProfileLinkBox.astro';
+import ProfileLinkURL from '@com/profile/ProfileLinkURL.astro';
 import Interests from '@com/profile/Interests.astro';
 import Details from '@com/profile/Details.astro';
 import UserBox from '@com/profile/UserBox.astro';
@@ -60,7 +60,7 @@ const autoplayon = true;
         <div class="flex flex-col gap-y-2 w-3/5">
           <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActive} profilepic={profilepic} profileimg={profileimg} />
           <ContactButtons loggedin={loggedin} myself={myself} name={name} friendship={friendship} requested={requested} />
-          <ProfileLinkBox loggedin={loggedin} name={name} username={username} />
+          <ProfileLinkURL loggedin={loggedin} name={name} username={username} />
           {audiourl ? <MusicPlayer audiourl={audiourl} xmlpath={xmlpath} autoplayon={autoplayon} /> : null}
           <Details loggedin={loggedin} name={name} username={username} />
           <Interests loggedin={loggedin} name={name} username={username} />
