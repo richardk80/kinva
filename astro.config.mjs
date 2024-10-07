@@ -22,7 +22,6 @@ export default defineConfig({
   },
   vite: {
     build: {
-      minify: false, // Disables JS minification
       cssMinify: false, // Disable CSS minification
       inlineStylesheets: 'always',
       rollupOptions: {
