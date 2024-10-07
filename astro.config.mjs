@@ -23,6 +23,7 @@ export default defineConfig({
   vite: {
     logLevel: 'info', // or 'error' for less verbosity
     build: {
+      cssMinify: false, // Disable CSS minification
       inlineStylesheets: 'always',
       rollupOptions: {
         output: {
