@@ -21,6 +21,7 @@ export default defineConfig({
     sourcemap: false, // Disable sourcemaps entirely
   },
   vite: {
+    logLevel: 'info', // or 'error' for less verbosity
     build: {
       inlineStylesheets: 'always',
       rollupOptions: {
