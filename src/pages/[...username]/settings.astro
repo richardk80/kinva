@@ -1,5 +1,5 @@
 ---
-import Layout from '@lay/OtherLayout.astro';
+import OtherLayout from '@lay/OtherLayout.astro';
 import NonRegularBox from '@com/main/NonRegularBox.astro';
 import SettingsProfileImage from '@com/main/SettingsProfileImage.astro';
 import SmallLink from '@com/main/SmallLink.astro';
@@ -23,9 +23,8 @@ if (!page) {
 
 const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
 ---
-<Layout title="Account Settings">
-	<div class="mx-auto w-[690px] mb-2">
-		<h1 class="text-[25.6px] font-semibold text-balance">Account Settings</h1>
+<OtherLayout title="Account Settings" pagetitle="Account Settings">
+	<div class="w-[690px] mb-2 -ml-0.5">
             <form class="grid gap-y-2 mt-3" method="post" enctype="application/json">
                 <NonRegularBox 
                     name="Basic Details" 
@@ -179,4 +178,4 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                     </li>
                 </div>
             </div>
-</Layout>
+</OLayout>
