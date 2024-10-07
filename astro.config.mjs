@@ -5,8 +5,7 @@ import robotsTxt from 'astro-robots-txt';
 import eventsource from 'eventsource';
 import compressor from "astro-compressor";
 import icon from "astro-icon";
-import { shield } from '@kindspells/astro-shield'
-import react from '@astrojs/react';
+import { shield } from '@kindspells/astro-shield';
 global.EventSource = eventsource;
 
 
@@ -33,14 +32,14 @@ export default defineConfig({
       }
     }
   },
-  integrations: [tailwind({
-  applyBaseStyles: false,
-}), robotsTxt({
+  integrations: [
+  tailwind(), 
+  robotsTxt({
   sitemap: false
 }), compressor({
     gzip: true,
     brotli: false
-  }), icon(), shield({}), react()],
+  }), icon(), shield({})],
   output: 'server',
   server: {
     headers: {

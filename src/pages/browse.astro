@@ -70,6 +70,7 @@ const getFilteredUsers = () => {
 const filteredUsers = getFilteredUsers();
 ---
 <OtherLayout title="Browse" pagetitle="Browse Users">
+  <div class="ml-0.5">
     <div class="flex items-stretch text-xs mb-3">
       <p class="text-xs cursor-default font-semibold">Filter:</p>
       <div class="flex items-center">
@@ -124,53 +125,55 @@ const filteredUsers = getFilteredUsers();
         </a>
       </div>
     </div>
-    <div class="py-0.5 bg-orange-300/90">
-      <div class="flex justify-between items-center mx-2">
-        <p class="text-xs font-semibold mt-1 cursor-default">
-          { view === 'new' ? 'New People' : view === 'online' ? 'Online Users' : 'All Users' } - { friends === 'include' ? 'Including Your Friends' : 'Excluding Your Friends' }
-        </p>
-        <a class="text-[10.24px] hover:underline" href={generateRandomProfileUrl()}>[random]</a>
+    <div class="-ml-0.5">
+      <div class="py-0.5 bg-orange-300/90">
+        <div class="flex justify-between items-center mx-2">
+          <p class="text-xs font-semibold mt-1 cursor-default">
+            { view === 'new' ? 'New People' : view === 'online' ? 'Online Users' : 'All Users' } - { friends === 'include' ? 'Including Your Friends' : 'Excluding Your Friends' }
+          </p>
+          <a class="text-[10.24px] hover:underline" href={generateRandomProfileUrl()}>[random]</a>
+        </div>
       </div>
-    </div>
-    <div class="border-2 border-orange-300/90">
-      <div class="ml-2 mr-0.5 mb-0.5 mt-1.5">
-        <div class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
-          {
-            filteredUsers.map((user, index) => {
-              const randomImageNumber = getUniqueImageNumber();
-              const randomName = getUniqueName();
-
-              // Check if randomName or user is defined before using toLowerCase()
-              if (!randomName) return null;
-
-              return (
-                <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
-                  <p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
-                  <div>
-                    { profilepic ?
-                      <OtherProfileImage
-                        width={96}
-                        height={96}
-                        srcurl={`https://i.pravatar.cc/96?img=${randomImageNumber}`}
-                        altText={`${randomName}'s profile picture`}
-                        loggedin={loggedin}
-                      />
-                      :
-                      <div class="relative">
-                        <Icon class="w-[96px] h-[96px]" name="avatar" />
-                        { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 mr-[1px]"></div> }
-                      </div>
-                    }
-                  </div>
-                </a>
-              );
-            })
-          }
+      <div class="border-2 border-orange-300/90">
+        <div class="ml-2 mr-0.5 mb-0.5 mt-1.5">
+          <div class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
+            {
+              filteredUsers.map((user, index) => {
+                const randomImageNumber = getUniqueImageNumber();
+                const randomName = getUniqueName();
+  
+                // Check if randomName or user is defined before using toLowerCase()
+                if (!randomName) return null;
+  
+                return (
+                  <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
+                    <p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
+                    <div>
+                      { profilepic ?
+                        <OtherProfileImage
+                          width={96}
+                          height={96}
+                          srcurl={`https://i.pravatar.cc/96?img=${randomImageNumber}`}
+                          altText={`${randomName}'s profile picture`}
+                          loggedin={loggedin}
+                        />
+                        :
+                        <div class="relative">
+                          <Icon class="w-[96px] h-[96px]" name="avatar" />
+                          { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 mr-[1px]"></div> }
+                        </div>
+                      }
+                    </div>
+                  </a>
+                );
+              })
+            }
+          </div>
         </div>
       </div>
     </div>
     <div class="flex items-center justify-between mt-3 mb-2">
-      <a class="text-xs text-blue-600 hover:text-red-600 font-normal hover:underline" href="/invite">Invite your friends to join Hi Moot!</a>
+      <a class="text-xs text-blue-600 hover:text-red-600 font-normal hover:underline -ml-0.5" href="/invite">Invite your friends to join Hi Moot!</a>
       <button
         type="button"
         class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-zinc-950 border-solid focus:outline-none"
@@ -179,4 +182,5 @@ const filteredUsers = getFilteredUsers();
         Next Page
       </button>
     </div>
+  </div>
 </OtherLayout>

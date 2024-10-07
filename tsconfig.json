@@ -5,19 +5,14 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "jsx": "react-jsx",
     "allowJs": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
       "@com/*": [
         "src/components/*"
       ],
       "@lay/*": [
         "src/layouts/*"
       ]
-    },
-    "jsxImportSource": "react"
+    }
   }
 }
