@@ -135,7 +135,7 @@ const messageCount = user ? user.messagenum : 0;
           </div>
       </header>
       <nav class="bg-blue-400 text-white drop-shadow-lg py-[3px] px-3">
-        <ul class="flex items-stretch justify-between text-xs -mt-[1px] ml-1.5">
+        <ul class="flex items-stretch justify-between text-xs -mt-[1px] ml-1">
           {navItems.map(({ smallname, href, name, dividerChar }) => (
             <li>
               <a data-navitem class={getCssClasses(currentPath === smallname)} href={href} target="_self">{name}</a>
