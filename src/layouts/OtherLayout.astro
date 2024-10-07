@@ -67,7 +67,7 @@ const user = users.find(user => user.username === username);
 // If the user is found, get the message count; otherwise, set it to 0
 const messageCount = user ? user.messagenum : 0;
 ---
-<html lang="en" class="c_darkmode antialiased subpixel-antialiased">
+<html lang="en" class="antialiased subpixel-antialiased">
   <head>
     <title>{`${messageCount > 0 ? `(${messageCount})` : ''} ${title} - Hi Moot`}</title>
     <link rel="canonical" href={Astro.site} />
