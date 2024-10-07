@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { APIRoute } from 'astro';
+import type { APIRoute } from 'astro';
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com', // Replace with your custom domain's SMTP server
