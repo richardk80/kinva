@@ -47,8 +47,8 @@ const currentPath = new URL(Astro.request.url).pathname.slice(1);
 
 const navFooterItems = [
   { smallname: "updates", href: "/updates", name: "Updates", dividerChar: "-" },
-  { smallname: "rules", href: "/rules", name: "Rules", dividerChar: "-" },
   { smallname: "feeds", href: "/feeds", name: "Feeds", dividerChar: "-" },
+  { smallname: "rules", href: "/rules", name: "Rules", dividerChar: "-" },
   { smallname: "terms", href: "/terms", name: "Terms", dividerChar: "-" },
   { smallname: "privacy", href: "/privacy", name: "Privacy", dividerChar: "" }
 ];
@@ -154,11 +154,9 @@ const messageCount = user ? user.messagenum : 0;
       <!-- End Header -->
        <!-- Start Page -->
       <div class="inline-block w-full h-full bg-white">
-        <div class="py-2 px-2 mx-[50px] mb-1">
+        <div class="py-2 px-2 mx-[50px] mb-3">
           <h1 class="text-[25.6px] font-semibold mb-2 text-balance">{pagetitle}</h1>
-          <div class="ml-0.5">
             <slot />
-          </div>
         </div>
       </div>
       <!-- End Page -->
