@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const containerWidth = titleElement.parentElement.clientWidth;
         
-            const titleInitialFontSize = 12;
+            const titleInitialFontSize = 11;
             const artistInitialFontSize = 10;
         
             function adjustFontSize(element, initialFontSize) {
