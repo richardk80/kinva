@@ -36,7 +36,7 @@ const hasBulletins = displayedBulletins.length > 0;
             <h2 class="text-xs font-semibold pl-2">From</h2>
           </div>
           <div class="py-1 col-span-4">
-            <h2 class="text-xs font-semibold ml-2">Subject</h2>
+            <h2 class="text-xs font-semibold pl-2">Subject</h2>
           </div>
         </div>
         {displayedBulletins.map(bulletin => (
@@ -45,7 +45,7 @@ const hasBulletins = displayedBulletins.length > 0;
               <a href="#" class="text-xs flex text-blue-600 hover:text-red-600 hover:underline">{bulletin.from}</a>
             </div>
             <div class="py-1 pl-2 col-span-4">
-              <a href="#" class="text-xs flex text-black hover:text-red-600 hover:underline">{bulletin.subject}</a>
+              <a href="#" class="text-xs flex hover:text-red-600 hover:underline">{bulletin.subject}</a>
             </div>
           </div>
         ))}

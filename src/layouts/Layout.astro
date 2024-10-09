@@ -38,7 +38,7 @@ const navItems = [
   { smallname: "contact", href: "/contact", name: "Contact", dividerChar: "" }
 ];
 
-const getCssClasses = (isActive) => isActive ? "hover:text-zinc-950 hover:underline font-semibold aria-current:underline" : "hover:text-zinc-950 hover:underline";
+const getCssClasses = (isActive) => isActive ? "hover:text-black hover:underline font-semibold aria-current:underline" : "hover:text-black hover:underline";
 
 const dividerCss = "text-white text-xs font-normal pl-[4px]";
 
@@ -53,7 +53,7 @@ const navFooterItems = [
 ];
 
 const getCssFooterClasses = (isActive) => isActive ? "hover:text-red-600 hover:underline font-semibold aria-current:underline" : "hover:text-red-600 hover:underline";
-const dividerFooterCss = "text-zinc-950 text-xs font-medium";
+const dividerFooterCss = "text-black text-xs font-medium";
 
 const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
 
