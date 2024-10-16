@@ -21,7 +21,7 @@
     "@types/node": "^22.2.0",
     "@types/nodemailer": "^6.4.15",
     "@yaireo/relative-time": "^1.0.4",
-    "astro": "4.15.12",
+    "astro": "4.16.1",
     "astro-compressor": "^0.4.1",
     "astro-icon": "^1.1.1",
     "astro-useragent": "^4.0.2",
