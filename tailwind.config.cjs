@@ -1,13 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 
 import { fontFamily } from "tailwindcss/defaultTheme";
+import fluid, { extract } from "fluid-tailwind";
 
 module.exports = {
-  content: [
-    './public/**/*.astro',
-    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    'node_modules/preline/dist/preline.js'
-  ],
+  content: {
+    files: [
+      './public/**/*.astro',
+      './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+      'node_modules/preline/dist/preline.js',
+    ],
+    extract,
+  },
   theme: {
     fontWeight: {
       thin: '100',
@@ -32,6 +36,7 @@ module.exports = {
     },
   },
   plugins: [
+    fluid,
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     require('preline/plugin'),
