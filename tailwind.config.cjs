@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 import { fontFamily } from "tailwindcss/defaultTheme";
-import fluid, { extract } from "fluid-tailwind";
+import fluid, { extract, screens, fontSize } from "fluid-tailwind";
 
 module.exports = {
   content: {
@@ -13,6 +13,8 @@ module.exports = {
     extract,
   },
   theme: {
+    screens,
+    fontSize,
     fontWeight: {
       thin: '100',
       extralight: '200',

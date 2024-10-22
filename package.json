@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "killport": "kill-port 4321-4330 --quiet",
-    "update": "npx @astrojs/upgrade"
+    "update": "npx @astrojs/upgrade",
+    "info": "astro info"
   },
   "dependencies": {
     "@astrojs/image": "^0.18.0",
