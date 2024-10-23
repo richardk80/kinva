@@ -1,56 +1,39 @@
 import axios from 'axios';
 
+// Declare the uptimeData array to store uptime statuses
 let uptimeData = [];
 
 // Your Vercel site URL
 const siteUrl = 'https://social.rikimade.com'; // Replace with your Vercel URL
 
-// Function to check the site's status
 const checkSiteStatus = async () => {
   try {
-    // Make a request to the Vercel site
     const response = await axios.get(siteUrl);
-
-    // If the request is successful (status 200), the site is up
     if (response.status === 200) {
       logStatus('UP');
     }
   } catch (error) {
-    // If there's an error (network issue, HTTP error, etc.), log the reason for downtime
     let explanation = '';
 
-    // Check if the error is an HTTP response error
     if (error.response) {
-      // Server responded with a status other than 2xx
       explanation = `HTTP Status ${error.response.status} - ${error.response.statusText}`;
     } else if (error.request) {
-      // Request was made, but no response was received (e.g., network issues)
       explanation = 'No response received (network issue or server not reachable)';
     } else {
-      // Something else caused the error (e.g., config issues)
       explanation = `Error: ${error.message}`;
     }
-
     logStatus('DOWN', explanation);
   }
 };
 
-// Function to log the status with date, time, and explanation (if down)
+// The function to log the status into the uptimeData array
 const logStatus = (status, explanation = '') => {
   const currentTime = new Date().toLocaleString();
+  uptimeData.push({ status, explanation, time: currentTime });
 
-  // Push the status into uptimeData (true for 'UP', false for 'DOWN')
-  if (status === 'UP') {
-    uptimeData.push(true);
-  } else {
-    uptimeData.push(false);
-  }
-
-  console.log(`[${currentTime}] Site is ${status}${explanation ? ` - Reason: ${explanation}` : ''}`);
-
-  // Keep only the last 90 entries (for a 90-day view)
+  // Keep only the last 90 entries in the uptimeData array
   if (uptimeData.length > 90) {
-    uptimeData.shift();
+    uptimeData.shift(); // Remove the oldest entry
   }
 };
 

@@ -15,10 +15,7 @@
   .page-transition-exit-active {
     opacity: 0;
   }
-
-  body {
-    font-family: Arial, sans-serif;
-  }
+  
   .uptime-bar {
     display: flex;
     gap: 2px; /* Add more gap between blocks for visibility */
@@ -38,7 +35,8 @@
     background-color: red !important; /* Red block for downtime */
 }
   .uptime-container {
-    margin: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .uptime-header {
     display: flex;
