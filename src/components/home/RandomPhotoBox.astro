@@ -12,7 +12,7 @@ const client = createClient(API_KEY);
 // Function to fetch a random picture of cute animals
 const fetchRandomCuteAnimalPicture = async () => {
     try {
-        const response = await client.photos.search({ query: 'animals', per_page: 30 });
+        const response = await client.photos.search({ query: 'jungle', per_page: 30 });
 
         // Check if response contains photos
         if (response && response['photos']) {
@@ -66,7 +66,7 @@ const toTitleCase = (name) => {
 ---
 <BubbleBox 
     widthcss="w-[304px]" 
-    name="Random Animal Pictures"
+    name="Random Pictures"
     loggedin
     pclass="flex items-center justify-between mx-2 text-white text-xs font-semibold mt-0.5 flex flex-grow" 
     backgroundColor="bg-blue-400" 
@@ -75,11 +75,11 @@ const toTitleCase = (name) => {
     <div class="m-2 h-[207px]">
         {dailyPicture ? (
             <div class="space-y-1">
-                <img class="h-[190px] w-full" src={dailyPicture.src.large} alt={dailyPicture.alt} />
-                <h2 class="text-center text-xs normal-case">Courtesy of: {toTitleCase(dailyPicture.photographer)}</h2>
+                <img class="h-[190px] w-full border-2 border-blue-400" src={dailyPicture.src.large} alt={dailyPicture.alt} />
+                <h2 class="text-center text-xs">Courtesy of: {toTitleCase(dailyPicture.photographer)}</h2>
             </div>
         ) : (
-            <p>Error fetching picture. Please try again later.</p>
+            <p class="text-xs flex items-center justify-center pt-[90px]">Error fetching picture. Please try again later.</p>
         )}
     </div>
 </BubbleBox>
