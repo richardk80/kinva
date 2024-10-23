@@ -7,7 +7,7 @@ import UserDetailBox from '@com/home/UserDetailBox.astro';
 import CoolPeople from '@com/main/CoolPeople.astro';
 import MyMail from '@com/home/MyMail.astro';
 import ProfileLinkBox from '@com/home/ProfileLinkBox.astro';
-import UpdatesBox from '@com/home/UpdatesBox.astro';
+import RandomPhotoBox from '@com/home/RandomPhotoBox.astro';
 import BlogEntry from '@com/home/BlogEntry.astro';
 import InfoBox from '@com/home/InfoBox.astro';
 import FriendsBulletins from '@com/home/FriendsBulletins.astro';
@@ -57,7 +57,7 @@ const hasProfilePic = currentUser ? currentUser.profilepic : false;
                     <UserDetailBox name={name} username={username} />
                     <MyMail  />
                     <ProfileLinkBox username={username} />
-                    <UpdatesBox />
+                    <RandomPhotoBox />
                 </div>
                 <!-- End Left Column -->
                 <!-- Start Right Column -->

@@ -1,0 +1,85 @@
+---
+import BubbleBox from "@com/main/BubbleBox.astro";
+
+import { createClient } from 'pexels';
+
+import Cookies from 'js-cookie';
+
+// Use environment variable for security
+const API_KEY = 'D3abfHpiBN6zZFpfBetWF4WdGfyLWKuJ1ORdwlcI2pgGI4V6pzN569dO'; // Ensure you've set this in your .env file
+const client = createClient(API_KEY);
+
+// Function to fetch a random picture of cute animals
+const fetchRandomCuteAnimalPicture = async () => {
+    try {
+        const response = await client.photos.search({ query: 'animals', per_page: 30 });
+
+        // Check if response contains photos
+        if (response && response['photos']) {
+            const photos = response['photos'];
+            if (Array.isArray(photos) && photos.length > 0) {
+                const randomIndex = Math.floor(Math.random() * photos.length);
+                return photos[randomIndex]; // Return a randomly selected photo
+            }
+        }
+        console.error('No valid photos found in the response:', response);
+    } catch (error) {
+        console.error('Error fetching cute animal pictures:', error);
+    }
+    return null; // Return null if there's an error
+};
+
+// Get the current UTC date
+const currentUTCDate = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
+
+// Check the cookie for the last fetch date
+const lastFetchDate = Cookies.get('lastFetchDate');
+
+// Initialize the daily picture variable
+let dailyPicture;
+
+// If last fetch date is different from today in UTC, fetch a new picture
+if (!lastFetchDate || lastFetchDate !== currentUTCDate) {
+    dailyPicture = await fetchRandomCuteAnimalPicture();
+    if (dailyPicture) {
+        // Update the last fetch date in cookies
+        Cookies.set('lastFetchDate', currentUTCDate, { expires: 1 }); // Update last fetch date in cookies (expires in 1 day)
+        // Save the new picture to cookies
+        Cookies.set('dailyPicture', JSON.stringify(dailyPicture), { expires: 1 }); // Set picture in cookies
+    }
+} else {
+    // If it's the same day, get the previously fetched picture from cookies
+    const storedPicture = Cookies.get('dailyPicture');
+    if (storedPicture) {
+        dailyPicture = JSON.parse(storedPicture);
+    }
+}
+
+// Function to format the photographer's name to title case
+const toTitleCase = (name) => {
+    return name
+        .toLowerCase() // Convert to lowercase
+        .split(' ') // Split by spaces
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter of each word
+        .join(' '); // Join back into a string
+};
+---
+<BubbleBox 
+    widthcss="w-[304px]" 
+    name="Random Animal Pictures"
+    loggedin
+    pclass="flex items-center justify-between mx-2 text-white text-xs font-semibold mt-0.5 flex flex-grow" 
+    backgroundColor="bg-blue-400" 
+    borderColor="border-blue-400"
+>
+    <div class="m-2 h-[207px]">
+        {dailyPicture ? (
+            <div class="space-y-1">
+                <img class="h-[190px] w-full" src={dailyPicture.src.large} alt={dailyPicture.alt} />
+                <h2 class="text-center text-xs normal-case">Courtesy of: {toTitleCase(dailyPicture.photographer)}</h2>
+            </div>
+        ) : (
+            <p>Error fetching picture. Please try again later.</p>
+        )}
+    </div>
+</BubbleBox>
