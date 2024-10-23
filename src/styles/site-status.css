@@ -1,0 +1,13 @@
+.uptime-container {
+    margin: 10px;
+    font-size: 14px;
+  }
+  .uptime-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .uptime-percentage {
+    color: #4CAF50;
+    font-weight: bold;
+  }

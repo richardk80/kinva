@@ -1,8 +1,88 @@
 ---
+import '../styles/main.css';
+
 import OtherLayout from '@lay/OtherLayout.astro';
 ---
 <OtherLayout title="Status" pagetitle="Site Status">
-    <div class="flex items-center justify-center my-14">
-        <p>Coming Soon</p>
-     </div>
+    <div class="uptime-container">
+        <div id="statusIcon" class="uptime-header">
+              <div>
+                <span id="statusIconSymbol" style="color: #4CAF50;">&#x2714;</span> Website
+              </div>
+              <div class="uptime-percentage">
+                <span id="uptimePercentage">Calculating...</span> uptime
+              </div>
+      </div>
+  
+      <div class="uptime-bar" id="uptimeBar">
+        <!-- Uptime blocks will be generated here -->
+      </div>
+    </div>
 </OtherLayout>
+  
+<script>
+    // Fetch uptime data from the server
+    async function fetchUptimeData() {
+      try {
+        const response = await fetch('/api/uptime');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data.uptimeData;
+      } catch (error) {
+        console.error('Error fetching uptime data:', error);
+        return [];
+      }
+    }
+    
+    // Render the uptime bar, percentage, and icon
+    async function renderUptimeBar() {
+      const uptimeData = await fetchUptimeData();
+      const uptimeBar = document.getElementById('uptimeBar');
+      const totalDays = uptimeData.length;
+      const upDays = uptimeData.filter(status => status).length;
+      const uptimePercentage = ((upDays / totalDays) * 100);
+    
+      // Set uptime percentage in UI
+      const uptimePercentageElement = document.getElementById('uptimePercentage') as HTMLElement;
+      const uptimePercentageContainer = document.querySelector('.uptime-percentage') as HTMLElement;
+      uptimePercentageElement.textContent = `${uptimePercentage}%`;
+    
+      // Clear the bar before adding new elements
+      uptimeBar.innerHTML = '';
+    
+      // Generate the blocks dynamically based on data
+      uptimeData.forEach((status) => {
+        const block = document.createElement('div');
+        if (!status) {
+          block.classList.add('down'); // Add class for downtime (red block)
+        }
+        uptimeBar.appendChild(block);
+      });
+    
+      // Check if there was any downtime
+      const hasDowntime = uptimeData.includes(false);
+    
+      // Update the icon based on uptime/downtime status
+      const statusIconSymbol = document.getElementById('statusIconSymbol');
+      if (hasDowntime) {
+        // Set the red X if there was downtime
+        statusIconSymbol.innerHTML = '&#x2716;';  // Red X
+        statusIconSymbol.style.color = 'red';  // Change color to red
+    
+        // Change the percentage and the word "uptime" to red for downtime
+        uptimePercentageContainer.style.color = 'red';
+      } else {
+        // Set the green check if all uptime
+        statusIconSymbol.innerHTML = '&#x2714;';  // Green check
+        statusIconSymbol.style.color = 'green';  // Change color to green
+    
+        // Change the percentage and the word "uptime" to green for uptime
+        uptimePercentageContainer.style.color = 'green';
+      }
+    }
+    
+    // Render the uptime bar on page load
+    renderUptimeBar();
+</script>
