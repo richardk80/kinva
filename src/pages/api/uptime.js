@@ -1,3 +1,5 @@
+export const prerender = false; // Ensure this is not pre-rendered
+
 import axios from 'axios';
 
 // Declare the uptimeData array to store uptime statuses
@@ -38,7 +40,7 @@ const logStatus = (status, explanation = '') => {
 };
 
 // Schedule the status check every 5 minutes (300000 milliseconds)
-setInterval(checkSiteStatus, 300000); // Adjust the interval as needed
+setInterval(checkSiteStatus, 5000); // Adjust the interval as needed
 
 // Run the check immediately when the script starts
 checkSiteStatus();

@@ -42,7 +42,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
       const uptimeBar = document.getElementById('uptimeBar');
       const totalDays = uptimeData.length;
       const upDays = uptimeData.filter(status => status).length;
-      const uptimePercentage = ((upDays / totalDays) * 100);
+      const uptimePercentage = Math.round((upDays / totalDays) * 100);
     
       // Set uptime percentage in UI
       const uptimePercentageElement = document.getElementById('uptimePercentage') as HTMLElement;
