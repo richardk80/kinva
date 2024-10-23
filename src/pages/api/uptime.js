@@ -60,11 +60,6 @@ setInterval(checkSiteStatus, 300000); // Adjust the interval as needed
 // Run the check immediately when the script starts
 checkSiteStatus();
 
-// Force Astro to recognize the `/api/status/uptime.json` path
-export async function getStaticPaths() {
-  return [{ params: { path: 'uptime' } }];
-}
-
 export async function GET() {
   return new Response(JSON.stringify({ uptimeData }), {
     status: 200,
