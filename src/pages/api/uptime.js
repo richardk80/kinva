@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Declare the uptimeData array to store uptime statuses
-let uptimeData = [];
+const uptimeData = [];
 
 // Your Vercel site URL
 const siteUrl = 'https://social.rikimade.com'; // Replace with your Vercel URL
