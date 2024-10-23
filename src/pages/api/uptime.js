@@ -6,7 +6,7 @@ import axios from 'axios';
 const uptimeData = [];
 
 // Your Vercel site URL
-const siteUrl = 'https://social.rikimade.com'; // Replace with your Vercel URL
+const siteUrl = '/'; // Replace with your Vercel URL
 
 const checkSiteStatus = async () => {
   try {
