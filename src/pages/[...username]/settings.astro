@@ -5,15 +5,15 @@ import SettingsProfileImage from '@com/main/SettingsProfileImage.astro';
 import SmallLink from '@com/main/SmallLink.astro';
 import { Icon } from 'astro-icon/components';
 
-import users from '../../pages/api/users.json';
+import onlineusers from '../../pages/api/users';
 
 const { username } = Astro.params;
 
 console.log('Username from URL:', username);
 
-console.log('Users array:', users);
+console.log('Users array:', onlineusers);
 
-const page = users.find(user => user.username === username);
+const page = onlineusers.find(user => user.username === username);
 
 console.log('Found page:', page);
 

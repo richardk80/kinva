@@ -7,13 +7,19 @@ import { Icon } from 'astro-icon/components';
 
 const { name, username } = Astro.props;
 
-import profilepic from '../../pages/api/profilepic.json';
+import onlineusers from '../../pages/api/users';
+
+// Find the current user details
+const currentUser = onlineusers.find(user => user.username === username);
+
+// Check if the user has a profile picture
+const hasProfilePic = currentUser ? currentUser.profilepic : false;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-<NonRegularBox 
+<NonRegularBox
     widthcss="w-[304px]" 
     name={`Hello ${name}!`}
     pclass="flex items-center ml-2 text-base font-semibold text-white mt-0.5 h-6" 
@@ -23,7 +29,7 @@ import profilepic from '../../pages/api/profilepic.json';
         <div class="mx-2 mt-2 space-y-1">
             <div class="flex justify-between">
                 <a href={`/${username}`}>
-                    {profilepic ? (
+                    {hasProfilePic ? (
                         <ProfileImage
                           width={160}
                           height={160}

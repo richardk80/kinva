@@ -14,7 +14,7 @@ import FriendComments from '@com/profile/FriendComments.astro';
 
 import Layout from '@lay/Layout.astro';
 
-import users from '../api/users.json';
+import onlineusers from '../api/users';
 
 // Shuffle function
 function shuffleArray(array) {
@@ -26,7 +26,7 @@ function shuffleArray(array) {
 }
 
 // Shuffle the users array
-const shuffledUsers = shuffleArray(users);
+const shuffledUsers = shuffleArray(onlineusers);
 
 const { username } = Astro.params;
 

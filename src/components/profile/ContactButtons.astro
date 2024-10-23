@@ -20,7 +20,7 @@ interface Props {
     addgroup?: boolean;
 }
 
-import users from '../../pages/api/users.json';
+import onlineusers from '../../pages/api/users';
 
 // Shuffle function
 function shuffleArray(array) {
@@ -32,7 +32,7 @@ function shuffleArray(array) {
 }
 
 // Shuffle the users array
-const shuffledUsers = shuffleArray(users);
+const shuffledUsers = shuffleArray(onlineusers);
 
 const { username } = Astro.params;
 

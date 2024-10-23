@@ -2,15 +2,15 @@
 import RegularBox from '@com/main/RegularBox.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 import { Icon } from 'astro-icon/components';
-import users from '../../pages/api/users.json';
+import onlineusers from '../../pages/api/users';
 
 const { username } = Astro.params;
 
 console.log('Username from URL:', username);
-console.log('Users array:', users);
+console.log('Users array:', onlineusers);
 
 // Find the current user based on username
-const currentUser = users.find(user => user.username === username);
+const currentUser = onlineusers.find(user => user.username === username);
 
 console.log('Found user:', currentUser);
 
@@ -46,7 +46,7 @@ const shuffleArray = (array) => {
 const shuffledNames = shuffleArray(namesArray).slice(0, friendnum);
 
 // Get all users except the current user
-const otherUsers = users.filter(user => user.username !== username);
+const otherUsers = onlineusers.filter(user => user.username !== username);
 
 console.log('Other users:', otherUsers);
 ---

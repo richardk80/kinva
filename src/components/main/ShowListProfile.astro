@@ -1,11 +1,11 @@
 ---
 import SmallLink from '@com/main/SmallLink.astro';
 
-import users from '../../pages/api/users.json';
+import onlineusers from '../../pages/api/users';
 
 const { username } = Astro.params;
 
-const page = users.find(user => user.username === username);
+const page = onlineusers.find(user => user.username === username);
 
 const { showlist } = page;
 

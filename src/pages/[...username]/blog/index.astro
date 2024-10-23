@@ -7,7 +7,19 @@ const username = 'dex';
 
 const name = 'Dex';
 
-import loggedin from '../../api/loggedin.json';
+import onlineusers from '../../api/users';
+
+// Assuming `currentUsername` is passed as a prop or defined somewhere in your component
+const currentUsername = 'dex'; // Replace this with the dynamic username, e.g., from props or state
+
+// Function to check if the user is logged in
+const checkUserLoggedInStatus = (username) => {
+  const currentUser = onlineusers.find(user => user.username === username);
+  return currentUser ? currentUser.loggedin : false; // true if logged in, false otherwise
+};
+
+// Call the function with the dynamic username
+const isLoggedIn = checkUserLoggedInStatus(currentUsername);
 
 const hidden = true;
 
@@ -16,6 +28,6 @@ const hidden = true;
 //let lastName = parts.join(' ');
 ---
 <OtherLayout title=`${name}'s Blog` pagetitle=`${name}'s Blog`>
-	{ loggedin ? <p class="text-xs mb-2"><SmallLink href={`/${username}/blog/edit`} link="edit blog" /></p> : null }
+	{ isLoggedIn ? <p class="text-xs mb-2"><SmallLink href={`/${username}/blog/edit`} link="edit blog" /></p> : null }
 	<a class="text-blue-600 hover:text-red-600 hover:underline text-xs" href={`/${username}`}>« Back to { hidden ? `Dex's` : 'your' } profile</a>
 </OtherLayout>

@@ -21,12 +21,12 @@ import OtherLayout from '@lay/OtherLayout.astro';
 	import DOMPurify from "dompurify";
 	import Fuse from "fuse.js";
 
-	import users from '../pages/api/users.json'; // Importing users data
+	import onlineusers from '../pages/api/users';
 
 	const username = 'dex';
 
 	// Assuming you're fetching the user data based on a specific `username` or `id`
-	const user = users.find(user => user.username === username);
+	const user = onlineusers.find(user => user.username === username);
 
 	// If the user is found, get the message count; otherwise, set it to 0
 	const messageCount = user ? user.messagenum : 0;

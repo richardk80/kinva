@@ -3,8 +3,25 @@ import OtherLayout from '@lay/OtherLayout.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 import { Icon } from 'astro-icon/components'; // Using astro-icon for the checkmark
 
-import loggedin from '../pages/api/loggedin.json';
-import profilepic from '../pages/api/profilepic.json';
+import onlineusers from '../pages/api/users';
+
+// Assuming `currentUsername` is passed as a prop or defined somewhere in your component
+const currentUsername = 'dex'; // Replace this with the dynamic username, e.g., from props or state
+
+// Function to check if the user is logged in
+const checkUserLoggedInStatus = (username) => {
+  const currentUser = onlineusers.find(user => user.username === username);
+  return currentUser ? currentUser.loggedin : false; // true if logged in, false otherwise
+};
+
+// Call the function with the dynamic username
+const isLoggedIn = checkUserLoggedInStatus(currentUsername);
+
+// Find the current user details
+const currentUser = onlineusers.find(user => user.username === user.username);
+
+// Check if the user has a profile picture
+const hasProfilePic = currentUser ? currentUser.profilepic : false;
 
 const url = new URL(Astro.request.url);
 const currentPage = parseInt(url.searchParams.get('page')) || 1;
@@ -149,18 +166,18 @@ const filteredUsers = getFilteredUsers();
                   <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
                     <p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
                     <div>
-                      { profilepic ?
+                      { hasProfilePic ?
                         <OtherProfileImage
                           width={96}
                           height={96}
                           srcurl={`https://i.pravatar.cc/96?img=${randomImageNumber}`}
                           altText={`${randomName}'s profile picture`}
-                          loggedin={loggedin}
+                          loggedin={isLoggedIn}
                         />
                         :
                         <div class="relative">
                           <Icon class="w-[96px] h-[96px]" name="avatar" />
-                          { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 mr-[1px]"></div> }
+                          { isLoggedIn && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 mr-[1px]"></div> }
                         </div>
                       }
                     </div>
