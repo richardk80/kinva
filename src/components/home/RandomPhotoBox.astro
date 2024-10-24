@@ -40,6 +40,8 @@ const toTitleCase = (name) => {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter of each word
         .join(' '); // Join back into a string
 };
+
+let cleanedName = dailyPicture.photographer.replace(/photo by:\s*/i, "").trim();
 ---
 <BubbleBox 
     widthcss="w-[304px]" 
@@ -55,7 +57,9 @@ const toTitleCase = (name) => {
                 <div class="border-2 border-blue-400">
                     <img class="h-[190px] w-full object-fill" src={dailyPicture.src.large} alt={dailyPicture.alt} />
                 </div>
-                <h2 class="text-center text-xs">{toTitleCase(dailyPicture.photographer)}</h2>
+                <p class="flex justify-center text-xs">
+                    Courtesy of: <a class="text-blue-600 hover:text-red-600 ml-1" href={dailyPicture.photographer_url} target="_blank">{toTitleCase(cleanedName)}</a>
+                </p>
             </div>
         ) : (
             <p class="text-xs flex items-center justify-center pt-[90px]">Error fetching picture. Please try again later.</p>
