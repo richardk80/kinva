@@ -3,7 +3,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 import { Icon } from 'astro-icon/components'; // Using astro-icon for the checkmark
 
-import onlineusers from '../pages/api/users';
+import onlineusers from './api/users';
 
 // Assuming `currentUsername` is passed as a prop or defined somewhere in your component
 const currentUsername = 'dex'; // Replace this with the dynamic username, e.g., from props or state
@@ -21,7 +21,7 @@ const isLoggedIn = checkUserLoggedInStatus(currentUsername);
 const currentUser = onlineusers.find(user => user.username === user.username);
 
 // Check if the user has a profile picture
-const hasProfilePic = currentUser ? currentUser.profilepic : false;
+const hasProfilePic = true;
 
 const url = new URL(Astro.request.url);
 const currentPage = parseInt(url.searchParams.get('page')) || 1;
@@ -152,10 +152,10 @@ const filteredUsers = getFilteredUsers();
         </div>
       </div>
       <div class="border-2 border-orange-300/90">
-        <div class="ml-2 mr-0.5 mb-0.5 mt-1.5">
+        <div class={`${hasProfilePic ? 'ml-2 mr-0.5 mb-0.5 mt-1.5' : 'ml-2 mr-0.5 mb-2 mt-1.5'}`}>
           <div class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
             {
-              filteredUsers.map((user, index) => {
+              filteredUsers.map(() => {
                 const randomImageNumber = getUniqueImageNumber();
                 const randomName = getUniqueName();
   
@@ -195,7 +195,7 @@ const filteredUsers = getFilteredUsers();
         type="button"
         class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-black border-solid focus:outline-none"
         aria-label="Next Page"
-        onclick={`window.location.href='${nextPageUrl}'`}>
+        onclick=`window.location.href='${nextPageUrl}'`>
         Next Page
       </button>
     </div>
