@@ -1,11 +1,9 @@
 ---
 import BubbleBox from "@com/main/BubbleBox.astro";
 
-const queryterm = 'dark';
+const queryterm = 'random';
 
 import { createClient } from 'pexels';
-
-import Cookies from 'js-cookie';
 
 // Use environment variable for security
 const API_KEY = 'D3abfHpiBN6zZFpfBetWF4WdGfyLWKuJ1ORdwlcI2pgGI4V6pzN569dO'; // Ensure you've set this in your .env file
@@ -14,7 +12,7 @@ const client = createClient(API_KEY);
 // Function to fetch a random picture of cute animals
 const fetchRandomCuteAnimalPicture = async () => {
     try {
-        const response = await client.photos.search({ query: `${queryterm}`, per_page: 30 });
+        const response = await client.photos.search({ query: `${queryterm}`, per_page: 100 });
 
         // Check if response contains photos
         if (response && response['photos']) {
@@ -45,17 +43,19 @@ const toTitleCase = (name) => {
 ---
 <BubbleBox 
     widthcss="w-[304px]" 
-    name="Random Pictures"
+    name=`${queryterm} Pictures`
     loggedin
-    pclass="flex items-center justify-between mx-2 text-white text-xs font-semibold mt-0.5 flex flex-grow" 
+    pclass="flex items-center justify-between mx-2 text-white text-xs font-semibold mt-0.5 flex flex-grow capitalize" 
     backgroundColor="bg-blue-400" 
     borderColor="border-blue-400"
 >
     <div class="m-2 h-[207px]">
         {dailyPicture ? (
-            <div class="space-y-1">
-                <img class="h-[190px] w-full border-2 border-blue-400" src={dailyPicture.src.large} alt={dailyPicture.alt} />
-                <h2 class="text-center text-xs">Courtesy of: {toTitleCase(dailyPicture.photographer)}</h2>
+            <div class="space-y-0.5">
+                <div class="border-2 border-blue-400">
+                    <img class="h-[190px] w-full object-fill" src={dailyPicture.src.large} alt={dailyPicture.alt} />
+                </div>
+                <h2 class="text-center text-xs">{toTitleCase(dailyPicture.photographer)}</h2>
             </div>
         ) : (
             <p class="text-xs flex items-center justify-center pt-[90px]">Error fetching picture. Please try again later.</p>
