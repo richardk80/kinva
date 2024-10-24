@@ -1,6 +1,8 @@
 ---
 import BubbleBox from "@com/main/BubbleBox.astro";
 
+const queryterm = 'dark';
+
 import { createClient } from 'pexels';
 
 import Cookies from 'js-cookie';
@@ -12,7 +14,7 @@ const client = createClient(API_KEY);
 // Function to fetch a random picture of cute animals
 const fetchRandomCuteAnimalPicture = async () => {
     try {
-        const response = await client.photos.search({ query: 'jungle', per_page: 30 });
+        const response = await client.photos.search({ query: `${queryterm}`, per_page: 30 });
 
         // Check if response contains photos
         if (response && response['photos']) {
@@ -29,31 +31,8 @@ const fetchRandomCuteAnimalPicture = async () => {
     return null; // Return null if there's an error
 };
 
-// Get the current UTC date
-const currentUTCDate = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
-
-// Check the cookie for the last fetch date
-const lastFetchDate = Cookies.get('lastFetchDate');
-
-// Initialize the daily picture variable
-let dailyPicture;
-
-// If last fetch date is different from today in UTC, fetch a new picture
-if (!lastFetchDate || lastFetchDate !== currentUTCDate) {
-    dailyPicture = await fetchRandomCuteAnimalPicture();
-    if (dailyPicture) {
-        // Update the last fetch date in cookies
-        Cookies.set('lastFetchDate', currentUTCDate, { expires: 1 }); // Update last fetch date in cookies (expires in 1 day)
-        // Save the new picture to cookies
-        Cookies.set('dailyPicture', JSON.stringify(dailyPicture), { expires: 1 }); // Set picture in cookies
-    }
-} else {
-    // If it's the same day, get the previously fetched picture from cookies
-    const storedPicture = Cookies.get('dailyPicture');
-    if (storedPicture) {
-        dailyPicture = JSON.parse(storedPicture);
-    }
-}
+// Fetch a new picture every time the function is called
+const dailyPicture = await fetchRandomCuteAnimalPicture();
 
 // Function to format the photographer's name to title case
 const toTitleCase = (name) => {
