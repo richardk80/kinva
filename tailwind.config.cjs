@@ -8,7 +8,7 @@ module.exports = {
     files: [
       './public/**/*.astro',
       './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-      'node_modules/preline/dist/*.js',
+      'node_modules/preline/dist/preline.js',
     ],
     extract,
   },

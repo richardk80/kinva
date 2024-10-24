@@ -86,7 +86,7 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
     <script is:inline defer src={cookieconsentjs}></script>
     <script is:inline defer src={cookieconsentinit}></script>
     <script is:inline defer src={socialplayer}></script>
-    <script is:inline src="../../node_modules/preline/dist/preline.js"></script>
+    <script>import "preline/dist/preline.js";</script>
 </head>
   <body>
     <!-- Start Layout -->
