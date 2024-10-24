@@ -6,7 +6,7 @@ const queryterm = 'random';
 import { createClient } from 'pexels';
 
 // Use environment variable for security
-const API_KEY = 'D3abfHpiBN6zZFpfBetWF4WdGfyLWKuJ1ORdwlcI2pgGI4V6pzN569dO'; // Ensure you've set this in your .env file
+const API_KEY = import.meta.env.API_KEY;
 const client = createClient(API_KEY);
 
 // Function to fetch a random picture of cute animals
