@@ -11,8 +11,37 @@ setTimeout(() => {
         <main class="max-w-lg mx-auto text-center py-14">
             <h1 class="text-3xl font-bold mb-2">Thank You!</h1>
             <p class="text-lg">Your message was sent successfully</p>
+            <p class="text-[10px] text-center mt-5">Redirecting to your homepage in <span class="text-red-600 font-semibold" id="seconds">10</span> seconds</p>
         </main>
     </div>
 </OtherLayout>
 
-<script type="module" src="/scripts/view-transition.js" on:load></script>
+<script type="module" src="../scripts/view-transition.js" on:load></script>
+
+<script is:inline>
+    // Function to handle the page redirection
+    function redirectPage() {
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 10000); // Adjusted to 10 seconds to match the countdown
+    }
+    
+    // Function to handle the countdown display
+    function countdown() {
+      let timeLeft = 10; // Encapsulate within the function to avoid global scope
+    
+      function tick() {
+        timeLeft--;
+        document.getElementById("seconds").textContent = timeLeft.toString();
+        if (timeLeft > 0) {
+          setTimeout(tick, 1000);
+        }
+      }
+    
+      setTimeout(tick, 1000);
+    }
+    
+    // Initialize the functions
+    redirectPage();
+    countdown();
+    </script>

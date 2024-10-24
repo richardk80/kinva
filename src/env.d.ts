@@ -6,3 +6,7 @@ interface ImportMetaEnv {
     readonly SMTP_PASS: string;
     readonly API_KEY: string;
 }
+
+interface ImportMeta {
+    readonly env: ImportMetaEnv;
+}
