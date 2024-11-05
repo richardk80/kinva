@@ -16,7 +16,7 @@ interface Props {
     profileimg?: string;
 }
 
-const { loggedin, onlinenow, name, username, lastActive, profilepic, profileimg  } = Astro.props;
+const { loggedin, onlinenow, name, username, lastActive, profilepic, profileimg } = Astro.props;
 ---
 <BubbleBox
     name={name} 
@@ -28,40 +28,45 @@ const { loggedin, onlinenow, name, username, lastActive, profilepic, profileimg 
     aclass="text-[10px] -mt-0.5 font-normal hover:underline text-white" 
     aurl={`/${username}/settings`}
 >
-        <div class={ loggedin ? 'pl-4 pb-2 pt-2.5' : 'pl-4 pb-2 pt-2' }>
-            <div class="flex items-center space-x-2 -ml-2 mb-2.5 -mt-0.5">
-                <UserDetailEditLinks loggedin={loggedin} username={username} />
-            </div>
-            <div class="flex justify-between -mt-1 mb-2 -ml-1.5">
-                <div class="relative inline-block">
-                    { profilepic ?
-                    <a href={profileimg} data-lightbox={profileimg} data-title={name}>
-                        <ProfileImage
-                          width={160}
-                          height={160}
-                          srcurl={profileimg}
-                          altText={`${name}'s profile picture`}
-                          loggedin={loggedin}
-                        />
+    <div class={loggedin ? 'pl-4 pb-2 pt-2.5' : 'pl-4 pb-2 pt-2'}>
+        <div class="flex items-center space-x-2 -ml-2 mb-2.5 -mt-0.5">
+            <UserDetailEditLinks loggedin={loggedin} username={username} />
+        </div>
+        <div class="flex justify-between -mt-1 mb-2 -ml-1.5">
+            <div class="relative inline-block">
+                {profilepic ? (
+                    <div class="relative inline-block group w-[160px] h-[160px]">
+                        <a href={profileimg} data-lightbox={profileimg} data-title={name} class="relative block w-full h-full">
+                            <ProfileImage
+                                width={160}
+                                height={160}
+                                srcurl={profileimg}
+                                altText={`${name}'s profile picture`}
+                                loggedin={loggedin}
+                            />
+                            <!-- Overlay with z-index to ensure it appears over the image -->
+                            <div class="absolute top-0 left-0 w-[160px] h-[160px] bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                <Icon name="expand" class="fill-white w-10 h-10" />
+                            </div>
                         </a>
-                         :
-                        <div class="relative mb-1.5">
-                          <Icon class="w-[160px] h-[160px]" name="avatar" />
-                          {loggedin && (
-                            <div class="absolute bottom-0 right-0 block w-7 h-7 rounded-full bg-green-500 border-[2px] border-white -mb-1 -mr-1"></div>
-                          )}
-                        </div>
-                    }
-              </div>
-            </div>
-            <div class="space-y-1.5">
-                <div class="-mt-2 -ml-1.5">
-                    <Mood loggedin={loggedin} username={username} lastActive={lastActive} />
-                </div>
-                <div class="-ml-1.5">
-                    <BottomUserDetailLinks username={username} />
-                </div>
+                    </div>
+                ) : (
+                    <div class="mb-1.5">
+                        <Icon class="w-[160px] h-[160px]" name="avatar" />
+                        {loggedin && (
+                            <div class="absolute bottom-0.5 -right-1 w-7 h-7 rounded-full bg-green-500 border-2 border-white z-20"></div>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
+        <div class="space-y-1.5">
+            <div class="-mt-2 -ml-1.5">
+                <Mood loggedin={loggedin} username={username} lastActive={lastActive} />
+            </div>
+            <div class="-ml-1.5">
+                <BottomUserDetailLinks username={username} />
+            </div>
+        </div>
+    </div>
 </BubbleBox>
-

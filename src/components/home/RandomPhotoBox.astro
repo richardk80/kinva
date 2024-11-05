@@ -1,15 +1,15 @@
 ---
-// Import BubbleBox and the createClient function from your dependencies
 import BubbleBox from "@com/main/BubbleBox.astro";
+
 import { createClient } from 'pexels';
+
+import { Icon } from 'astro-icon/components';
 
 const queryterm = 'animals';
 
-// Pexels client setup
 const API_KEY = import.meta.env.API_KEY;
 const client = createClient(API_KEY);
 
-// Function to fetch a random picture
 const fetchRandomCuteAnimalPicture = async () => {
     try {
         const response = await client.photos.search({ query: `${queryterm}`, per_page: 100 });
@@ -29,7 +29,6 @@ const fetchRandomCuteAnimalPicture = async () => {
 
 const dailyPicture = await fetchRandomCuteAnimalPicture();
 
-// Helper to format photographer's name
 const toTitleCase = (name) => {
     return name
         .toLowerCase()
@@ -49,7 +48,6 @@ const courtesyText = `
 `;
 ---
 
-<!-- BubbleBox Component with Lightbox2 for the Image -->
 <BubbleBox 
     widthcss="w-[304px]" 
     name={`${queryterm} Pictures`}
@@ -60,11 +58,15 @@ const courtesyText = `
 >
     <div class="m-2 h-[207px]">
         {dailyPicture ? (
-            <div class="space-y-0.5">
-                <div class="border-2 border-blue-400">
+            <div class="space-y-0.5 relative group">
+                <div class="border-2 border-blue-400 relative overflow-hidden">
                     <!-- Link with data-lightbox attribute for Lightbox2 -->
                     <a href={dailyPicture.src.original} data-lightbox="cute-animals" data-title={courtesyText}>
                         <img class="h-[190px] w-full object-fill" src={dailyPicture.src.large} alt={dailyPicture.alt} />
+                        <!-- Hover overlay -->
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Icon class="h-10 w-10 fill-white" name="expand" />
+                        </div>
                     </a>
                 </div>
                 <p class="flex justify-center text-xs">
