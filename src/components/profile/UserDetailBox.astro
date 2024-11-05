@@ -35,13 +35,15 @@ const { loggedin, onlinenow, name, username, lastActive, profilepic, profileimg 
             <div class="flex justify-between -mt-1 mb-2 -ml-1.5">
                 <div class="relative inline-block">
                     { profilepic ?
-                          <ProfileImage
-                            width={160}
-                            height={160}
-                            srcurl={profileimg}
-                            altText={`${name}'s profile picture`}
-                            loggedin={loggedin}
-                          />
+                    <a href={profileimg} data-lightbox={profileimg} data-title={name}>
+                        <ProfileImage
+                          width={160}
+                          height={160}
+                          srcurl={profileimg}
+                          altText={`${name}'s profile picture`}
+                          loggedin={loggedin}
+                        />
+                        </a>
                          :
                         <div class="relative mb-1.5">
                           <Icon class="w-[160px] h-[160px]" name="avatar" />
@@ -62,3 +64,4 @@ const { loggedin, onlinenow, name, username, lastActive, profilepic, profileimg 
             </div>
         </div>
 </BubbleBox>
+

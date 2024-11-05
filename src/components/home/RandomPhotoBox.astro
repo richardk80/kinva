@@ -41,7 +41,7 @@ const toTitleCase = (name) => {
 let cleanedName = dailyPicture?.photographer?.replace(/photo by:\s*/i, "").trim();
 
 const courtesyText = `
-  <p class="-ml-1">
+  <p>
     Courtesy of: <a href="${dailyPicture.photographer_url}" target="_blank">
       ${toTitleCase(cleanedName)}
     </a>
