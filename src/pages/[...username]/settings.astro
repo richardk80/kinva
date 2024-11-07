@@ -34,7 +34,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                 <div class="mx-2 mb-2">
                     <div class="mt-1.5 space-y-2">
                         <div>
-                            <div class="text-[12.8px]">Profile Image:</div>
+                            <div class="text-[12.8px]">Profile image:</div>
                             { profilepic ?
                             <div class="-mb-1.5">
                                 <SettingsProfileImage
@@ -76,11 +76,11 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             <input type="text" name="id" class="max-w-[160px] py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent text-zinc-500" value="546786" value={id} disabled>
                         </div>
                         <div>
-                            <div class="text-[12.8px]">Email Address:</div>
+                            <div class="text-[12.8px]">Email address:</div>
                             <input type="email" name="email" class="py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" value={email} autocomplete="off" />
                         </div>
                         <div>
-                            <div class="text-[12.8px]">Your First Name:</div>
+                            <div class="text-[12.8px]">Your first name:</div>
                             <input type="text" name="name" class="py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" value={name} autocomplete="off" />
                         </div>
                         <div>
@@ -98,7 +98,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             <div class="w-full text-xs bg-blue-200 py-1 px-2">
                             <p class="mb-3">If you set a username, you will get a custom URL for your profile.</p>
                             <p class="mb-3">Example: <span class="font-semibold">https://himoot.com/username</span></p>
-                            <p><span class="font-semibold">Attention:</span> If you change your username, your previous profile URL will not work anymore and your username will be openly available to other users!
+                            <p><span class="font-semibold">Attention:</span> If you change your username, your previous custom URL will not work anymore and your username will be openly available to other users!
                             </p>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                                 </select>
                             </div>
                             <div>
-                                <div class="text-[12.8px]">Who can view your Profile:</div>
+                                <div class="text-[12.8px]">Who can view your profile:</div>
                                 <select class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" id="profile">
                                 <option>Everyone (Public)</option>
                                 <option>Only Friends (Private)</option>
