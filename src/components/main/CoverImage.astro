@@ -23,6 +23,8 @@ const { name, coverimg, loggedin } = page;
                     <Icon name="expand" class="fill-white w-10 h-10" />
                 </div>
             </a>
+            </div>
+        )}
             <!-- Edit Cover Photo button positioned above the overlay -->
             {loggedin && (
                 <a class="absolute bottom-2 right-2 bg-zinc-100 hover:bg-zinc-200 border border-zinc-500 px-1.5 py-0.5 cursor-pointer text-xs flex items-center space-x-1 z-20" href={`/${username}/settings`}>
@@ -30,6 +32,4 @@ const { name, coverimg, loggedin } = page;
                     <span class="mt-[1.5px]">Edit Cover Photo</span>
                 </a>
             )}
-        </div>
-    )}
 </div>
