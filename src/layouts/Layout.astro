@@ -77,12 +77,12 @@ const messageCount = user ? user.messagenum : 0;
 ---
 <html lang="en" class="antialiased subpixel-antialiased">
   <head>
-    <title>{`${messageCount > 0 ? `(${messageCount})` : ''} ${title} - Hi Moot`}</title>
+    <title>{`${messageCount > 0 ? `(${messageCount})` : ''} ${title} - Kinva`}</title>
     <link rel="canonical" href={Astro.site} />
     <meta charset="utf-8" />
     <link rel="icon shortcut" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={`${title} - Hi Moot`} />
+    <meta name="description" content={`${title} - Kinva`} />
     <meta name="generator" content={Astro.generator} />
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
@@ -106,7 +106,7 @@ const messageCount = user ? user.messagenum : 0;
           <div class="flex items-center mx-1.5 mr-2 py-1">
             <!-- Start Logo Icon -->
               <a href="/" title="Back to Home">
-                  <Icon class="h-[30px] w-auto fill-white" name="himoot" />
+                  <Icon class="h-[30px] w-auto fill-white" name="klogo" />
               </a>
               <!-- End Logo Icon -->
               <!-- Start Search HTML -->
@@ -135,7 +135,7 @@ const messageCount = user ? user.messagenum : 0;
                <div class="flex items-center -mr-[1px]">
                 { 
                   isLoggedIn ?
-                  <button id="logoutButton" type="button" title="Log Out of Hi Moot" aria-label="Log Out of Hi Moot" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:bg-white/90 px-1.5 py-0.5 focus:bg-white/90 focus:outline-none focus:ring-1 border border-blue-200 focus:border-blue-400/60">
+                  <button id="logoutButton" type="button" title="Log Out of Kinva" aria-label="Log Out of Kinva" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:bg-white/90 px-1.5 py-0.5 focus:bg-white/90 focus:outline-none focus:ring-1 border border-blue-200 focus:border-blue-400/60">
                     <Icon class="h-[15px] fill-blue-600" name="logout" />
                     <span class="text-xs text-blue-600">Log Out</span>
                   </button>
@@ -181,7 +181,7 @@ const messageCount = user ? user.messagenum : 0;
           </div>
           <div class="pb-2 flex justify-center">
             <div class="text-[11px] flex items-center space-x-0.5">
-              <p>Hi Moot</p>
+              <p>Kinva</p>
               <p>©</p>
               <p>{ new Date().getFullYear() }</p>
             </div>

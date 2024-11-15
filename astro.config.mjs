@@ -11,7 +11,7 @@ global.EventSource = eventsource;
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.himoot.com",
+  site: "https://www.kinva.net",
   prefetch: true,
   server: {
     port: 4321,
