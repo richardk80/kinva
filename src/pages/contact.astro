@@ -1,37 +1,35 @@
 ---
 import OtherLayout from '@lay/OtherLayout.astro';
-
-const name = 'Dex';
-const email = 'richardk80@icloud.com';
 ---
 
 <OtherLayout title="Contact" pagetitle="Contact Us">
   <!-- Contact form section -->
   <div id="contactForm" class="mb-2 ml-0.5">
       <form id="contactFormElement" action="/api/submit" method="POST" class="space-y-2" onsubmit="handleSubmit(event)">
+        <div>
+          <div class="text-[12.8px]">Your name:</div>
           <input
             type="text"
             id="name"
             name="name"
             required
-            class="p-2 w-full text-sm border border-gray-300 focus:outline-none cursor-not-allowed caret-transparent select-none hidden"
-            value={name}
-            autocomplete={name}
+            class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-1"
           />
-
+        </div>
+        <div>
+          <div class="text-[12.8px]">Email address:</div>
           <input
             type="email"
             id="email"
             name="email"
             required
-            class="p-2 w-full text-sm border border-gray-300 focus:outline-none cursor-not-allowed caret-transparent select-none hidden"
-            value={email}
-            autocomplete={email}
+            class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-1"
           />
+        </div>
 
         <!-- Dropdown for Reason to Contact -->
         <div>
-          <div class="text-[12.8px]">Select a reason for your message:</div>
+          <div class="text-[12.8px]">Reason for your message:</div>
           <select
             id="reason"
             name="reason"
@@ -39,7 +37,6 @@ const email = 'richardk80@icloud.com';
             class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-1">
             <option value="Support">Support</option>
             <option value="Feedback">Feedback</option>
-            <option value="Privacy">Privacy</option>
             <option value="Press">Press</option>
           </select>
         </div>
@@ -51,14 +48,11 @@ const email = 'richardk80@icloud.com';
             class="p-2 w-full text-sm border border-gray-300 focus:border-zinc-300 focus:ring-1 resize-none"
             rows="6"
             placeholder="Type your message here"
-          ></textarea>
+          />
+
+          <div class="h-captcha" data-sitekey="48e0efae-4fac-4ec0-8922-f832624ec508"></div>
         
-        <button
-          type="submit"
-          class="bg-zinc-100 hover:bg-zinc-200 text-xs border border-black py-0.5 px-2"
-        >
-          Send
-        </button>
+          <button type="submit" class="bg-zinc-100 hover:bg-zinc-200 text-xs border border-black py-0.5 px-2">Send</button>
       </form>
   </div>
 

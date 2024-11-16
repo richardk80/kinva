@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
     const message = formData.get('message') as string;
 
     await transporter.sendMail({
-      from: `${email}`, // The custom domain email address
+      from: `"${name}" <${email}>`, // Validate if the SMTP server allows dynamic 'from' addresses
       to: 'contact@himoot.site', // Your recipient address (could be your Gmail)
       subject: `Kinva ${reason} Message from ${name}`, // Subject line
       text: `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n\n${message}`, // Email body
