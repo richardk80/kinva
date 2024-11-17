@@ -125,4 +125,14 @@ input[name="honeypot"] {
     const firstOption = selectElement.options[0];
     firstOption.selected = false;
   }
+
+  const form = document.getElementById('contactFormElement');
+  form.addEventListener('submit', (e) => {
+    const honeypot = document.getElementById('honeypot').value;
+
+    if (honeypot) {
+      e.preventDefault();
+      alert('Spam detected. Form not submitted.');
+    }
+  });
 </script>
