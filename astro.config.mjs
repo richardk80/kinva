@@ -43,7 +43,8 @@ export default defineConfig({
   output: 'server',
   server: {
     headers: {
-      "Accept-Encoding": "gzip, deflate, zstd"
+      "Accept-Encoding": "gzip, deflate, zstd",
+      "Content-Security-Policy": "script-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://*.jsdelivr.net 'sha256-5+YTmTcBwCYdJ8Jetbr6kyjGp0Ry/H7ptpoun6CrSwQ=';",
     }
   },
   adapter: vercel()

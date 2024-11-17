@@ -3,11 +3,6 @@ import 'tailwindcss/tailwind.css';
 
 import { Icon } from 'astro-icon/components';
 
-import crypto from 'crypto';
-
-// Generate a nonce for this request
-const nonce = crypto.randomBytes(16).toString('base64');
-
 import cookieconsentjs from "../scripts/cookieconsent.js?url";
 
 import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
@@ -89,7 +84,6 @@ const messageCount = user ? user.messagenum : 0;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={`${title} - Kinva`} />
     <meta name="generator" content={Astro.generator} />
-    <meta http-equiv="Content-Security-Policy" content={`script-src 'self' 'nonce-${nonce}' https://hcaptcha.com https://*.hcaptcha.com;`} />
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/cookieconsent.css">
@@ -203,7 +197,6 @@ const messageCount = user ? user.messagenum : 0;
       <Icon class="h-4 w-4 fill-white m-auto" name="arrow-up" />
     </button>
     <!-- End Back to Top Button -->
-    <script src="https://hcaptcha.com/1/api.js" async defer></script>
   </body>
 </html>
 
