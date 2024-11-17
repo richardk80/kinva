@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel";
@@ -8,6 +9,8 @@ import icon from "astro-icon";
 import { shield } from '@kindspells/astro-shield';
 global.EventSource = eventsource;
 
+const rootDir = new URL('.', import.meta.url).pathname;
+const modulePath = resolve(rootDir, 'src', 'generated', 'sriHashes.mjs')
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,12 +42,32 @@ export default defineConfig({
 }), compressor({
     gzip: true,
     brotli: false
-  }), icon(), shield({})],
+  }), icon(), shield({
+    securityHeaders: {
+      // This option is required to configure CSP headers for your static
+      // content on Vercel.
+      enableOnStaticPages: { provider: "vercel" },
+
+      // - If set, it controls how the CSP (Content Security Policy) header
+      //   will be generated.
+      // - If not set, no CSP header will be configured for your static
+      //   content (there is no need to specify its inner options).
+      contentSecurityPolicy: {
+        // - If set, it controls the "default" CSP directives (they can be
+        //   overriden at runtime).
+        // - If not set, Astro-Shield will use a minimal set of default
+        //   directives.
+        cspDirectives: {
+          'default-src': "'none'",
+        }
+      }
+    }
+  })
+],
   output: 'server',
   server: {
     headers: {
       "Accept-Encoding": "gzip, deflate, zstd",
-      "Content-Security-Policy": "script-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://*.jsdelivr.net 'sha256-5+YTmTcBwCYdJ8Jetbr6kyjGp0Ry/H7ptpoun6CrSwQ=';",
     }
   },
   adapter: vercel()
