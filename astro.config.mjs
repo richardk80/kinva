@@ -38,30 +38,7 @@ export default defineConfig({
 }), compressor({
     gzip: true,
     brotli: false
-  }), icon(), shield({
-    directives: {
-      'default-src': ["'self'"],
-      'script-src': [
-        "'self'",
-        "https://hcaptcha.com",
-        "https://*.hcaptcha.com",
-        "https://*.jsdelivr.net"
-      ],
-      'frame-src': [
-        "https://hcaptcha.com",
-        "https://*.hcaptcha.com"
-      ],
-      'connect-src': [
-        "https://hcaptcha.com",
-        "https://*.hcaptcha.com"
-      ],
-      'style-src': [
-        "'self'",
-        "'unsafe-inline'"
-      ]
-    },
-  })
-],
+  }), icon(), shield({})],
   output: 'server',
   server: {
     headers: {

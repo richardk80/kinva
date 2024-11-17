@@ -41,8 +41,6 @@ console.log('Shuffled users array:', shuffledUsers);
 
 const page = shuffledUsers.find(user => user.username === username);
 
-console.log('Found page:', page);
-
 if (!page) {
   return new Response('User not found', { status: 404 });
 }

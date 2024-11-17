@@ -15,8 +15,6 @@ console.log('Users array:', onlineusers);
 
 const page = onlineusers.find(user => user.username === username);
 
-console.log('Found page:', page);
-
 if (!page) {
   return new Response('User not found', { status: 404 });
 }

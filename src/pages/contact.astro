@@ -6,6 +6,11 @@ import OtherLayout from '@lay/OtherLayout.astro';
   <!-- Contact form section -->
   <div id="contactForm" class="mb-2 ml-0.5">
       <form id="contactFormElement" action="/api/submit" method="POST" class="space-y-2" onsubmit="handleSubmit(event)">
+        <!-- Honeypot Field -->
+        <div style="display: none;">
+          <label for="honeypot"></label>
+          <input type="text" name="honeypot" id="honeypot" value="">
+        </div>
         <div>
           <div class="text-[12.8px]">Your name:</div>
           <input
@@ -50,8 +55,6 @@ import OtherLayout from '@lay/OtherLayout.astro';
             placeholder="Type your message here"
           />
 
-          <div class="h-captcha" data-sitekey="48e0efae-4fac-4ec0-8922-f832624ec508"></div>
-        
           <button type="submit" class="bg-zinc-100 hover:bg-zinc-200 text-xs border border-black py-0.5 px-2">Send</button>
       </form>
   </div>
@@ -63,6 +66,13 @@ import OtherLayout from '@lay/OtherLayout.astro';
       <p class="text-[10px] text-center mt-5">Redirecting to your homepage in <span class="text-red-600 font-semibold" id="seconds">10</span> seconds</p>
   </div>
 </OtherLayout>
+
+<style>
+input[name="honeypot"] {
+  display: none;
+  visibility: hidden;
+}
+</style>
 
 <!-- JavaScript for handling form submission and thank-you message -->
 <script is:inline>

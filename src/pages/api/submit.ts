@@ -18,39 +18,13 @@ export const POST: APIRoute = async ({ request }) => {
     const email = formData.get('email') as string;
     const reason = formData.get('reason') as string;
     const message = formData.get('message') as string;
-    const hcaptchaResponse = formData.get('h-captcha-response') as string; // Retrieve hCaptcha response token
 
-    if (!hcaptchaResponse) {
-      return new Response(JSON.stringify({
-        success: false,
-        message: 'CAPTCHA not completed. Please check the box.',
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    // Verify hCaptcha response with their API
-    const captchaVerifyResponse = await fetch('https://hcaptcha.com/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret: import.meta.env.HCAPTCHA_SECRET_KEY, // Your hCaptcha secret key
-        response: hcaptchaResponse, // hCaptcha response from the form
-      }),
-    });
-
-    const captchaResult = await captchaVerifyResponse.json();
-
-    if (!captchaResult.success) {
-      return new Response(JSON.stringify({
-        success: false,
-        message: 'CAPTCHA verification failed. Please try again.',
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+    // Honeypot validation
+  const honeypot = formData.get('honeypot');
+  if (honeypot) {
+    // Honeypot field is filled, reject the submission
+    return new Response('Spam detected. Submission blocked.', { status: 400 });
+  }
 
     await transporter.sendMail({
       from: `"${name}" <${email}>`, // Validate if the SMTP server allows dynamic 'from' addresses
