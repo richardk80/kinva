@@ -50,7 +50,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
             placeholder="Type your message here"
           />
 
-          <div class="h-captcha" data-sitekey="48e0efae-4fac-4ec0-8922-f832624ec508"></div>
+          <div class="h-captcha" data-sitekey="48e0efae-4fac-4ec0-8922-f832624ec508" data-size="invisible" data-callback="onSubmit"></div>
         
           <button type="submit" class="bg-zinc-100 hover:bg-zinc-200 text-xs border border-black py-0.5 px-2">Send</button>
       </form>
@@ -114,5 +114,10 @@ import OtherLayout from '@lay/OtherLayout.astro';
     const selectElement = document.getElementById('reason');
     const firstOption = selectElement.options[0];
     firstOption.selected = false;
+  }
+
+  function onSubmit(token) {
+    console.log('Captcha validated:', token);
+    // Handle form submission
   }
 </script>
