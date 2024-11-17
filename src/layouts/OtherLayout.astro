@@ -3,6 +3,11 @@ import 'tailwindcss/tailwind.css';
 
 import { Icon } from 'astro-icon/components';
 
+import crypto from 'crypto';
+
+// Generate a nonce for this request
+const nonce = crypto.randomBytes(16).toString('base64');
+
 import cookieconsentjs from "../scripts/cookieconsent.js?url";
 
 import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
@@ -85,6 +90,7 @@ const messageCount = user ? user.messagenum : 0;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={`${title} - Kinva`} />
     <meta name="generator" content={Astro.generator} />
+    <meta http-equiv="Content-Security-Policy" content={`script-src 'self' 'nonce-${nonce}' https://hcaptcha.com https://*.hcaptcha.com https://cdn.jsdelivr.net https://*.jsdelivr.net;`} />
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/cookieconsent.css">
@@ -101,7 +107,6 @@ const messageCount = user ? user.messagenum : 0;
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
     <script>import "preline/dist/preline.js";</script>
     <script is:inline defer src="/scripts/lightbox-plus-jquery.min.js"></script>
-    <script is:inline src="https://hcaptcha.com/1/api.js" async defer></script>
 </head>
   <body>
     <!-- Start Layout -->
@@ -204,6 +209,10 @@ const messageCount = user ? user.messagenum : 0;
       <Icon class="h-4 w-4 fill-white m-auto" name="arrow-up" />
     </button>
     <!-- End Back to Top Button -->
+    <script nonce={nonce}>
+      console.log('Inline script protected with nonce!');
+    </script>
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
   </body>
 </html>
 
