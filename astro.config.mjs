@@ -42,16 +42,23 @@ export default defineConfig({
     directives: {
       'default-src': ["'self'"],
       'script-src': [
-        "'self'", 
+        "'self'",
         "https://hcaptcha.com",
         "https://*.hcaptcha.com",
         "https://*.jsdelivr.net"
       ],
-      'style-src': ["'self'", "'unsafe-inline'"], // Include 'unsafe-inline' for inline styles if needed
       'frame-src': [
         "https://hcaptcha.com",
         "https://*.hcaptcha.com"
       ],
+      'connect-src': [
+        "https://hcaptcha.com",
+        "https://*.hcaptcha.com"
+      ],
+      'style-src': [
+        "'self'",
+        "'unsafe-inline'"
+      ]
     },
   })
 ],
