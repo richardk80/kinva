@@ -1,5 +1,5 @@
 ---
-import BubbleBox from "@com/main/BubbleBox.astro";
+import RandomPhotoBox from "@com/main/RandomPhotoBox.astro";
 
 import { createClient } from 'pexels';
 
@@ -48,7 +48,7 @@ const courtesyText = `
 `;
 ---
 
-<BubbleBox 
+<RandomPhotoBox 
     widthcss="w-[304px]" 
     name={`${queryterm} Pictures`}
     loggedin
@@ -77,4 +77,4 @@ const courtesyText = `
             <p class="text-xs flex items-center justify-center pt-[90px]">Error fetching picture. Please try again later.</p>
         )}
     </div>
-</BubbleBox>
+</RandomPhotoBox>
