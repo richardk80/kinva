@@ -1,17 +1,17 @@
 ---
-const { audiourl, xmlpath } = Astro.props;
+const { audiourl, audioinfo } = Astro.props;
 
 const settings = {
   containerID: 'social-music-player',
   audioFilePath: audiourl,
-  xmlpath: xmlpath
+  audioinfo: audioinfo
 };
 ---
 
 <!-- Start User Interface HTML -->
 <div id={settings.containerID}
      data-audio-file-path={settings.audioFilePath}
-     data-xml-file-path={settings.xmlpath}
+     data-audio-info-file-path={settings.audioinfo}
      class="h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500 border border-slate-200">
       <div class="grid font-player grid-rows-1 grid-cols-5 mt-[8px] pb-1.5 px-2">
         <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 active:bg-slate-800 rounded w-10 h-10">

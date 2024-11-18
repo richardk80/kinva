@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const settings = {
         containerID: container.id,
         audioFilePath: container.getAttribute('data-audio-file-path'),
-        xmlFilePath: container.getAttribute('data-xml-file-path'),
+        xmlFilePath: container.getAttribute('data-audio-info-file-path'),
         updateInterval: 45000
     };
 
