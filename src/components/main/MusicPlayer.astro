@@ -1,10 +1,9 @@
 ---
-const { audiourl, xmlpath, autoplayon } = Astro.props;
+const { audiourl, xmlpath } = Astro.props;
 
 const settings = {
   containerID: 'social-music-player',
   audioFilePath: audiourl,
-  autoplay: autoplayon,
   xmlpath: xmlpath
 };
 ---
@@ -12,7 +11,6 @@ const settings = {
 <!-- Start User Interface HTML -->
 <div id={settings.containerID}
      data-audio-file-path={settings.audioFilePath}
-     data-autoplay={settings.autoplay}
      data-xml-file-path={settings.xmlpath}
      class="h-[59px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-500 border border-slate-200">
       <div class="grid font-player grid-rows-1 grid-cols-5 mt-[8px] pb-1.5 px-2">
@@ -23,7 +21,7 @@ const settings = {
         </div>
             <div class="bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 text-slate-300 rounded -ml-[9px] grid grid-cols-2 h-10 w-[238px] pointer-events-none">
                     <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[0.5px] font-player">
-                        <div id="song-title" class="capitalize font-bold block whitespace-nowrap antialiased subpixel-antialiased"></div>
+                        <div id="song-title" class="capitalize font-normal block whitespace-nowrap antialiased subpixel-antialiased"></div>
                         <div id="artist-container" class="relative w-full overflow-hidden pt-[0.5px] antialiased subpixel-antialiased">
                             <span id="song-artist" class="uppercase font-bold block whitespace-nowrap"></span>
                         </div>
@@ -31,7 +29,7 @@ const settings = {
                 </div>
             </div>
         <!-- Start Audio Player -->
-            <audio id="audio-player">
+            <audio id="audio-player" preload="auto" muted>
                 <source src={settings.audioFilePath} type="audio/mpeg">
             </audio>
         <!-- End Audio Player -->
