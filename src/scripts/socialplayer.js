@@ -211,9 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         _attemptPlayOnLoad() {
             if (this._engine) {
-                this._engine.play().catch(() => {
-                    console.log('Autoplay blocked by browser policies.');
-                });
+                this._engine.play().catch(() => {});
             }
         }
 
