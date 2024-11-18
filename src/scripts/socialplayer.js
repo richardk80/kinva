@@ -134,8 +134,24 @@ document.addEventListener("DOMContentLoaded", function () {
             const artistElement = document.getElementById('song-artist');
 
             if (titleElement && artistElement) {
-                titleElement.textContent = formattedTitle;
-                artistElement.textContent = formattedArtist;
+                titleElement.classList.add('fade', 'fade-out');
+                artistElement.classList.add('fade', 'fade-out');
+
+                setTimeout(() => {
+                    titleElement.textContent = formattedTitle;
+                    artistElement.textContent = formattedArtist;
+
+                    titleElement.classList.remove('fade-out');
+                    artistElement.classList.remove('fade-out');
+
+                    titleElement.classList.add('fade-in');
+                    artistElement.classList.add('fade-in');
+                }, 500);
+
+                setTimeout(() => {
+                    titleElement.classList.remove('fade-in');
+                    artistElement.classList.remove('fade-in');
+                }, 1000);
             }
 
             this._adjustTextSize();
@@ -173,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
             this._preExtendSettings();
             this._setRoot();
             this._postExtendSettings();
-            this._isMuted = false;
+            this._isMuted = true; // Default to muted
         }
 
         _preExtendSettings() {
@@ -188,6 +204,16 @@ document.addEventListener("DOMContentLoaded", function () {
             this._engine = document.getElementById('audio-player');
             if (this._engine) {
                 this._engine.src = this._settings.audioFilePath;
+                this._engine.muted = true; // Start muted to comply with autoplay policies
+                this._attemptPlayOnLoad();
+            }
+        }
+
+        _attemptPlayOnLoad() {
+            if (this._engine) {
+                this._engine.play().catch(() => {
+                    console.log('Autoplay blocked by browser policies.');
+                });
             }
         }
 
@@ -196,19 +222,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 this._engine.muted = false; // Unmute when play is clicked
                 this._engine.play()
                     .then(() => this._notifyPlaybackStarted(true))
-                    .catch(error => console.error('Playback failed:', error));
+                    .catch((error) => console.error('Playback failed:', error));
             }
         }
 
         pause() {
             if (this._engine) {
-                this._engine.muted = true; // Mute instead of pausing playback
+                this._engine.muted = true; // Mute instead of stopping playback
                 this._notifyPlaybackStarted(false);
             }
         }
 
         isPaused() {
-            return this._engine ? this._engine.muted : true; // Use muted state to determine "paused"
+            return this._engine ? this._engine.muted : true; // Treat muted as "paused"
         }
 
         toggleMute() {
