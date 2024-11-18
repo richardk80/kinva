@@ -98,7 +98,7 @@ const messageCount = user ? user.messagenum : 0;
 </head>
   <body>
     <!-- Start Layout -->
-    <div class="mx-auto w-[800px]">
+    <div class="mx-auto w-[800px] flex flex-col min-h-screen">
       <!-- Start Header -->
       <div class="sticky inset-0 z-50">
         <header class="bg-blue-600 h-[40px]">
@@ -180,9 +180,7 @@ const messageCount = user ? user.messagenum : 0;
           </div>
           <div class="pb-2 flex justify-center">
             <div class="text-[11px] flex items-center space-x-0.5">
-              <p>Kinva</p>
-              <p>©</p>
-              <p>{ new Date().getFullYear() }</p>
+              <p>Kinva © { new Date().getFullYear() }</p>
             </div>
           </div>
           <p class="text-[11px] flex justify-center">This is a work in progress - View this on desktop for best results</p>
