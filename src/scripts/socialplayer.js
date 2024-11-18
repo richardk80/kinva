@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById('social-music-player');
+
+    if (!container) { return }
     
     const settings = {
         containerID: container.id,

@@ -85,7 +85,6 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script is:inline defer src={cookieconsentjs}></script>
     <script is:inline defer src={cookieconsentinit}></script>
-    <script is:inline defer src={socialplayer}></script>
     <script>import "preline/dist/preline.js";</script>
     <script is:inline defer src="/scripts/lightbox-plus-jquery.min.js"></script>
 </head>
@@ -189,6 +188,7 @@ const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
       <Icon class="h-4 w-4 fill-white m-auto" name="arrow-up" />
     </button>
     <!-- End Back to Top Button -->
+    <script is:inline defer src={socialplayer}></script>
   </body>
 </html>
 
