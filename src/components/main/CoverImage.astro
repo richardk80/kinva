@@ -9,10 +9,10 @@ console.log('Users array:', onlineusers);
 
 const page = onlineusers.find(user => user.username === username);
 
-const { name, coverimg, loggedin } = page;
+const { name, coverimg, isCoverImg, loggedin } = page;
 ---
+{isCoverImg ?
 <div class="relative w-full h-[150px] overflow-hidden bg-blue-200 border-2 border-blue-400">
-    {coverimg && (
         <div class="relative group w-full h-full">
             <a href={coverimg} data-lightbox={coverimg} data-title={`${name}'s Cover Image`} class="block w-full h-full">
                 <img src={coverimg} alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />
@@ -22,12 +22,14 @@ const { name, coverimg, loggedin } = page;
                 </div>
             </a>
             </div>
-        )}
             <!-- Edit Cover Photo button positioned above the overlay -->
             {loggedin && (
-                <a class="absolute bottom-2 right-2 bg-zinc-100 hover:bg-zinc-200 border border-zinc-500 px-1.5 py-0.5 cursor-pointer text-xs flex items-center space-x-1 z-20" href={`/${username}/settings`}>
+                <a class="absolute bottom-2 right-2 bg-zinc-100 hover:bg-zinc-200 border border-zinc-500 px-1.5 py-0.5 cursor-pointer text-xs flex items-center space-x-1 z-20 hidden" href={`/${username}/settings`}>
                     <Icon class="h-3 w-3" name="camera" />
                     <span class="mt-[1.5px]">Edit Cover Photo</span>
-                </a>
-            )}
-</div>
+                    </a>
+                )}
+            </div>
+        :
+        <div class="-mt-2"></div>
+    }
