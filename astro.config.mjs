@@ -10,7 +10,7 @@ global.EventSource = eventsource;
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.kinva.net",
+  site: "https://kinva.net",
   prefetch: true,
   server: {
     port: 4321,
