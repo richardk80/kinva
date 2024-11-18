@@ -128,32 +128,36 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             let formattedTitle = capitalizeWords(title).replace(/-/g, ' ') || 'No Title Available'; 
-            let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || `We'll Be Right Back`;
+            let formattedArtist = capitalizeWords(artist).replace(/-/g, ' ') || 'No Artist Available'; 
 
             const titleElement = document.getElementById('song-title');
             const artistElement = document.getElementById('song-artist');
-
-            if (titleElement && artistElement) {
+            const currentTitle = titleElement.textContent;
+            const currentArtist = artistElement.textContent;
+        
+            if (formattedTitle !== currentTitle || formattedArtist !== currentArtist) {
                 titleElement.classList.add('fade', 'fade-out');
                 artistElement.classList.add('fade', 'fade-out');
-
+        
                 setTimeout(() => {
                     titleElement.textContent = formattedTitle;
                     artistElement.textContent = formattedArtist;
-
+        
                     titleElement.classList.remove('fade-out');
                     artistElement.classList.remove('fade-out');
-
+        
                     titleElement.classList.add('fade-in');
                     artistElement.classList.add('fade-in');
                 }, 500);
-
+        
                 setTimeout(() => {
                     titleElement.classList.remove('fade-in');
                     artistElement.classList.remove('fade-in');
                 }, 1000);
+            } else {
+                titleElement.textContent = formattedTitle;
+                artistElement.textContent = formattedArtist;
             }
-
             this._adjustTextSize();
         }
 

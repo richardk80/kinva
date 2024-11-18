@@ -15,8 +15,8 @@ const users = [
       "lastActive": '2024-08-23T10:58:00Z',
       "created": '2023-12-23',
       "coverimg": 'https://media.sproutsocial.com/uploads/1c_facebook-cover-photo_clean@2x.png',
-      "audiourl": 'https://ice41.securenetsystems.net/WYYX',
-      "audioinfo": 'https://streamdb6web.securenetsystems.net/player_status_update/WYYX.xml?randStr=0.9009455556651194'
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
+      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json'
     },
     { 
       "name": "Richard",
@@ -51,8 +51,8 @@ const users = [
       "profileimg": 'https://i.pravatar.cc?img=11',
       "lastActive": '2024-08-23T08:58:00Z',
       "coverimg": 'https://i.pinimg.com/originals/4a/88/7e/4a887e68509737452a38ba244079b8a0.jpg',
-      "audiourl": 'https://ice41.securenetsystems.net/WYYX',
-      "audioinfo": 'https://streamdb6web.securenetsystems.net/player_status_update/WYYX.xml?randStr=0.9009455556651194'
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
+      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json'
     },
     { 
       "name": "Rodney",
@@ -87,8 +87,8 @@ const users = [
       "profileimg": 'https://i.pravatar.cc?img=13',
       "lastActive": '2024-08-23T07:58:00Z',
       "coverimg": 'https://media.sproutsocial.com/uploads/3c_facebook-cover-photo_labels@2x-2.png',
-      "audiourl": 'https://ice41.securenetsystems.net/WYYX',
-      "audioinfo": 'https://streamdb6web.securenetsystems.net/player_status_update/WYYX.xml?randStr=0.9009455556651194'
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
+      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json'
     },
     { 
       "name": "James",
@@ -123,8 +123,8 @@ const users = [
       "profileimg": 'https://i.pravatar.cc?img=18',
       "lastActive": '2024-08-22T10:58:00Z',
       "coverimg": '',
-      "audiourl": 'https://ice41.securenetsystems.net/WYYX',
-      "audioinfo": 'https://streamdb6web.securenetsystems.net/player_status_update/WYYX.xml?randStr=0.9009455556651194'
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
+      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json'
     },
     { 
       "name": "Roger",
@@ -159,8 +159,8 @@ const users = [
       "profileimg": 'https://i.pravatar.cc?img=54',
       "lastActive": '2023-08-24T10:58:00Z',
       "coverimg": 'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2017/08/nature-design.jpg',
-      "audiourl": 'https://ice41.securenetsystems.net/WYYX',
-      "audioinfo": 'https://streamdb6web.securenetsystems.net/player_status_update/WYYX.xml?randStr=0.9009455556651194'
+      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
+      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json'
     }
   ];
 
