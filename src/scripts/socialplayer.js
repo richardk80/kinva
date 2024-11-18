@@ -309,8 +309,8 @@ document.addEventListener("DOMContentLoaded", function () {
         _parseXML(xmlString) {
             let parser = new DOMParser();
             let xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            let songTitle = xmlDoc.getElementsByTagName('title')[0]?.textContent || 'Unknown Title';
-            let songArtist = xmlDoc.getElementsByTagName('artist')[0]?.textContent || 'Unknown Artist';
+            let songTitle = xmlDoc.getElementsByTagName('title')[0]?.textContent || 'No Title Available';
+            let songArtist = xmlDoc.getElementsByTagName('artist')[0]?.textContent || `We'll Be Right Back`;
             this._userInterface.updateSongInfo(songTitle, songArtist);
         }
 
