@@ -128,7 +128,7 @@ const users = [
       "requested": true,
       "profileimg": 'https://i.pravatar.cc?img=18',
       "lastActive": '2024-08-22T10:58:00Z',
-      "isCoverImg": false,
+      "isCoverImg": true,
       "coverimg": '',
       "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
       "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json'

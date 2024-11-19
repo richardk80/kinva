@@ -11,8 +11,8 @@ const page = onlineusers.find(user => user.username === username);
 
 const { name, coverimg, isCoverImg, loggedin } = page;
 ---
-{isCoverImg ?
-    <div class="relative w-full h-[150px] overflow-hidden bg-blue-200 border-2 border-blue-400">
+<div class="relative w-full h-[150px] overflow-hidden bg-blue-200 border-2 border-blue-400">
+    { coverimg && (
         <div class="relative group w-full h-full">
             <a href={coverimg} data-lightbox={coverimg} data-title={`${name}'s Cover Image`} class="block w-full h-full">
                 <img src={coverimg} alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />
@@ -21,14 +21,12 @@ const { name, coverimg, isCoverImg, loggedin } = page;
                     <Icon name="expand" class="fill-white opacity-90 w-10 h-10" />
                 </div>
             </a>
+            </div>
+        )}
         </div>
-    </div>
-        <!-- Edit Cover Photo button positioned above the overlay -->
-            {loggedin && (
-                <p class="text-[11.52px] pt-0.5">
-                    [<a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${username}/editdetails`}>edit cover photo</a>]
-                </p>
-            )}
-        :
-        <div class="-mt-2"></div>
-    }
+    <!-- Edit Cover Photo button positioned above the overlay -->
+    { loggedin && (
+        <p class="text-[11.52px] pt-0.5">
+            [<a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${username}/editdetails`}>edit cover photo</a>]
+        </p>
+    )}
