@@ -1,5 +1,5 @@
 ---
-import RandomPhotoBox from "../main/RandomPhotoBox.astro";
+import RandomPhotoBox from "@com/main/RandomPhotoBox.astro";
 
 import { createClient } from 'pexels';
 
@@ -74,9 +74,3 @@ const courtesyText = `
         )}
     </div>
 </RandomPhotoBox>
-
-<script>
-document.querySelectorAll('.group').forEach(el => {
-    el.addEventListener('mouseover', () => console.log('Hovered over group!'));
-});
-</script>
