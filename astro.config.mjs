@@ -39,7 +39,7 @@ export default defineConfig({
     gzip: true,
     brotli: false
   }), icon(), shield({})],
-  output: 'server',
+  output: 'hybrid',
   server: {
     headers: {
       "Accept-Encoding": "gzip, deflate, zstd",

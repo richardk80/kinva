@@ -36,12 +36,12 @@ const { loggedin, name, username, lastActive, profilepic, profileimg } = Astro.p
             <div class="relative inline-block">
                 {profilepic ? (
                     <div class="relative inline-block group w-[160px] h-[160px]">
-                        <a href={profileimg} data-lightbox={profileimg} data-title={name} class="relative block w-full h-full">
+                        <a href={profileimg} data-lightbox={profileimg} data-title={`${name}'s Profile Picture`} class="relative block w-full h-full">
                             <ProfileImage
                                 width={160}
                                 height={160}
                                 srcurl={profileimg}
-                                altText={`${name}'s profile picture`}
+                                altText={`${name}'s Profile Picture`}
                                 loggedin={loggedin}
                             />
                             <!-- Overlay with z-index to ensure it appears over the image -->

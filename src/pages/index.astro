@@ -57,7 +57,7 @@ const hasProfilePic = currentUser ? currentUser.profilepic : false;
                     <UserDetailBox name={name} username={username} />
                     <ProfileLinkBox username={username} />
                     <MyMail />
-                    <RandomPhoto />
+                    <RandomPhoto server:defer />
                 </div>
                 <!-- End Left Column -->
                 <!-- Start Right Column -->

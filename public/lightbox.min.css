@@ -160,7 +160,11 @@ body.lb-disable-scrolling{
 }
 
 .lb-data .lb-caption a{
-    color:#4ae;
+    color:#60A5FA;
+}
+
+.lb-data .lb-caption a:hover{
+    color:#DC2626;
 }
 
 .lb-data .lb-number{
@@ -188,4 +192,8 @@ body.lb-disable-scrolling{
 
 .lb-data .lb-close:hover{
     cursor:pointer;opacity:1
+}
+
+.lb-caption {
+    color: #fff;
 }
