@@ -1,0 +1,53 @@
+---
+import { createClient } from 'pexels';
+import { Icon } from 'astro-icon/components';
+
+const queryterm = 'Party';
+const API_KEY = import.meta.env.API_KEY;
+const client = createClient(API_KEY);
+
+// Fetch data during build time
+let dailyPicture = null;
+
+try {
+  const response = await client.photos.search({ query: queryterm, per_page: 100 });
+  if (response?.['photos']?.length > 0) {
+    const randomIndex = Math.floor(Math.random() * response['photos'].length);
+    dailyPicture = response['photos'][randomIndex];
+  }
+} catch (error) {
+  console.error("Error fetching random photo:", error);
+}
+
+const toTitleCase = (name) =>
+  name
+    .toLowerCase()
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+let cleanedName = dailyPicture?.photographer?.replace(/photo by:\s*/i, '').trim();
+
+const courtesyText = dailyPicture?.photographer_url
+  ? `Courtesy of: <a href="${dailyPicture.photographer_url}" target="_blank">${toTitleCase(cleanedName)}</a>`
+  : 'Courtesy of: Unknown Photographer';
+---
+{dailyPicture ? (
+    <div class="space-y-0.5 relative group">
+        <div class="relative overflow-hidden">
+            <!-- Link with data-lightbox attribute for Lightbox2 -->
+            <a href={dailyPicture.src.original} data-lightbox={`${queryterm} Pictures`} data-title={courtesyText}>
+                <img class="h-[190px] w-full object-fill" src={dailyPicture.src.large} alt={dailyPicture.alt} loading="lazy" />
+                <!-- Hover overlay -->
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Icon name="expand" class="fill-white opacity-90 h-10 w-10" />
+                </div>
+            </a>
+        </div>
+        </div>
+        <p class="flex justify-center text-xs pt-[5px]">
+            Courtesy of: <a class="text-blue-600 hover:text-red-600 ml-0.5" href={dailyPicture.photographer_url} target="_blank">{toTitleCase(dailyPicture.photographer)}</a>
+        </p>
+) : (
+    <p class="text-xs flex items-center justify-center pt-[90px]">Error fetching picture. Please try again later.</p>
+)}
