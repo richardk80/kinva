@@ -27,7 +27,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Send email
     await transporter.sendMail({
-      from: `"${name}" <contact@kinva.net>`, // Fixed "From" address to match your domain
+      from: `"Contact Form" <contact@kinva.net>`, // Fixed "From" address to match your domain
       replyTo: email, // The user's email address for easy replies
       to: 'contact@kinva.net', // Your Proton Mail inbox
       subject: `Kinva ${reason} message from ${name}`, // Subject line
