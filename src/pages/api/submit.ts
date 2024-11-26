@@ -2,12 +2,12 @@ import nodemailer from 'nodemailer';
 import type { APIRoute } from 'astro';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.protonmail.ch', // Proton Mail's SMTP server
-  port: 587, // Use 587 for TLS
-  secure: false, // Set to true if using port 465 for SSL
+  host: 'smtp.gmail.com', // Replace with your custom domain's SMTP server
+  port: 587, // Replace with appropriate port (587 for TLS, 465 for SSL)
+  secure: false, // Use SSL (true) or TLS (false)
   auth: {
-    user: import.meta.env.SMTP_USER, // Your Proton Mail email address
-    pass: import.meta.env.SMTP_PASS, // Your Proton Mail SMTP token
+    user: import.meta.env.SMTP_USER, // Use environment variables for security
+    pass: import.meta.env.SMTP_PASS,
   },
 });
 
@@ -15,21 +15,20 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
     const name = formData.get('name') as string;
-    const email = formData.get('email') as string; // User's email address
+    const email = formData.get('email') as string;
     const reason = formData.get('reason') as string;
     const message = formData.get('message') as string;
 
     // Honeypot validation
-    const honeypot = formData.get('honeypot');
-    if (honeypot) {
-      return new Response('Spam detected. Submission blocked.', { status: 400 });
-    }
+  const honeypot = formData.get('honeypot');
+  if (honeypot) {
+    // Honeypot field is filled, reject the submission
+    return new Response('Spam detected. Submission blocked.', { status: 400 });
+  }
 
-    // Send email
     await transporter.sendMail({
-      from: `"Contact Form" <contact@kinva.net>`, // Fixed "From" address to match your domain
-      replyTo: email, // The user's email address for easy replies
-      to: 'contact@kinva.net', // Your Proton Mail inbox
+      from: `"Kinva Contact Form" contact@himoot.com`, // Validate if the SMTP server allows dynamic 'from' addresses
+      to: 'contact@himoot.site', // Your recipient address (could be your Gmail)
       subject: `Kinva ${reason} message from ${name}`, // Subject line
       text: `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n\n${message}`, // Email body
     });
@@ -37,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: '/thankyou', // Redirect to thank-you page
+        Location: '/thankyou', // Redirect to thank-you page after success
       },
     });
   } catch (error) {
