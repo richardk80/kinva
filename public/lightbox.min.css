@@ -155,12 +155,13 @@ body.lb-disable-scrolling{
 
 .lb-data .lb-caption{
     font-size:13px;
-    font-weight:700;
+    font-weight: 500;
     line-height:1em;
 }
 
 .lb-data .lb-caption a{
-    color:#60A5FA;
+    color:#fff;
+    font-weight: 700;
 }
 
 .lb-data .lb-caption a:hover{
