@@ -1,4 +1,5 @@
 ---
+import SmallLink from '@com/main/SmallLink.astro';
 import { Icon } from 'astro-icon/components';
 import onlineusers from '../../pages/api/users';
 
@@ -31,6 +32,6 @@ const { name, coverimg, loggedin, isCoverImg } = page;
     <!-- Edit Cover Photo button positioned above the overlay -->
     { (loggedin && isCoverImg) && (
         <p class="text-[11.52px] pt-1">
-            [<a class="text-[#252728] hover:text-red-600 hover:underline" href={`/${username}/settings`}>edit cover photo</a>]
+            <SmallLink href={`/${username}/settings`} link="edit cover photo" />
         </p>
     )}
