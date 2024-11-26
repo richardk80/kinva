@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import type { APIRoute } from 'astro';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
+  host: 'smtp.mail.me.com',
   port: 587,
   secure: false, // Use TLS
   auth: {
@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
     await transporter.sendMail({
       from: `"Kinva Contact Form" <${import.meta.env.SMTP_USER}>`, // Align with your SMTP user
       to: 'contact@kinva.net',
-      replyTo: email, // Ensures responses go to the sender
+      replyTo: `${email}`, // Ensures responses go to the sender
       subject: `Kinva ${reason} message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nReason: ${reason}\n\nMessage:\n${message}`,
     });
