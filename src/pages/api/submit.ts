@@ -2,12 +2,12 @@ import nodemailer from 'nodemailer';
 import type { APIRoute } from 'astro';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com', // Replace with your custom domain's SMTP server
-  port: 587, // Replace with appropriate port (587 for TLS, 465 for SSL)
-  secure: false, // Use SSL (true) or TLS (false)
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // Use TLS
   auth: {
-    user: import.meta.env.SMTP_USER, // Use environment variables for security
-    pass: import.meta.env.SMTP_PASS,
+    user: import.meta.env.SMTP_USER, // Your Gmail address
+    pass: import.meta.env.SMTP_PASS, // Your Gmail App Password
   },
 });
 
@@ -20,37 +20,41 @@ export const POST: APIRoute = async ({ request }) => {
     const message = formData.get('message') as string;
 
     // Honeypot validation
-  const honeypot = formData.get('honeypot');
-  if (honeypot) {
-    // Honeypot field is filled, reject the submission
-    return new Response('Spam detected. Submission blocked.', { status: 400 });
-  }
+    const honeypot = formData.get('honeypot');
+    if (honeypot) {
+      return new Response('Spam detected. Submission blocked.', { status: 400 });
+    }
+
+    console.log('Processing form submission:', { name, email, reason, message });
 
     await transporter.sendMail({
-      from: `"Kinva Contact Form" contact@kinva.net`, // Validate if the SMTP server allows dynamic 'from' addresses
-      to: 'contact@kinva.net', // Your recipient address (could be your Gmail)
-      replyTo: `${email}`,
-      subject: `Kinva ${reason} message from ${name}`, // Subject line
-      text: `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n\n${message}`, // Email body
+      from: `"Kinva Contact Form" <${import.meta.env.SMTP_USER}>`, // Align with your SMTP user
+      to: 'contact@kinva.net',
+      replyTo: email, // Ensures responses go to the sender
+      subject: `Kinva ${reason} message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nReason: ${reason}\n\nMessage:\n${message}`,
     });
 
     return new Response(null, {
       status: 302,
       headers: {
-        Location: '/thankyou', // Redirect to thank-you page after success
+        Location: '/thankyou',
       },
     });
   } catch (error) {
     console.error('Error sending email:', error);
 
-    return new Response(JSON.stringify({
-      success: false,
-      message: 'There was an error sending your message. Please try again later.',
-    }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: 'There was an error sending your message. Please try again later.',
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 };
