@@ -93,7 +93,7 @@ const filteredUsers = getFilteredUsers();
       <div class="flex items-center">
         <a href={allUsersUrl}
            class={view === 'active' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
-           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+           <div class="flex items-center space-x-1 group text-[#252728] fill-[#252728] hover:text-red-600 hover:fill-red-600 hover:underline">
              {view === 'active' && <Icon name="checkmark" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
              <p>All Users</p>
            </div>
@@ -103,7 +103,7 @@ const filteredUsers = getFilteredUsers();
 
         <a href={newUsersUrl}
            class={view === 'new' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
-           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+           <div class="flex items-center space-x-1 group text-[#252728] fill-[#252728] hover:text-red-600 hover:fill-red-600 hover:underline">
             {view === 'new' && <Icon name="checkmark" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
             <p>New People</p>
           </div>
@@ -113,7 +113,7 @@ const filteredUsers = getFilteredUsers();
 
         <a href={onlineUsersUrl}
            class={view === 'online' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
-           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+           <div class="flex items-center space-x-1 group text-[#252728] fill-[#252728] hover:text-red-600 hover:fill-red-600 hover:underline">
             {view === 'online' && <Icon name="checkmark" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
             <p>Online Users</p>
           </div>
@@ -125,7 +125,7 @@ const filteredUsers = getFilteredUsers();
       <div class="flex items-center">
         <a href={includeFriendsUrl}
            class={friends === 'include' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
-           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+           <div class="flex items-center space-x-1 group text-[#252728] fill-[#252728] hover:text-red-600 hover:fill-red-600 hover:underline">
             {friends === 'include' && <Icon name="checkmark" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
             <p>Include Friends</p>
           </div>
@@ -135,7 +135,7 @@ const filteredUsers = getFilteredUsers();
 
         <a href={excludeFriendsUrl}
            class={friends === 'exclude' ? "font-semibold" : "ml-1 font-normal hover:underline"}>
-           <div class="flex items-center space-x-1 group text-blue-600 fill-blue-600 hover:text-red-600 hover:fill-red-600 hover:underline">
+           <div class="flex items-center space-x-1 group text-[#252728] fill-[#252728] hover:text-red-600 hover:fill-red-600 hover:underline">
             {friends === 'exclude' && <Icon name="checkmark" class="ml-1 w-[14px] h-[14px]" />} {/* Green checkmark when active */}
             <p>Exclude Friends</p>
           </div>
@@ -143,15 +143,15 @@ const filteredUsers = getFilteredUsers();
       </div>
     </div>
     <div class="-ml-0.5">
-      <div class="py-0.5 bg-orange-300/90">
+      <div class="py-0.5 bg-[#252728]">
         <div class="flex justify-between items-center mx-2">
-          <p class="text-xs font-semibold mt-1 cursor-default">
+          <p class="text-xs font-semibold mt-1 cursor-default text-white">
             { view === 'new' ? 'New People' : view === 'online' ? 'Online Users' : 'All Users' } - { friends === 'include' ? 'Including Your Friends' : 'Excluding Your Friends' }
           </p>
-          <a class="text-[10.24px] hover:underline" href={generateRandomProfileUrl()}>[random]</a>
+          <a class="text-[10.24px] hover:underline text-white" href={generateRandomProfileUrl()}>[random]</a>
         </div>
       </div>
-      <div class="border-2 border-orange-300/90">
+      <div class="border-2 border-[#252728]">
         <div class={`${hasProfilePic ? 'ml-2 mr-0.5 mb-0.5 mt-1.5' : 'ml-2 mr-0.5 mb-2 mt-1.5'}`}>
           <div class="grid grid-cols-5 gap-x-[40px] gap-y-[10px]">
             {
@@ -163,7 +163,7 @@ const filteredUsers = getFilteredUsers();
                 if (!randomName) return null;
   
                 return (
-                  <a class="text-blue-600 hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
+                  <a class="text-[#252728] hover:text-red-600 hover:underline" href={`/${randomName.toLowerCase()}`} title={`Visit ${randomName}'s profile`}>
                     <p class="text-xs flex justify-center font-semibold mb-0.5">{randomName}</p>
                     <div>
                       { hasProfilePic ?
@@ -190,10 +190,10 @@ const filteredUsers = getFilteredUsers();
       </div>
     </div>
     <div class="flex items-center justify-between mt-3 mb-2">
-      <a class="text-xs text-blue-600 hover:text-red-600 font-normal hover:underline -ml-0.5" href="/invite">Invite your friends to join Kinva!</a>
+      <a class="text-xs text-[#252728] hover:text-red-600 font-normal hover:underline -ml-0.5" href="/invite">Invite your friends to join Kinva!</a>
       <button
         type="button"
-        class="py-0.5 px-2 bg-gray-100 hover:bg-gray-200 text-xs border border-black border-solid focus:outline-none"
+        class="py-0.5 px-2 bg-[#252728]/10 hover:bg-[#252728]/15 text-xs border border-[#252728] border-solid focus:outline-none"
         aria-label="Next Page"
         onclick=`window.location.href='${nextPageUrl}'`>
         Next Page

@@ -17,11 +17,11 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 <OtherLayout title="Bulletin Board" pagetitle="Bulletin Board">
 		<div class="space-y-2 ml-0.5">
 			<div class="flex items-center space-x-3">
-				<a href={`/${username}/bulletins/createbulletin`} class="border border-black px-1.5 py-0.5 bg-zinc-100 hover:bg-zinc-200 cursor-pointer flex items-center justify-center space-x-1">
+				<a href={`/${username}/bulletins/createbulletin`} class="border border-[#252728] px-1.5 py-0.5 bg-zinc-100 hover:bg-zinc-200 cursor-pointer flex items-center justify-center space-x-1">
 					<Icon class="w-[13px]" name="circle-plus" />
 					<p class="text-xs">New Entry</p>
 				</a>
-				<a href={`/${username}/bulletins/mybulletins`}  class="cursor-pointer flex items-center justify-center space-x-1 group fill-blue-600 hover:fill-red-600 text-blue-600 hover:text-red-600 hover:underline">
+				<a href={`/${username}/bulletins/mybulletins`}  class="cursor-pointer flex items-center justify-center space-x-1 group fill-[#252728] hover:fill-red-600 text-[#252728] hover:text-red-600 hover:underline">
 					<Icon class="w-[13px]" name="user" />
 					<p class="text-[13px]">My Bulletins</p>
 				</a>
@@ -30,29 +30,29 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 				<p class="text-xs">Bulletins have a limited lifespan between 1 and 10 days, after which they will be permanently gone.</p>
 				<div>
 					{hasBulletins ?
-					  <div class="border-x border-black">
-						<div class="grid grid-cols-5 border-y border-black flex items-center">
-						  <div class="py-1 col-span-1 border-r border-black">
-							<h2 class="text-xs font-semibold pl-2">From</h2>
+					  <div class="border-x border-[#252728]">
+						<div class="grid grid-cols-5 border-y border-[#252728] flex items-center">
+						  <div class="py-1 col-span-1 border-r border-[#252728]">
+							<h2 class="text-xs font-semibold pl-2">From:</h2>
 						  </div>
 						  <div class="py-1 col-span-4">
-							<h2 class="text-xs font-semibold ml-2">Subject</h2>
+							<h2 class="text-xs font-semibold ml-2">Subject:</h2>
 						  </div>
 						</div>
 						{friendbulletins.map(bulletin => (
-						  <div class="grid grid-cols-5 flex items-center border-b border-black">
-							<div class="py-1 pl-2 col-span-1 border-r border-black">
-							  <a href="#" class="text-xs flex text-blue-600 hover:text-red-600 hover:underline">{bulletin.from}</a>
+						  <div class="grid grid-cols-5 flex items-center border-b border-[#252728]">
+							<div class="py-1 pl-2 col-span-1 border-r border-[#252728]">
+							  <a href="#" class="text-xs flex text-[#252728] hover:text-red-600 font-semibold hover:underline">{bulletin.from}</a>
 							</div>
 							<div class="py-1 pl-2 col-span-4">
-							  <a href="#" class="text-xs flex text-black hover:text-red-600 hover:underline">{bulletin.subject}</a>
+							  <a href="#" class="text-xs flex text-[#252728] hover:text-red-600 hover:underline">{bulletin.subject}</a>
 							</div>
 						  </div>
 						))}
 					  </div>
 					  :
-					  <div class="grid grid-cols-5 border border-black flex items-center">
-						  <div class="py-1 col-span-1 border-r border-black">
+					  <div class="grid grid-cols-5 border border-[#252728] flex items-center">
+						  <div class="py-1 col-span-1 border-r border-[#252728]">
 							<h2 class="text-xs font-semibold pl-2">From</h2>
 						  </div>
 						  <div class="py-1 col-span-4">
@@ -62,7 +62,7 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 						<div class="py-1 col-span-3">
 						  <div class="text-xs flex items-center justify-center pt-0.5">
 							<p class="font-semibold">No Bulletins -</p>
-							<a class="text-blue-600 hover:text-red-600 ml-1 hover:underline font-normal" href="/browse">
+							<a class="text-[#252728] hover:text-red-600 ml-1 hover:underline font-normal" href="/browse">
 							  Add New Friends
 							</a>
 						  </div>
