@@ -12,21 +12,21 @@ const settings = {
 <div id={settings.containerID}
      data-audio-file-path={settings.audioFilePath}
      data-audio-info-file-path={settings.audioinfo}
-     class="h-[59px] bg-gradient-to-b from-[#252728]/20 via-[#252728]/30 to-[#252728]/50">
-      <div class="grid font-player grid-rows-1 grid-cols-5 mt-[10px] pb-1.5 px-2">
-        <div class="bg-gradient-to-b from-[#252728] via-[#252728]/90 to-[#252728] active:bg-[#252728]/40 rounded w-10 h-10">
+     class="h-[59px] border-2 border-[#252728]">
+      <div class="grid font-player grid-rows-1 grid-cols-5 mt-[8px] pb-1.5 px-2">
+        <div class="bg-[#252728] w-10 h-10">
           <button type="button" class="group h-10 w-10 antialiased subpixel-antialiased">
-            <i class="mmp-icon fa-solid fa-play bg-gradient-to-b from-white via-white to-white bg-text-clip text-transparent"></i>
+            <i class="mmp-icon fa-solid fa-play bg-white bg-text-clip text-transparent"></i>
           </button>
         </div>
-            <div class="bg-gradient-to-b from-[#252728] via-[#252728]/90 to-[#252728] text-white rounded -ml-[9px] grid grid-cols-2 h-10 w-[240px] pointer-events-none">
-                    <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 pt-[1.3px] font-player">
+            <div class="bg-[#252728] text-white -ml-[9px] grid grid-cols-2 h-10 w-[237px] pointer-events-none">
+                    <div class="flex flex-col my-auto min-w-56 pl-2 -space-y-0.5 font-player">
                         <div id="song-title" class="capitalize font-semibold block whitespace-nowrap antialiased subpixel-antialiased"></div>
                         <div id="artist-container" class="relative w-full overflow-hidden pt-[0.5px] antialiased subpixel-antialiased">
                             <span id="song-artist" class="uppercase font-normal block whitespace-nowrap"></span>
                         </div>
                     </div>
-                </div>
+              </div>
             </div>
         <!-- Start Audio Player -->
             <audio id="audio-player" preload="auto" muted>

@@ -40,12 +40,12 @@ const hasBulletins = displayedBulletins.length > 0;
           </div>
         </div>
         {displayedBulletins.map(bulletin => (
-          <div class="grid grid-cols-5 flex items-center border-b-2 border-[#252728]/80">
-            <div class="py-1 pl-2 col-span-1 border-r-2 border-[#252728]/80">
-              <a href="#" class="text-xs flex text-[#252728] hover:text-red-600 font-semibold hover:underline">{bulletin.from}</a>
+          <div class="grid grid-cols-5 flex items-center border-b-2 overflow-hidden border-[#252728]/80">
+            <div class="py-1 pl-2 col-span-1 border-r-2 flex overflow-hidden border-[#252728]/80">
+              <a href="#" class="text-xs text-[#252728] hover:text-red-600 font-semibold hover:underline truncate">{bulletin.from}</a>
             </div>
-            <div class="py-1 pl-2 col-span-4">
-              <a href="#" class="text-xs flex hover:text-red-600 hover:underline">{bulletin.subject}</a>
+            <div class="py-1 pl-2 col-span-4 flex overflow-x-auto">
+              <a href="#" class="text-xs hover:text-red-600 hover:underline truncate">{bulletin.subject}</a>
             </div>
           </div>
         ))}

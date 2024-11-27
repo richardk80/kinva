@@ -32,6 +32,6 @@ const { name, coverimg, loggedin, isCoverImg } = page;
     <!-- Edit Cover Photo button positioned above the overlay -->
     { (loggedin && isCoverImg) && (
         <p class="text-[11.52px] pt-1">
-            <SmallLink href={`/${username}/settings`} link="edit cover photo" />
+            <SmallLink classname="font-semibold" href={`/${username}/settings`} link="edit cover photo" />
         </p>
     )}
