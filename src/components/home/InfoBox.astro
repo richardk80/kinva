@@ -2,11 +2,13 @@
 import RelativeTime from '@yaireo/relative-time';
 import NonRegularBox from '@com/main/NonRegularBox.astro';
 
-const { username, created } = Astro.props;
-
-const datetoday = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/New_York' });
+const datetoday = new Date().toLocaleDateString('en-US', { 
+    month: 'short', 
+    day: 'numeric', 
+    year: 'numeric', 
+    timeZone: 'America/New_York' 
+});
 ---
-
 <NonRegularBox 
     widthcss="w-[150px]" 
     name={datetoday} 
@@ -17,15 +19,15 @@ const datetoday = new Date().toLocaleDateString(undefined, { month: 'short', day
     <div class="py-2 space-y-2 text-xs font-semibold text-center">
         <div>
             <p>Your Friends:</p>
-            <a class="text-[#252728] hover:underline" href=`${username}/friends` set:text="50" />
+            <p class="text-[#252728]">50</p>
         </div>
         <div>
             <p>Profile Views:</p>
-            <p class="text-[#252728]" set:text="200" />
+            <p class="text-[#252728]">200</p>
         </div>
         <div>
             <p>Joined:</p>
-            <p class="text-[#252728]" set:html={new RelativeTime().from(new Date(created))} />
+            <p class="text-[#252728]">{new RelativeTime().from(new Date('2023-12-23'))}</p>
         </div>
     </div>
 </NonRegularBox>

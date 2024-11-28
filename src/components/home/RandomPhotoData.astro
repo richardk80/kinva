@@ -46,7 +46,7 @@ const courtesyText = dailyPicture?.photographer_url
         </div>
         </div>
         <p class="flex justify-center text-xs pt-[5px]">
-            Courtesy of: <a class="text-[#252728] font-semibold hover:text-red-600 ml-0.5" href={dailyPicture.photographer_url} target="_blank">{toTitleCase(dailyPicture.photographer)}</a>
+            Courtesy of: <a class="text-[#252728] font-semibold hover:text-red-600 hover:underline ml-0.5" href={dailyPicture.photographer_url} target="_blank">{toTitleCase(dailyPicture.photographer)}</a>
         </p>
 ) : (
     <p class="text-xs flex items-center justify-center pt-[90px]">Error fetching picture. Please try again later.</p>
