@@ -5,15 +5,14 @@ import TopRightUserDetailLinks from '@com/home/TopRightUserDetailLinks.astro';
 
 import { Icon } from 'astro-icon/components';
 
-const { name, username } = Astro.props;
+const { username } = Astro.props;
 
 import onlineusers from '../../pages/api/users';
 
 // Find the current user details
 const currentUser = onlineusers.find(user => user.username === username);
 
-// Check if the user has a profile picture
-const hasProfilePic = currentUser ? currentUser.profilepic : false;
+const { name, hasProfilePic } = currentUser;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();

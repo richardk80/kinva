@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         containerID: container.id,
         audioFilePath: container.getAttribute('data-audio-file-path'),
         xmlFilePath: container.getAttribute('data-audio-info-file-path'),
-        updateInterval: 45000
+        updateInterval: 30000
     };
 
     class UserInterface {

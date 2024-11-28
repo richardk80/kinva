@@ -11,6 +11,7 @@ const users = [
       "messagenum": 10,
       "friendship": false,
       "requested": false,
+      "hasProfilePic": true,
       "profileimg": 'https://i.pravatar.cc?img=3',
       "lastActive": '2024-08-23T10:58:00Z',
       "created": '2023-12-23',
