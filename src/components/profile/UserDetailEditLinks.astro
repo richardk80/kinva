@@ -8,7 +8,7 @@ interface Props {
 
 const { loggedin, username } = Astro.props;
 ---
-<div class="flex items-center space-x-[22px]">
+<div class="flex items-center space-x-[38.5px]">
     { loggedin ? <p class="text-[11.52px] ml-0.5"><SmallLink href={`/${username}/settings`} link="edit photo" /></p> : null }
     { loggedin ? <p class="text-[11.52px] ml-0.5"><SmallLink href={`/${username}/edit`} link="edit profile" /></p> : null }
 </div>
