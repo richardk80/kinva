@@ -2,136 +2,116 @@
 import OtherLayout from '@lay/OtherLayout.astro';
 ---
 <OtherLayout title="Search" pagetitle="Search">
-		<section aria-label="Search Results">
-			<div class="py-0.5 bg-[#252728]">
-				<div class="flex justify-between items-center mx-2">
-					<p id="searchReadout" class="text-xs font-semibold text-white mt-1 cursor-default"></p>
-				</div>
-			</div>
-			<div class="border-2 border-[#252728] border-solid">
-				<div class="px-3 pt-6 pb-7 -my-5">
-					<ul id="searchResults" class="flex items-center inline-block space-x-5 text-xs font-semibold mt-0.5"></ul>
-				</div>
-			</div>
-		</section>
+    <section aria-label="Search Results">
+        <div class="py-0.5 bg-neutral-900">
+            <div class="flex justify-between items-center mx-2">
+                <p id="searchReadout" class="text-xs font-semibold text-white mt-1 cursor-default"></p>
+            </div>
+        </div>
+        <div class="border-2 border-neutral-900 border-solid">
+            <div class="px-3 pt-0.5 pb-2">
+                <ul id="searchResults" class="flex flex-wrap items-center space-x-5 text-xs font-semibold mt-0.5"></ul>
+            </div>
+        </div>
+    </section>
 </OtherLayout>
 
 <script>
-	// imports
-	import DOMPurify from "dompurify";
-	import Fuse from "fuse.js";
+    import DOMPurify from "dompurify";
+    import Fuse from "fuse.js";
+    import onlineusers from "../pages/api/users"; // Assuming this contains an array of user data
 
-	import onlineusers from '../pages/api/users';
+    // Constants and DOM Elements
+    const FUSE_OPTIONS = {
+        includeScore: true,
+        shouldSort: true,
+        threshold: 0.4,
+        keys: ["name", "username"],
+    };
 
-	const username = 'dex';
+    const SPINNER = `<div class="animate-spin inline-block size-8 border-[4px] border-current border-neutral-900 border-t-transparent rounded-full"></div>`;
+    const searchval = document.getElementById("search") as HTMLInputElement | null;
+    const searchReadout = document.querySelector("#searchReadout");
+    const resultsList = document.querySelector("#searchResults");
 
-	// Assuming you're fetching the user data based on a specific `username` or `id`
-	const user = onlineusers.find(user => user.username === username);
+    let SEARCH_DATA = onlineusers; // Load the users directly from the import
+    let FUSE_INSTANCE = new Fuse(SEARCH_DATA, FUSE_OPTIONS); // Initialize Fuse with the user data
 
-	// If the user is found, get the message count; otherwise, set it to 0
-	const messageCount = user ? user.messagenum : 0;
+    // Functions
+    function updateDocumentTitle(search) {
+        document.title = search
+            ? `Search results for "${search}" | Kinva`
+            : "User Search | Kinva";
+    }
 
-	let SEARCH_DATA;
-	let FUSE_INSTANCE;
-	const FUSE_OPTIONS = {
-		includeScore: true,
-		shouldSort: true,
-		threshold: 0.5,
-		keys: [
-			{
-				name: "name",
-				weight: 1,
-			},
-			{
-				name: "username",
-				weight: 1,
-			},
-		],
-	};
+    function updateSearchReadout(search) {
+        searchReadout.textContent = search
+            ? `Search results for "${search}"`
+            : "Results for";
+    }
 
-	const SPINNER = `<div class="animate-spin inline-block size-8 border-[4px] border-current border-[#252728] border-t-transparent rounded-full"></div>`;
+    function updateSearchPageURL(search) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("q", search);
+        window.history.replaceState(null, "", url);
+    }
 
-	// selectors
-	const searchval = (document.getElementById("search") as HTMLInputElement | null);
-	const search = document.querySelector("#search");
-	const searchReadout = document.querySelector("#searchReadout");
-	const resultsList = document.querySelector("#searchResults");
+    function generateSearchList(results) {
+        return results
+            .map(({ item }) => {
+                const { name, username, profileimg } = item;
+                return `
+                    <li>
+                        <a class="hover:text-red-600 hover:underline" href="/${username}" title="Visit ${name}'s profile">
+                            <p class="text-xs flex justify-center font-semibold pb-0.5">${name}</p>
+                            <img width="90" height="90" class="hover:no-underline" src="${profileimg || '/img/avatar.svg'}" alt="${name}'s profile picture" />
+                        </a>
+                    </li>`;
+            })
+            .join("");
+    }
 
-	// functions
-	function updateDocumentTitle(search) {
-		document.title = search
-			? `${messageCount > 0 ? `(${messageCount})` : ''} Results for: “${search}”`
-			: `${messageCount > 0 ? `(${messageCount})` : ''} User Search | Kinva`;
-	}
+    function fetchSearchResults(search) {
+        if (search.length === 0) {
+            resultsList.innerHTML = "Enter a search term to find users.";
+            return;
+        }
 
-	function updateSearchReadout(search) {
-		searchReadout.textContent = search
-			? `Results for: “${search}”`
-			: "Results for:";
-	}
+        resultsList.innerHTML = SPINNER;
 
-	function updateSearchPageURL(search) {
-		const url = new URL(window.location.href);
-		url.searchParams.set("q", search);
-		window.history.replaceState(null, "", url);
-	}
+        // Perform the search
+        const searchResult = FUSE_INSTANCE.search(search);
 
-	function generateSearchList(results) {
-		const url = import.meta.env.PUBLIC_PB_URL;
-		return results
-			.map((r) => {
-				const { name, username, collectionId, id, avatar } = r.item;
-				//let parts = name.split(' ');
-				//let firstName = parts.shift();
-				//let lastName = parts.join(' ');
-				return `<a class="hover:text-red-600 hover:underline" href="/astro" title="Visit Astro's profile"><p class="text-xs flex justify-center font-semibold">Astro</p><img width="90px" height="90px" class="hover:no-underline" src="/img/avatar.svg" alt="Astro's profile picture" /></a>`;
-			})
-			.join("");
-	}
+        // Update the results list
+        resultsList.innerHTML =
+            searchResult.length > 0
+                ? generateSearchList(searchResult)
+                : "No results found…";
+    }
 
-	async function fetchSearchResults(search) {
-		if (search.length === 0) return;
-		resultsList.innerHTML = SPINNER;
-		if (!SEARCH_DATA) {
-			try {
-				const res = await fetch("");
-				if (!res.ok) {
-					throw new Error("Something went wrong…please try again");
-				}
-				const data = await res.json();
-				SEARCH_DATA = data;
-			} catch (e) {
-				//console.error(e);
-			}
-		}
-		if (SEARCH_DATA && !FUSE_INSTANCE) {
-			FUSE_INSTANCE = new Fuse(SEARCH_DATA, FUSE_OPTIONS);
-		}
-		if (!FUSE_INSTANCE) return;
-		const searchResult = FUSE_INSTANCE.search(search);
-		resultsList.innerHTML =
-			searchResult.length > 0
-				? generateSearchList(searchResult)
-				: "No results found…";
-	}
+    // Event Listeners
+    window.addEventListener("DOMContentLoaded", () => {
+        const urlParams = DOMPurify.sanitize(
+            new URLSearchParams(window.location.search).get("q") || ""
+        );
 
-	// event listeners
-	window.addEventListener("DOMContentLoaded", () => {
-		const urlParams = DOMPurify.sanitize(
-			new URLSearchParams(window.location.search).get("q")
-		);
-		fetchSearchResults(urlParams);
-		updateDocumentTitle(urlParams);
-		updateSearchReadout(urlParams);
-		searchval.value = urlParams;
-		searchval.focus();
-	});
+        fetchSearchResults(urlParams);
+        updateDocumentTitle(urlParams);
+        updateSearchReadout(urlParams);
 
-	search.addEventListener("input", () => {
-		const searchTerm = DOMPurify.sanitize(searchval.value);
-		updateDocumentTitle(searchTerm);
-		updateSearchReadout(searchTerm);
-		fetchSearchResults(searchTerm);
-		updateSearchPageURL(searchTerm);
-	});
+        if (searchval) {
+            searchval.value = urlParams;
+            searchval.focus();
+        }
+    });
+
+    if (searchval) {
+        searchval.addEventListener("input", () => {
+            const searchTerm = DOMPurify.sanitize(searchval.value);
+            updateDocumentTitle(searchTerm);
+            updateSearchReadout(searchTerm);
+            fetchSearchResults(searchTerm);
+            updateSearchPageURL(searchTerm);
+        });
+    }
 </script>

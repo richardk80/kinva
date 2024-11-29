@@ -23,16 +23,16 @@ const hasBulletins = displayedBulletins.length > 0;
   name="Your Friend's Bulletins" 
   name2="[view all]"  
   pclass="flex items-center justify-between mx-2 text-xs text-white font-semibold mt-0.5 flex flex-grow" 
-  backgroundColor="bg-[#252728]" 
-  borderColor="border-b-0 border-[#252728]/80"
+  backgroundColor="bg-neutral-900" 
+  borderColor="border-b-0 border-neutral-900/80"
   aclass="text-[10px] -mt-0.5 font-normal hover:underline text-white" 
   aurl="/bulletins"
 >
   <div>
     {hasBulletins ? 
       <div>
-        <div class="grid grid-cols-5 border-b-2 border-[#252728]/80 flex items-center">
-          <div class="py-1 col-span-1 border-r-2 border-[#252728]/80">
+        <div class="grid grid-cols-5 border-b-2 border-neutral-900/80 flex items-center">
+          <div class="py-1 col-span-1 border-r-2 border-neutral-900/80">
             <h2 class="text-xs font-semibold pl-2">From:</h2>
           </div>
           <div class="py-1 col-span-4">
@@ -40,9 +40,9 @@ const hasBulletins = displayedBulletins.length > 0;
           </div>
         </div>
         {displayedBulletins.map(bulletin => (
-          <div class="grid grid-cols-5 flex items-center border-b-2 overflow-hidden border-[#252728]/80">
-            <div class="py-1 pl-2 col-span-1 border-r-2 flex overflow-hidden border-[#252728]/80">
-              <a href="#" class="text-xs text-[#252728] hover:text-red-600 font-semibold hover:underline truncate">{bulletin.from}</a>
+          <div class="grid grid-cols-5 flex items-center border-b-2 overflow-hidden border-neutral-900/80">
+            <div class="py-1 pl-2 col-span-1 border-r-2 flex overflow-hidden border-neutral-900/80">
+              <a href="#" class="text-xs text-neutral-900 hover:text-red-600 font-semibold hover:underline truncate">{bulletin.from}</a>
             </div>
             <div class="py-1 pl-2 col-span-4 flex overflow-x-auto">
               <a href="#" class="text-xs hover:text-red-600 hover:underline truncate">{bulletin.subject}</a>
@@ -51,11 +51,11 @@ const hasBulletins = displayedBulletins.length > 0;
         ))}
       </div>
       :
-      <div class="grid grid-cols-3 border-b-2 border-[#252728]/80">
+      <div class="grid grid-cols-3 border-b-2 border-neutral-900/80">
         <div class="py-1 col-span-3">
           <div class="text-xs flex items-center justify-center pt-0.5">
             <p class="font-semibold">No Bulletins -</p>
-            <a class="text-[#252728] hover:text-red-600 ml-1 hover:underline font-normal" href="/browse">
+            <a class="text-neutral-900 hover:text-red-600 ml-1 hover:underline font-normal" href="/browse">
               Add New Friends
             </a>
           </div>

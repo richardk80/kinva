@@ -64,7 +64,7 @@ const navFooterItems = [
 ];
 
 const getCssFooterClasses = (isActive) => isActive ? "hover:text-red-600 hover:underline font-semibold aria-current:underline" : "hover:text-red-600 hover:underline";
-const dividerFooterCss = "text-[#252728] text-xs font-medium";
+const dividerFooterCss = "text-neutral-900 text-xs font-medium";
 
 const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
 
@@ -76,7 +76,7 @@ const user = onlineusers.find(user => user.username === username);
 // If the user is found, get the message count; otherwise, set it to 0
 const messageCount = user ? user.messagenum : 0;
 ---
-<html lang="en" class="antialiased subpixel-antialiased text-[#252728] bg-[#252728]/15">
+<html lang="en" class="antialiased subpixel-antialiased text-neutral-900 bg-neutral-900/15">
   <head>
     <title>{`${messageCount > 0 ? `(${messageCount})` : ''} ${title} - Kinva`}</title>
     <link rel="canonical" href={Astro.site} />
@@ -106,7 +106,7 @@ const messageCount = user ? user.messagenum : 0;
     <div class="mx-auto w-[800px] flex flex-col min-h-screen">
       <!-- Start Header -->
       <div class="sticky inset-0 z-50">
-        <header class="bg-[#252728] h-[40px]">
+        <header class="bg-neutral-900 h-[40px]">
           <div class="flex items-center mx-1.5 mr-2 py-1">
             <!-- Start Logo Icon -->
               <a href="/" title="Back to Home">
@@ -118,7 +118,7 @@ const messageCount = user ? user.messagenum : 0;
                 <form class="flex items-center space-x-0.5">
                     <input
                       type="text"
-                      class="h-[25px] pl-1 resize-none text-sm caret-[#252728] placeholder:text-sm placeholder:italic placeholder:text-zinc-400 bg-white w-52 focus:placeholder:text-transparent"
+                      class="h-[25px] pl-1 resize-none text-sm caret-neutral-900 placeholder:text-sm placeholder:italic placeholder:text-zinc-400 bg-white w-52 focus:placeholder:text-transparent"
                       placeholder="Search Users..."
                       id="search"
                       name="q"
@@ -126,11 +126,11 @@ const messageCount = user ? user.messagenum : 0;
                       title="Search by name or username"
                     />
                     <button
-                      class="justify-center items-center h-[25px] w-8 border border-[#252728] bg-zinc-100 hover:bg-zinc-200 transition-all"
+                      class="justify-center items-center h-[25px] w-8 border border-neutral-900 bg-zinc-100 hover:bg-zinc-200 transition-all"
                       type="submit"
                       aria-label="search"
                     >
-                      <Icon class="h-[14px] w-[14px] fill-[#252728] mx-auto mt-[0.75px]" name="search" />
+                      <Icon class="h-[14px] w-[14px] fill-neutral-900 mx-auto mt-[0.75px]" name="search" />
                     </button>
                   </form>
             </div>
@@ -139,9 +139,9 @@ const messageCount = user ? user.messagenum : 0;
              <div class="flex items-center -mr-[1px]">
               { 
                 isLoggedIn ?
-                <button id="logoutButton" type="button" title="Log Out of Kinva" aria-label="Log Out of Kinva" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:bg-white/90 px-1.5 py-0.5 focus:bg-white/90 border border-[#252728] focus:border-[#252728]/80">
-                  <Icon class="h-[15px] fill-[#252728]" name="logout" />
-                  <span class="text-xs text-[#252728]">Log Out</span>
+                <button id="logoutButton" type="button" title="Log Out of Kinva" aria-label="Log Out of Kinva" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:bg-white/90 px-1.5 py-0.5 focus:bg-white/90 border border-neutral-900 focus:border-neutral-900/80">
+                  <Icon class="h-[15px] fill-neutral-900" name="logout" />
+                  <span class="text-xs text-neutral-900">Log Out</span>
                 </button>
                 : null 
               }
@@ -149,7 +149,7 @@ const messageCount = user ? user.messagenum : 0;
               <!-- End Logout Link -->
           </div>
       </header>
-      <nav class="bg-[#252728] opacity-100 text-white drop-shadow-lg py-[3px] px-3">
+      <nav class="bg-neutral-900 opacity-100 text-white drop-shadow-lg py-[3px] px-3">
         <ul class="flex items-stretch justify-between text-xs -mt-[1px] ml-1">
           {navItems.map(({ smallname, href, name, dividerChar }) => (
             <li>
@@ -173,7 +173,7 @@ const messageCount = user ? user.messagenum : 0;
       <div class="mt-3 mb-10">
         <footer class="space-y-1">
           <div class="flex justify-center">
-            <div class="text-[#252728] text-[11px]">
+            <div class="text-neutral-900 text-[11px]">
               <ul class="flex items-stretch space-x-1">
                 {navFooterItems.map(({ smallname, href, name,dividerChar }) => (
                 <li>
@@ -196,7 +196,7 @@ const messageCount = user ? user.messagenum : 0;
     </div>
     <!-- End Layout -->
      <!-- Start Back to Top Button -->
-     <button type="button" id="scrollTopButton" class="hidden fixed z-auto cursor-pointer inline-flex flex-shrink-0 justify-center items-center gap-2 h-8 w-8 border border-transparent font-semibold bg-[#252728] focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 transition-all text-sm right-4 bottom-4 outline-none overflow-x-hidden overflow-y-auto" title="Back To Top" aria-label="Back To Top" tabindex="0">
+     <button type="button" id="scrollTopButton" class="hidden fixed z-auto cursor-pointer inline-flex flex-shrink-0 justify-center items-center gap-2 h-8 w-8 border border-transparent font-semibold bg-neutral-900 focus:outline-none focus:ring-0 focus:ring-transparent focus:ring-offset-0 transition-all text-sm right-4 bottom-4 outline-none overflow-x-hidden overflow-y-auto" title="Back To Top" aria-label="Back To Top" tabindex="0">
       <Icon class="h-4 w-4 fill-white m-auto" name="arrow-up" />
     </button>
     <!-- End Back to Top Button -->

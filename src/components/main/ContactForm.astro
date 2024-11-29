@@ -19,7 +19,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
           type="text"
           id="name"
           name="name"
-          class="py-1 px-3 pr-5 block w-full border border-[#252728] text-sm"
+          class="py-1 px-3 pr-5 block w-full border border-neutral-900 text-sm"
         />
       </div>
 
@@ -30,7 +30,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
           type="email"
           id="email"
           name="email"
-          class="py-1 px-3 pr-5 block w-full border border-[#252728] text-sm"
+          class="py-1 px-3 pr-5 block w-full border border-neutral-900 text-sm"
         />
       </div>
 
@@ -40,7 +40,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
         <select
           id="reason"
           name="reason"
-          class="py-1 px-3 pr-5 block w-full border border-[#252728] text-sm"
+          class="py-1 px-3 pr-5 block w-full border border-neutral-900 text-sm"
         >
           <option value="">Select a reason</option>
           <option value="support">Support</option>
@@ -55,13 +55,13 @@ import OtherLayout from '@lay/OtherLayout.astro';
         <textarea
           id="message"
           name="message"
-          class="p-2 w-full text-sm border border-[#252728] placeholder:text-[#252728]/70 resize-none"
+          class="p-2 w-full text-sm border border-neutral-900 placeholder:text-neutral-900/70 resize-none"
           rows="6"
           placeholder="Type your message here"
         ></textarea>
       </div>
 
-      <button type="submit" class="bg-[#252728]/10 hover:bg-[#252728]/15 text-xs border border-[#252728] py-0.5 px-2">Send</button>
+      <button type="submit" class="bg-neutral-900/10 hover:bg-neutral-900/15 text-xs border border-neutral-900 py-0.5 px-2">Send</button>
     </form>
   </div>
 
@@ -69,7 +69,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
   <div id="thankYouMessage" class="hidden text-center py-14">
     <h1 class="text-3xl font-bold mb-2">Thank You!</h1>
     <p class="text-lg">Your message was sent successfully</p>
-    <p class="text-[10px] text-center mt-5">Redirecting to your homepage in <span class="text-[#252728] font-semibold" id="seconds">10</span> seconds</p>
+    <p class="text-[10px] text-center mt-5">Redirecting to your homepage in <span class="text-neutral-900 font-semibold" id="seconds">10</span> seconds</p>
   </div>
 </OtherLayout>
 
