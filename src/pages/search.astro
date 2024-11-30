@@ -2,18 +2,18 @@
 import OtherLayout from '@lay/OtherLayout.astro';
 ---
 <OtherLayout title="Search" pagetitle="Search">
-    <section aria-label="Search Results">
-        <div class="py-0.5 bg-neutral-900">
-            <div class="flex justify-between items-center mx-2">
-                <p id="searchReadout" class="text-xs font-semibold text-white mt-1 cursor-default"></p>
-            </div>
-        </div>
-        <div class="border-2 border-neutral-900 border-solid">
-            <div class="px-3 pt-0.5 pb-2">
-                <ul id="searchResults" class="flex flex-wrap items-center space-x-5 text-xs font-semibold mt-0.5"></ul>
-            </div>
-        </div>
-    </section>
+	<section aria-label="Search Results">
+		<div class="py-0.5 bg-neutral-900">
+			<div class="flex justify-between items-center mx-2">
+				<p id="searchReadout" class="text-xs font-semibold text-white mt-1 cursor-default"></p>
+			</div>
+		</div>
+		<div class="border-2 border-neutral-900 border-solid">
+			<div class="px-2 pb-2.5 pt-1.5 flex flex-grow">
+				<ul id="searchResults" class="flex items-center space-x-3 text-xs pt-0.5"></ul>
+			</div>
+		</div>
+	</section>
 </OtherLayout>
 
 <script>
@@ -47,7 +47,7 @@ import OtherLayout from '@lay/OtherLayout.astro';
     function updateSearchReadout(search) {
         searchReadout.textContent = search
             ? `Search results for "${search}"`
-            : "Results for";
+            : "Search results for...";
     }
 
     function updateSearchPageURL(search) {
@@ -61,19 +61,20 @@ import OtherLayout from '@lay/OtherLayout.astro';
             .map(({ item }) => {
                 const { name, username, profileimg } = item;
                 return `
-                    <li>
-                        <a class="hover:text-red-600 hover:underline" href="/${username}" title="Visit ${name}'s profile">
-                            <p class="text-xs flex justify-center font-semibold pb-0.5">${name}</p>
-                            <img width="90" height="90" class="hover:no-underline" src="${profileimg || '/img/avatar.svg'}" alt="${name}'s profile picture" />
+							<li>
+							<a class="hover:text-red-600 hover:underline" href="/${username}" title="Visit ${name}'s profile">
+                            <p class="text-xs text-center font-semibold pb-1">${name}</p>
+                            <img height="96" width="96" src="${profileimg || '/img/avatar.svg'}" alt="${name}'s profile picture" />
                         </a>
-                    </li>`;
+						</li>
+						`;
             })
             .join("");
     }
 
     function fetchSearchResults(search) {
         if (search.length === 0) {
-            resultsList.innerHTML = "Enter a search term to find users.";
+            resultsList.innerHTML = "No search results found.";
             return;
         }
 
