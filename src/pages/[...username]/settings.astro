@@ -21,27 +21,28 @@ if (!page) {
 
 const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
 ---
+
 <OtherLayout title="Account Settings" pagetitle="Account Settings">
 	<div class="w-[690px] mb-2">
-            <form class="grid gap-y-2 mt-3" method="post" enctype="application/json">
-                <NonRegularBox 
+        <form class="grid gap-y-2 mt-3" method="post" enctype="application/json">
+            <NonRegularBox 
                     name="Basic Details" 
-                    pclass="flex items-center justify-between mx-2 text-sm font-semibold text-white mb-0.5 mt-1" 
+                    pclass="flex items-center justify-between ml-2 text-sm font-semibold text-white py-1" 
                     backgroundColor="bg-neutral-900" 
-                    borderColor="border-neutral-900/80">
-                <div class="mx-2 mb-2">
-                    <div class="mt-1.5 space-y-2">
+                    borderColor="border-neutral-900">
+                <div class="m-2">
+                    <div class="space-y-2">
                         <div>
                             <div class="text-[12.8px]">Profile image:</div>
                             { profilepic ?
                             <div class="-mb-1.5">
-                                <SettingsProfileImage
+                            <SettingsProfileImage
                                 width={160}
                                 height={160}
                                 srcurl={profileimg}
                                 altText={`${name}'s profile picture`}
                                 loggedin={loggedin}
-                              />
+                             />
                             </div>
                           :
                           <Icon class="w-40 h-40" name="avatar" />
@@ -52,12 +53,12 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             <label for="file-upload" class="py-0.5 px-3.5 bg-zinc-100 text-zinc-200 text-xs border border-zinc-200 focus:outline-none cursor-not-allowed" title="Delete Profile Image First">
                                 Upload
                             </label>
-                            <input id="file-upload" type="file" class="hidden">
+                            <input id="file-upload" type="file" class="hidden" />
                             :
                             <label for="file-upload" class="py-0.5 px-3.5 bg-zinc-100 hover:bg-zinc-200 text-xs border border-zinc-400 focus:outline-none cursor-pointer">
                                 Upload
                             </label>
-                            <input id="file-upload" type="file" class="hidden">
+                            <input id="file-upload" type="file" class="hidden" />
                             }
                             { profilepic ? 
                             <button class="py-0.5 px-3.5 bg-red-600 hover:bg-red-700 text-white text-xs border border-red-900 focus:outline-none cursor-pointer" type="button">
@@ -71,7 +72,7 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                         </div>
                         <div>
                             <div class="text-[12.8px]">Account ID:</div>
-                            <input type="text" name="id" class="max-w-[160px] py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent text-zinc-500" value="546786" value={id} disabled>
+                            <input type="text" name="id" class="max-w-[160px] py-1 px-2 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent text-zinc-500" value="546786" disabled />
                         </div>
                         <div>
                             <div class="text-[12.8px]">Email address:</div>
@@ -88,11 +89,11 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             <div>
                                 <div class="flex items-center">
                                   <div class="inline-flex items-center min-w-fit bg-neutral-900 text-sm text-white border-l border-t border-b border-zinc-300 py-1 px-2 select-none">https://kinva.net/</div>
-                                  <input type="text" name="username" class="py-1 px-2 block w-full border-l-0 border-r border-t border-b border-zinc-300 text-sm focus:z-10 focus:border-zinc-300 focus:ring-0 focus:ring-transparent" value={username} autocomplete="off">
+                                  <input type="text" name="username" class="py-1 px-2 block w-full border-l-0 border-r border-t border-b border-zinc-300 text-sm focus:z-10 focus:border-zinc-300 focus:ring-0 focus:ring-transparent" value={username} autocomplete="off" />
                                 </div>
                             </div>
                         </div>
-                        <div class="pt-1">
+                        <div>
                             <div class="w-full text-xs bg-neutral-900/10 py-1 px-2">
                             <p class="mb-3">If you set a username, you will get a custom URL for your profile.</p>
                             <p class="mb-3">Example: <span class="font-semibold">https://kinva.net/username</span></p>
@@ -102,34 +103,34 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                         </div>
                     </div>
                 </div>
-                </NonRegularBox>
+            </NonRegularBox>
 
-                <NonRegularBox name="Privacy" pclass="flex items-center justify-between mx-2 text-sm font-semibold text-white mb-0.5 mt-1" backgroundColor="bg-neutral-900" borderColor="border-neutral-900/80">
-                    <div class="mx-2 mb-2 mt-1.5">
+            <NonRegularBox name="Privacy" pclass="flex items-center justify-between ml-2 text-sm font-semibold text-white py-1" backgroundColor="bg-neutral-900" borderColor="border-neutral-900">
+                    <div class="m-2">
                         <div class="space-y-2">
                             <div>
                                     <div class="text-[12.8px]">Show online status on your profile:</div>
                                     <select class="py-1 px-3 pr-9 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" id="status">
                                         <option>Yes</option> 
                                         <option>No</option>
-                                </select>
+                                    </select>
                             </div>
                             <div>
                                 <div class="text-[12.8px]">Who can start an IM conversation with you:</div>
                                 <select class="py-1 px-3 pr-9 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" id="conversation">
-                                    <option>Your Friends</option>
                                     <option>Everyone</option>
+                                    <option>Your Friends</option>
                                     <option>No One</option>
                                 </select>
                             </div>
                             <div>
                                 <div class="text-[12.8px]">Who can view your profile:</div>
                                 <select class="py-1 px-3 pr-5 block w-full border border-zinc-300 text-sm focus:border-zinc-300 focus:ring-transparent" id="profile">
-                                <option>Everyone (Public)</option>
-                                <option>Only Friends (Private)</option>
+                                    <option>Everyone (Public)</option>
+                                    <option>Only Friends (Private)</option>
                                 </select>
                             </div>
-                            <div class="pt-1">
+                            <div>
                                 <div class="w-full bg-neutral-900/10 px-2 py-1">
                                     <p class="text-xs mb-1">If your profile is set to <span class="font-semibold">private</span>, only friends can view the content of your profile.</p>
                                     <p class="text-xs">Comments, forums, public blog entries, and other content posted by you will stay public.</p>
@@ -137,10 +138,10 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             </div>
                         </div>
                     </div>
-                </NonRegularBox>
+            </NonRegularBox>
 
-                <NonRegularBox name="Security & Account Access" pclass="flex items-center justify-between mx-2 text-sm font-semibold text-white mb-0.5 mt-1" backgroundColor="bg-neutral-900" borderColor="border-neutral-900/80">
-                    <div class="my-1 ml-2">
+            <NonRegularBox name="Security & Account Access" pclass="flex items-center justify-between mx-2 text-sm font-semibold text-white py-1" backgroundColor="bg-neutral-900" borderColor="border-neutral-900">
+                    <div class="m-2">
                         <div class="flex items-center space-x-1">
                             <p class="text-sm">2-Factor Authentication:</p>
                             <div class="flex items-center space-x-1"> 
@@ -150,30 +151,23 @@ const { name, email, id, loggedin, twofactor, profileimg, profilepic } = page;
                             </div>
                         </div>
                     </div>
-                </NonRegularBox>
+            </NonRegularBox>
+                 
+            <div class="space-y-2">
+                <div>
+                    <button class="py-[2px] px-2 bg-neutral-900 hover:bg-neutral-900/90 text-xs text-white border border-neutral-900" type="submit">Save All</button>
+                </div>
             </form>
-
-            <div class="mt-2">
-                <button class="py-0.5 px-2 bg-zinc-100 hover:bg-zinc-200 text-xs border border-neutral-900" type="submit">
-                    <p class="pt-0.5">Save All</p>
-                </button>
-            </div>
-
-            <div class="mt-2">
-            <p class="text-[12.8px] font-semibold">More Options</p>
+                        
+            <div>
+                <p class="text-[12.8px] font-semibold">More Options</p>
                 <div class="space-y-2 mt-1">
-                    <li class="list-disc list-[circle] list-outside text-xs">
-                        To change your password, please <a class="text-neutral-900 hover:text-red-600 hover:underline" href={`/${username}/resetpassword`}>click here</a>.
-                    </li>
-                    <li class="list-disc list-[circle] list-outside text-xs">
-                    To export your account data, please <a class="text-neutral-900 hover:text-red-600 hover:underline" href={`/${username}/exportdata`}>click here</a>.
-                    </li>
-                    <li class="list-disc list-[circle] list-outside text-xs">
-                    To permanently delete your account and all your data, please <a class="text-neutral-900 hover:text-red-600 hover:underline" href={`/${username}/deleteaccount`}>click here</a>.
-                    </li>
-                    <li class="list-disc list-[circle] list-outside text-xs">
-                    To manage cookies settings, please <a class="text-neutral-900 hover:text-red-600 hover:underline cursor-pointer" data-cc="c-settings" href="#">click here</a>.
-                    </li>
+                    <li class="list-disc list-[circle] list-outside text-xs">To change your password, please <a class="text-neutral-900 hover:text-red-600 hover:underline" href={`/${username}/resetpassword`}>click here</a>.</li>
+                    <li class="list-disc list-[circle] list-outside text-xs">To export your account data, please <a class="text-neutral-900 hover:text-red-600 hover:underline" href={`/${username}/exportdata`}>click here</a>.</li>
+                    <li class="list-disc list-[circle] list-outside text-xs">To permanently delete your account and all your data, please <a class="text-neutral-900 hover:text-red-600 hover:underline" href={`/${username}/deleteaccount`}>click here</a>.</li>
+                    <li class="list-disc list-[circle] list-outside text-xs">To manage cookies settings, please <a class="text-neutral-900 hover:text-red-600 hover:underline cursor-pointer" data-cc="c-settings" href="#">click here</a>.</li>
                 </div>
             </div>
-</OLayout>
+        </div>
+    </div>
+</OtherLayout>
