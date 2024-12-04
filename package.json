@@ -14,17 +14,16 @@
     "info": "astro info"
   },
   "dependencies": {
-    "@astrojs/image": "1.0.0-beta.0",
-    "@astrojs/node": "9.0.0-beta.3",
-    "@astrojs/tailwind": "^5.1.2",
-    "@astrojs/vercel": "8.0.0-beta.3",
+    "@astrojs/image": "0.18.0",
+    "@astrojs/node": "9.0.0",
+    "@astrojs/tailwind": "5.1.3",
+    "@astrojs/vercel": "8.0.0",
     "@popperjs/core": "^2.11.8",
     "@types/jquery": "^3.5.16",
     "@types/node": "^22.2.0",
     "@types/nodemailer": "^6.4.15",
     "@yaireo/relative-time": "^1.0.4",
-    "ansi-align": "git+https://github.com/richardk80/ansi-align.git",
-    "astro": "5.0.0-beta.6",
+    "astro": "5.0.2",
     "astro-compressor": "^0.4.1",
     "astro-icon": "^1.1.1",
     "astro-useragent": "^4.0.2",
@@ -45,8 +44,5 @@
     "@tailwindcss/typography": "^0.5.9",
     "astro-robots-txt": "^1.0.0",
     "fluid-tailwind": "^1.0.3"
-  },
-  "resolutions": {
-    "ansi-align": "git+https://github.com/richardk80/ansi-align.git"
   }
 }
