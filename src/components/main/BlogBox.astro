@@ -13,16 +13,14 @@ interface Props {
   bclass?: string;
 };
 
-const { widthcss, backgroundColor, borderColor, name, pclass, username, name2, aclass, aurl, bclass } = Astro.props;
+const { widthcss, backgroundColor, borderColor, name, pclass, username, username2, name2, aclass, aurl, bclass } = Astro.props;
 ---
 <div class={widthcss}>
     <div class="py-0.5" class:list={backgroundColor}>
         <div class={pclass}>
-          <p>{username} {name}</p>
-          <a class={bclass} href={aurl}>
-            [<p class={aclass}>
-              {name2}
-            </p>]
+          <p>{username2} {name} {username}</p>
+          <a class={aclass} href={aurl}>
+              [<span class={bclass}>{name2}</span>]
           </a>
     </div>
     </div>

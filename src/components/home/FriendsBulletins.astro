@@ -42,7 +42,7 @@ const hasBulletins = displayedBulletins.length > 0;
         {displayedBulletins.map(bulletin => (
           <div class="grid grid-cols-5 flex items-center border-b-2 overflow-hidden border-neutral-900/80">
             <div class="py-1 pl-2 col-span-1 border-r-2 flex overflow-hidden border-neutral-900/80">
-              <a href="#" class="text-xs text-neutral-900 hover:text-red-600 font-semibold hover:underline truncate">{bulletin.from}</a>
+              <a href="#" class="text-xs text-neutral-900 hover:text-red-600 hover:underline truncate">{bulletin.from}</a>
             </div>
             <div class="py-1 pl-2 col-span-4 flex overflow-x-auto">
               <a href="#" class="text-xs hover:text-red-600 hover:underline truncate">{bulletin.subject}</a>
