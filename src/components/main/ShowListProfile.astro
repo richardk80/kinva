@@ -46,7 +46,7 @@ const itemsToShow = sortedItems.slice(0, maxItemsToShow);
     {itemsToShow.length > 0 ? (
         itemsToShow.map((item) => (
             <div class="flex items-center space-x-1">
-                <p>{item.text}</p>
+                <p class="truncate">{item.text}</p>
                 <p><SmallLink href={item.href} link="read post" /></p>
             </div>
         ))

@@ -3,11 +3,16 @@ import SmallLink from '@com/main/SmallLink.astro';
 
 import ShowList from '@com/main/ShowListHome.astro';
 
-const showList = true;
-
 const { username, showlist } = Astro.props;
 ---
-<div class="space-y-1">
-    <div class="text-xs"><span class="font-semibold">Your Latest Blog Entries</span> <SmallLink href=`${username}/blog/edit` link="add entry" /></div>
-        { showList ? <ShowList username={username} showlist={showlist} /> : <p class="text-xs">You have no blog entries yet</p> }
+<div class="space-y-0.5">
+    <div class="text-xs">
+        <span class="font-semibold">Your Latest Blog Entries</span> 
+        <SmallLink href={`${username}/blog/edit`} link="add entry" />
+    </div>
+    {Array.isArray(showlist) && showlist.length > 0 ? (
+        <p class="text-xs">You have no blog entries yet</p>
+    ) : (
+        <ShowList username={username} showlist={showlist} />
+    )}
 </div>
