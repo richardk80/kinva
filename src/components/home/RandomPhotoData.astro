@@ -37,7 +37,7 @@ const courtesyText = dailyPicture?.photographer_url
         <div class="relative overflow-hidden">
             <!-- Link with data-lightbox attribute for Lightbox2 -->
             <a href={dailyPicture.src.original} data-lightbox={`${queryterm} Pictures`} data-title={courtesyText}>
-                <img class="h-[190px] w-full object-fill" src={dailyPicture.src.large} alt={dailyPicture.alt} loading="lazy" />
+                <img class="h-[190px] w-full object-fill image-trigger" src={dailyPicture.src.large} alt={dailyPicture.alt} loading="lazy" />
                 <!-- Hover overlay -->
                 <div class="absolute inset-0 bg-neutral-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <Icon name="expand" class="fill-white opacity-90 h-10 w-10" />

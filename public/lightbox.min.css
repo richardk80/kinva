@@ -3,9 +3,12 @@
     line-height:0;
 }
 
-body.lb-disable-scrolling{
-    overflow:hidden;
-}
+body.lb-disable-scrolling {
+    overflow: hidden;
+    position: static;
+    height: 100vh;
+    width: 100vw;
+  }
 
 .lightboxOverlay{
     position:absolute;
@@ -13,7 +16,7 @@ body.lb-disable-scrolling{
     left:0;
     z-index:9999;
     background-color:#000;
-    opacity:.8;
+    opacity:.5;
     display:none;
 }
 
@@ -176,24 +179,25 @@ body.lb-disable-scrolling{
     color:#999;
 }
 
-.lb-data .lb-close{
-    display:block;
-    float:right;
-    width:30px;
-    height:30px;
-    background:url(../images/close.png) top right no-repeat;
-    text-align:right;
-    outline:0;
-    opacity:.7;
-    -webkit-transition:opacity .2s;
-    -moz-transition:opacity .2s;
-    -o-transition:opacity .2s;
-    transition:opacity .2s
-}
-
-.lb-data .lb-close:hover{
-    cursor:pointer;opacity:1
-}
+/* Position the close button in the top-right corner of the page */
+.lb-data .lb-close {
+    position: fixed; /* Fix to the viewport */
+    top: 16px; /* Distance from the top */
+    left: 16px; /* Distance from the right */
+    width: 40px; /* Circle width */
+    height: 40px; /* Circle height */
+    background: white url(../images/close.png) center center no-repeat; /* Black circle with your image centered */
+    background-size: 40%; /* Scale the image to fit within the circle */
+    color: transparent; /* Hide any text content */
+    border-radius: 50%; /* Create the circular shape */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    z-index: 10001; /* Keep it above other elements */
+  }
+  
+  .lb-data .lb-close:hover {
+    cursor: pointer;
+  }
 
 .lb-caption {
     color: #fff;

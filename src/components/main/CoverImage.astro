@@ -16,7 +16,7 @@ const { name, coverimg, loggedin, isCoverImg } = page;
 <div class="relative w-full h-[150px] overflow-hidden bg-neutral-900/20 border-2 border-neutral-900">
     { isCoverImg && (
         <div class="relative group w-full h-full">
-            <a href={coverimg} data-lightbox={coverimg} data-title={`${name}'s Cover Image`} class="block w-full h-full">
+            <a href={coverimg} data-lightbox={coverimg} class="block w-full h-full">
                 <img src={coverimg} alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />
                 <!-- Overlay with centered icon, visible on hover -->
                 <div class="absolute inset-0 bg-neutral-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
