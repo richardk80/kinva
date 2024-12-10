@@ -8,7 +8,7 @@ const users = [
       "profilepic": true, 
       "twofactor": true,
       "showlist": 2,
-      "messagenum": 10,
+      "messagenum": 0,
       "friendship": false,
       "requested": false,
       "hasProfilePic": true,
