@@ -13,6 +13,16 @@ const queryterm = 'Party';
     borderColor="border-neutral-900/80"
 >
     <div class="my-2 mx-2 h-[207px] relative">
-        <RandomPhotoData server:defer />
+        <RandomPhotoData server:defer>
+            <div slot="fallback">
+                <!-- Image Placeholder -->
+                <div class="h-[190px] w-full bg-neutral-200 opacity-70 animate-pulse"></div>
+            
+                <!-- Caption Placeholder -->
+                <div class="flex justify-center mt-[4px]">
+                  <div class="h-4 w-64 bg-neutral-200 opacity-70 animate-pulse"></div>
+                </div>
+              </div>
+        </RandomPhotoData>
     </div>
 </RandomPhotoBox>

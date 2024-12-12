@@ -186,7 +186,7 @@ body.lb-disable-scrolling {
     left: 16px; /* Distance from the right */
     width: 40px; /* Circle width */
     height: 40px; /* Circle height */
-    background: white url(../images/close.png) center center no-repeat; /* Black circle with your image centered */
+    background: rgb(84, 84, 84) url(../images/close.png) center center no-repeat; /* Black circle with your image centered */
     background-size: 40%; /* Scale the image to fit within the circle */
     color: transparent; /* Hide any text content */
     border-radius: 50%; /* Create the circular shape */
@@ -197,6 +197,7 @@ body.lb-disable-scrolling {
   
   .lb-data .lb-close:hover {
     cursor: pointer;
+    opacity: .7;
   }
 
 .lb-caption {

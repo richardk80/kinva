@@ -31,6 +31,8 @@ let cleanedName = dailyPicture?.photographer?.replace(/photo by:\s*/i, '').trim(
 const courtesyText = dailyPicture?.photographer_url
   ? `Courtesy of: <a href="${dailyPicture.photographer_url}" target="_blank">${toTitleCase(cleanedName)}</a>`
   : 'Courtesy of: Unknown Photographer';
+
+  await new Promise((resolve) => setTimeout (resolve, 500));
 ---
 {dailyPicture ? (
     <div class="space-y-0.5 relative group">
