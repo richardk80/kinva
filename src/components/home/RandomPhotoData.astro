@@ -2,7 +2,7 @@
 import { createClient } from 'pexels';
 import { Icon } from 'astro-icon/components';
 
-const queryterm = 'Party';
+const query = Astro.props.query;
 const API_KEY = import.meta.env.API_KEY;
 const client = createClient(API_KEY);
 
@@ -10,7 +10,7 @@ const client = createClient(API_KEY);
 let dailyPicture = null;
 
 try {
-  const response = await client.photos.search({ query: queryterm, per_page: 100 });
+  const response = await client.photos.search({ query: query, per_page: 100 });
   if (response?.['photos']?.length > 0) {
     const randomIndex = Math.floor(Math.random() * response['photos'].length);
     dailyPicture = response['photos'][randomIndex];
@@ -38,7 +38,7 @@ const courtesyText = dailyPicture?.photographer_url
     <div class="space-y-0.5 relative group">
         <div class="relative overflow-hidden">
             <!-- Link with data-lightbox attribute for Lightbox2 -->
-            <a href={dailyPicture.src.original} data-lightbox={`${queryterm} Pictures`} data-title={courtesyText}>
+            <a href={dailyPicture.src.original} data-lightbox={`${query} pictures`} data-title={courtesyText}>
                 <img class="h-[190px] w-full object-fill image-trigger" src={dailyPicture.src.medium} alt={dailyPicture.alt} loading="lazy" />
                 <!-- Hover overlay -->
                 <div class="absolute inset-0 bg-neutral-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">

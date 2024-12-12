@@ -1,5 +1,6 @@
 ---
 interface Props {
+  query?: string;
   widthcss?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -14,15 +15,15 @@ interface Props {
   show?: boolean;
 };
 
-const { widthcss, backgroundColor, borderColor, name, pclass, username, username2, name2, aclass, aurl, loggedin, show } = Astro.props;
+const { query, widthcss, backgroundColor, borderColor, name, pclass, username, username2, name2, aclass, aurl, loggedin, show } = Astro.props;
 ---
 <div class={widthcss}>
     <div class="py-0.5" class:list={backgroundColor}>
         <div class={pclass}>
-          <p>{name} Pictures</p>
+          <p>{query} Pictures</p>
     </div>
     </div>
         <div class="border-2 border-solid" class:list={borderColor}>
-                <slot />
+          <slot />
         </div>
 </div>
