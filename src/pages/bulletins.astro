@@ -4,24 +4,32 @@ import { Icon } from 'astro-icon/components';
 
 const username = 'dex';
 
+// Initialize the bulletins array with Date objects
 const friendbulletins = [
-  { from: 'Dex', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Dex', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Dex', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Dex', subject: `What's going on with my life right now ha ha ha ha ha ha` },
-  { from: 'Dex', subject: `What's going on with my life right now ha ha ha ha ha ha` },
+  { from: 'Stanley', subject: `What's going on with my life right now ha ha ha ha ha ha`, date: new Date('2024-09-15') },
+  { from: 'Rodney', subject: `What's going on with my life right now ha ha`, date: new Date('2024-09-14') },
+  { from: 'Norman', subject: `What's going on with my life right now ha ha ha ha ha ha`, date: new Date('2024-09-13') },
+  { from: 'Mike', subject: `What's going on with my life right now ha ha`, date: new Date('2024-09-12') },
+  { from: 'Jacob', subject: `What's going on with my life right now ha ha ha ha ha ha`, date: new Date('2024-09-11') },
 ];
 
-const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
+// Set the number of bulletins to display and the max limit
+const maxBulletinsToShow = 5;  // The maximum limit of bulletins to show
+
+// Sort bulletins by date in descending order
+const sortedBulletins = friendbulletins.sort((a, b) => b.date.getTime() - a.date.getTime());
+const displayedBulletins = sortedBulletins.slice(0, Math.min(maxBulletinsToShow, maxBulletinsToShow));
+
+const hasBulletins = displayedBulletins.length > 0;
 ---
 <OtherLayout title="Bulletin Board" pagetitle="Bulletin Board">
 		<div class="space-y-2 ml-0.5">
 			<div class="flex items-center space-x-3">
-				<a href={`/${username}/bulletins/createbulletin`} class="border border-neutral-900 px-1.5 py-0.5 bg-zinc-100 hover:bg-zinc-200 cursor-pointer flex items-center justify-center space-x-1">
+				<a href={`/${username}/bulletins/createbulletin`} class="border border-neutral-950 px-1.5 py-0.5 bg-zinc-100 hover:bg-zinc-200 cursor-pointer flex items-center justify-center space-x-1">
 					<Icon class="w-[13px]" name="circle-plus" />
 					<p class="text-xs">New Entry</p>
 				</a>
-				<a href={`/${username}/bulletins/mybulletins`}  class="cursor-pointer flex items-center justify-center space-x-1 group fill-neutral-900 hover:fill-red-600 text-neutral-900 hover:text-red-600 hover:underline">
+				<a href={`/${username}/bulletins/mybulletins`}  class="cursor-pointer flex items-center justify-center space-x-1 group fill-neutral-950 hover:fill-red-600 text-neutral-950 hover:text-red-600 hover:underline">
 					<Icon class="w-[13px]" name="user" />
 					<p class="text-[13px]">My Bulletins</p>
 				</a>
@@ -30,9 +38,9 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 				<p class="text-xs">Bulletins have a limited lifespan between 1 and 10 days, after which they will be permanently gone.</p>
 				<div>
 					{hasBulletins ?
-					  <div class="border-x border-neutral-900">
-						<div class="grid grid-cols-5 border-y border-neutral-900 flex items-center">
-						  <div class="py-1 col-span-1 border-r border-neutral-900">
+					  <div class="border-x-2 border-neutral-950">
+						<div class="grid grid-cols-5 border-y-2 border-neutral-950 flex items-center">
+						  <div class="py-1 col-span-1 border-r-2 border-neutral-950">
 							<h2 class="text-xs font-semibold pl-2">From:</h2>
 						  </div>
 						  <div class="py-1 col-span-4">
@@ -40,19 +48,19 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 						  </div>
 						</div>
 						{friendbulletins.map(bulletin => (
-						  <div class="grid grid-cols-5 flex items-center border-b border-neutral-900">
-							<div class="py-1 pl-2 col-span-1 border-r border-neutral-900">
-							  <a href="#" class="text-xs flex text-neutral-900 hover:text-red-600 font-semibold hover:underline">{bulletin.from}</a>
+						  <div class="grid grid-cols-5 flex items-center border-b-2 border-neutral-950">
+							<div class="py-1 pl-2 col-span-1 border-r-2 border-neutral-950">
+							  <a href="#" class="text-xs flex text-neutral-950 hover:text-red-600 hover:underline">{bulletin.from}</a>
 							</div>
 							<div class="py-1 pl-2 col-span-4">
-							  <a href="#" class="text-xs flex text-neutral-900 hover:text-red-600 hover:underline">{bulletin.subject}</a>
+							  <a href="#" class="text-xs flex text-neutral-950 hover:text-red-600 hover:underline">{bulletin.subject}</a>
 							</div>
 						  </div>
 						))}
 					  </div>
 					  :
-					  <div class="grid grid-cols-5 border border-neutral-900 flex items-center">
-						  <div class="py-1 col-span-1 border-r border-neutral-900">
+					  <div class="grid grid-cols-5 border border-neutral-950 flex items-center">
+						  <div class="py-1 col-span-1 border-r border-neutral-950">
 							<h2 class="text-xs font-semibold pl-2">From</h2>
 						  </div>
 						  <div class="py-1 col-span-4">
@@ -62,12 +70,12 @@ const hasBulletins = friendbulletins.length > 0; // Check if there are bulletins
 						<div class="py-1 col-span-3">
 						  <div class="text-xs flex items-center justify-center pt-0.5">
 							<p class="font-semibold">No Bulletins -</p>
-							<a class="text-neutral-900 hover:text-red-600 ml-1 hover:underline font-normal" href="/browse">
+							<a class="text-neutral-950 hover:text-red-600 ml-1 hover:underline font-normal" href="/browse">
 							  Add New Friends
 							</a>
 						  </div>
 						</div>
 					}
-				  </div>
+				</div>
 		</div>
 </OtherLayout>

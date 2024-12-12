@@ -9,18 +9,20 @@ import queryterm from '../../pages/api/terms';
     query={queryterm}
     loggedin
     pclass="flex items-center justify-between mx-2 text-white text-xs font-semibold mt-0.5 flex flex-grow capitalize" 
-    backgroundColor="bg-neutral-900" 
-    borderColor="border-neutral-900/80"
+    backgroundColor="bg-neutral-950" 
+    borderColor="border-neutral-950"
 >
     <div class="my-2 mx-2 h-[207px] relative">
         <RandomPhotoData query={queryterm} server:defer>
             <div slot="fallback">
                 <!-- Image Placeholder -->
-                <div class="h-[190px] w-full bg-neutral-400 animate-pulse"></div>
+                <div class="h-[190px] w-full bg-neutral-300 animate-pulse flex items-center justify-center">
+                    <p class="text-neutral-700">Loading...</p>
+                </div>
             
                 <!-- Caption Placeholder -->
                 <div class="flex justify-center mt-[4px]">
-                  <div class="h-4 w-64 bg-neutral-400 animate-pulse"></div>
+                  <div class="h-4 w-64 bg-neutral-300 animate-pulse"></div>
                 </div>
               </div>
         </RandomPhotoData>

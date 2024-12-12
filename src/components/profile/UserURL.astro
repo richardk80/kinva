@@ -15,8 +15,8 @@ const { loggedin, name, username } = Astro.props;
 ---
 <p class="text-xs font-semibold">
     <div class="flex justify-between items-center">
-        <p class="text-xs font-semibold text-neutral-900">{name}'s Profile URL:</p>
+        <p class="text-xs font-semibold text-neutral-950">{name}'s Profile URL:</p>
         { !loggedin ? '' : <p class="text-[10px]"><SmallLink href={`${username}/settings`} link="edit" /></p> }
     </div>
-        <p class="text-xs text-neutral-900">https://kinva.net/{username}</p>
+        <p class="text-xs text-neutral-950">https://kinva.net/{username}</p>
 </p>

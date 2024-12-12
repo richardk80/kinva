@@ -13,14 +13,14 @@ const page = onlineusers.find(user => user.username === username);
 const { name, coverimg, loggedin, isCoverImg } = page;
 ---
 { isCoverImg ?
-<div class="relative w-full h-[150px] overflow-hidden bg-neutral-900/20 border-2 border-neutral-900">
+<div class="relative w-full h-[150px] overflow-hidden bg-neutral-950/20 border-2 border-neutral-950">
     { isCoverImg && (
         <div class="relative group w-full h-full">
             <a href={coverimg} data-lightbox={coverimg} class="block w-full h-full">
                 <img src={coverimg} alt={`${name}'s Cover Image`} class="w-full h-full object-cover" />
                 <!-- Overlay with centered icon, visible on hover -->
-                <div class="absolute inset-0 bg-neutral-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                    <Icon name="expand" class="fill-white opacity-90 w-10 h-10" />
+                <div class="absolute inset-0 bg-neutral-950 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    <Icon name="expand" class="fill-neutral-200 opacity-90 w-10 h-10" />
                 </div>
             </a>
             </div>
