@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // Use TLS
   auth: {
-    user: import.meta.env.SMTP_USER, // Your Gmail address
-    pass: import.meta.env.SMTP_PASS, // Your Gmail App Password
+    user: import.meta.env.SMTP_USER,
+    pass: import.meta.env.SMTP_PASS
   },
 });
 
@@ -29,7 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     await transporter.sendMail({
       from: `"Kinva Contact Form" <${import.meta.env.SMTP_USER}>`, // Align with your SMTP user
-      to: 'support@kinva.net',
+      to: '',
       replyTo: `${email}`, // Ensures responses go to the sender
       subject: `Kinva ${reason} message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nReason: ${reason}\n\nMessage:\n${message}`,
