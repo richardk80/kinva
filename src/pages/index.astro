@@ -5,7 +5,7 @@ import LoginLayout from '@lay/LoginLayout.astro';
 
 import UserDetailBox from '@com/home/UserDetailBox.astro';
 import NewUsers from '@com/main/NewUsers.astro';
-import MyMail from '@com/home/MyMail.astro';
+import YourMail from '@com/home/YourMail.astro';
 import ProfileLinkBox from '@com/home/ProfileLinkBox.astro';
 import RandomPhoto from '@com/home/RandomPhoto.astro';
 import BlogEntry from '@com/home/BlogEntry.astro';
@@ -56,7 +56,7 @@ const hasProfilePic = currentUser ? currentUser.profilepic : false;
                 <div class="flex flex-col gap-y-2">
                     <UserDetailBox name={name} username={username} />
                     <ProfileLinkBox username={username} />
-                    <MyMail />
+                    <YourMail />
                     <RandomPhoto />
                 </div>
                 <!-- End Left Column -->
