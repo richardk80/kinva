@@ -2,11 +2,16 @@
 import RegularBox from '@com/main/RegularBox.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 
+interface Props {
+  loggedin?: boolean;
+  profilepic?: boolean;
+  name?: string;
+  username: string;
+}
+
 import { Icon } from 'astro-icon/components';
 
-const username = "dex";
-
-const { loggedin, profilepic } = Astro.props;
+const { name, username, profilepic, loggedin } = Astro.props;
 
 // Array of possible names and photo URLs
 const names = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Jamie', 'Casey', 'Riley', 'Cameron', 'Avery', 'Rowan'];
@@ -37,15 +42,17 @@ const shuffleArray = (array) => {
 const randomNames = shuffleArray(names).slice(0, 4);
 const randomPhotos = shuffleArray(photos).slice(0, 4);
 ---
+
 <RegularBox 
-  name="Fresh Connections"
+  name="New Users"
+  name2="[view more]" 
   pclass="flex items-center justify-between mx-2 text-xs text-white font-semibold mt-0.5" 
-  backgroundColor="bg-neutral-950" 
+  backgroundColor="bg-neutral-950"
   borderColor="border-neutral-950" 
-  aclass="text-[10px] -mt-0.5 font-normal hover:underline" 
-  aurl="/browse"
+  aclass="text-[10px] -mt-0.5 font-normal hover:underline text-white" 
+  aurl="/browse?view=new"
 >
-  <div class="flex items-start justify-center mt-1 mb-1.5 mx-2 space-x-7">
+  <div class="flex items-start justify-center mb-1.5 mt-0.5 gap-x-[34px] relative group">
     {randomNames.map((randomName, index) => (
       <a href={`/${username}`} target="_self" title={`Visit ${randomName}'s profile`}>
         <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-neutral-950 hover:text-red-600">
@@ -69,5 +76,5 @@ const randomPhotos = shuffleArray(photos).slice(0, 4);
         </div>
       </a>
     ))}
-    </div>
+</div>
 </RegularBox>

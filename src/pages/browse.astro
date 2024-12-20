@@ -151,7 +151,7 @@ const filteredUsers = getFilteredUsers();
       <div class="py-0.5 bg-neutral-950">
         <div class="flex justify-between items-center mx-2">
           <p class="text-xs font-semibold mt-1 cursor-default text-white">
-            { view === 'new' ? 'New People' // Exclude the friends part for "New People"
+            { view === 'new' ? 'New Users' // Exclude the friends part for "New People"
                 : `${view === 'online' ? 'Online Users' : 'All Users'} - ${friends === 'include' ? 'Including Friends' : 'Excluding Friends'}`}
           </p>
           <a class="text-[10.24px] hover:underline text-white" href={generateRandomProfileUrl()}>[random]</a>
