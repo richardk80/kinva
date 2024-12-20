@@ -4,7 +4,7 @@ import Layout from '@lay/Layout.astro';
 import LoginLayout from '@lay/LoginLayout.astro';
 
 import UserDetailBox from '@com/home/UserDetailBox.astro';
-import CoolPeople from '@com/main/CoolPeople.astro';
+import FreshConnections from '@com/main/FreshConnections.astro';
 import MyMail from '@com/home/MyMail.astro';
 import ProfileLinkBox from '@com/home/ProfileLinkBox.astro';
 import RandomPhoto from '@com/home/RandomPhoto.astro';
@@ -13,7 +13,7 @@ import InfoBox from '@com/home/InfoBox.astro';
 import FriendsBulletins from '@com/home/FriendsBulletins.astro';
 import FriendRequests from '@com/home/FriendRequests.astro';
 
-import LoginCoolPeople from '@com/main/LoginCoolPeople.astro';
+import LoginFreshConnections from '@com/main/LoginFreshConnections.astro';
 import LoginDivider from '@com/login/LoginDivider.astro';
 import LoginBox from '@com/login/LoginBox.astro';
 
@@ -68,7 +68,7 @@ const hasProfilePic = currentUser ? currentUser.profilepic : false;
                         </div>
                     <InfoBox username={username} created={created} />
                     </div>
-                    <CoolPeople name={name} username={username} loggedin={isLoggedIn} profilepic={hasProfilePic} />
+                    <FreshConnections name={name} username={username} loggedin={isLoggedIn} profilepic={hasProfilePic} />
                     <FriendsBulletins username={username} bulletinnum={bulletinnum} />
                     <FriendRequests username={username} />
                 </div>
@@ -84,7 +84,7 @@ const hasProfilePic = currentUser ? currentUser.profilepic : false;
                 <div class="flex items-start justify-between">
                     <!-- Start Cool People on Login Page -->
                     <div class="grid grid-rows-1">
-                        <LoginCoolPeople loggedin={isLoggedIn} profilepic={hasProfilePic} />
+                        <LoginFreshConnections loggedin={isLoggedIn} profilepic={hasProfilePic} />
                     </div>
                     <!-- End Cool People on Login Page -->
                     <!-- Start Divider -->
