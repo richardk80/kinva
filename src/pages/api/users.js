@@ -19,7 +19,7 @@ const users = [
       "coverimg": 'https://media.sproutsocial.com/uploads/1c_facebook-cover-photo_clean@2x.png',
       "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
       "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json',
-      "livestreaming": true
+      "livestreaming": false
     },
     { 
       "name": "Richard",

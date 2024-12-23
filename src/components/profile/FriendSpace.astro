@@ -83,12 +83,12 @@ console.log('Other users:', otherUsers);
                   titleText={`Visit ${user.name}'s profile`}
                   loggedin={user.loggedin}
                   />
-                  {user.loggedin && ( <div class={`absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
+                  {user.loggedin && ( <div class={`absolute bottom-1.5 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
               </div>
             ) : (
               <div class="relative">
                 <Icon class="w-[96px] h-[96px]" name="avatar" />
-                {user.loggedin && ( <div class={`absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
+                {user.loggedin && ( <div class={`absolute bottom-0.5 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
               </div>
             )}
           </div>

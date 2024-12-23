@@ -16,5 +16,5 @@ const { width, height, imgclass, srcurl, altText, titleText, loggedin, livestrea
 ---
 <div class="relative inline-block">
     <Image width={width} height={height} class={imgclass} loading="eager" src={srcurl} alt={altText} title={titleText} />
-    {loggedin && ( <div class={`absolute bottom-0 right-0 block w-5 h-5 rounded-full border-[2px] border-white -mb-1 -mr-1 ${livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
+    {loggedin && ( <div class={`absolute bottom-0.5 right-0 block w-5 h-5 rounded-full border-[2px] border-white -mb-1 -mr-1 ${livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
 </div>
