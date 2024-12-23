@@ -1,7 +1,8 @@
 ---
 import RegularBox from '@com/main/RegularBox.astro';
-import OtherProfileImage from "@com/main/OtherProfileImage.astro";
+import FriendProfileImage from "@com/main/FriendProfileImage.astro";
 import { Icon } from 'astro-icon/components';
+
 import onlineusers from '../../pages/api/users';
 
 const { username } = Astro.params;
@@ -21,7 +22,7 @@ if (!currentUser) {
 }
 
 // Extract current user's information
-const { name, loggedin, profilepic, profileimg, friendcount } = currentUser;
+const { name, loggedin, profilepic, profileimg, friendcount, livestreaming } = currentUser;
 
 // Convert count to a number if it isn't already
 const peoplecount = Number(friendcount);
@@ -73,20 +74,21 @@ console.log('Other users:', otherUsers);
           <div class="flex items-center justify-center flex-col hover:underline text-xs font-semibold text-neutral-950 hover:text-red-600">
             <p class="mb-0.5 px-4 truncate" title={user.name}>{user.name}</p>
             {user.profilepic ? (
-              <OtherProfileImage
-                width={96}
-                height={96}
-                srcurl={user.profileimg}
-                altText={`${user.name}'s profile picture`}
-                titleText={`Visit ${user.name}'s profile`}
-                loggedin={user.loggedin}
-              />
+              <div class="relative">
+                <FriendProfileImage
+                  width={96}
+                  height={96}
+                  srcurl={user.profileimg}
+                  altText={`${user.name}'s profile picture`}
+                  titleText={`Visit ${user.name}'s profile`}
+                  loggedin={user.loggedin}
+                  />
+                  {user.loggedin && ( <div class={`absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
+              </div>
             ) : (
               <div class="relative">
                 <Icon class="w-[96px] h-[96px]" name="avatar" />
-                {user.loggedin && (
-                  <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 -mr-1"></div>
-                )}
+                {user.loggedin && ( <div class={`absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
               </div>
             )}
           </div>

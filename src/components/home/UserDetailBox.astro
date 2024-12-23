@@ -1,6 +1,6 @@
 ---
 import NonRegularBox from '@com/main/NonRegularBox.astro';
-import ProfileImage from '@com/main/ProfileImage.astro';
+import HomeProfileImage from '@com/main/HomeProfileImage.astro';
 import TopRightUserDetailLinks from '@com/home/TopRightUserDetailLinks.astro';
 
 import { Icon } from 'astro-icon/components';
@@ -29,7 +29,7 @@ const { name, hasProfilePic } = currentUser;
             <div class="flex justify-between">
                 <a href={`/${username}`}>
                     {hasProfilePic ? (
-                        <ProfileImage
+                        <HomeProfileImage
                           width={160}
                           height={160}
                           srcurl="https://i.pravatar.cc/160?img=3"
