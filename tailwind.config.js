@@ -1,9 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-
 import { fontFamily } from "tailwindcss/defaultTheme";
 import fluid, { extract, screens, fontSize } from "fluid-tailwind";
 
-module.exports = {
+export default {
   content: {
     files: [
       './public/**/*.astro',
