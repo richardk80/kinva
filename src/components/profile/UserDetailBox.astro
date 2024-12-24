@@ -47,7 +47,7 @@ const { loggedin, name, username, lastActive, profilepic, profileimg, livestream
                                 loggedin={loggedin}
                                 livestreaming={livestreaming}
                             />
-                            {loggedin && ( <div class={`absolute -bottom-1.5 -right-1.5 block ${livestreaming ? 'bg-red-500' : 'bg-green-500'} w-7 h-7 rounded-full border-[2px] border-white z-20`}></div> )}
+                            {loggedin && ( <div class={`absolute -bottom-1 -right-1.5 block ${livestreaming ? 'bg-red-500' : 'bg-green-500'} w-7 h-7 rounded-full border-[3px] border-white z-20`}></div> )}
                             <!-- Overlay with z-index to ensure it appears over the image -->
                             <div class="absolute top-0 left-0 w-[160px] h-[160px] bg-neutral-950 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
                                 <Icon name="expand" class="fill-neutral-200 opacity-90 w-10 h-10" />
@@ -57,7 +57,7 @@ const { loggedin, name, username, lastActive, profilepic, profileimg, livestream
                 ) : (
                     <div class="mb-1.5">
                         <Icon class="w-[160px] h-[160px]" name="avatar" />
-                        {loggedin && ( <div class={`absolute bottom-0 -right-1.5 block w-7 h-7 rounded-full border-[2px] border-white z-20 ${livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div> )}
+                        {loggedin && ( <div class={`absolute bottom-0.5 -right-1.5 block w-7 h-7 rounded-full border-[3px] border-white z-20 ${livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div> )}
                     </div>
                 )}
             </div>
