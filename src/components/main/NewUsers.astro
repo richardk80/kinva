@@ -1,17 +1,19 @@
 ---
 import RegularBox from '@com/main/RegularBox.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
+import StatusDot from '@com/main/StatusDot.astro';
 
 interface Props {
   loggedin?: boolean;
   profilepic?: boolean;
   name?: string;
-  username: string;
+  username?: string;
+  livestreaming?: boolean;
 }
 
 import { Icon } from 'astro-icon/components';
 
-const { name, username, profilepic, loggedin } = Astro.props;
+const { name, username, profilepic, loggedin, livestreaming } = Astro.props;
 
 // Array of possible names and photo URLs
 const names = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Jamie', 'Casey', 'Riley', 'Cameron', 'Avery', 'Rowan'];
@@ -69,8 +71,7 @@ const randomPhotos = shuffleArray(photos).slice(0, 4);
                 :
                 <div class="relative">
                   <Icon class="w-[88px] h-auto" name="avatar" />
-                    { loggedin && <div class="absolute bottom-0 right-0 block w-[20px] h-[20px] rounded-full bg-green-500 border-[2px] border-white -mb-1 -mr-1">
-                    </div>}
+                  <StatusDot loggedin={loggedin} livestreaming={livestreaming} />
                 </div>
               }
         </div>

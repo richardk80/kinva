@@ -1,6 +1,7 @@
 ---
 import RegularBox from '@com/main/RegularBox.astro';
 import FriendProfileImage from "@com/main/FriendProfileImage.astro";
+import StatusDot from '@com/main/StatusDot.astro';
 import { Icon } from 'astro-icon/components';
 
 import onlineusers from '../../pages/api/users';
@@ -82,13 +83,13 @@ console.log('Other users:', otherUsers);
                   altText={`${user.name}'s profile picture`}
                   titleText={`Visit ${user.name}'s profile`}
                   loggedin={user.loggedin}
+                  livestreaming={user.livestreaming}
                   />
-                  {user.loggedin && ( <div class={`absolute bottom-1.5 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
               </div>
             ) : (
               <div class="relative">
                 <Icon class="w-[96px] h-[96px]" name="avatar" />
-                {user.loggedin && ( <div class={`absolute bottom-0.5 right-0 block w-[20px] h-[20px] rounded-full border-[2px] border-white -mb-1 -mr-1 ${user.livestreaming ? 'bg-red-500' : 'bg-green-500'}`}></div>)}
+                <StatusDot loggedin={user.loggedin} livestreaming={user.livestreaming} />
               </div>
             )}
           </div>

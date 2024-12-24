@@ -1,0 +1,26 @@
+---
+const { loggedin, livestreaming, size, bottom, right } = Astro.props;
+
+// Determine the dot class
+const dotClass = loggedin
+  ? livestreaming
+    ? 'bg-red-500' // Streaming
+    : 'bg-green-500' // Online
+  : 'hidden'; // Offline
+
+// Set dynamic size based on `size` prop
+const sizeClass = size ? `w-${size} h-${size}` : 'w-[19px] h-[19px]'; // Default size is 16x16
+
+// Handle dynamic positioning with optional "-" prefix
+const formatPosition = (value, defaultValue) => {
+  if (!value) return defaultValue; // Use default if no value is provided
+  return value.startsWith('-') ? value : `-${value}`; // Add "-" if not present
+};
+---
+
+{loggedin && (
+  <div
+    class={`absolute -bottom-1 -right-1 block ${dotClass} ${sizeClass} rounded-full border-[2px] border-white z-20`}
+    title={loggedin ? (livestreaming ? 'Livestreaming' : 'Online') : 'Offline'}
+  ></div>
+)}

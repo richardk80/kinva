@@ -10,9 +10,9 @@ const { username } = Astro.props;
   backgroundColor="bg-neutral-950" 
   borderColor="border-neutral-950"
 >
-    <div class="ml-2 mt-1 mb-2">
+    <div class="ml-2 mt-1 mb-[5px]">
       <div>
-        <p class="font-semibold text-xs mb-0.5">
+        <p class="font-semibold text-xs my-0.5">
           You have <span class="text-neutral-950">{friendrequests}</span> friend { friendrequests === 1 ? 'request' : 'requests' }
         </p>
         <a class="py-[2px] px-2 bg-neutral-950 hover:bg-neutral-950/90 text-xs text-white border border-neutral-950" href=`/${username}/friendrequests`>View Requests</a>
