@@ -42,9 +42,9 @@ const hasBulletins = displayedBulletins.length > 0;
 				<p class="text-xs">Bulletins have a limited lifespan between 1 and 10 days, after which they will be permanently gone.</p>
 				<div>
 					{hasBulletins ?
-					  <div class="border-x-2 border-neutral-950">
-						<div class="grid grid-cols-5 border-y-2 border-neutral-950 flex items-center">
-						  <div class="py-1 col-span-1 border-r-2 border-neutral-950">
+					  <div class="border-x border-neutral-950">
+						<div class="grid grid-cols-5 border-y border-neutral-950 flex items-center">
+						  <div class="py-1 col-span-1 border-r border-neutral-950">
 							<h2 class="text-xs font-semibold pl-2">From:</h2>
 						  </div>
 						  <div class="py-1 col-span-4">
@@ -52,8 +52,8 @@ const hasBulletins = displayedBulletins.length > 0;
 						  </div>
 						</div>
 						{friendbulletins.map(bulletin => (
-						  <div class="grid grid-cols-5 flex items-center border-b-2 border-neutral-950">
-							<div class="py-1 pl-2 col-span-1 border-r-2 border-neutral-950">
+						  <div class="grid grid-cols-5 flex items-center border-b border-neutral-950">
+							<div class="py-1 pl-2 col-span-1 border-r border-neutral-950">
 							  <a href="#" class="text-xs flex text-neutral-950 hover:text-red-600 hover:underline">{bulletin.from}</a>
 							</div>
 							<div class="py-1 pl-2 col-span-4">

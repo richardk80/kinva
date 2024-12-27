@@ -1,7 +1,6 @@
 ---
 import BubbleBox from '@com/main/BubbleBox.astro';
 import UserDetailEditLinks from '@com/profile/UserDetailEditLinks.astro';
-import StatusDot from '@com/main/StatusDot.astro';
 import ProfileImage from '@com/main/ProfileImage.astro';
 import Mood from '@com/profile/Mood.astro';
 import BottomUserDetailLinks from '@com/profile/BottomUserDetailLinks.astro';
@@ -44,8 +43,6 @@ const { loggedin, name, username, lastActive, profilepic, profileimg, livestream
                                 height={160}
                                 srcurl={profileimg}
                                 altText={`${name}'s Profile Picture`}
-                                loggedin={loggedin}
-                                livestreaming={livestreaming}
                             />
                             {loggedin && ( <div class={`absolute -bottom-1 -right-1.5 block ${livestreaming ? 'bg-red-500' : 'bg-green-500'} w-7 h-7 rounded-full border-[3px] border-white z-20`}></div> )}
                             <!-- Overlay with z-index to ensure it appears over the image -->

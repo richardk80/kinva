@@ -12,7 +12,7 @@ const { loggedin, name, friendship, requested } = Astro.props;
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 ---
-{ loggedin && ( friendship || requested ) ? <div class="h-[82.2656px] border-2 border-neutral-950 flex bg-white">
+{ loggedin && ( friendship || requested ) ? <div class="h-[82.2656px] border border-neutral-950 flex bg-white">
     <div class="mx-auto my-auto">
         { friendship ? <p class="text-[14.976px] font-semibold text-neutral-950">{name} is your Friend</p> : ( requested ? <p class="text-[14.976px] font-semibold text-neutral-950">Friend Request Sent</p> : null ) }
     </div>

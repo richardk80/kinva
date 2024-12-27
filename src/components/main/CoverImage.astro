@@ -13,7 +13,7 @@ const page = onlineusers.find(user => user.username === username);
 const { name, coverimg, loggedin, isCoverImg } = page;
 ---
 { isCoverImg ?
-<div class="relative w-full h-[150px] overflow-hidden bg-neutral-950/20 border-2 border-neutral-950">
+<div class="relative w-full h-[150px] overflow-hidden bg-neutral-950/20 border border-neutral-950">
     { isCoverImg && (
         <div class="relative group w-full h-full">
             <a href={coverimg} data-lightbox={coverimg} class="block w-full h-full">

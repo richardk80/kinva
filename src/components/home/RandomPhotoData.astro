@@ -33,14 +33,14 @@ const courtesyText = dailyPicture?.photographer_url
   ? `Courtesy of: <a href="${dailyPicture.photographer_url}" target="_blank">${toTitleCase(cleanedName)}</a>`
   : 'Courtesy of: Unknown Photographer';
 
-  await new Promise((resolve) => setTimeout (resolve, 2000));
+  await new Promise((resolve) => setTimeout (resolve, 2500));
 ---
 {dailyPicture ? (
     <div class="space-y-0.5 relative group">
         <div class="relative overflow-hidden">
             <!-- Link with data-lightbox attribute for Lightbox2 -->
             <a href={dailyPicture.src.original} data-lightbox={`${query} pictures`} data-title={courtesyText}>
-                <Image height={1} width={1} class="h-[190px] w-full object-fill image-trigger border-2 border-neutral-950" src={dailyPicture.src.medium} alt="" loading="lazy" densities={[1.5, 2]} />
+                <Image height={1} width={1} class="h-[190px] w-full object-fill image-trigger border border-neutral-950" src={dailyPicture.src.medium} alt="" loading="lazy" densities={[1.5, 2]} />
                 <!-- Hover overlay -->
                 <div class="absolute inset-0 bg-neutral-950 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <Icon name="expand" class="fill-neutral-200 opacity-90 h-10 w-10" />

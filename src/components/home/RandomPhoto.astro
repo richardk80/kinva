@@ -12,16 +12,16 @@ import queryterm from '../../pages/api/terms';
     backgroundColor="bg-neutral-950" 
     borderColor="border-neutral-950"
 >
-    <div class="my-2 mx-2 h-[207px] relative">
+    <div class="mt-2 mb-1.5 mx-2 h-[207px] relative">
         <RandomPhotoData query={queryterm} server:defer>
             <div slot="fallback">
                 <!-- Image Placeholder -->
-                <div class="h-[190px] w-full bg-neutral-300 animate-pulse flex items-center justify-center border-2 border-neutral-950">
+                <div class="h-[190px] w-full bg-neutral-300 animate-pulse flex items-center justify-center border border-neutral-950">
                     <p class="text-neutral-700">Loading...</p>
                 </div>
             
                 <!-- Caption Placeholder -->
-                <div class="flex justify-center mt-[4px]">
+                <div class="flex justify-center mt-[3px]">
                   <div class="h-4 w-64 bg-neutral-300 animate-pulse"></div>
                 </div>
               </div>
