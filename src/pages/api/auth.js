@@ -1,5 +1,5 @@
 // src/pages/api/auth.js
-import { signUp, signIn, signOut, getUser } from '../../lib/auth';
+import { signUp, signIn, getUser } from '../../lib/auth';
 
 export async function POST({ request, cookies }) {
   try {
