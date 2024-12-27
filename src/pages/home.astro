@@ -1,8 +1,4 @@
 ---
-const userCookie = Astro.cookies.get('user');
-const users = userCookie ? JSON.parse(userCookie.value) : null;
-if (!users) return Astro.redirect("/");
-
 import Layout from '@lay/Layout.astro';
 
 import UserDetailBox from '@com/home/UserDetailBox.astro';
