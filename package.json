@@ -9,10 +9,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "postinstall": "prisma generate",
     "killport": "kill-port 4321-4330 --quiet",
     "update": "npx @astrojs/upgrade",
-    "info": "astro info"
+    "info": "astro info",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@astrojs/image": "0.18.0",
