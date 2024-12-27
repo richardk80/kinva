@@ -231,13 +231,14 @@ const messageCount = user ? user.messagenum : 0;
 </script>
 
 <script>
-  import { logOut } from '../lib/auth.js'; // Adjust the path to your auth.js file
+  import { auth } from '../lib/firebase'; // Assuming your Firebase configuration is here
+  import { signOut } from 'firebase/auth'; // Adjust the path to your auth.js file
 
   // Define the logout handler function
   async function logOutHandler() {
   try {
     // Sign out user from Firebase
-    await logOut(); // This function calls `signOut(auth)` from Firebase
+    await signOut(auth); // This function calls `signOut(auth)` from Firebase
 
     // Call the DELETE endpoint to remove the user cookie
     const response = await fetch('/api/auth', { method: 'DELETE' });
