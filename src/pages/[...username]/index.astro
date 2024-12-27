@@ -1,4 +1,8 @@
 ---
+const userCookie = Astro.cookies.get('user');
+const users = userCookie ? JSON.parse(userCookie.value) : null;
+if (!users) return Astro.redirect("/");
+
 import CoverImage from '@com/main/CoverImage.astro';
 import UserDetailBox from '@com/profile/UserDetailBox.astro';
 import MusicPlayer from '@com/main/MusicPlayer.astro';

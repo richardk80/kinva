@@ -1,4 +1,8 @@
 ---
+const userCookie = Astro.cookies.get('user');
+const user = userCookie ? JSON.parse(userCookie.value) : null;
+if (!user) return Astro.redirect("/");
+
 import OtherLayout from '@lay/OtherLayout.astro';
 import OtherProfileImage from "@com/main/OtherProfileImage.astro";
 import { Icon } from 'astro-icon/components'; // Using astro-icon for the checkmark

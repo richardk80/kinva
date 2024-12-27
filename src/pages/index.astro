@@ -1,31 +1,15 @@
 ---
-import Layout from '@lay/Layout.astro';
+const userCookie = Astro.cookies.get('user');
+const user = userCookie ? JSON.parse(userCookie.value) : null;
+if (user) return Astro.redirect("/home");
 
 import LoginLayout from '@lay/LoginLayout.astro';
-
-import UserDetailBox from '@com/home/UserDetailBox.astro';
-import NewUsers from '@com/main/NewUsers.astro';
-import YourMail from '@com/home/YourMail.astro';
-import ProfileLinkBox from '@com/home/ProfileLinkBox.astro';
-import RandomPhoto from '@com/home/RandomPhoto.astro';
-import BlogEntry from '@com/home/BlogEntry.astro';
-import InfoBox from '@com/home/InfoBox.astro';
-import FriendsBulletins from '@com/home/FriendsBulletins.astro';
-import FriendRequests from '@com/home/FriendRequests.astro';
 
 import LoginNewUsers from '@com/main/LoginNewUsers.astro';
 import LoginDivider from '@com/login/LoginDivider.astro';
 import LoginBox from '@com/login/LoginBox.astro';
 
-const name = 'Dex';
-
 const username = 'dex';
-
-const created = '01-01-2020';
-
-const showlist = 7;
-
-const bulletinnum = 4;
 
 import onlineusers from './api/users';
 
@@ -47,51 +31,10 @@ const currentUser = onlineusers.find(user => user.username === username);
 // Check if the user has a profile picture
 const hasProfilePic = currentUser ? currentUser.profilepic : false;
 ---
-{ isLoggedIn ?
-<Layout title="Home">
-    <div class="grid grid-cols-12 grid-flow-row-dense">
-        <div class="col-span-full">
-            <div class="flex items-start justify-between gap-x-2">
-                <!-- Start Left Column -->
-                <div class="flex flex-col gap-y-2">
-                    <UserDetailBox name={name} username={username} />
-                    <ProfileLinkBox username={username} />
-                    <YourMail />
-                    <RandomPhoto />
-                </div>
-                <!-- End Left Column -->
-                <!-- Start Right Column -->
-                <div class="flex flex-col gap-y-2 w-full">
-                    <div class="flex justify-between">
-                        <div class="-mt-0.5">
-                        <BlogEntry username={username} showlist={showlist} />
-                        </div>
-                    <InfoBox username={username} created={created} />
-                    </div>
-                    <NewUsers name={name} username={username} loggedin={isLoggedIn} profilepic={hasProfilePic} />
-                    <FriendsBulletins username={username} bulletinnum={bulletinnum} />
-                    <FriendRequests username={username} />
-                </div>
-                <!-- End Right Column -->
-                </div>
-            </div>
-        </div>
-    </Layout>
-    :
     <LoginLayout title="Login">
         <div class="grid grid-cols-12 grid-flow-row-dense mt-0.5">
             <div class="col-span-full">
-                <div class="flex items-start justify-between">
-                    <!-- Start Cool People on Login Page -->
-                    <div class="grid grid-rows-1">
-                        <LoginNewUsers loggedin={isLoggedIn} profilepic={hasProfilePic} />
-                    </div>
-                    <!-- End Cool People on Login Page -->
-                    <!-- Start Divider -->
-                    <div class="grid grid-rows-1 gap-y-0.5">
-                        <LoginDivider />
-                    </div>
-                    <!-- End Divider -->
+                <div class="flex items-start justify-center">
                     <!-- Start LoginBox -->
                     <div class="grid grid-rows-1 gap-x-2">
                         <LoginBox />
@@ -101,4 +44,3 @@ const hasProfilePic = currentUser ? currentUser.profilepic : false;
             </div>
         </div>
     </LoginLayout>
-}

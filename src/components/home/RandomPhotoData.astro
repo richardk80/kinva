@@ -1,6 +1,7 @@
 ---
 import { createClient } from 'pexels';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 
 const query = Astro.props.query;
 const API_KEY = import.meta.env.API_KEY;
@@ -39,7 +40,7 @@ const courtesyText = dailyPicture?.photographer_url
         <div class="relative overflow-hidden">
             <!-- Link with data-lightbox attribute for Lightbox2 -->
             <a href={dailyPicture.src.original} data-lightbox={`${query} pictures`} data-title={courtesyText}>
-                <img class="h-[190px] w-full object-fill image-trigger border-2 border-neutral-950" src={dailyPicture.src.medium} alt="" loading="lazy" />
+                <Image height={1} width={1} class="h-[190px] w-full object-fill image-trigger border-2 border-neutral-950" src={dailyPicture.src.medium} alt="" loading="lazy" densities={[1.5, 2]} />
                 <!-- Hover overlay -->
                 <div class="absolute inset-0 bg-neutral-950 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <Icon name="expand" class="fill-neutral-200 opacity-90 h-10 w-10" />

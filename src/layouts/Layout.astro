@@ -17,26 +17,8 @@ const { title } = Astro.props;
 
 import onlineusers from '../pages/api/users';
 
-// Assuming `currentUsername` is passed as a prop or defined somewhere in your component
-const currentUsername = 'dex'; // Replace this with the dynamic username, e.g., from props or state
-
-// Function to check if the user is logged in
-const checkUserLoggedInStatus = (username) => {
-  const currentUser = onlineusers.find(user => user.username === username);
-  return currentUser ? currentUser.loggedin : false; // true if logged in, false otherwise
-};
-
-// Call the function with the dynamic username
-const isLoggedIn = checkUserLoggedInStatus(currentUsername);
-
-const home = "Home";
-
-const loginname = "Login";
-
-const loggedinwords = [isLoggedIn ? `${home}` : `${loginname}`];
-
 const navItems = [
-  { smallname: "", href: "/", name: `${loggedinwords}`, dividerChar: "-" },
+  { smallname: "", href: "/home", name: "Home", dividerChar: "-" },
   { smallname: "messages", href: "/messages", name: "Messages", dividerChar: "-" },
   { smallname: "browse", href: "/browse", name: "Browse", dividerChar: "-" },
   { smallname: "tv", href: "/tv", name: "TV", dividerChar: "-" },
@@ -105,7 +87,7 @@ const messageCount = user ? user.messagenum : 0;
         <header class="bg-neutral-950 h-[40px]">
           <div class="flex items-center mx-1.5 mr-2 py-1">
             <!-- Start Logo Icon -->
-              <a href="/" title="Back to Home">
+              <a href="/home" title="Back to Home">
                   <Icon class="h-[30px] w-auto fill-white" name="klogo" />
               </a>
               <!-- End Logo Icon -->
@@ -133,14 +115,10 @@ const messageCount = user ? user.messagenum : 0;
               <!-- End Search HTML -->
                <!-- Start Logout Link -->
                <div class="flex items-center -mr-[1px]">
-                { 
-                  isLoggedIn ?
                   <button id="logoutButton" type="button" title="Log Out of Kinva" aria-label="Log Out of Kinva" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:bg-white/90 px-1.5 py-0.5 focus:bg-white/90 border border-neutral-950 focus:border-neutral-950">
                     <Icon class="h-[15px] fill-neutral-950" name="logout" />
                     <span class="text-xs text-neutral-950">Log Out</span>
                   </button>
-                  : null 
-                }
               </div>
               <!-- End Logout Link -->
           </div>
@@ -244,4 +222,36 @@ const messageCount = user ? user.messagenum : 0;
       behavior: 'smooth'
     });
   });
+</script>
+
+<script>
+  import { logOut } from '../lib/auth.js'; // Adjust the path to your auth.js file
+
+  // Define the logout handler function
+  async function logOutHandler() {
+  try {
+    // Sign out user from Firebase
+    await logOut(); // This function calls `signOut(auth)` from Firebase
+
+    // Call the DELETE endpoint to remove the user cookie
+    const response = await fetch('/api/auth', { method: 'DELETE' });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete user cookie');
+    }
+
+    location.reload(); // Reload the page to reflect logged-out state
+  } catch (error) {
+    console.error('Failed to log out:', error.message);
+    alert('Failed to log out. Please try again.');
+  }
+}
+
+// Attach the logOutHandler to the logout button dynamically
+document.addEventListener('DOMContentLoaded', () => {
+  const logoutButton = document.getElementById('logoutButton');
+  if (logoutButton) {
+    logoutButton.addEventListener('click', logOutHandler);
+  }
+});
 </script>

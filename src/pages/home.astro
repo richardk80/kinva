@@ -1,0 +1,76 @@
+---
+const userCookie = Astro.cookies.get('user');
+const users = userCookie ? JSON.parse(userCookie.value) : null;
+if (!users) return Astro.redirect("/");
+
+import Layout from '@lay/Layout.astro';
+
+import UserDetailBox from '@com/home/UserDetailBox.astro';
+import NewUsers from '@com/main/NewUsers.astro';
+import YourMail from '@com/home/YourMail.astro';
+import ProfileLinkBox from '@com/home/ProfileLinkBox.astro';
+import RandomPhoto from '@com/home/RandomPhoto.astro';
+import BlogEntry from '@com/home/BlogEntry.astro';
+import InfoBox from '@com/home/InfoBox.astro';
+import FriendsBulletins from '@com/home/FriendsBulletins.astro';
+import FriendRequests from '@com/home/FriendRequests.astro';
+
+const name = 'Dex';
+
+const username = 'dex';
+
+const created = '01-01-2020';
+
+const showlist = 7;
+
+const bulletinnum = 4;
+
+import onlineusers from './api/users';
+
+// Assuming `currentUsername` is passed as a prop or defined somewhere in your component
+const currentUsername = 'dex'; // Replace this with the dynamic username, e.g., from props or state.
+
+// Function to check if the user is logged in
+const checkUserLoggedInStatus = (username) => {
+  const currentUser = onlineusers.find(user => user.username === username);
+  return currentUser ? currentUser.loggedin : false; // true if logged in, false otherwise
+};
+
+// Call the function with the dynamic username
+const isLoggedIn = checkUserLoggedInStatus(currentUsername);
+
+// Find the current user details
+const currentUser = onlineusers.find(user => user.username === username);
+
+// Check if the user has a profile picture
+const hasProfilePic = currentUser ? currentUser.profilepic : false;
+---
+<Layout title="Home">
+    <div class="grid grid-cols-12 grid-flow-row-dense">
+        <div class="col-span-full">
+            <div class="flex items-start justify-between gap-x-2">
+                <!-- Start Left Column -->
+                <div class="flex flex-col gap-y-2">
+                    <UserDetailBox name={name} username={username} />
+                    <ProfileLinkBox username={username} />
+                    <YourMail />
+                    <RandomPhoto />
+                </div>
+                <!-- End Left Column -->
+                <!-- Start Right Column -->
+                <div class="flex flex-col gap-y-2 w-full">
+                    <div class="flex justify-between">
+                        <div class="-mt-0.5">
+                        <BlogEntry username={username} showlist={showlist} />
+                        </div>
+                    <InfoBox username={username} created={created} />
+                    </div>
+                    <NewUsers name={name} username={username} loggedin={isLoggedIn} profilepic={hasProfilePic} />
+                    <FriendsBulletins username={username} bulletinnum={bulletinnum} />
+                    <FriendRequests username={username} />
+                </div>
+                <!-- End Right Column -->
+                </div>
+            </div>
+        </div>
+    </Layout>

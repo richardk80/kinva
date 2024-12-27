@@ -10,17 +10,11 @@ const dotClass = loggedin
 
 // Set dynamic size based on `size` prop
 const sizeClass = size ? `w-${size} h-${size}` : 'w-[19px] h-[19px]'; // Default size is 16x16
-
-// Handle dynamic positioning with optional "-" prefix
-const formatPosition = (value, defaultValue) => {
-  if (!value) return defaultValue; // Use default if no value is provided
-  return value.startsWith('-') ? value : `-${value}`; // Add "-" if not present
-};
 ---
 
 {loggedin && (
   <div
-    class={`absolute -bottom-1 -right-1 block ${dotClass} ${sizeClass} rounded-full border-[2px] border-white z-20`}
+    class={`absolute bottom-[-3.5px] -right-1 block ${dotClass} ${sizeClass} rounded-full border-[2px] border-white z-20`}
     title={loggedin ? (livestreaming ? 'Livestreaming' : 'Online') : 'Offline'}
   ></div>
 )}

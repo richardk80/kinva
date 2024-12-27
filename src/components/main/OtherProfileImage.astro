@@ -17,6 +17,6 @@ import { Image } from 'astro:assets';
 const { width, height, imgclass, srcurl, altText, titleText, loggedin, livestreaming } = Astro.props;
 ---
 <div class="relative inline-block">
-    <Image width={width} height={height} class={imgclass} loading="eager" src={srcurl} alt={altText} title={titleText} />
+    <Image width={width} height={height} class={imgclass} loading="eager" src={srcurl} alt={altText} title={titleText} densities={[1.5, 2]} />
     <StatusDot loggedin={loggedin} livestreaming={livestreaming} />
 </div>

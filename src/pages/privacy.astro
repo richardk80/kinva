@@ -1,4 +1,8 @@
 ---
+const userCookie = Astro.cookies.get('user');
+const users = userCookie ? JSON.parse(userCookie.value) : null;
+if (!users) return Astro.redirect("/");
+
 import OtherLayout from '@lay/OtherLayout.astro';
 ---
 <OtherLayout title="Privacy" pagetitle="Privacy">
