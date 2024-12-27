@@ -168,7 +168,7 @@ body.lb-disable-scrolling {
 }
 
 .lb-data .lb-caption a:hover{
-    color:#DC2626;
+    text-decoration: underline;
 }
 
 .lb-data .lb-number{
