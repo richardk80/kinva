@@ -23,6 +23,7 @@ export default defineConfig({
       cssMinify: false, // Disable CSS minification
       inlineStylesheets: 'always',
       rollupOptions: {
+        external: ['@prisma/client'], // Exclude Prisma
         output: {
           entryFileNames: 'entry.[hash].js',
           chunkFileNames: 'chunks/chunk.[hash].js',
