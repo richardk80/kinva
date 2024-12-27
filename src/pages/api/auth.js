@@ -27,7 +27,7 @@ export async function POST({ request, cookies }) {
       path: '/',         // Cookie is available across the site
       httpOnly: true,    // Cookie is not accessible to JavaScript
       secure: true,      // Cookie is sent only over HTTPS
-      maxAge: 0
+      maxAge: null
     });
 
     return new Response(JSON.stringify({ user }), { status: 200 });
