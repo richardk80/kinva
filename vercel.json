@@ -2,7 +2,6 @@
     "github": {
         "silent": true
     },
-    "buildCommand": "npm run build && npx prisma generate",
     "framework": "astro",
     "cleanUrls": true,
     "trailingSlash": false
