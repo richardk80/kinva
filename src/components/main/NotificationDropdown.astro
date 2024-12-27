@@ -6,16 +6,16 @@ import { Icon } from 'astro-icon/components';
     <button id="notificationButton" class="relative" title="You have 3 Notifications">
       <Icon name="bell" class="w-5 h-5 fill-white"></Icon>
     <!-- Notification Badge -->
-    <span id="notificationBadge" class="absolute -top-1 -right-0.5 bg-red-500 text-white text-xs font-bold w-2 h-2 rounded-full"></span>
+    <span id="notificationBadge" class="absolute -top-1 -right-0.5 bg-red-500 w-2 h-2 rounded-full"></span>
   </button>
   
     <!-- Dropdown -->
-    <div id="notificationDropdown" class="hidden absolute right-0 mt-1.5 w-64 bg-neutral-950/90">
-      <ul class="h-32 overflow-y-auto divide-y divide-gray-200 space-y-1">
+    <div id="notificationDropdown" class="hidden absolute right-0 w-64 bg-neutral-950">
+      <ul class="h-32 divide-y divide-neutral-700 space-y-1">
         <!-- Notification Items -->
+        <li><a href="#" class="px-4 py-2 text-sm text-white hover:underline flex justify-center border-t border-neutral-700">New message from John</a></li>
         <li><a href="#" class="px-4 py-2 text-sm text-white hover:underline flex justify-center">New message from John</a></li>
-        <li><a href="#" class="px-4 py-2 text-sm text-white hover:underline flex justify-center">New message from John</a></li>
-        <li><a href="#" class="px-4 py-2 text-sm text-white hover:underline flex justify-center">New message from John</a></li>
+        <li><a href="#" class="px-4 py-2 text-sm text-white hover:underline flex justify-center border-b border-neutral-700">New message from John</a></li>
       </ul>
       <!-- View All Button -->
       <div class="text-center py-2">
