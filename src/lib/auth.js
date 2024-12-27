@@ -66,6 +66,18 @@ export const signIn = async (email, password) => {
   }
 };
 
+export const getUser = () => {
+  const user = auth.currentUser; // Get the current authenticated user
+  if (user) {
+    return {
+      uid: user.uid,         // Firebase user ID
+      email: user.email,     // User's email address
+      name: user.name || null, // User's name (if available)
+    };
+  }
+  return null; // Return null if no user is logged in
+};
+
 // Sign-out function
 export const logOut = async () => {
   try {
