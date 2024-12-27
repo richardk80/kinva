@@ -27,8 +27,8 @@ const navItems = [
   { smallname: "forums", href: "/forums", name: "Forums", dividerChar: "-" },
   { smallname: "groups", href: "/groups", name: "Groups", dividerChar: "-" },
   { smallname: "favorites", href: "/favorites", name: "Favorites", dividerChar: "-" },
-  { smallname: "feeds", href: "/feeds", name: "Feeds", dividerChar: "-" },
   { smallname: "about", href: "/about", name: "About", dividerChar: "-" },
+  { smallname: "rules", href: "/rules", name: "Rules", dividerChar: "-" },
   { smallname: "help", href: "/help", name: "Help", dividerChar: "-" },
   { smallname: "contact", href: "/", name: "Contact", dividerChar: "" }
 ];
@@ -40,7 +40,6 @@ const dividerCss = "text-white text-xs font-normal pl-[4px]";
 const currentPath = new URL(Astro.request.url).pathname.slice(1);
 
 const navFooterItems = [
-  { smallname: "rules", href: "/rules", name: "Rules", dividerChar: "-" },
   { smallname: "terms", href: "/terms", name: "Terms", dividerChar: "-" },
   { smallname: "privacy", href: "/privacy", name: "Privacy", dividerChar: "" },
 ];
