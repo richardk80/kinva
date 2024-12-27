@@ -9,6 +9,8 @@ import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
 
 import socialplayer from "../scripts/socialplayer.js?url";
 
+import NotificationDropdown from '@com/main/NotificationDropdown.astro';
+
 interface Props {
   title?: string;
 }
@@ -112,8 +114,11 @@ const messageCount = user ? user.messagenum : 0;
                     </form>
               </div>
               <!-- End Search HTML -->
-               <!-- Start Logout Link -->
-               <div class="flex items-center -mr-[1px]">
+              <!-- Start Logout Link -->
+              <div class="flex items-center -mr-[1px] space-x-5">
+                <div class="-mb-2.5 z-20">
+                  <NotificationDropdown />
+                </div>
                   <button id="logoutButton" type="button" title="Log Out of Kinva" aria-label="Log Out of Kinva" class="flex items-center whitespace-nowrap space-x-1 bg-white hover:underline px-1.5 py-0.5 focus:bg-white/90 border border-neutral-950 focus:border-neutral-950">
                     <Icon class="h-[15px] fill-neutral-950" name="logout" />
                     <span class="text-xs text-neutral-950">Logout</span>

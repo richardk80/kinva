@@ -40,6 +40,7 @@ export default {
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     require('preline/plugin'),
+    require('tailwindcss-motion'),
     function ({ addUtilities }) {
       addUtilities({
         '.bg-text-clip': {

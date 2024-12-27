@@ -51,7 +51,8 @@
     "@tailwindcss/typography": "^0.5.9",
     "astro-robots-txt": "^1.0.0",
     "fluid-tailwind": "^1.0.3",
-    "prisma": "^6.1.0"
+    "prisma": "^6.1.0",
+    "tailwindcss-motion": "^1.0.0"
   },
   "resolutions": {
     "ansi-align": "git+https://github.com/richardk80/ansi-align.git"
