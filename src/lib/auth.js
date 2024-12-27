@@ -77,17 +77,3 @@ export const getUser = () => {
   }
   return null; // Return null if no user is logged in
 };
-
-// Sign-out function
-export const logOut = async () => {
-  try {
-    console.log('Auth instance:', auth); // Debug
-    console.log('SignOut function:', signOut); // Debug
-
-    await signOut(auth); // Log out using the Firebase auth instance
-    console.log('User signed out successfully');
-  } catch (error) {
-    console.error('Sign-out error:', error.message); // Log error
-    throw new Error('Failed to sign out');
-  }
-};
