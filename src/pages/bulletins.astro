@@ -29,9 +29,9 @@ const hasBulletins = displayedBulletins.length > 0;
 <OtherLayout title="Bulletin Board" pagetitle="Bulletin Board">
 		<div class="space-y-2 ml-0.5">
 			<div class="flex items-center space-x-3">
-				<a href={`/${username}/bulletins/createbulletin`} class="border border-neutral-950 px-1.5 py-0.5 bg-zinc-100 hover:bg-zinc-200 cursor-pointer flex items-center justify-center space-x-1">
-					<Icon class="w-[13px]" name="circle-plus" />
-					<p class="text-xs">New Entry</p>
+				<a href={`/${username}/bulletins/createbulletin`} class="border border-neutral-950 px-1.5 py-0.5 bg-neutral-950 cursor-pointer flex items-center justify-center space-x-1">
+					<Icon class="w-[13px] fill-white" name="circle-plus" />
+					<p class="text-xs text-white hover:underline">New Entry</p>
 				</a>
 				<a href={`/${username}/bulletins/mybulletins`}  class="cursor-pointer flex items-center justify-center space-x-1 group fill-neutral-950 hover:fill-red-600 text-neutral-950 hover:text-red-600 hover:underline">
 					<Icon class="w-[13px]" name="user" />
