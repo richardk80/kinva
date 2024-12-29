@@ -1,21 +1,39 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+const notificationBadge = true;
 ---
 <div>
     <!-- Notification Bell -->
-    <button id="notificationButton" class="relative" title="You have 3 Notifications">
+    <button id="notificationButton" class="relative" title="You have 3 notifications">
       <Icon name="bell" class="w-5 h-5 fill-white"></Icon>
     <!-- Notification Badge -->
-    <span id="notificationBadge" class="-top-1.5 -right-1 absolute inline-flex h-2.5 w-2.5 rounded-full bg-blue-600"></span>
+    {
+      notificationBadge && (
+        <span
+          id="notificationBadge"
+          role="status"
+          aria-live="polite"
+          class="absolute top-[-6px] right-[-2px] inline-flex h-[8px] w-[8px] rounded-full bg-blue-600"
+          aria-label="New notifications"
+        ></span>
+      )
+    }
   </button>
   
     <!-- Dropdown -->
     <div id="notificationDropdown" class="hidden absolute right-0 w-64 bg-neutral-950">
-      <ul class="h-32 divide-y divide-neutral-700">
+      <ul class="h-32">
         <!-- Notification Items -->
-        <li><a href="#" class="px-4 py-2 text-xs text-white hover:underline flex justify-center border-t border-neutral-700">New Message from Steve</a></li>
-        <li><a href="#" class="px-4 py-2 text-xs text-white hover:underline flex justify-center">Friend Request from John</a></li>
-        <li><a href="#" class="px-4 py-2 text-xs text-white hover:underline flex justify-center border-b border-neutral-700">New Message from Rodney</a></li>
+        <li class="px-4 py-2 flex items-center justify-between gap-2 border-b border-neutral-700">
+          <a href="#" class="text-xs text-white hover:underline flex-1 flex justify-center">New Message from Steve</a>
+        </li>
+        <li class="px-4 py-2 flex items-center justify-between gap-2 border-b border-neutral-700">
+          <a href="#" class="text-xs text-white hover:underline flex-1 flex justify-center">New Friend Request</a>
+        </li>
+        <li class="px-4 py-2 flex items-center justify-between gap-2 border-b border-neutral-700">
+          <a href="#" class="text-xs text-white hover:underline flex-1 flex justify-center">New Message from Rodney</a>
+        </li>
       </ul>
       <!-- View All Button -->
       <div class="text-center py-2 mt-[-34px]">
@@ -24,29 +42,37 @@ import { Icon } from 'astro-icon/components';
     </div>
   </div>
 
-<style>
-.hidden {
-  display: none;
-}
-.block {
-  display: block;
-}
-</style>
-
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
   const notificationButton = document.getElementById('notificationButton');
   const notificationDropdown = document.getElementById('notificationDropdown');
 
-  // Toggle dropdown visibility
+  if (!notificationButton || !notificationDropdown) return; // Safety check
+
   notificationButton.addEventListener('click', () => {
-    notificationDropdown.classList.toggle('hidden');
+    const isOpen = notificationDropdown.classList.contains('opacity-100');
+
+    if (isOpen) {
+      notificationDropdown.classList.remove('opacity-100', 'scale-100');
+      notificationDropdown.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => notificationDropdown.classList.add('hidden'), 300); // Delay for smooth animation
+    } else {
+      notificationDropdown.classList.remove('hidden', 'opacity-0', 'scale-95');
+      notificationDropdown.classList.add('opacity-100', 'scale-100');
+    }
   });
 
-  // Close dropdown when clicking outside
+  // Optional: Close dropdown when clicking outside
   document.addEventListener('click', (event) => {
-    if (!notificationButton.contains(event.target) && !notificationDropdown.contains(event.target)) {
-      notificationDropdown.classList.add('hidden');
+    const target = event.target as HTMLElement; // Safely cast to HTMLElement
+
+    if (
+      !notificationDropdown.contains(target) &&
+      !notificationButton.contains(target)
+    ) {
+      notificationDropdown.classList.remove('opacity-100', 'scale-100');
+      notificationDropdown.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => notificationDropdown.classList.add('hidden'), 300);
     }
   });
 });

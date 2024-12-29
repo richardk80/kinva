@@ -41,16 +41,6 @@ const dividerCss = "text-white text-xs font-normal pl-[4px]";
 
 const currentPath = new URL(Astro.request.url).pathname.slice(1);
 
-const navFooterItems = [
-  { smallname: "terms", href: "/terms", name: "Terms", dividerChar: "-" },
-  { smallname: "privacy", href: "/privacy", name: "Privacy", dividerChar: "" },
-];
-
-const getCssFooterClasses = (isActive) => isActive ? "hover:text-red-600 hover:underline font-semibold" : "hover:text-red-600 hover:underline";
-const dividerFooterCss = "text-neutral-950 text-xs font-medium";
-
-const currentFooterPath = new URL(Astro.request.url).pathname.slice(1);
-
 const username = 'dex';
 
 // Assuming you're fetching the user data based on a specific `username` or `id`
@@ -115,7 +105,7 @@ const messageCount = user ? user.messagenum : 0;
               </div>
               <!-- End Search HTML -->
               <!-- Start Logout Link -->
-              <div class="flex items-center -mr-[1px] space-x-6">
+              <div class="flex items-center -mr-[1px] space-x-4">
                 <div class="-mb-2.5 z-20">
                   <NotificationDropdown />
                 </div>
@@ -150,23 +140,11 @@ const messageCount = user ? user.messagenum : 0;
       <div class="mt-3 mb-10">
         <footer class="space-y-1">
           <div class="flex justify-center">
-            <div class="text-neutral-950 text-[11px]">
-              <ul class="flex items-stretch space-x-1">
-                {navFooterItems.map(({ smallname, href, name,dividerChar }) => (
-                <li>
-                  <a data-navitem class={getCssFooterClasses(currentFooterPath === smallname)} href={href} target="_self">{name}</a>
-                  <span class={dividerFooterCss}>{dividerChar}</span>
-                </li>
-              ))}
-              </ul>
-          </div>
-          </div>
-          <div class="flex justify-center">
             <div class="text-[11px] flex items-center space-x-0.5">
               <p>Kinva © { new Date().getFullYear() }</p>
             </div>
           </div>
-          <p class="text-[11px] flex justify-center">This is a work in progress - View this on desktop for best results</p>
+          <p class="text-[11px] flex justify-center">This is not ready for production</p>
         </footer>
       </div>
       <!-- End Footer -->
