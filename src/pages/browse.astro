@@ -158,7 +158,6 @@ const filteredUsers = getFilteredUsers();
             { view === 'new' ? 'New Users' // Exclude the friends part for "New People"
                 : `${view === 'online' ? 'Online Users' : 'All Users'} - ${friends === 'include' ? 'Including Friends' : 'Excluding Friends'}`}
           </p>
-          <a class="text-[10.24px] hover:underline text-white" href={generateRandomProfileUrl()}>[random]</a>
         </div>
       </div>
       <div class="border border-neutral-950">

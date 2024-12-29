@@ -53,13 +53,17 @@ const musicinfo = audioinfo;
 const lastActiveObj = loggedin ? null : lastActive; // Use ternary to set `lastActive` based on `loggedin`
 
 console.log(livestreaming);
+
+const showCoverImage = false;
 ---
 <Layout title={name}>
   <div class="grid grid-cols-12 grid-flow-row-dense">
     <div class="col-span-full">
-      <div class="mb-1.5">
-        <CoverImage isCoverImg={isCoverImg} name={name} username={username} />
-      </div>
+      { showCoverImage && (
+        <div class="mb-1.5">
+          <CoverImage isCoverImg={isCoverImg} name={name} username={username} />
+        </div>
+      )}
       <div class="flex items-start justify-between gap-x-2">
         <!-- Start Left Column -->
         <div class="flex flex-col gap-y-2 flex-grow">
