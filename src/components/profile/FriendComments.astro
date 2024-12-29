@@ -3,17 +3,52 @@ import RegularBox from '@com/main/RegularBox.astro';
 
 import SmallLink from '@com/main/SmallLink.astro';
 
+import FeedbackProfileImage from '@com/main/FeedbackProfileImage.astro';
+
 const { loggedin, name, username } = Astro.props;
 
 //let parts = name.split(' ')
 //let firstName = parts.shift();
 //let lastName = parts.join(' ');
 
-const comments: number = 5; // Replace with the actual count of comments for the user
+const comments: number = 3; // Replace with the actual count of comments for the user
 const feedbackThreshold: number = 5; // Set the threshold for displaying comments
 
 // Check if feedback exceeds the threshold
 const showViewAll = comments >= feedbackThreshold;
+
+const usercomments = [
+  {
+    id: 1,
+    user: "Aaron",
+    loggedin: true,
+    livestreaming: false,
+    avatar: "https://i.pravatar.cc?img=12",
+    timeAgo: "12 hours ago",
+    comment: "this website is so good I love how fun it is to put together your profile, I love feeling like a teenager from the 2000s luv ya",
+    replies: []
+  },
+  {
+    id: 2,
+    user: "Lindsey",
+    loggedin: false,
+    livestreaming: false,
+    avatar: "https://i.pravatar.cc?img=5",
+    timeAgo: "18 hours ago",
+    comment: "Not only did you make this awesome website but you also put in a Rick Roll, I can already tell you are a 10/10 person",
+    replies: []
+  },
+  {
+    id: 3,
+    user: "Lucy",
+    loggedin: true,
+    livestreaming: true,
+    avatar: "https://i.pravatar.cc?img=19",
+    timeAgo: "22 hours ago",
+    comment: "I like this site",
+    replies: []
+  }
+];
 ---
 <RegularBox 
   username2=`${name}'s Friend Feedback`
@@ -24,7 +59,7 @@ const showViewAll = comments >= feedbackThreshold;
   aclass="text-[10px] -mt-0.5 font-normal hover:underline text-white" 
   aurl=`${username}/friendfeedback`
 >
-    <div class="ml-2 pt-1 pb-1 space-x-2 flex items-center">
+    <div class="ml-2 pt-1 space-x-2 flex items-center">
       <p class="text-xs">
         <span class="font-semibold">{name} has <span class="text-neutral-950">{comments}</span> { comments === 0 ? 'comments' : comments > 1 ? 'comments' : 'comment' }</span>
         { loggedin ? 
@@ -32,5 +67,25 @@ const showViewAll = comments >= feedbackThreshold;
         : '' 
         }
     </p>
-    </div>
+  </div>
+  <div class="mx-2">
+    {usercomments.map((usercomment) => (
+      <div class="mt-2.5 mb-1">
+        <div class="flex items-start">
+          <a href="/dex">
+            <FeedbackProfileImage height={56} width={56} srcurl={usercomment.avatar} altText={usercomment.user} loggedin={usercomment.loggedin} livestreaming={usercomment.livestreaming} />
+          </a>
+          <div class="ml-3 -mt-0.5 w-full">
+            <div class="flex items-center justify-between">
+              <a class="hover:underline" href="/dex">
+                <p class="font-semibold text-xs">{usercomment.user}</p>
+                </a>
+              <p class="text-[11px]">{usercomment.timeAgo}</p>
+            </div>
+            <p class="mt-1 text-xs">{usercomment.comment}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
 </RegularBox>

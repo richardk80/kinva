@@ -1,0 +1,31 @@
+---
+interface Props {
+    width: number;
+    height: number;
+    imgclass?: string;
+    srcurl?: string;
+    altText?: string;
+    titleText?: string;
+    loggedin?: boolean;
+    livestreaming?: boolean;
+}
+
+import { Image } from 'astro:assets';
+
+const { width, height, imgclass, srcurl, altText, titleText, loggedin, livestreaming } = Astro.props;
+
+const dotClass = loggedin
+  ? livestreaming
+    ? 'bg-red-500' // Streaming
+    : 'bg-green-500' // Online
+  : 'hidden'; // Offline
+---
+<div class="relative inline-block">
+    <Image width={width} height={height} class={imgclass} loading="eager" src={srcurl} alt={altText} title={titleText} densities={[1.5, 2]} />
+    {loggedin && (
+        <div
+          class={`absolute bottom-[-3px] -right-1 block ${dotClass} h-3.5 w-3.5 rounded-full border-[2px] border-white z-20`}
+          title={loggedin ? (livestreaming ? 'Livestreaming' : 'Online') : 'Offline'}
+        ></div>
+      )}
+</div>
