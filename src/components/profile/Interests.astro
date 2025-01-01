@@ -26,7 +26,29 @@ const { name, general, music, movies, television, books, heroes, loggedin, usern
     aurl={`/${username}/editinterests`}
 >
     <div class="p-1 space-y-1">
-            <div class="flex items-stretch space-x-1">
+        <div class="flex items-stretch space-x-1">
+            <div class="w-1/3 bg-neutral-950">
+                    <p class="text-xs font-semibold text-white pl-1 pt-0.5">
+                        Books:
+                    </p>
+            </div>
+            <div class="w-2/3 bg-neutral-200">
+                <p class="text-xs py-0.5 px-1 w-full text-balance text-neutral-950 antialiased subpixel-antialiased" set:html={interestswords[3].words}>
+                </p>
+            </div>
+        </div>
+        <div class="flex items-stretch space-x-1">
+            <div class="w-1/3 bg-neutral-950">
+                    <p class="text-xs font-semibold text-white pl-1 pt-0.5">
+                        Movies:
+                    </p>
+            </div>
+            <div class="w-2/3 bg-neutral-200">
+                <p class="text-xs py-0.5 px-1 w-full text-balance text-neutral-950 antialiased subpixel-antialiased" set:html={interestswords[1].words}>
+                </p>
+            </div>
+        </div>
+        <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-neutral-950">
                         <p class="text-xs font-semibold text-white pl-1 pt-0.5">
                             Music:
@@ -36,19 +58,8 @@ const { name, general, music, movies, television, books, heroes, loggedin, usern
                     <p class="text-xs py-0.5 px-1 w-full text-balance text-neutral-950 antialiased subpixel-antialiased" set:html={interestswords[0].words}>
                     </p>
                 </div>
-            </div>
-            <div class="flex items-stretch space-x-1">
-                <div class="w-1/3 bg-neutral-950">
-                        <p class="text-xs font-semibold text-white pl-1 pt-0.5">
-                            Movies:
-                        </p>
-                </div>
-                <div class="w-2/3 bg-neutral-200">
-                    <p class="text-xs py-0.5 px-1 w-full text-balance text-neutral-950 antialiased subpixel-antialiased" set:html={interestswords[1].words}>
-                    </p>
-                </div>
-            </div>
-            <div class="flex items-stretch space-x-1">
+        </div>
+        <div class="flex items-stretch space-x-1">
                 <div class="w-1/3 bg-neutral-950">
                         <p class="text-xs font-semibold text-white pl-1 pt-0.5">
                             Television:
@@ -58,17 +69,6 @@ const { name, general, music, movies, television, books, heroes, loggedin, usern
                     <p class="text-xs py-0.5 px-1 w-full text-balance text-neutral-950 antialiased subpixel-antialiased" set:html={interestswords[2].words}>
                     </p>
                 </div>
-            </div>
-            <div class="flex items-stretch space-x-1">
-                <div class="w-1/3 bg-neutral-950">
-                        <p class="text-xs font-semibold text-white pl-1 pt-0.5">
-                            Books:
-                        </p>
-                </div>
-                <div class="w-2/3 bg-neutral-200">
-                    <p class="text-xs py-0.5 px-1 w-full text-balance text-neutral-950 antialiased subpixel-antialiased" set:html={interestswords[3].words}>
-                    </p>
-                </div>
-            </div>
+        </div>
     </div>
 </BubbleBox>

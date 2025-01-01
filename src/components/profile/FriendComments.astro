@@ -2,6 +2,7 @@
 import RegularBox from '@com/main/RegularBox.astro';
 import SmallLink from '@com/main/SmallLink.astro';
 import FeedbackProfileImage from '@com/main/FeedbackProfileImage.astro';
+import FeedbackBlankImage from '@com/main/FeedbackBlankImage.astro';
 
 const { loggedin, name, username } = Astro.props;
 
@@ -31,7 +32,7 @@ const usercomments = [
     user: "Lucy",
     loggedin: true,
     livestreaming: true,
-    avatar: "https://i.pravatar.cc?img=19",
+    avatar: "",
     timeAgo: "22 hours ago",
     comment: "I like this site",
     replies: []
@@ -87,15 +88,19 @@ const showViewAll = comments >= feedbackThreshold;
           <div class="pt-2.5 pb-2">
             <div class="flex items-start">
               <a href="/dex">
-                <FeedbackProfileImage
-                  height={56}
-                  width={56}
-                  srcurl={usercomment.avatar}
-                  altText={usercomment.user}
-                  loggedin={usercomment.loggedin}
-                  livestreaming={usercomment.livestreaming}
-                  titleText={`Visit ${usercomment.user}'s profile`}
-                />
+                { usercomment.avatar ? <FeedbackProfileImage
+                    height={56}
+                    width={56}
+                    srcurl={usercomment.avatar}
+                    altText={usercomment.user}
+                    loggedin={usercomment.loggedin}
+                    livestreaming={usercomment.livestreaming}
+                    titleText={`Visit ${usercomment.user}'s profile`}
+                  /> :
+                  <div class="relative">
+                    <FeedbackBlankImage loggedin={usercomment.loggedin} livestreaming={usercomment.livestreaming} />
+              </div>
+                }
               </a>
               <div class="ml-3 w-full -mt-0.5">
                 <div class="flex items-center justify-between">

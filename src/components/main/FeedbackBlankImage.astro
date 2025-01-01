@@ -1,0 +1,25 @@
+---
+interface Props {
+    loggedin?: boolean;
+    livestreaming?: boolean;
+}
+
+import { Icon } from 'astro-icon/components';
+
+const { loggedin, livestreaming } = Astro.props;
+
+const dotClass = loggedin
+  ? livestreaming
+    ? 'bg-red-500' // Streaming
+    : 'bg-green-500' // Online
+  : 'hidden'; // Offline
+---
+<div class="relative inline-block">
+    <Icon class="w-[49px] h-[49px]" name="avatar" />
+    {loggedin && (
+        <div
+          class={`absolute bottom-[-2.5px] -right-1 block ${dotClass} h-3.5 w-3.5 rounded-full border-[2px] border-white z-20`}
+          title={loggedin ? (livestreaming ? 'Livestreaming' : 'Online') : 'Offline'}
+        ></div>
+      )}
+</div>
