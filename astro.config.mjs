@@ -43,7 +43,7 @@ export default defineConfig({
   output: 'server',
   server: {
     headers: {
-      'Accept-Encoding": "gzip, deflate, zstd'
+      "Accept-Encoding": "gzip, deflate, zstd",
     }
   },
   adapter: vercel()
