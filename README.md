@@ -6,8 +6,8 @@ A lot needs to be done with this so it can go into production.
 
 Download this repo, run it locally or install it on Vercel and take a look at it.
 
-Figure out what all needs to be done to make it totally function.
+Please don't change the UI. That part is fine...It's just the functionality and features that needs work.
 
-Please don't change the UI. That part is fine...It's just the functionality that needs work.
+You can comment in the "issues" section if you're interested.
 
 Thanks

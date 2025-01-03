@@ -7,8 +7,6 @@ import cookieconsentjs from "../scripts/cookieconsent.js?url";
 
 import cookieconsentinit from "../scripts/cookieconsent-init.js?url";
 
-import socialplayer from "../scripts/socialplayer.js?url";
-
 import NotificationDropdown from '@com/main/NotificationDropdown.astro';
 
 interface Props {
@@ -161,7 +159,6 @@ const messageCount = user ? user.messagenum : 0;
       <Icon class="h-4 w-4 fill-white m-auto" name="arrow-up" />
     </button>
     <!-- End Back to Top Button -->
-    <script is:inline defer src={socialplayer}></script>
   </body>
 </html>
 

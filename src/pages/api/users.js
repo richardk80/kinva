@@ -17,8 +17,6 @@ const users = [
       "created": '2023-12-23',
       "isCoverImg": true,
       "coverimg": 'https://media.sproutsocial.com/uploads/1c_facebook-cover-photo_clean@2x.png',
-      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
-      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json',
       "livestreaming": true
     },
     { 
@@ -37,8 +35,6 @@ const users = [
       "lastActive": '2024-07-23T09:58:00Z',
       "isCoverImg": true,
       "coverimg": 'https://iwritingsolutions.com/wp-content/uploads/2022/05/ad9fc80c376ce3a9a2365aba0c356a70-scaled.jpg',
-      "audiourl": '',
-      "audioinfo": '',
       "livestreaming": false
     },
     { 
@@ -57,8 +53,6 @@ const users = [
       "lastActive": '2024-08-23T08:58:00Z',
       "isCoverImg": true,
       "coverimg": 'https://i.pinimg.com/originals/4a/88/7e/4a887e68509737452a38ba244079b8a0.jpg',
-      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
-      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json',
       "livestreaming": false
     },
     { 
@@ -77,8 +71,6 @@ const users = [
       "lastActive": '2024-08-23T10:54:00Z',
       "isCoverImg": true,
       "coverimg": 'https://media.sproutsocial.com/uploads/3a_facebook-cover-photo_labels@2x-1.png',
-      "audiourl": '',
-      "audioinfo": '',
       "livestreaming": false
     },
     { 
@@ -97,8 +89,6 @@ const users = [
       "lastActive": '2024-08-23T07:58:00Z',
       "isCoverImg": true,
       "coverimg": 'https://media.sproutsocial.com/uploads/3c_facebook-cover-photo_labels@2x-2.png',
-      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
-      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json',
       "livestreaming": false
     },
     { 
@@ -117,8 +107,6 @@ const users = [
       "lastActive": '2024-08-23T08:58:00Z',
       "isCoverImg": true,
       "coverimg": 'https://marketplace.canva.com/EAE89qUYCic/1/0/1600w/canva-blue-ocean-tide-beach-motivational-quote-facebook-cover-UlayDxq20Mo.jpg',
-      "audiourl": '',
-      "audioinfo": '',
       "livestreaming": false
     },
     { 
@@ -137,8 +125,6 @@ const users = [
       "lastActive": '2024-08-22T10:58:00Z',
       "isCoverImg": false,
       "coverimg": '',
-      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
-      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json',
       "livestreaming": true
     },
     { 
@@ -157,8 +143,6 @@ const users = [
       "lastActive": '2024-08-21T10:58:00Z',
       "isCoverImg": true,
       "coverimg": 'https://static.vecteezy.com/system/resources/previews/020/011/196/non_2x/green-minimalist-life-quote-facebook-cover-free-editor_template.jpeg',
-      "audiourl": '',
-      "audioinfo": '',
       "livestreaming": true
     },
     { 
@@ -177,8 +161,6 @@ const users = [
       "lastActive": '2023-08-24T10:58:00Z',
       "isCoverImg": true,
       "coverimg": 'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2017/08/nature-design.jpg',
-      "audiourl": 'https://live.amperwave.net/direct/audacy-kroqfmaac-imc',
-      "audioinfo": 'https://api-nowplaying.amperwave.net/prt/nowplaying/2/5/7083/nowplaying.json',
       "livestreaming": false
     }
   ];

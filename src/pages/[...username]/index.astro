@@ -5,7 +5,6 @@ if (!users) return Astro.redirect("/");
 
 import CoverImage from '@com/main/CoverImage.astro';
 import UserDetailBox from '@com/profile/UserDetailBox.astro';
-import MusicPlayer from '@com/main/MusicPlayer.astro';
 import ContactButtons from '@com/profile/ContactButtons.astro';
 import ProfileLinkURL from '@com/profile/ProfileLinkURL.astro';
 import Interests from '@com/profile/Interests.astro';
@@ -70,7 +69,6 @@ const showCoverImage = true;
           <UserDetailBox loggedin={loggedin} name={name} username={username} onlinenow={loggedin} lastActive={lastActiveObj} profilepic={profilepic} profileimg={profileimg} livestreaming={livestreaming} />
           <ContactButtons loggedin={loggedin} myself={myself} name={name} friendship={friendship} requested={requested} />
           <ProfileLinkURL loggedin={loggedin} name={name} username={username} />
-          { audiourl ? <MusicPlayer audiourl={audiourl} audioinfo={musicinfo} /> : null }
           <Details loggedin={loggedin} name={name} username={username} />
           <Interests loggedin={loggedin} name={name} username={username} />
         </div>
