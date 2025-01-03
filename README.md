@@ -8,6 +8,8 @@ Download this repo, run it locally or install it on Vercel and take a look at it
 
 Please don't change the UI. That part is fine...It's just the functionality and features that needs work.
 
-You can comment in the "issues" section if you're interested.
+You can create an account right now so you can view the site.
+
+You can also comment in the "issues" section if you're interested.
 
 Thanks
